@@ -8,5 +8,5 @@
  * @author Usuario
  */
 public class prueba2 {
-    
+    int cantidad;
 }
