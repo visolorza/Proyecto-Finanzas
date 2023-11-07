@@ -404,7 +404,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jLabel4" min="-2" pref="43" max="-2" attributes="0"/>
+                                          <Component id="jlbl_mesActual2" min="-2" pref="43" max="-2" attributes="0"/>
                                           <EmptySpace pref="77" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
@@ -428,7 +428,7 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jlbl_ingresosMes1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jLabel4" min="-2" pref="15" max="-2" attributes="0"/>
+                          <Component id="jlbl_mesActual2" min="-2" pref="15" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jlbl_totalGastos" min="-2" pref="30" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -437,7 +437,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel4">
+                <Component class="javax.swing.JLabel" name="jlbl_mesActual2">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Century Gothic" size="8" style="0"/>
@@ -503,7 +503,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel1" min="-2" pref="43" max="-2" attributes="0"/>
+                              <Component id="jlbl_mesActual" min="-2" pref="43" max="-2" attributes="0"/>
                               <Component id="jlbl_ingresosMes" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
@@ -521,7 +521,7 @@
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Component id="jlbl_ingresosMes" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" pref="15" max="-2" attributes="0"/>
+                          <Component id="jlbl_mesActual" min="-2" pref="15" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jlbl_totalIngresos" min="-2" pref="30" max="-2" attributes="0"/>
                           <EmptySpace pref="12" max="32767" attributes="0"/>
@@ -541,7 +541,7 @@
                     <Property name="text" type="java.lang.String" value="INGRESOS DEL MES"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel1">
+                <Component class="javax.swing.JLabel" name="jlbl_mesActual">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Century Gothic" size="8" style="0"/>
