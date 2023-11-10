@@ -17,10 +17,10 @@ import java.util.Properties;
  */
 public class ConexionBD {
  
-    private static final String WALLET_PATH = "C:\\Users\\María José\\OneDrive\\Desktop\\wallet\\Wallet_HVTBZKZNLTAGAD9H"; 
+    private static final String WALLET_PATH = "/C:/Wallet_HVTBZKZNLTAGAD9H/"; 
     //en WALLET_PHAT se copia la ruta en la cual se encuentra la wallet (la wllet no debe estar en formato zip)
     private static final String WALLET_PASSWORD = "Basededatos123";
-    private static final String JDBC_URL = "jdbc:oracle:thin:@proyecto_finanzas_high";
+    private static final String JDBC_URL = "jdbc:oracle:thin:@hvtbzkznltagad9h_high";
     //aqui va el @"nombre base de datos"_high
 
     public static Connection obtenerConexion() throws Exception {
