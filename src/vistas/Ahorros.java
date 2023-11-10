@@ -69,6 +69,7 @@ public class Ahorros extends javax.swing.JFrame {
         jlbl_ingresosMes7 = new javax.swing.JLabel();
         jtxt_nombreMeta = new javax.swing.JTextField();
         jcbo_gastosMes = new javax.swing.JComboBox<>();
+        jbtn_inicio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -507,11 +508,24 @@ public class Ahorros extends javax.swing.JFrame {
         jcbo_gastosMes.setBackground(new java.awt.Color(204, 204, 204));
         jcbo_gastosMes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jcbo_gastosMes.setForeground(new java.awt.Color(0, 0, 0));
-        jcbo_gastosMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gastos del mes", "Compras", "Cuentas", "Deudas", "Educación", "Salud", "Transporte", "Vivienda ", "Otros" }));
+        jcbo_gastosMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gastos del mes", "Compras", "Cuentas", "Deudas", "Educación", "Salud", "Transporte", "Vivienda", "Otros" }));
         jcbo_gastosMes.setBorder(null);
         jcbo_gastosMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbo_gastosMesActionPerformed(evt);
+            }
+        });
+
+        jbtn_inicio.setBackground(new java.awt.Color(204, 204, 204));
+        jbtn_inicio.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jbtn_inicio.setForeground(new java.awt.Color(0, 0, 0));
+        jbtn_inicio.setText("Inicio");
+        jbtn_inicio.setBorder(null);
+        jbtn_inicio.setBorderPainted(false);
+        jbtn_inicio.setContentAreaFilled(false);
+        jbtn_inicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_inicioActionPerformed(evt);
             }
         });
 
@@ -526,7 +540,8 @@ public class Ahorros extends javax.swing.JFrame {
                     .addComponent(jbtn_grupoFamiliar)
                     .addComponent(jcbo_gastosMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtn_ahorros)
-                    .addComponent(jbtn_detHist))
+                    .addComponent(jbtn_detHist)
+                    .addComponent(jbtn_inicio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -534,7 +549,9 @@ public class Ahorros extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(95, 95, 95)
+                .addGap(67, 67, 67)
+                .addComponent(jbtn_inicio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtn_grupoFamiliar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtn_ingresosMes)
@@ -562,23 +579,86 @@ public class Ahorros extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtn_detHistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_detHistActionPerformed
-        // TODO add your handling code here:
+        
+        DetalleHistorico detalleHistorico = new DetalleHistorico();
+        detalleHistorico.setVisible(true);
+        this.dispose(); 
+        
     }//GEN-LAST:event_jbtn_detHistActionPerformed
 
     private void jbtn_ahorrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ahorrosActionPerformed
-        // TODO add your handling code here:
+        
+        Ahorros ahorros = new Ahorros();
+        ahorros.setVisible(true);
+        this.dispose();
+        
     }//GEN-LAST:event_jbtn_ahorrosActionPerformed
 
     private void jbtn_ingresosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ingresosMesActionPerformed
-        // TODO add your handling code here:
+        
+        Ingresos ingresos = new Ingresos();
+        ingresos.setVisible(true);
+        this.dispose();
+        
     }//GEN-LAST:event_jbtn_ingresosMesActionPerformed
 
     private void jbtn_grupoFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliarActionPerformed
-        // TODO add your handling code here:
+        
+        GrupoFamiliar grupoFamiliar = new GrupoFamiliar();
+        grupoFamiliar.setVisible(true);
+        this.dispose(); 
+        
     }//GEN-LAST:event_jbtn_grupoFamiliarActionPerformed
 
     private void jcbo_gastosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_gastosMesActionPerformed
-        // TODO add your handling code here:
+        
+        String opcion = (String) jcbo_gastosMes.getSelectedItem();
+        
+        switch (opcion) {
+            case "Compras":
+                Compras compras = new Compras();
+                compras.setVisible(true);
+                this.dispose(); 
+                break;
+            case "Cuentas":
+                Cuentas cuentas = new Cuentas();
+                cuentas.setVisible(true);
+                this.dispose();
+                break;
+            case "Deudas":
+                Deudas deudas = new Deudas();
+                deudas.setVisible(true);
+                this.dispose();
+                break;
+            case "Educación":
+                Educacion educacion = new Educacion();
+                educacion.setVisible(true);
+                this.dispose(); 
+                break;
+            case "Salud":
+                Salud salud = new Salud();
+                salud.setVisible(true);
+                this.dispose();
+                break;
+            case "Transporte":
+                Transporte transporte = new Transporte();
+                transporte.setVisible(true);
+                this.dispose();
+                break;
+            case "Vivienda":
+                Vivienda vivienda = new Vivienda();
+                vivienda.setVisible(true);
+                this.dispose();
+                break;
+            case "Otros":
+                Otros otros = new Otros();
+                otros.setVisible(true);
+                this.dispose();
+                break;
+            default:
+                throw new AssertionError();
+        }
+        
     }//GEN-LAST:event_jcbo_gastosMesActionPerformed
 
     private void jcbo_MetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_MetaActionPerformed
@@ -604,6 +684,14 @@ public class Ahorros extends javax.swing.JFrame {
     private void jbtn_crearMetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_crearMetaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtn_crearMetaActionPerformed
+
+    private void jbtn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_inicioActionPerformed
+        
+        Inicio inicio = new Inicio();
+        inicio.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_jbtn_inicioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -668,6 +756,7 @@ public class Ahorros extends javax.swing.JFrame {
     private javax.swing.JButton jbtn_grupoFamiliar3;
     private javax.swing.JButton jbtn_grupoFamiliar4;
     private javax.swing.JButton jbtn_ingresosMes;
+    private javax.swing.JButton jbtn_inicio;
     private javax.swing.JComboBox<String> jcbo_Meta;
     private javax.swing.JComboBox<String> jcbo_gastosMes;
     private javax.swing.JLabel jlbl_ListaMetas;
