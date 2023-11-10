@@ -9,12 +9,12 @@ package vistas;
  *
  * @author María José
  */
-public class Transporte extends javax.swing.JFrame {
+public class VTransporte extends javax.swing.JFrame {
 
     /**
      * Creates new form Inicio
      */
-    public Transporte() {
+    public VTransporte() {
         initComponents();
     }
 
@@ -569,7 +569,7 @@ public class Transporte extends javax.swing.JFrame {
 
     private void jbtn_detHistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_detHistActionPerformed
         
-        DetalleHistorico detalleHistorico = new DetalleHistorico();
+        VDetalleHistorico detalleHistorico = new VDetalleHistorico();
         detalleHistorico.setVisible(true);
         this.dispose(); 
         
@@ -577,7 +577,7 @@ public class Transporte extends javax.swing.JFrame {
 
     private void jbtn_ahorrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ahorrosActionPerformed
         
-        Ahorros ahorros = new Ahorros();
+        VAhorros ahorros = new VAhorros();
         ahorros.setVisible(true);
         this.dispose(); 
         
@@ -585,7 +585,7 @@ public class Transporte extends javax.swing.JFrame {
 
     private void jbtn_ingresosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ingresosMesActionPerformed
         
-        Ingresos ingresos = new Ingresos();
+        VIngresos ingresos = new VIngresos();
         ingresos.setVisible(true);
         this.dispose(); 
         
@@ -593,7 +593,7 @@ public class Transporte extends javax.swing.JFrame {
 
     private void jbtn_grupoFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliarActionPerformed
         
-        GrupoFamiliar grupoFamiliar = new GrupoFamiliar();
+        VGrupoFamiliar grupoFamiliar = new VGrupoFamiliar();
         grupoFamiliar.setVisible(true);
         this.dispose();
         
@@ -605,42 +605,42 @@ public class Transporte extends javax.swing.JFrame {
         
         switch (opcion) {
             case "Compras":
-                Compras compras = new Compras();
+                VCompras compras = new VCompras();
                 compras.setVisible(true);
                 this.dispose(); 
                 break;
             case "Cuentas":
-                Cuentas cuentas = new Cuentas();
+                VCuentas cuentas = new VCuentas();
                 cuentas.setVisible(true);
                 this.dispose();
                 break;
             case "Deudas":
-                Deudas deudas = new Deudas();
+                VDeudas deudas = new VDeudas();
                 deudas.setVisible(true);
                 this.dispose();
                 break;
             case "Educación":
-                Educacion educacion = new Educacion();
+                VEducacion educacion = new VEducacion();
                 educacion.setVisible(true);
                 this.dispose(); 
                 break;
             case "Salud":
-                Salud salud = new Salud();
+                VSalud salud = new VSalud();
                 salud.setVisible(true);
                 this.dispose();
                 break;
             case "Transporte":
-                Transporte transporte = new Transporte();
+                VTransporte transporte = new VTransporte();
                 transporte.setVisible(true);
                 this.dispose();
                 break;
             case "Vivienda":
-                Vivienda vivienda = new Vivienda();
+                VVivienda vivienda = new VVivienda();
                 vivienda.setVisible(true);
                 this.dispose();
                 break;
             case "Otros":
-                Otros otros = new Otros();
+                VOtros otros = new VOtros();
                 otros.setVisible(true);
                 this.dispose();
                 break;

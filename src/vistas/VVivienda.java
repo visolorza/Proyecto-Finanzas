@@ -9,12 +9,12 @@ package vistas;
  *
  * @author María José
  */
-public class GrupoFamiliar extends javax.swing.JFrame {
+public class VVivienda extends javax.swing.JFrame {
 
     /**
      * Creates new form Inicio
      */
-    public GrupoFamiliar() {
+    public VVivienda() {
         initComponents();
     }
 
@@ -37,6 +37,8 @@ public class GrupoFamiliar extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jbtn_grupoFamiliar2 = new javax.swing.JButton();
+        jbtn_grupoFamiliar3 = new javax.swing.JButton();
+        jbtn_grupoFamiliar4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -51,12 +53,21 @@ public class GrupoFamiliar extends javax.swing.JFrame {
         jButton15 = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
-        jlbl_ListaGrupoFamiliar = new javax.swing.JLabel();
-        jtxt_nombreIntegrante = new javax.swing.JTextField();
+        jlbl_ListaVivienda = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jlbl_ingresosMes = new javax.swing.JLabel();
+        jlbl_mesActual = new javax.swing.JLabel();
+        jlbl_totalVivienda = new javax.swing.JLabel();
+        jlbl_ingresosMes2 = new javax.swing.JLabel();
         jlbl_ingresosMes3 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jbtn_anadir = new javax.swing.JButton();
         jlbl_ingresosMes4 = new javax.swing.JLabel();
+        jcbo_integrante = new javax.swing.JComboBox<>();
+        jtxt_montoGasto = new javax.swing.JTextField();
+        jtxt_descGasto = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jbtn_anadir = new javax.swing.JButton();
+        jcbo_subcategoria = new javax.swing.JComboBox<>();
+        jlbl_ingresosMes5 = new javax.swing.JLabel();
         jcbo_gastosMes = new javax.swing.JComboBox<>();
         jbtn_inicio = new javax.swing.JButton();
 
@@ -64,6 +75,7 @@ public class GrupoFamiliar extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
+        jbtn_grupoFamiliar.setBackground(new java.awt.Color(204, 204, 204));
         jbtn_grupoFamiliar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jbtn_grupoFamiliar.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_grupoFamiliar.setText("Grupo familiar");
@@ -120,7 +132,7 @@ public class GrupoFamiliar extends javax.swing.JFrame {
 
         jbtn_grupoFamiliar2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jbtn_grupoFamiliar2.setForeground(new java.awt.Color(0, 0, 0));
-        jbtn_grupoFamiliar2.setText("Integrantes");
+        jbtn_grupoFamiliar2.setText("Fecha");
         jbtn_grupoFamiliar2.setBorder(null);
         jbtn_grupoFamiliar2.setBorderPainted(false);
         jbtn_grupoFamiliar2.setContentAreaFilled(false);
@@ -130,21 +142,52 @@ public class GrupoFamiliar extends javax.swing.JFrame {
             }
         });
 
+        jbtn_grupoFamiliar3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jbtn_grupoFamiliar3.setForeground(new java.awt.Color(0, 0, 0));
+        jbtn_grupoFamiliar3.setText("Detalle");
+        jbtn_grupoFamiliar3.setBorder(null);
+        jbtn_grupoFamiliar3.setBorderPainted(false);
+        jbtn_grupoFamiliar3.setContentAreaFilled(false);
+        jbtn_grupoFamiliar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_grupoFamiliar3ActionPerformed(evt);
+            }
+        });
+
+        jbtn_grupoFamiliar4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jbtn_grupoFamiliar4.setForeground(new java.awt.Color(0, 0, 0));
+        jbtn_grupoFamiliar4.setText("Monto");
+        jbtn_grupoFamiliar4.setBorder(null);
+        jbtn_grupoFamiliar4.setBorderPainted(false);
+        jbtn_grupoFamiliar4.setContentAreaFilled(false);
+        jbtn_grupoFamiliar4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_grupoFamiliar4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(177, 177, 177)
-                .addComponent(jbtn_grupoFamiliar2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
+                .addComponent(jbtn_grupoFamiliar2)
+                .addGap(89, 89, 89)
+                .addComponent(jbtn_grupoFamiliar3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
+                .addComponent(jbtn_grupoFamiliar4)
+                .addGap(34, 34, 34))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbtn_grupoFamiliar2)
-                .addContainerGap())
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtn_grupoFamiliar2)
+                    .addComponent(jbtn_grupoFamiliar3)
+                    .addComponent(jbtn_grupoFamiliar4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jButton2.setBackground(new java.awt.Color(255, 153, 153));
@@ -189,8 +232,8 @@ public class GrupoFamiliar extends javax.swing.JFrame {
         jButton17.setBackground(new java.awt.Color(255, 255, 153));
         jButton17.setFont(new java.awt.Font("Century Gothic", 0, 8)); // NOI18N
 
-        jlbl_ListaGrupoFamiliar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ListaGrupoFamiliar.setForeground(new java.awt.Color(0, 0, 0));
+        jlbl_ListaVivienda.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_ListaVivienda.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -203,7 +246,7 @@ public class GrupoFamiliar extends javax.swing.JFrame {
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 58, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addComponent(jlbl_ListaGrupoFamiliar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jlbl_ListaVivienda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(10, 10, 10)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
@@ -271,24 +314,86 @@ public class GrupoFamiliar extends javax.swing.JFrame {
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jlbl_ListaGrupoFamiliar, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(110, Short.MAX_VALUE))
+                    .addComponent(jlbl_ListaVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
-        jtxt_nombreIntegrante.setBackground(new java.awt.Color(204, 204, 204));
-        jtxt_nombreIntegrante.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jtxt_nombreIntegrante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxt_nombreIntegranteActionPerformed(evt);
-            }
-        });
+        jPanel6.setBackground(new java.awt.Color(204, 204, 204));
+
+        jlbl_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_ingresosMes.setForeground(new java.awt.Color(0, 0, 0));
+        jlbl_ingresosMes.setText("VIVIENDA");
+
+        jlbl_mesActual.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        jlbl_mesActual.setForeground(new java.awt.Color(0, 0, 0));
+
+        jlbl_totalVivienda.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_totalVivienda.setForeground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlbl_ingresosMes))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(137, Short.MAX_VALUE)
+                .addComponent(jlbl_totalVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jlbl_ingresosMes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(jlbl_totalVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jlbl_ingresosMes2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_ingresosMes2.setForeground(new java.awt.Color(0, 0, 0));
+        jlbl_ingresosMes2.setText("Integrante:");
 
         jlbl_ingresosMes3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jlbl_ingresosMes3.setForeground(new java.awt.Color(0, 0, 0));
-        jlbl_ingresosMes3.setText("Nombre:");
+        jlbl_ingresosMes3.setText("Descripción:");
 
-        jPanel4.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jlbl_ingresosMes4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_ingresosMes4.setForeground(new java.awt.Color(0, 0, 0));
+        jlbl_ingresosMes4.setText("Monto:");
+
+        jcbo_integrante.setBackground(new java.awt.Color(204, 204, 204));
+        jcbo_integrante.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jcbo_integrante.setForeground(new java.awt.Color(0, 0, 0));
+        jcbo_integrante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Seleccionar -", "Grupo Familiar" }));
+        jcbo_integrante.setBorder(null);
+        jcbo_integrante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbo_integranteActionPerformed(evt);
+            }
+        });
+
+        jtxt_montoGasto.setBackground(new java.awt.Color(204, 204, 204));
+        jtxt_montoGasto.setForeground(new java.awt.Color(0, 0, 0));
+        jtxt_montoGasto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+
+        jtxt_descGasto.setBackground(new java.awt.Color(204, 204, 204));
+        jtxt_descGasto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jtxt_descGasto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxt_descGastoActionPerformed(evt);
+            }
+        });
+
+        jPanel3.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jbtn_anadir.setBackground(new java.awt.Color(204, 204, 204));
         jbtn_anadir.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -302,58 +407,91 @@ public class GrupoFamiliar extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jbtn_anadir, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jbtn_anadir, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
         );
 
-        jlbl_ingresosMes4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes4.setForeground(new java.awt.Color(0, 0, 0));
-        jlbl_ingresosMes4.setText("GRUPO FAMILIAR");
+        jcbo_subcategoria.setBackground(new java.awt.Color(204, 204, 204));
+        jcbo_subcategoria.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jcbo_subcategoria.setForeground(new java.awt.Color(0, 0, 0));
+        jcbo_subcategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Seleccionar -", "Arriendo/Dividendo", "Mantención" }));
+        jcbo_subcategoria.setBorder(null);
+        jcbo_subcategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbo_subcategoriaActionPerformed(evt);
+            }
+        });
+
+        jlbl_ingresosMes5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_ingresosMes5.setForeground(new java.awt.Color(0, 0, 0));
+        jlbl_ingresosMes5.setText("Subcategoría:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(35, 35, 35)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jlbl_ingresosMes4)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jlbl_ingresosMes5)
+                                    .addComponent(jlbl_ingresosMes4)
                                     .addComponent(jlbl_ingresosMes3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jtxt_nombreIntegrante)))
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(32, Short.MAX_VALUE))))
+                                    .addComponent(jlbl_ingresosMes2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jtxt_montoGasto)
+                                    .addComponent(jcbo_integrante, 0, 165, Short.MAX_VALUE)
+                                    .addComponent(jtxt_descGasto)
+                                    .addComponent(jcbo_subcategoria, 0, 165, Short.MAX_VALUE))))))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jlbl_ingresosMes4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtxt_nombreIntegrante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlbl_ingresosMes3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(31, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jcbo_subcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlbl_ingresosMes5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jcbo_integrante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlbl_ingresosMes2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlbl_ingresosMes4)
+                            .addComponent(jtxt_montoGasto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jtxt_descGasto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlbl_ingresosMes3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)))
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGap(17, 17, 17))
         );
 
         jcbo_gastosMes.setBackground(new java.awt.Color(204, 204, 204));
@@ -431,7 +569,7 @@ public class GrupoFamiliar extends javax.swing.JFrame {
 
     private void jbtn_detHistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_detHistActionPerformed
         
-        DetalleHistorico detalleHistorico = new DetalleHistorico();
+        VDetalleHistorico detalleHistorico = new VDetalleHistorico();
         detalleHistorico.setVisible(true);
         this.dispose(); 
         
@@ -439,7 +577,7 @@ public class GrupoFamiliar extends javax.swing.JFrame {
 
     private void jbtn_ahorrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ahorrosActionPerformed
         
-        Ahorros ahorros = new Ahorros();
+        VAhorros ahorros = new VAhorros();
         ahorros.setVisible(true);
         this.dispose();
         
@@ -447,17 +585,17 @@ public class GrupoFamiliar extends javax.swing.JFrame {
 
     private void jbtn_ingresosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ingresosMesActionPerformed
         
-        Ingresos ingresos = new Ingresos();
+        VIngresos ingresos = new VIngresos();
         ingresos.setVisible(true);
-        this.dispose();
+        this.dispose(); 
         
     }//GEN-LAST:event_jbtn_ingresosMesActionPerformed
 
     private void jbtn_grupoFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliarActionPerformed
         
-        GrupoFamiliar grupoFamiliar = new GrupoFamiliar();
+        VGrupoFamiliar grupoFamiliar = new VGrupoFamiliar();
         grupoFamiliar.setVisible(true);
-        this.dispose(); 
+        this.dispose();
         
     }//GEN-LAST:event_jbtn_grupoFamiliarActionPerformed
 
@@ -467,42 +605,42 @@ public class GrupoFamiliar extends javax.swing.JFrame {
         
         switch (opcion) {
             case "Compras":
-                Compras compras = new Compras();
+                VCompras compras = new VCompras();
                 compras.setVisible(true);
                 this.dispose(); 
                 break;
             case "Cuentas":
-                Cuentas cuentas = new Cuentas();
+                VCuentas cuentas = new VCuentas();
                 cuentas.setVisible(true);
                 this.dispose();
                 break;
             case "Deudas":
-                Deudas deudas = new Deudas();
+                VDeudas deudas = new VDeudas();
                 deudas.setVisible(true);
                 this.dispose();
                 break;
             case "Educación":
-                Educacion educacion = new Educacion();
+                VEducacion educacion = new VEducacion();
                 educacion.setVisible(true);
                 this.dispose(); 
                 break;
             case "Salud":
-                Salud salud = new Salud();
+                VSalud salud = new VSalud();
                 salud.setVisible(true);
                 this.dispose();
                 break;
             case "Transporte":
-                Transporte transporte = new Transporte();
+                VTransporte transporte = new VTransporte();
                 transporte.setVisible(true);
                 this.dispose();
                 break;
             case "Vivienda":
-                Vivienda vivienda = new Vivienda();
+                VVivienda vivienda = new VVivienda();
                 vivienda.setVisible(true);
                 this.dispose();
                 break;
             case "Otros":
-                Otros otros = new Otros();
+                VOtros otros = new VOtros();
                 otros.setVisible(true);
                 this.dispose();
                 break;
@@ -512,17 +650,33 @@ public class GrupoFamiliar extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jcbo_gastosMesActionPerformed
 
+    private void jcbo_integranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_integranteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbo_integranteActionPerformed
+
+    private void jtxt_descGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_descGastoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxt_descGastoActionPerformed
+
     private void jbtn_grupoFamiliar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliar2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtn_grupoFamiliar2ActionPerformed
 
-    private void jtxt_nombreIntegranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_nombreIntegranteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtxt_nombreIntegranteActionPerformed
-
     private void jbtn_anadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_anadirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtn_anadirActionPerformed
+
+    private void jbtn_grupoFamiliar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliar3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtn_grupoFamiliar3ActionPerformed
+
+    private void jbtn_grupoFamiliar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliar4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtn_grupoFamiliar4ActionPerformed
+
+    private void jcbo_subcategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_subcategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbo_subcategoriaActionPerformed
 
     private void jbtn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_inicioActionPerformed
         
@@ -549,21 +703,20 @@ public class GrupoFamiliar extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(GrupoFamiliar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(GrupoFamiliar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(GrupoFamiliar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(GrupoFamiliar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
-//        //</editor-fold>
 //        //</editor-fold>
 //
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new GrupoFamiliar().setVisible(true);
+//                new Inicio().setVisible(true);
 //            }
 //        });
 //    }
@@ -585,8 +738,9 @@ public class GrupoFamiliar extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbtn_ahorros;
@@ -594,12 +748,22 @@ public class GrupoFamiliar extends javax.swing.JFrame {
     private javax.swing.JButton jbtn_detHist;
     private javax.swing.JButton jbtn_grupoFamiliar;
     private javax.swing.JButton jbtn_grupoFamiliar2;
+    private javax.swing.JButton jbtn_grupoFamiliar3;
+    private javax.swing.JButton jbtn_grupoFamiliar4;
     private javax.swing.JButton jbtn_ingresosMes;
     private javax.swing.JButton jbtn_inicio;
     private javax.swing.JComboBox<String> jcbo_gastosMes;
-    private javax.swing.JLabel jlbl_ListaGrupoFamiliar;
+    private javax.swing.JComboBox<String> jcbo_integrante;
+    private javax.swing.JComboBox<String> jcbo_subcategoria;
+    private javax.swing.JLabel jlbl_ListaVivienda;
+    private javax.swing.JLabel jlbl_ingresosMes;
+    private javax.swing.JLabel jlbl_ingresosMes2;
     private javax.swing.JLabel jlbl_ingresosMes3;
     private javax.swing.JLabel jlbl_ingresosMes4;
-    private javax.swing.JTextField jtxt_nombreIntegrante;
+    private javax.swing.JLabel jlbl_ingresosMes5;
+    private javax.swing.JLabel jlbl_mesActual;
+    private javax.swing.JLabel jlbl_totalVivienda;
+    private javax.swing.JTextField jtxt_descGasto;
+    private javax.swing.JTextField jtxt_montoGasto;
     // End of variables declaration//GEN-END:variables
 }

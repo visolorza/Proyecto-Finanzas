@@ -35,7 +35,7 @@ public class ConexionBD {
         System.setProperty("javax.net.ssl.keyStorePassword", WALLET_PASSWORD);
 
         Properties properties = new Properties();
-        properties.put("user", "admin");
+        properties.put("user", "ADMIN");
         properties.put("password", WALLET_PASSWORD);
 
         return DriverManager.getConnection(JDBC_URL, properties);

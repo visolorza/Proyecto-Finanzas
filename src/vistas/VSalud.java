@@ -9,12 +9,12 @@ package vistas;
  *
  * @author María José
  */
-public class Vivienda extends javax.swing.JFrame {
+public class VSalud extends javax.swing.JFrame {
 
     /**
      * Creates new form Inicio
      */
-    public Vivienda() {
+    public VSalud() {
         initComponents();
     }
 
@@ -53,11 +53,11 @@ public class Vivienda extends javax.swing.JFrame {
         jButton15 = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
-        jlbl_ListaVivienda = new javax.swing.JLabel();
+        jlbl_ListaSalud = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jlbl_ingresosMes = new javax.swing.JLabel();
         jlbl_mesActual = new javax.swing.JLabel();
-        jlbl_totalVivienda = new javax.swing.JLabel();
+        jlbl_totalSalud = new javax.swing.JLabel();
         jlbl_ingresosMes2 = new javax.swing.JLabel();
         jlbl_ingresosMes3 = new javax.swing.JLabel();
         jlbl_ingresosMes4 = new javax.swing.JLabel();
@@ -232,8 +232,8 @@ public class Vivienda extends javax.swing.JFrame {
         jButton17.setBackground(new java.awt.Color(255, 255, 153));
         jButton17.setFont(new java.awt.Font("Century Gothic", 0, 8)); // NOI18N
 
-        jlbl_ListaVivienda.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ListaVivienda.setForeground(new java.awt.Color(0, 0, 0));
+        jlbl_ListaSalud.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_ListaSalud.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -246,7 +246,7 @@ public class Vivienda extends javax.swing.JFrame {
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 58, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addComponent(jlbl_ListaVivienda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jlbl_ListaSalud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(10, 10, 10)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
@@ -314,7 +314,7 @@ public class Vivienda extends javax.swing.JFrame {
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jlbl_ListaVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlbl_ListaSalud, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(63, Short.MAX_VALUE))
         );
 
@@ -322,13 +322,13 @@ public class Vivienda extends javax.swing.JFrame {
 
         jlbl_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jlbl_ingresosMes.setForeground(new java.awt.Color(0, 0, 0));
-        jlbl_ingresosMes.setText("VIVIENDA");
+        jlbl_ingresosMes.setText("SALUD");
 
         jlbl_mesActual.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         jlbl_mesActual.setForeground(new java.awt.Color(0, 0, 0));
 
-        jlbl_totalVivienda.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_totalVivienda.setForeground(new java.awt.Color(0, 0, 0));
+        jlbl_totalSalud.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_totalSalud.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -342,7 +342,7 @@ public class Vivienda extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(137, Short.MAX_VALUE)
-                .addComponent(jlbl_totalVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlbl_totalSalud, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -353,7 +353,7 @@ public class Vivienda extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(jlbl_totalVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlbl_totalSalud, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -421,7 +421,7 @@ public class Vivienda extends javax.swing.JFrame {
         jcbo_subcategoria.setBackground(new java.awt.Color(204, 204, 204));
         jcbo_subcategoria.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jcbo_subcategoria.setForeground(new java.awt.Color(0, 0, 0));
-        jcbo_subcategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Seleccionar -", "Arriendo/Dividendo", "Mantención" }));
+        jcbo_subcategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Seleccionar -", "Consulta Médica", "Medicamentos", "Tratamientos" }));
         jcbo_subcategoria.setBorder(null);
         jcbo_subcategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -569,7 +569,7 @@ public class Vivienda extends javax.swing.JFrame {
 
     private void jbtn_detHistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_detHistActionPerformed
         
-        DetalleHistorico detalleHistorico = new DetalleHistorico();
+        VDetalleHistorico detalleHistorico = new VDetalleHistorico();
         detalleHistorico.setVisible(true);
         this.dispose(); 
         
@@ -577,23 +577,23 @@ public class Vivienda extends javax.swing.JFrame {
 
     private void jbtn_ahorrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ahorrosActionPerformed
         
-        Ahorros ahorros = new Ahorros();
+        VAhorros ahorros = new VAhorros();
         ahorros.setVisible(true);
-        this.dispose();
+        this.dispose(); 
         
     }//GEN-LAST:event_jbtn_ahorrosActionPerformed
 
     private void jbtn_ingresosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ingresosMesActionPerformed
         
-        Ingresos ingresos = new Ingresos();
+        VIngresos ingresos = new VIngresos();
         ingresos.setVisible(true);
         this.dispose(); 
-        
+           
     }//GEN-LAST:event_jbtn_ingresosMesActionPerformed
 
     private void jbtn_grupoFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliarActionPerformed
         
-        GrupoFamiliar grupoFamiliar = new GrupoFamiliar();
+        VGrupoFamiliar grupoFamiliar = new VGrupoFamiliar();
         grupoFamiliar.setVisible(true);
         this.dispose();
         
@@ -605,42 +605,42 @@ public class Vivienda extends javax.swing.JFrame {
         
         switch (opcion) {
             case "Compras":
-                Compras compras = new Compras();
+                VCompras compras = new VCompras();
                 compras.setVisible(true);
                 this.dispose(); 
                 break;
             case "Cuentas":
-                Cuentas cuentas = new Cuentas();
+                VCuentas cuentas = new VCuentas();
                 cuentas.setVisible(true);
                 this.dispose();
                 break;
             case "Deudas":
-                Deudas deudas = new Deudas();
+                VDeudas deudas = new VDeudas();
                 deudas.setVisible(true);
                 this.dispose();
                 break;
             case "Educación":
-                Educacion educacion = new Educacion();
+                VEducacion educacion = new VEducacion();
                 educacion.setVisible(true);
                 this.dispose(); 
                 break;
             case "Salud":
-                Salud salud = new Salud();
+                VSalud salud = new VSalud();
                 salud.setVisible(true);
                 this.dispose();
                 break;
             case "Transporte":
-                Transporte transporte = new Transporte();
+                VTransporte transporte = new VTransporte();
                 transporte.setVisible(true);
                 this.dispose();
                 break;
             case "Vivienda":
-                Vivienda vivienda = new Vivienda();
+                VVivienda vivienda = new VVivienda();
                 vivienda.setVisible(true);
                 this.dispose();
                 break;
             case "Otros":
-                Otros otros = new Otros();
+                VOtros otros = new VOtros();
                 otros.setVisible(true);
                 this.dispose();
                 break;
@@ -755,14 +755,14 @@ public class Vivienda extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcbo_gastosMes;
     private javax.swing.JComboBox<String> jcbo_integrante;
     private javax.swing.JComboBox<String> jcbo_subcategoria;
-    private javax.swing.JLabel jlbl_ListaVivienda;
+    private javax.swing.JLabel jlbl_ListaSalud;
     private javax.swing.JLabel jlbl_ingresosMes;
     private javax.swing.JLabel jlbl_ingresosMes2;
     private javax.swing.JLabel jlbl_ingresosMes3;
     private javax.swing.JLabel jlbl_ingresosMes4;
     private javax.swing.JLabel jlbl_ingresosMes5;
     private javax.swing.JLabel jlbl_mesActual;
-    private javax.swing.JLabel jlbl_totalVivienda;
+    private javax.swing.JLabel jlbl_totalSalud;
     private javax.swing.JTextField jtxt_descGasto;
     private javax.swing.JTextField jtxt_montoGasto;
     // End of variables declaration//GEN-END:variables
