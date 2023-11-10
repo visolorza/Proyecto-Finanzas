@@ -9,12 +9,12 @@ package vistas;
  *
  * @author María José
  */
-public class Ahorros extends javax.swing.JFrame {
+public class VAhorros extends javax.swing.JFrame {
 
     /**
      * Creates new form Inicio
      */
-    public Ahorros() {
+    public VAhorros() {
         initComponents();
     }
 
@@ -76,7 +76,6 @@ public class Ahorros extends javax.swing.JFrame {
 
         jbtn_grupoFamiliar.setBackground(new java.awt.Color(204, 204, 204));
         jbtn_grupoFamiliar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_grupoFamiliar.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_grupoFamiliar.setText("Grupo familiar");
         jbtn_grupoFamiliar.setBorder(null);
         jbtn_grupoFamiliar.setBorderPainted(false);
@@ -88,7 +87,6 @@ public class Ahorros extends javax.swing.JFrame {
         });
 
         jbtn_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_ingresosMes.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_ingresosMes.setText("Ingresos del mes");
         jbtn_ingresosMes.setBorder(null);
         jbtn_ingresosMes.setBorderPainted(false);
@@ -100,7 +98,6 @@ public class Ahorros extends javax.swing.JFrame {
         });
 
         jbtn_ahorros.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_ahorros.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_ahorros.setText("Ahorros");
         jbtn_ahorros.setBorder(null);
         jbtn_ahorros.setBorderPainted(false);
@@ -112,7 +109,6 @@ public class Ahorros extends javax.swing.JFrame {
         });
 
         jbtn_detHist.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_detHist.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_detHist.setText("Detalle histórico");
         jbtn_detHist.setBorder(null);
         jbtn_detHist.setBorderPainted(false);
@@ -130,7 +126,6 @@ public class Ahorros extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(153, 153, 153));
 
         jbtn_grupoFamiliar2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_grupoFamiliar2.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_grupoFamiliar2.setText("Fecha");
         jbtn_grupoFamiliar2.setBorder(null);
         jbtn_grupoFamiliar2.setBorderPainted(false);
@@ -142,7 +137,6 @@ public class Ahorros extends javax.swing.JFrame {
         });
 
         jbtn_grupoFamiliar3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_grupoFamiliar3.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_grupoFamiliar3.setText("Detalle");
         jbtn_grupoFamiliar3.setBorder(null);
         jbtn_grupoFamiliar3.setBorderPainted(false);
@@ -154,7 +148,6 @@ public class Ahorros extends javax.swing.JFrame {
         });
 
         jbtn_grupoFamiliar4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_grupoFamiliar4.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_grupoFamiliar4.setText("Monto");
         jbtn_grupoFamiliar4.setBorder(null);
         jbtn_grupoFamiliar4.setBorderPainted(false);
@@ -220,7 +213,6 @@ public class Ahorros extends javax.swing.JFrame {
         jButton13.setFont(new java.awt.Font("Century Gothic", 0, 8)); // NOI18N
 
         jlbl_ListaMetas.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ListaMetas.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -289,14 +281,11 @@ public class Ahorros extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
 
         jlbl_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_ingresosMes.setText("AHORROS");
 
         jlbl_annoActual.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jlbl_annoActual.setForeground(new java.awt.Color(0, 0, 0));
 
         jlbl_totalAhorros.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_totalAhorros.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -326,16 +315,13 @@ public class Ahorros extends javax.swing.JFrame {
         );
 
         jlbl_ingresosMes2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes2.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_ingresosMes2.setText("Meta:");
 
         jlbl_ingresosMes4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes4.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_ingresosMes4.setText("Monto:");
 
         jcbo_Meta.setBackground(new java.awt.Color(204, 204, 204));
         jcbo_Meta.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jcbo_Meta.setForeground(new java.awt.Color(0, 0, 0));
         jcbo_Meta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Seleccionar -", "Grupo Familiar" }));
         jcbo_Meta.setBorder(null);
         jcbo_Meta.addActionListener(new java.awt.event.ActionListener() {
@@ -345,7 +331,6 @@ public class Ahorros extends javax.swing.JFrame {
         });
 
         jtxt_montoAbonoMeta.setBackground(new java.awt.Color(204, 204, 204));
-        jtxt_montoAbonoMeta.setForeground(new java.awt.Color(0, 0, 0));
         jtxt_montoAbonoMeta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
@@ -353,7 +338,6 @@ public class Ahorros extends javax.swing.JFrame {
 
         jbtn_abonar.setBackground(new java.awt.Color(204, 204, 204));
         jbtn_abonar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_abonar.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_abonar.setText("Abonar");
         jbtn_abonar.setBorder(null);
         jbtn_abonar.setBorderPainted(false);
@@ -375,11 +359,9 @@ public class Ahorros extends javax.swing.JFrame {
         );
 
         jlbl_ingresosMes5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes5.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_ingresosMes5.setText("Monto:");
 
         jtxt_montoCrearMeta.setBackground(new java.awt.Color(204, 204, 204));
-        jtxt_montoCrearMeta.setForeground(new java.awt.Color(0, 0, 0));
         jtxt_montoCrearMeta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
@@ -387,7 +369,6 @@ public class Ahorros extends javax.swing.JFrame {
 
         jbtn_crearMeta.setBackground(new java.awt.Color(204, 204, 204));
         jbtn_crearMeta.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_crearMeta.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_crearMeta.setText("Crear nueva meta");
         jbtn_crearMeta.setBorder(null);
         jbtn_crearMeta.setBorderPainted(false);
@@ -411,19 +392,15 @@ public class Ahorros extends javax.swing.JFrame {
         );
 
         jtxt_descMeta.setBackground(new java.awt.Color(204, 204, 204));
-        jtxt_descMeta.setForeground(new java.awt.Color(0, 0, 0));
         jtxt_descMeta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         jlbl_ingresosMes6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes6.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_ingresosMes6.setText("Descripción:");
 
         jlbl_ingresosMes7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes7.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_ingresosMes7.setText("Nombre meta:");
 
         jtxt_nombreMeta.setBackground(new java.awt.Color(204, 204, 204));
-        jtxt_nombreMeta.setForeground(new java.awt.Color(0, 0, 0));
         jtxt_nombreMeta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -506,7 +483,6 @@ public class Ahorros extends javax.swing.JFrame {
 
         jcbo_gastosMes.setBackground(new java.awt.Color(204, 204, 204));
         jcbo_gastosMes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jcbo_gastosMes.setForeground(new java.awt.Color(0, 0, 0));
         jcbo_gastosMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gastos del mes", "Compras", "Cuentas", "Deudas", "Educación", "Salud", "Transporte", "Vivienda ", "Otros" }));
         jcbo_gastosMes.setBorder(null);
         jcbo_gastosMes.addActionListener(new java.awt.event.ActionListener() {
