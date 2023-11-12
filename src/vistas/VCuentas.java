@@ -1,5 +1,10 @@
 package vistas;
 
+import Controlador.ControlGasto;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.Gasto;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -663,7 +668,25 @@ public class VCuentas extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtn_grupoFamiliar2ActionPerformed
 
     private void jbtn_anadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_anadirActionPerformed
-        // TODO add your handling code here:
+        String desc = this.jtxt_descGasto.getText();
+        int monto =  Integer.parseInt(this.jtxt_montoGasto.getText());
+        //String integrante = (String) this.jcbo_integrante.getSelectedItem();
+        // String subcategoria = (String) this.jcbo_subcategoria.getSelectedItem();
+          
+        Gasto gasto = new Gasto();
+        
+        gasto.setMontoGast(monto);
+        gasto.setDescGast(desc);
+        gasto.setCodInt(1); //Esto debe ser modificado para que lo que obtenga sea de un integrante real.
+        gasto.setCodSubcat(1); //Esto debe ser modificado para que lo que obtenga sea de una subcategoría real.
+        
+        ControlGasto controlGastos = new ControlGasto();
+        
+        try {
+            controlGastos.agregar(gasto);
+        } catch (Exception ex) {
+            Logger.getLogger(VIngresos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jbtn_anadirActionPerformed
 
     private void jbtn_grupoFamiliar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliar3ActionPerformed

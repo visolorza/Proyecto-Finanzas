@@ -1,5 +1,7 @@
 package vistas;
 
+import modelo.Integrante;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -521,7 +523,14 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
     }//GEN-LAST:event_jtxt_nombreIntegranteActionPerformed
 
     private void jbtn_anadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_anadirActionPerformed
-        // TODO add your handling code here:
+        
+        String integrante = this.jtxt_nombreIntegrante.getText();
+        
+        Integrante integranteClase = new Integrante();
+        
+        integranteClase.setDesc_int(integrante);
+        
+        
     }//GEN-LAST:event_jbtn_anadirActionPerformed
 
     private void jbtn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_inicioActionPerformed

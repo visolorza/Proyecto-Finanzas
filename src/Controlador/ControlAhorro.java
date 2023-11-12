@@ -60,6 +60,7 @@ public class ControlAhorro {
             stmt.setInt(2, ahorro.getCod_meta());
 
             stmt.executeUpdate();
+            cnx.commit();
             stmt.close();
             cnx.close();
             return true;
@@ -82,6 +83,7 @@ public class ControlAhorro {
             stmt.setInt(1, cod_ahorro);
 
             stmt.executeUpdate();
+            cnx.commit();
             stmt.close();
             cnx.close();
             return true;
@@ -105,6 +107,7 @@ public class ControlAhorro {
             stmt.setInt(3, ahorro.getCod_ahorro());
 
             stmt.executeUpdate();
+            cnx.commit();
             stmt.close();
             cnx.close();
             return true;

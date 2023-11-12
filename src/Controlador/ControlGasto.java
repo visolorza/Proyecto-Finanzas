@@ -57,45 +57,24 @@ public class ControlGasto {
 
         try {
             ConexionBD con = new ConexionBD();
-         
+
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "insert into gasto(monto_gast, desc_gast, cod_subcat, cod_int) values(?,?,?,?)";
+            String query = "insert into gasto(cod_gast, fecha_gast, monto_gast, desc_gast, cod_subcat, cod_int) values(seq_cost.nextval, SYSDATE, ?, ?, ?, ?)";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setInt(1, gasto.getMontoGast());
             stmt.setString(2, gasto.getDescGast());
-            stmt.setInt(4, gasto.getCodSubcat());
-            stmt.setInt(5, gasto.getCodInt());
+            stmt.setInt(3, gasto.getCodSubcat());
+            stmt.setInt(4, gasto.getCodInt());
 
             stmt.executeUpdate();
+            cnx.commit();
             stmt.close();
             cnx.close();
             return true;
 
         } catch (SQLException e) {
             System.out.println("Error SQL al agregar gasto" + e.getMessage());
-            return false;
-        }
-    }
-    
-    public boolean eliminar(int cod_gast) throws Exception {
-
-        //trycatch+tab
-        try {
-            ConexionBD con = new ConexionBD();
-            Connection cnx = ConexionBD.obtenerConexion();
-
-            String query = "delete from gasto where cod_gast = ?";
-            PreparedStatement stmt = cnx.prepareStatement(query);
-            stmt.setInt(1, cod_gast);
-
-            stmt.executeUpdate();
-            stmt.close();
-            cnx.close();
-            return true;
-
-        } catch (SQLException e) {
-            System.out.println("Error SQL al eliminar gasto" + e.getMessage());
             return false;
         }
     }
@@ -115,6 +94,7 @@ public class ControlGasto {
             stmt.setInt(5, gasto.getCodGast());
 
             stmt.executeUpdate();
+            cnx.commit();
             stmt.close();
             cnx.close();
             return true;

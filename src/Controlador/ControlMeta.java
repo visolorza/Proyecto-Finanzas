@@ -61,7 +61,7 @@ public class ControlMeta {
             stmt.setInt(3, meta.getCod_int());
 
             stmt.executeUpdate();
-            stmt.close();
+            cnx.commit();
             cnx.close();
             return true;
 
@@ -83,6 +83,7 @@ public class ControlMeta {
             stmt.setInt(1, cod_meta);
 
             stmt.executeUpdate();
+            cnx.commit();
             stmt.close();
             cnx.close();
             return true;
@@ -107,6 +108,7 @@ public class ControlMeta {
             stmt.setInt(4, meta.getCod_meta());
 
             stmt.executeUpdate();
+            cnx.commit();
             stmt.close();
             cnx.close();
             return true;

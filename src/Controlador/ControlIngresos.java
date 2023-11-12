@@ -2,6 +2,7 @@
 package Controlador;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +15,9 @@ import modelo.Ingresos;
  * @author michimisimo
  */
 public class ControlIngresos {
+
+    public ControlIngresos() {
+    }
     
     public ArrayList<Ingresos> mostrar() throws Exception {
         
@@ -55,19 +59,20 @@ public class ControlIngresos {
          
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "insert into ingreso(desc_ing, monto_ing, cod_int) values(?,?,?)";
+            String query = "insert into ingreso(cod_ing, desc_ing, monto_ing, cod_int, fecha_ing) values(seq_ing.nextval, ?, ?,?, SYSDATE)";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setString(1, ingresos.getDesc_ing());
             stmt.setInt(2, ingresos.getMonto_ing());
-            stmt.setInt(4, ingresos.getCod_int());
+            stmt.setInt(3, ingresos.getCod_int());
 
             stmt.executeUpdate();
+            cnx.commit();
             stmt.close();
             cnx.close();
             return true;
 
         } catch (SQLException e) {
-            System.out.println("Error SQL al agregar ingreso" + e.getMessage());
+            System.out.println("Error SQL al agregar ingreso " + e.getMessage());
             return false;
         }
     }
@@ -84,6 +89,7 @@ public class ControlIngresos {
             stmt.setInt(1, cod_ing);
 
             stmt.executeUpdate();
+            cnx.commit();
             stmt.close();
             cnx.close();
             return true;
@@ -104,10 +110,11 @@ public class ControlIngresos {
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setString(1,ingresos.getDesc_ing());
             stmt.setInt(2,ingresos.getMonto_ing());
-            stmt.setInt(4, ingresos.getCod_int());
+            stmt.setInt(3, ingresos.getCod_int());
             stmt.setInt(4, ingresos.getCod_ing());
 
             stmt.executeUpdate();
+            cnx.commit();
             stmt.close();
             cnx.close();
             return true;

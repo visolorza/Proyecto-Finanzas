@@ -1,5 +1,12 @@
 package vistas;
 
+import Controlador.ControlIngresos;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.Ingresos;
+import modelo.Integrante;
+import static modelo.Metodos.crearCodigo;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -619,9 +626,28 @@ public class VIngresos extends javax.swing.JFrame {
     private void jbtn_grupoFamiliar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliar2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtn_grupoFamiliar2ActionPerformed
-
+    
+    
     private void jbtn_anadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_anadirActionPerformed
-        // TODO add your handling code here:
+        
+        String desc = this.jtxt_descIngreso.getText();
+        int monto =  Integer.parseInt(this.jtxt_montoIngreso.getText());
+        //String integrante = (String) this.jcbo_integrante.getSelectedItem();
+                
+        Ingresos ingreso = new Ingresos();
+        
+        ingreso.setDesc_ing(desc);
+        ingreso.setMonto_ing(monto);
+        ingreso.setCod_int(1); //Esto debe ser modificado para que lo que obtenga sea de un integrante real.
+        
+        ControlIngresos controlIngresos = new ControlIngresos();
+        
+        try {
+            controlIngresos.agregar(ingreso);
+        } catch (Exception ex) {
+            Logger.getLogger(VIngresos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jbtn_anadirActionPerformed
 
     private void jbtn_grupoFamiliar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliar3ActionPerformed
