@@ -1,5 +1,15 @@
 package vistas;
 
+import Controlador.ControlGasto;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.Gasto;
+import modelo.ConexionBD;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -17,7 +27,7 @@ public class VCompras extends javax.swing.JFrame {
     public VCompras() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -367,6 +377,11 @@ public class VCompras extends javax.swing.JFrame {
 
         jtxt_montoGasto.setBackground(new java.awt.Color(204, 204, 204));
         jtxt_montoGasto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jtxt_montoGasto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxt_montoGastoActionPerformed(evt);
+            }
+        });
 
         jtxt_descGasto.setBackground(new java.awt.Color(204, 204, 204));
         jtxt_descGasto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -487,7 +502,6 @@ public class VCompras extends javax.swing.JFrame {
 
         jbtn_inicio.setBackground(new java.awt.Color(204, 204, 204));
         jbtn_inicio.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_inicio.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_inicio.setText("Inicio");
         jbtn_inicio.setBorder(null);
         jbtn_inicio.setBorderPainted(false);
@@ -546,7 +560,10 @@ public class VCompras extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    ControlGasto cgasto = new ControlGasto();
+    Gasto gasto = new Gasto();
+    
     private void jbtn_detHistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_detHistActionPerformed
         
         VDetalleHistorico detalleHistorico = new VDetalleHistorico();
@@ -632,6 +649,15 @@ public class VCompras extends javax.swing.JFrame {
 
     private void jcbo_integranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_integranteActionPerformed
         // TODO add your handling code here:
+        
+        String desc_int = jcbo_integrante.getSelectedItem().toString().toUpperCase();
+        try {
+            cgasto.obt_int(gasto, desc_int);
+            System.out.println("integrsnte guardado"+gasto.getCodInt());
+        } catch (Exception ex) {
+            Logger.getLogger(VCompras.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jcbo_integranteActionPerformed
 
     private void jtxt_descGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_descGastoActionPerformed
@@ -644,6 +670,17 @@ public class VCompras extends javax.swing.JFrame {
 
     private void jbtn_anadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_anadirActionPerformed
         // TODO add your handling code here:
+        
+        gasto.setDescGast(this.jtxt_descGasto.getText());
+        gasto.setMontoGast(Integer.parseInt(this.jtxt_montoGasto.getText()));
+        
+        try {
+            if(cgasto.agregar(gasto));
+            System.out.println("gasto agregado con exito "+ gasto.toString());
+        } catch (Exception ex) {
+            Logger.getLogger(VCompras.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jbtn_anadirActionPerformed
 
     private void jbtn_grupoFamiliar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliar3ActionPerformed
@@ -656,6 +693,17 @@ public class VCompras extends javax.swing.JFrame {
 
     private void jcbo_subcategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_subcategoriaActionPerformed
         // TODO add your handling code here:
+        
+        String desc_subcat = jcbo_subcategoria.getSelectedItem().toString().toUpperCase();
+        try {
+            cgasto.obt_subcat(gasto, desc_subcat);
+            System.out.println("subcat guardado"+gasto.getCodSubcat());
+        } catch (Exception ex) {
+            Logger.getLogger(VCompras.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
     }//GEN-LAST:event_jcbo_subcategoriaActionPerformed
 
     private void jbtn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_inicioActionPerformed
@@ -665,6 +713,10 @@ public class VCompras extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_jbtn_inicioActionPerformed
+
+    private void jtxt_montoGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_montoGastoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxt_montoGastoActionPerformed
 
     /**
      * @param args the command line arguments

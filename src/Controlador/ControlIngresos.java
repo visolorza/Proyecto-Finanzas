@@ -59,7 +59,7 @@ public class ControlIngresos {
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setString(1, ingresos.getDesc_ing());
             stmt.setInt(2, ingresos.getMonto_ing());
-            stmt.setInt(4, ingresos.getCod_int());
+            stmt.setInt(3, ingresos.getCod_int());
 
             stmt.executeUpdate();
             stmt.close();
@@ -104,7 +104,7 @@ public class ControlIngresos {
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setString(1,ingresos.getDesc_ing());
             stmt.setInt(2,ingresos.getMonto_ing());
-            stmt.setInt(4, ingresos.getCod_int());
+            stmt.setInt(3, ingresos.getCod_int());
             stmt.setInt(4, ingresos.getCod_ing());
 
             stmt.executeUpdate();

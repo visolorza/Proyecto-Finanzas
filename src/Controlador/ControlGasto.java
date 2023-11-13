@@ -17,7 +17,7 @@ public class ControlGasto {
 
     public ControlGasto() {
     }
-
+     
     public ArrayList<Gasto> mostrar(int cod_cat) throws Exception {
         
         ArrayList<Gasto> lista = new ArrayList<>();
@@ -54,18 +54,20 @@ public class ControlGasto {
     }
     
     public boolean agregar(Gasto gasto) throws Exception {
-
+        
+        gasto.toString();
+        
         try {
             ConexionBD con = new ConexionBD();
          
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "insert into gasto(monto_gast, desc_gast, cod_subcat, cod_int) values(?,?,?,?)";
+            String query = "insert into gasto(cod_gast, fecha_gast, monto_gast, desc_gast, cod_subcat, cod_int) values(seq_cost.nextval, SYSDATE, ?, ?, ?, ?)";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setInt(1, gasto.getMontoGast());
             stmt.setString(2, gasto.getDescGast());
-            stmt.setInt(4, gasto.getCodSubcat());
-            stmt.setInt(5, gasto.getCodInt());
+            stmt.setInt(3, gasto.getCodSubcat());
+            stmt.setInt(4, gasto.getCodInt());
 
             stmt.executeUpdate();
             stmt.close();
@@ -77,6 +79,16 @@ public class ControlGasto {
             return false;
         }
     }
+    
+    //public static void main(String[] args) throws Exception {
+    //    Gasto gasto = new Gasto();
+    //    gasto.setCodInt(1);
+    //    gasto.setCodSubcat(1);
+    //    gasto.setDescGast("prueba");
+    //    gasto.setMontoGast(50000);
+    //    ControlGasto cgasto = new ControlGasto();
+    //    System.out.println(cgasto.agregar(gasto));
+    //}
     
     public boolean eliminar(int cod_gast) throws Exception {
 
@@ -125,4 +137,68 @@ public class ControlGasto {
         }
     }
     
+    public Gasto obt_subcat(Gasto gasto,String desc_subcat) throws Exception {
+    
+    try {
+        ConexionBD con = new ConexionBD();
+        Connection cnx = ConexionBD.obtenerConexion();
+
+        String query = "SELECT cod_subcat FROM subcategoria WHERE desc_subcat=?";
+        PreparedStatement stmt = cnx.prepareStatement(query);
+        stmt.setString(1, desc_subcat);
+
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            gasto.setCodSubcat(rs.getInt("cod_subcat"));
+            System.out.println("cod_subcat agregado"+gasto.toString());
+            return  gasto;
+        } else {
+            // Manejar el caso en el que no se encontraron filas
+            System.out.println("No se encontraron resultados para desc_subcat: " + desc_subcat);
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Error SQL al obtener cod_subcat: " + e.getMessage());
+        // Puedes lanzar una excepción más específica aquí si es necesario
+    } 
+        return gasto;
+    
+    }
+    
+    
+    public Gasto obt_int(Gasto gasto,String desc_int) throws Exception {
+
+    try {
+        ConexionBD con = new ConexionBD();
+        Connection cnx = ConexionBD.obtenerConexion();
+
+        String query = "SELECT cod_int FROM integrante WHERE desc_int=?";
+        PreparedStatement stmt = cnx.prepareStatement(query);
+        stmt.setString(1, desc_int);
+        
+        ResultSet rs = stmt.executeQuery();
+
+        rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            gasto.setCodInt(rs.getInt("cod_int")); 
+            System.out.println("cod_int agregado"+gasto.toString());
+            return gasto;
+        } else {
+            // Manejar el caso en el que no se encontraron filas
+            System.out.println("No se encontraron resultados para desc_int: " + desc_int);
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Error SQL al obtener cod_int: " + e.getMessage());
+        // Puedes lanzar una excepción más específica aquí si es necesario
+    } 
+        return gasto;
+    
+    }
+    
+    
 }
+      
+    
