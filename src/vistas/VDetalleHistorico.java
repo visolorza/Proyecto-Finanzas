@@ -1,5 +1,8 @@
 package vistas;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -312,7 +315,12 @@ public class VDetalleHistorico extends javax.swing.JFrame {
 
     private void jbtn_ingresosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ingresosMesActionPerformed
         
-        VIngresos ingresos = new VIngresos();
+        VIngresos ingresos = null;
+        try {
+            ingresos = new VIngresos();
+        } catch (Exception ex) {
+            Logger.getLogger(VDetalleHistorico.class.getName()).log(Level.SEVERE, null, ex);
+        }
         ingresos.setVisible(true);
         this.dispose();
         
@@ -391,9 +399,13 @@ public class VDetalleHistorico extends javax.swing.JFrame {
 
     private void jbtn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_inicioActionPerformed
         
-        Inicio inicio = new Inicio();
-        inicio.setVisible(true);
-        this.dispose();
+        try {
+            Inicio inicio = new Inicio();
+            inicio.setVisible(true);
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(VDetalleHistorico.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jbtn_inicioActionPerformed
 

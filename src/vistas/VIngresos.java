@@ -2,7 +2,10 @@ package vistas;
 
 import Utils.Utils;
 import controlador.ControlIngresos;
+import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Ingresos;
@@ -21,7 +24,7 @@ public class VIngresos extends javax.swing.JFrame {
     /**
      * Creates new form Inicio
      */
-    public VIngresos() {
+    public VIngresos() throws Exception {
         initComponents();
         
         Date fechaActual;
@@ -30,6 +33,17 @@ public class VIngresos extends javax.swing.JFrame {
         fechaActual=utils.obtenerFecha();
         mesActual=utils.obtenerMes(fechaActual);
         this.jlbl_mesActual.setText(mesActual.toUpperCase());
+        
+        //Mostrar total ingresos del mes
+        ArrayList<Ingresos> listaIngresos;
+        ControlIngresos lista = new ControlIngresos();
+        listaIngresos=lista.mostrarIngresosMes();
+        int sumaMontos=0;
+        for (Ingresos ingreso: listaIngresos) {
+            sumaMontos += ingreso.getMonto_ing();}
+        NumberFormat formatoMonto = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        String totalMes = formatoMonto.format(sumaMontos);
+        this.jlbl_totalIngresos.setText(totalMes);
         
     }
 
@@ -237,7 +251,7 @@ public class VIngresos extends javax.swing.JFrame {
         jlbl_mesActual.setFont(new java.awt.Font("Century Gothic", 0, 8)); // NOI18N
         jlbl_mesActual.setForeground(new java.awt.Color(0, 0, 0));
 
-        jlbl_totalIngresos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_totalIngresos.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jlbl_totalIngresos.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -463,7 +477,12 @@ public class VIngresos extends javax.swing.JFrame {
 
     private void jbtn_ingresosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ingresosMesActionPerformed
         
-        VIngresos ingresos = new VIngresos();
+        VIngresos ingresos = null;
+        try {
+            ingresos = new VIngresos();
+        } catch (Exception ex) {
+            Logger.getLogger(VIngresos.class.getName()).log(Level.SEVERE, null, ex);
+        }
         ingresos.setVisible(true);
         this.dispose(); 
         

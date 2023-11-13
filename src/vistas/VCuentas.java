@@ -488,7 +488,12 @@ public class VCuentas extends javax.swing.JFrame {
 
     private void jbtn_ingresosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ingresosMesActionPerformed
         
-        VIngresos ingresos = new VIngresos();
+        VIngresos ingresos = null;
+        try {
+            ingresos = new VIngresos();
+        } catch (Exception ex) {
+            Logger.getLogger(VCuentas.class.getName()).log(Level.SEVERE, null, ex);
+        }
         ingresos.setVisible(true);
         this.dispose(); 
         
@@ -601,7 +606,12 @@ public class VCuentas extends javax.swing.JFrame {
 
     private void jbtn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_inicioActionPerformed
         
-        Inicio inicio = new Inicio();
+        Inicio inicio = null;
+        try {
+            inicio = new Inicio();
+        } catch (Exception ex) {
+            Logger.getLogger(VCuentas.class.getName()).log(Level.SEVERE, null, ex);
+        }
         inicio.setVisible(true);
         this.dispose();
         
