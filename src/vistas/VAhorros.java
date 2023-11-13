@@ -1,5 +1,8 @@
 package vistas;
 
+import Utils.Utils;
+import java.util.Date;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -16,6 +19,14 @@ public class VAhorros extends javax.swing.JFrame {
      */
     public VAhorros() {
         initComponents();
+        
+        Date fechaActual;
+        String anno;
+        Utils utils = new Utils();
+        fechaActual=utils.obtenerFecha();
+        anno=utils.obtenerAnno(fechaActual);
+        this.jlbl_annoActual.setText(anno);
+        
     }
 
     /**
