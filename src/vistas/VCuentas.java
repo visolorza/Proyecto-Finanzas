@@ -21,6 +21,10 @@ public class VCuentas extends javax.swing.JFrame {
      */
     public VCuentas() {
         initComponents();
+        //this.jcbo_gastosMes.setSelectedItem("Cuentas"); posible forma de hacer que un combo box 
+        //muestre el item de la vista donde está.
+        // de momento no funciona.
+        
     }
 
     /**

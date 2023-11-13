@@ -14,7 +14,7 @@ public class Integrante {
     private String desc_int;
 
     public Integrante() {
-    }
+}
 
     public Integrante(int cod_int, String desc_int) {
         this.cod_int = cod_int;

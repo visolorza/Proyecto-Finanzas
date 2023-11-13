@@ -586,6 +586,7 @@ public class VCompras extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtn_grupoFamiliarActionPerformed
 
     private void jcbo_gastosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_gastosMesActionPerformed
+
         
         String opcion = (String) jcbo_gastosMes.getSelectedItem();
         
