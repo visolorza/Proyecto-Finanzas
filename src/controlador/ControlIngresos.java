@@ -1,5 +1,5 @@
 
-package Controlador;
+package controlador;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,113 +7,113 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import modelo.ConexionBD;
-import modelo.Ahorro;
+import modelo.Ingresos;
 
 /**
  *
  * @author michimisimo
  */
-public class ControlAhorro {
+public class ControlIngresos {
     
-    public ArrayList<Ahorro> mostrar() throws Exception {
+    public ArrayList<Ingresos> mostrar() throws Exception {
         
-        ArrayList<Ahorro> lista = new ArrayList<>();
+        ArrayList<Ingresos> lista = new ArrayList<>();
         
         try {
             ConexionBD con = new ConexionBD();
             //Connection cnx = con.obtenerConexion();
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "select * from ahorro";
+            String query = "select * from Ingresos";
             PreparedStatement stmt = cnx.prepareStatement(query);
             
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Ahorro ahorro = new Ahorro();
-                ahorro.setCod_ahorro(rs.getInt("COD_AHOR"));
-                ahorro.setFecha_ahorro(rs.getDate("FECHA_AHOR"));
-                ahorro.setMonto_ahorro(rs.getInt("MONTO_AHOR"));
-                ahorro.setCod_meta(rs.getInt("COD_META"));
-                lista.add(ahorro);
+                Ingresos ingresos = new Ingresos();
+                ingresos.setCod_ing(rs.getInt("COD_ING"));
+                ingresos.setFecha_ing(rs.getDate("FECHA_ING"));
+                ingresos.setDesc_ing(rs.getString("DESC_ING"));
+                ingresos.setMonto_ing(rs.getInt("MONTO_ING"));
+                ingresos.setCod_int(rs.getInt("COD_INT"));
+                lista.add(ingresos);
             }
             rs.close();
             stmt.close();
             cnx.close();
 
         } catch (SQLException e) {
-            System.out.println("Error SQL al listar ahorro" + e.getMessage());
+            System.out.println("Error SQL al listar ingresos" + e.getMessage());
         }
         return lista;
     }
     
-    public boolean agregar(Ahorro ahorro) throws Exception {
+    public boolean agregar(Ingresos ingresos) throws Exception {
 
         try {
             ConexionBD con = new ConexionBD();
          
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "insert into ahorro(monto_ahor, cod_meta) values(?,?)";
+            String query = "insert into ingreso(desc_ing, monto_ing, cod_int) values(?,?,?)";
             PreparedStatement stmt = cnx.prepareStatement(query);
-            stmt.setInt(1, ahorro.getMonto_ahorro());
-            stmt.setInt(2, ahorro.getCod_meta());
+            stmt.setString(1, ingresos.getDesc_ing());
+            stmt.setInt(2, ingresos.getMonto_ing());
+            stmt.setInt(4, ingresos.getCod_int());
 
             stmt.executeUpdate();
-            cnx.commit();
             stmt.close();
             cnx.close();
             return true;
 
         } catch (SQLException e) {
-            System.out.println("Error SQL al agregar ahorro" + e.getMessage());
+            System.out.println("Error SQL al agregar ingreso" + e.getMessage());
             return false;
         }
     }
     
-    public boolean eliminar(int cod_ahorro) throws Exception {
+    public boolean eliminar(int cod_ing) throws Exception {
 
         //trycatch+tab
         try {
             ConexionBD con = new ConexionBD();
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "delete from ahorro where cod_ahor = ?";
+            String query = "delete from ingreso where cod_ing = ?";
             PreparedStatement stmt = cnx.prepareStatement(query);
-            stmt.setInt(1, cod_ahorro);
+            stmt.setInt(1, cod_ing);
 
             stmt.executeUpdate();
-            cnx.commit();
             stmt.close();
             cnx.close();
             return true;
 
         } catch (SQLException e) {
-            System.out.println("Error SQL al eliminar ahorro" + e.getMessage());
+            System.out.println("Error SQL al eliminar ingreso" + e.getMessage());
             return false;
         }
     }
     
-    public boolean actualizar(Ahorro ahorro) throws Exception {
+    public boolean actualizar(Ingresos ingresos) throws Exception {
         //trycatch+tab
         try {
             ConexionBD con = new ConexionBD();
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "update ahorro set monto_ahor=?, cod_meta=? where cod_ahor=?";
+            String query = "update gasto set desc_ing=?,monto_ing=?,cod_subcat=?,cod_int=? where cod_ing=?";
             PreparedStatement stmt = cnx.prepareStatement(query);
-            stmt.setInt(1,ahorro.getMonto_ahorro());
-            stmt.setInt(2,ahorro.getCod_meta());
-            stmt.setInt(3, ahorro.getCod_ahorro());
+            stmt.setString(1,ingresos.getDesc_ing());
+            stmt.setInt(2,ingresos.getMonto_ing());
+            stmt.setInt(4, ingresos.getCod_int());
+            stmt.setInt(4, ingresos.getCod_ing());
 
             stmt.executeUpdate();
-            cnx.commit();
             stmt.close();
             cnx.close();
             return true;
 
         } catch (SQLException e) {
-            System.out.println("Error SQL al actualizar ahorro" + e.getMessage());
+            System.out.println("Error SQL al actualizar ingreso" + e.getMessage());
             return false;
         }
     }

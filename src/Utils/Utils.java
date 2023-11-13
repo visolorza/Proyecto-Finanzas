@@ -4,6 +4,7 @@
  */
 package Utils;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -17,6 +18,12 @@ public class Utils {
     public Date obtenerFecha() {
         Date fechaActual = new Date();
         return fechaActual;
+    }
+    
+    public String obtenerMes(Date fecha){
+        SimpleDateFormat fechaFormato = new SimpleDateFormat("MMMM");
+        String nombreMes = fechaFormato.format(fecha);
+        return nombreMes;
     }
     
 }
