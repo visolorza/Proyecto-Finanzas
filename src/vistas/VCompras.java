@@ -68,6 +68,7 @@ public class VCompras extends javax.swing.JFrame {
         jtxt_descGasto = new javax.swing.JTextField();
         jcbo_subcategoria = new javax.swing.JComboBox<>();
         jlbl_ingresosMes5 = new javax.swing.JLabel();
+        jbtn_anadir = new javax.swing.JButton();
         jcbo_gastosMes = new javax.swing.JComboBox<>();
         jbtn_inicio = new javax.swing.JButton();
 
@@ -321,6 +322,18 @@ public class VCompras extends javax.swing.JFrame {
         jlbl_ingresosMes5.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_ingresosMes5.setText("Subcategoría:");
 
+        jbtn_anadir.setBackground(new java.awt.Color(204, 204, 204));
+        jbtn_anadir.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jbtn_anadir.setForeground(new java.awt.Color(0, 0, 0));
+        jbtn_anadir.setText("Añadir");
+        jbtn_anadir.setBorder(null);
+        jbtn_anadir.setBorderPainted(false);
+        jbtn_anadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_anadirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -333,16 +346,21 @@ public class VCompras extends javax.swing.JFrame {
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlbl_ingresosMes5)
-                            .addComponent(jlbl_ingresosMes4)
-                            .addComponent(jlbl_ingresosMes3)
-                            .addComponent(jlbl_ingresosMes2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtxt_montoGasto)
-                            .addComponent(jcbo_integrante, 0, 165, Short.MAX_VALUE)
-                            .addComponent(jtxt_descGasto)
-                            .addComponent(jcbo_subcategoria, 0, 165, Short.MAX_VALUE))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jlbl_ingresosMes5)
+                                    .addComponent(jlbl_ingresosMes4)
+                                    .addComponent(jlbl_ingresosMes3)
+                                    .addComponent(jlbl_ingresosMes2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jtxt_montoGasto)
+                                    .addComponent(jcbo_integrante, 0, 165, Short.MAX_VALUE)
+                                    .addComponent(jtxt_descGasto)
+                                    .addComponent(jcbo_subcategoria, 0, 165, Short.MAX_VALUE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jbtn_anadir, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -370,7 +388,9 @@ public class VCompras extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jtxt_descGasto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jlbl_ingresosMes3))
-                        .addGap(60, 60, 60)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtn_anadir, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                        .addGap(21, 21, 21)))
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
@@ -549,16 +569,16 @@ public class VCompras extends javax.swing.JFrame {
         int monto =  Integer.parseInt(this.jtxt_montoGasto.getText());
         //String integrante = (String) this.jcbo_integrante.getSelectedItem();
         // String subcategoria = (String) this.jcbo_subcategoria.getSelectedItem();
-          
+
         Gasto gasto = new Gasto();
-        
+
         gasto.setMontoGast(monto);
         gasto.setDescGast(desc);
         gasto.setCodInt(1); //Esto debe ser modificado para que lo que obtenga sea de un integrante real.
         gasto.setCodSubcat(1); //Esto debe ser modificado para que lo que obtenga sea de una subcategoría real.
-        
+
         ControlGasto controlGastos = new ControlGasto();
-        
+
         try {
             controlGastos.agregar(gasto);
         } catch (Exception ex) {
@@ -629,6 +649,7 @@ public class VCompras extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbtn_ahorros;
+    private javax.swing.JButton jbtn_anadir;
     private javax.swing.JButton jbtn_detHist;
     private javax.swing.JButton jbtn_eliminar;
     private javax.swing.JButton jbtn_grupoFamiliar;
