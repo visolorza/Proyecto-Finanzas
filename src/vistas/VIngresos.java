@@ -564,7 +564,12 @@ public class VIngresos extends javax.swing.JFrame {
 
     private void jbtn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_inicioActionPerformed
         
-        Inicio inicio = new Inicio();
+        Inicio inicio = null;
+        try {
+            inicio = new Inicio();
+        } catch (Exception ex) {
+            Logger.getLogger(VIngresos.class.getName()).log(Level.SEVERE, null, ex);
+        }
         inicio.setVisible(true);
         this.dispose();
         

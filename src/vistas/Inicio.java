@@ -1,14 +1,12 @@
 package vistas;
 
 import Utils.Utils;
-import java.awt.HeadlessException;
+import controlador.ControlIngresos;
+import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JSeparator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.Ingresos;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -24,7 +22,7 @@ public class Inicio extends javax.swing.JFrame {
     /**
      * Creates new form Inicio
      */
-    public Inicio() {
+    public Inicio() throws Exception {
         initComponents();
         
         Date fechaActual;
@@ -33,6 +31,18 @@ public class Inicio extends javax.swing.JFrame {
         fechaActual=utils.obtenerFecha();
         mesActual=utils.obtenerMes(fechaActual);
         this.jlbl_mesActual.setText(mesActual.toUpperCase());
+        
+        //Mostrar total ingresos del mes
+        ArrayList<Ingresos> listaIngresos;
+        ControlIngresos lista = new ControlIngresos();
+        listaIngresos=lista.mostrarIngresosMes();
+        int sumaMontos=0;
+        String totalMes;
+        for (Ingresos ingreso: listaIngresos) {
+            sumaMontos += ingreso.getMonto_ing();}
+        totalMes= String.valueOf(sumaMontos);
+        this.jlbl_totalIngresos.setText("$"+totalMes);
+       
     }  
     
     /**
@@ -413,7 +423,11 @@ public class Inicio extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Inicio().setVisible(true);
+                try {
+                    new Inicio().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
