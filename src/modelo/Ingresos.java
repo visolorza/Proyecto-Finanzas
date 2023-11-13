@@ -68,5 +68,5 @@ public class Ingresos {
     public String toString() {
         return "Ingresos{" + "cod_ing=" + cod_ing + ", monto_ing=" + monto_ing + ", cod_int=" + cod_int + ", desc_ing=" + desc_ing + ", fecha_ing=" + fecha_ing + '}';
     }
-
+    
 }

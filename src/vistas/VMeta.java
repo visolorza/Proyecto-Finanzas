@@ -1,7 +1,5 @@
 package vistas;
 
-import modelo.Integrante;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -11,12 +9,12 @@ import modelo.Integrante;
  *
  * @author María José
  */
-public class VGrupoFamiliar extends javax.swing.JFrame {
+public class VMeta extends javax.swing.JFrame {
 
     /**
      * Creates new form Inicio
      */
-    public VGrupoFamiliar() {
+    public VMeta() {
         initComponents();
     }
 
@@ -39,13 +37,18 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jbtn_grupoFamiliar2 = new javax.swing.JButton();
+        jbtn_grupoFamiliar3 = new javax.swing.JButton();
+        jbtn_grupoFamiliar4 = new javax.swing.JButton();
         jbtn_eliminar = new javax.swing.JButton();
         jbtn_modificar = new javax.swing.JButton();
-        jlbl_ListaGrupoFamiliar = new javax.swing.JLabel();
-        jtxt_nombreIntegrante = new javax.swing.JTextField();
-        jlbl_ingresosMes3 = new javax.swing.JLabel();
+        jlbl_ListaAhorros = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jlbl_ingresosMes = new javax.swing.JLabel();
+        jlbl_annoActual = new javax.swing.JLabel();
+        jlbl_totalMeta = new javax.swing.JLabel();
         jlbl_ingresosMes4 = new javax.swing.JLabel();
-        jbtn_anadir = new javax.swing.JButton();
+        jtxt_montoAbonoMeta = new javax.swing.JTextField();
+        jbtn_abonar = new javax.swing.JButton();
         jcbo_gastosMes = new javax.swing.JComboBox<>();
         jbtn_inicio = new javax.swing.JButton();
 
@@ -53,6 +56,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
+        jbtn_grupoFamiliar.setBackground(new java.awt.Color(204, 204, 204));
         jbtn_grupoFamiliar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jbtn_grupoFamiliar.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_grupoFamiliar.setText("Grupo familiar");
@@ -109,7 +113,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
 
         jbtn_grupoFamiliar2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jbtn_grupoFamiliar2.setForeground(new java.awt.Color(0, 0, 0));
-        jbtn_grupoFamiliar2.setText("Integrantes");
+        jbtn_grupoFamiliar2.setText("Fecha");
         jbtn_grupoFamiliar2.setBorder(null);
         jbtn_grupoFamiliar2.setBorderPainted(false);
         jbtn_grupoFamiliar2.setContentAreaFilled(false);
@@ -119,21 +123,52 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
             }
         });
 
+        jbtn_grupoFamiliar3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jbtn_grupoFamiliar3.setForeground(new java.awt.Color(0, 0, 0));
+        jbtn_grupoFamiliar3.setText("Detalle");
+        jbtn_grupoFamiliar3.setBorder(null);
+        jbtn_grupoFamiliar3.setBorderPainted(false);
+        jbtn_grupoFamiliar3.setContentAreaFilled(false);
+        jbtn_grupoFamiliar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_grupoFamiliar3ActionPerformed(evt);
+            }
+        });
+
+        jbtn_grupoFamiliar4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jbtn_grupoFamiliar4.setForeground(new java.awt.Color(0, 0, 0));
+        jbtn_grupoFamiliar4.setText("Monto");
+        jbtn_grupoFamiliar4.setBorder(null);
+        jbtn_grupoFamiliar4.setBorderPainted(false);
+        jbtn_grupoFamiliar4.setContentAreaFilled(false);
+        jbtn_grupoFamiliar4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_grupoFamiliar4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(177, 177, 177)
-                .addComponent(jbtn_grupoFamiliar2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
+                .addComponent(jbtn_grupoFamiliar2)
+                .addGap(89, 89, 89)
+                .addComponent(jbtn_grupoFamiliar3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
+                .addComponent(jbtn_grupoFamiliar4)
+                .addGap(65, 65, 65))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbtn_grupoFamiliar2)
-                .addContainerGap())
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtn_grupoFamiliar2)
+                    .addComponent(jbtn_grupoFamiliar3)
+                    .addComponent(jbtn_grupoFamiliar4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jbtn_eliminar.setBackground(new java.awt.Color(255, 153, 153));
@@ -142,8 +177,8 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         jbtn_modificar.setBackground(new java.awt.Color(255, 255, 153));
         jbtn_modificar.setFont(new java.awt.Font("Century Gothic", 0, 8)); // NOI18N
 
-        jlbl_ListaGrupoFamiliar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ListaGrupoFamiliar.setForeground(new java.awt.Color(0, 0, 0));
+        jlbl_ListaAhorros.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_ListaAhorros.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -151,13 +186,16 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jlbl_ListaGrupoFamiliar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addComponent(jbtn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbtn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                        .addComponent(jbtn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(jlbl_ListaAhorros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(58, 58, 58)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -170,36 +208,66 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
                         .addComponent(jbtn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jbtn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlbl_ListaGrupoFamiliar, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addComponent(jlbl_ListaAhorros, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
-        jtxt_nombreIntegrante.setBackground(new java.awt.Color(204, 204, 204));
-        jtxt_nombreIntegrante.setForeground(new java.awt.Color(0, 0, 0));
-        jtxt_nombreIntegrante.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jtxt_nombreIntegrante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxt_nombreIntegranteActionPerformed(evt);
-            }
-        });
+        jPanel6.setBackground(new java.awt.Color(204, 204, 204));
 
-        jlbl_ingresosMes3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes3.setForeground(new java.awt.Color(0, 0, 0));
-        jlbl_ingresosMes3.setText("Nombre:");
+        jlbl_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_ingresosMes.setForeground(new java.awt.Color(0, 0, 0));
+        jlbl_ingresosMes.setText("META");
+
+        jlbl_annoActual.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        jlbl_annoActual.setForeground(new java.awt.Color(0, 0, 0));
+
+        jlbl_totalMeta.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_totalMeta.setForeground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlbl_annoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlbl_ingresosMes))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(137, Short.MAX_VALUE)
+                .addComponent(jlbl_totalMeta, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jlbl_ingresosMes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlbl_annoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(jlbl_totalMeta, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         jlbl_ingresosMes4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jlbl_ingresosMes4.setForeground(new java.awt.Color(0, 0, 0));
-        jlbl_ingresosMes4.setText("GRUPO FAMILIAR");
+        jlbl_ingresosMes4.setText("Monto:");
 
-        jbtn_anadir.setBackground(new java.awt.Color(204, 204, 204));
-        jbtn_anadir.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_anadir.setForeground(new java.awt.Color(0, 0, 0));
-        jbtn_anadir.setText("Añadir");
-        jbtn_anadir.setBorder(null);
-        jbtn_anadir.setBorderPainted(false);
-        jbtn_anadir.addActionListener(new java.awt.event.ActionListener() {
+        jtxt_montoAbonoMeta.setBackground(new java.awt.Color(204, 204, 204));
+        jtxt_montoAbonoMeta.setForeground(new java.awt.Color(0, 0, 0));
+        jtxt_montoAbonoMeta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+
+        jbtn_abonar.setBackground(new java.awt.Color(204, 204, 204));
+        jbtn_abonar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jbtn_abonar.setForeground(new java.awt.Color(0, 0, 0));
+        jbtn_abonar.setText("Abonar");
+        jbtn_abonar.setBorder(null);
+        jbtn_abonar.setBorderPainted(false);
+        jbtn_abonar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtn_anadirActionPerformed(evt);
+                jbtn_abonarActionPerformed(evt);
             }
         });
 
@@ -208,38 +276,38 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jlbl_ingresosMes4)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jlbl_ingresosMes3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtxt_nombreIntegrante))
+                                .addComponent(jlbl_ingresosMes4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jtxt_montoAbonoMeta, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jbtn_anadir, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(32, Short.MAX_VALUE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jbtn_abonar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jlbl_ingresosMes4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtxt_nombreIntegrante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlbl_ingresosMes3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbtn_anadir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlbl_ingresosMes4)
+                            .addComponent(jtxt_montoAbonoMeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jbtn_abonar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(17, 17, 17))
         );
 
         jcbo_gastosMes.setBackground(new java.awt.Color(204, 204, 204));
@@ -319,7 +387,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         
         VDetalleHistorico detalleHistorico = new VDetalleHistorico();
         detalleHistorico.setVisible(true);
-        this.dispose(); 
+        this.dispose();
         
     }//GEN-LAST:event_jbtn_detHistActionPerformed
 
@@ -327,7 +395,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         
         VAhorros ahorros = new VAhorros();
         ahorros.setVisible(true);
-        this.dispose();
+        this.dispose(); 
         
     }//GEN-LAST:event_jbtn_ahorrosActionPerformed
 
@@ -335,7 +403,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         
         VIngresos ingresos = new VIngresos();
         ingresos.setVisible(true);
-        this.dispose();
+        this.dispose(); 
         
     }//GEN-LAST:event_jbtn_ingresosMesActionPerformed
 
@@ -343,7 +411,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         
         VGrupoFamiliar grupoFamiliar = new VGrupoFamiliar();
         grupoFamiliar.setVisible(true);
-        this.dispose(); 
+        this.dispose();
         
     }//GEN-LAST:event_jbtn_grupoFamiliarActionPerformed
 
@@ -358,7 +426,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
                 this.dispose(); 
                 break;
             case "Cuentas":
-                VCuentas cuentas = new VCuentas();
+                VMeta cuentas = new VMeta();
                 cuentas.setVisible(true);
                 this.dispose();
                 break;
@@ -398,21 +466,6 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jcbo_gastosMesActionPerformed
 
-    private void jtxt_nombreIntegranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_nombreIntegranteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtxt_nombreIntegranteActionPerformed
-
-    private void jbtn_anadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_anadirActionPerformed
-        
-        String integrante = this.jtxt_nombreIntegrante.getText();
-        
-        Integrante integranteClase = new Integrante();
-        
-        integranteClase.setDesc_int(integrante);
-        
-        
-    }//GEN-LAST:event_jbtn_anadirActionPerformed
-
     private void jbtn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_inicioActionPerformed
         
         Inicio inicio = new Inicio();
@@ -421,9 +474,21 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jbtn_inicioActionPerformed
 
+    private void jbtn_grupoFamiliar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliar4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtn_grupoFamiliar4ActionPerformed
+
+    private void jbtn_grupoFamiliar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliar3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtn_grupoFamiliar3ActionPerformed
+
     private void jbtn_grupoFamiliar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliar2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtn_grupoFamiliar2ActionPerformed
+
+    private void jbtn_abonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_abonarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtn_abonarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -442,21 +507,20 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(GrupoFamiliar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(GrupoFamiliar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(GrupoFamiliar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(GrupoFamiliar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
-//        //</editor-fold>
 //        //</editor-fold>
 //
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new GrupoFamiliar().setVisible(true);
+//                new Inicio().setVisible(true);
 //            }
 //        });
 //    }
@@ -465,21 +529,26 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton jbtn_abonar;
     private javax.swing.JButton jbtn_ahorros;
-    private javax.swing.JButton jbtn_anadir;
     private javax.swing.JButton jbtn_detHist;
     private javax.swing.JButton jbtn_eliminar;
     private javax.swing.JButton jbtn_grupoFamiliar;
     private javax.swing.JButton jbtn_grupoFamiliar2;
+    private javax.swing.JButton jbtn_grupoFamiliar3;
+    private javax.swing.JButton jbtn_grupoFamiliar4;
     private javax.swing.JButton jbtn_ingresosMes;
     private javax.swing.JButton jbtn_inicio;
     private javax.swing.JButton jbtn_modificar;
     private javax.swing.JComboBox<String> jcbo_gastosMes;
-    private javax.swing.JLabel jlbl_ListaGrupoFamiliar;
-    private javax.swing.JLabel jlbl_ingresosMes3;
+    private javax.swing.JLabel jlbl_ListaAhorros;
+    private javax.swing.JLabel jlbl_annoActual;
+    private javax.swing.JLabel jlbl_ingresosMes;
     private javax.swing.JLabel jlbl_ingresosMes4;
-    private javax.swing.JTextField jtxt_nombreIntegrante;
+    private javax.swing.JLabel jlbl_totalMeta;
+    private javax.swing.JTextField jtxt_montoAbonoMeta;
     // End of variables declaration//GEN-END:variables
 }

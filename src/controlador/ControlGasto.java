@@ -1,5 +1,5 @@
 
-package Controlador;
+package controlador;
 
 import java.util.ArrayList;
 import modelo.ConexionBD;
@@ -79,16 +79,6 @@ public class ControlGasto {
             return false;
         }
     }
-    
-    //public static void main(String[] args) throws Exception {
-    //    Gasto gasto = new Gasto();
-    //    gasto.setCodInt(1);
-    //    gasto.setCodSubcat(1);
-    //    gasto.setDescGast("prueba");
-    //    gasto.setMontoGast(50000);
-    //    ControlGasto cgasto = new ControlGasto();
-    //    System.out.println(cgasto.agregar(gasto));
-    //}
     
     public boolean eliminar(int cod_gast) throws Exception {
 
@@ -197,8 +187,7 @@ public class ControlGasto {
         return gasto;
     
     }
-    
-    
 }
-      
+    
+    
     
