@@ -4,8 +4,13 @@
  */
 package Utils;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JComboBox;
+import modelo.ConexionBD;
 
 /**
  *
@@ -26,4 +31,44 @@ public class Utils {
         return nombreMes;
     }
     
+    public void RellenarComboInt(String tabla, String valor, JComboBox combo){
+        
+        try {
+        
+        ConexionBD con = new ConexionBD();
+        Connection cnx = ConexionBD.obtenerConexion();
+        
+        String query = "SELECT * FROM "+tabla;
+        PreparedStatement stmt = cnx.prepareStatement(query);
+        ResultSet rs = stmt.executeQuery();
+        
+            while (rs.next()) {
+                combo.addItem(rs.getString(valor));
+            }
+        
+        } catch (Exception e) {
+        }
+       
+    }
+    
+    public void RellenarComboSubcat(String tabla, String valor, JComboBox combo,int codcat){
+        
+        try {
+        
+        ConexionBD con = new ConexionBD();
+        Connection cnx = ConexionBD.obtenerConexion();
+        
+        String query = "SELECT * FROM "+tabla+" where cod_cat = "+codcat;
+        PreparedStatement stmt = cnx.prepareStatement(query);
+        ResultSet rs = stmt.executeQuery();
+        
+            while (rs.next()) {
+                combo.addItem(rs.getString(valor));
+            }
+        
+        } catch (Exception e) {
+        }
+       
+    }
+        
 }

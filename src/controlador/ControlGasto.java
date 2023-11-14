@@ -18,16 +18,15 @@ public class ControlGasto {
     public ControlGasto() {
     }
      
-    public ArrayList<Gasto> mostrar(int cod_cat) throws Exception {
+    public ArrayList mostrar(int cod_cat) throws Exception {
         
         ArrayList<Gasto> lista = new ArrayList<>();
         
         try {
             ConexionBD con = new ConexionBD();
-            //Connection cnx = con.obtenerConexion();
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "SELECT * FROM gasto g JOIN subcategoria s ON(s.cod_subcat = g.cod_subcat) WHERE s.cod_cat = ?";
+            String query = "SELECT * FROM gasto g JOIN subcategoria s ON(s.cod_subcat = g.cod_subcat) WHERE s.cod_cat = ? order by fecha_gast desc";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setInt(1, cod_cat);
             
@@ -50,6 +49,7 @@ public class ControlGasto {
         } catch (SQLException e) {
             System.out.println("Error SQL al listar gastos" + e.getMessage());
         }
+        
         return lista;
     }
     
@@ -103,7 +103,7 @@ public class ControlGasto {
     }
     
     public boolean actualizar(Gasto gasto) throws Exception {
-        //trycatch+tab
+        boolean flag=false;
         try {
             ConexionBD con = new ConexionBD();
             Connection cnx = ConexionBD.obtenerConexion();
@@ -119,11 +119,11 @@ public class ControlGasto {
             stmt.executeUpdate();
             stmt.close();
             cnx.close();
-            return true;
+            return flag=true;
 
         } catch (SQLException e) {
             System.out.println("Error SQL al actualizar gasto" + e.getMessage());
-            return false;
+            return flag;
         }
     }
     
@@ -184,9 +184,9 @@ public class ControlGasto {
         System.out.println("Error SQL al obtener cod_int: " + e.getMessage());
         // Puedes lanzar una excepción más específica aquí si es necesario
     } 
-        return gasto;
-    
+        return gasto;    
     }
+
 }
     
     
