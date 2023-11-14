@@ -19,10 +19,11 @@ import modelo.Ahorro;
  * @author María José
  */
 public class VAhorros extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Inicio
-     */
+    
+    //Almacenar la posición de la ventana
+    private int posicionX;  
+    private int posicionY;
+    
     public VAhorros() throws Exception {
         initComponents();
            
@@ -37,10 +38,9 @@ public class VAhorros extends javax.swing.JFrame {
         String totalAhorros = formatoAhorros.format(sumaAhorros);
         this.jlbl_totalAhorros.setText(totalAhorros);
         jlbl_totalAhorros.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        
-        
+         
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -488,7 +488,10 @@ public class VAhorros extends javax.swing.JFrame {
 
     private void jbtn_detHistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_detHistActionPerformed
         
+        this.obtenerPosicion();
         VDetalleHistorico detalleHistorico = new VDetalleHistorico();
+        detalleHistorico.establecerPosicion(posicionX,posicionY);
+        detalleHistorico.obtenerPosicion();
         detalleHistorico.setVisible(true);
         this.dispose(); 
         
@@ -497,7 +500,10 @@ public class VAhorros extends javax.swing.JFrame {
     private void jbtn_ahorrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ahorrosActionPerformed
         
         try {
+            this.obtenerPosicion();
             VAhorros ahorros = new VAhorros();
+            ahorros.establecerPosicion(posicionX,posicionY);
+            ahorros.obtenerPosicion();
             ahorros.setVisible(true);
             this.dispose();
         } catch (Exception ex) {
@@ -508,9 +514,12 @@ public class VAhorros extends javax.swing.JFrame {
 
     private void jbtn_ingresosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ingresosMesActionPerformed
         
+        this.obtenerPosicion();
         VIngresos ingresos = null;
         try {
             ingresos = new VIngresos();
+            ingresos.establecerPosicion(posicionX,posicionY);
+            ingresos.obtenerPosicion();
         } catch (Exception ex) {
             Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -521,7 +530,10 @@ public class VAhorros extends javax.swing.JFrame {
 
     private void jbtn_grupoFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliarActionPerformed
         
+        this.obtenerPosicion();
         VGrupoFamiliar grupoFamiliar = new VGrupoFamiliar();
+        grupoFamiliar.establecerPosicion(posicionX,posicionY);
+        grupoFamiliar.obtenerPosicion();
         grupoFamiliar.setVisible(true);
         this.dispose(); 
         
@@ -532,48 +544,64 @@ public class VAhorros extends javax.swing.JFrame {
         
         try {
             String opcion = (String) jcbo_gastosMes.getSelectedItem();
-            
+            this.obtenerPosicion();
             switch (opcion) {
                 //case "Gastos del mes":
                 //JOptionPane.showMessageDialog(null, "Selecciona una categoría", "Error", JOptionPane.INFORMATION_MESSAGE);
                 //break;
                 case "Compras":
                     VCompras compras = new VCompras();
+                    compras.establecerPosicion(posicionX,posicionY);
+                    compras.obtenerPosicion();
                     compras.setVisible(true);
                     this.dispose();
                     break;
                 case "Cuentas":
                     VCuentas cuentas = new VCuentas();
+                    cuentas.establecerPosicion(posicionX,posicionY);
+                    cuentas.obtenerPosicion();
                     cuentas.setVisible(true);
                     this.dispose();
                     break;
                 case "Deudas":
                     VDeudas deudas = new VDeudas();
+                    deudas.establecerPosicion(posicionX,posicionY);
+                    deudas.obtenerPosicion();
                     deudas.setVisible(true);
                     this.dispose();
                     break;
                 case "Educación":
                     VEducacion educacion = new VEducacion();
+                    educacion.establecerPosicion(posicionX,posicionY);
+                    educacion.obtenerPosicion();
                     educacion.setVisible(true);
                     this.dispose();
                     break;
                 case "Salud":
                     VSalud salud = new VSalud();
+                    salud.establecerPosicion(posicionX,posicionY);
+                    salud.obtenerPosicion();
                     salud.setVisible(true);
                     this.dispose();
                     break;
                 case "Transporte":
                     VTransporte transporte = new VTransporte();
+                    transporte.establecerPosicion(posicionX,posicionY);
+                    transporte.obtenerPosicion();
                     transporte.setVisible(true);
                     this.dispose();
                     break;
                 case "Vivienda":
                     VVivienda vivienda = new VVivienda();
+                    vivienda.establecerPosicion(posicionX,posicionY);
+                    vivienda.obtenerPosicion();
                     vivienda.setVisible(true);
                     this.dispose();
                     break;
                 case "Otros":
                     VOtros otros = new VOtros();
+                    otros.establecerPosicion(posicionX,posicionY);
+                    otros.obtenerPosicion();
                     otros.setVisible(true);
                     this.dispose();
                     break;
@@ -588,9 +616,12 @@ public class VAhorros extends javax.swing.JFrame {
 
     private void jbtn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_inicioActionPerformed
         
+        this.obtenerPosicion();
         Inicio inicio = null;
         try {
             inicio = new Inicio();
+            inicio.establecerPosicion(posicionX,posicionY);
+            inicio.obtenerPosicion();
         } catch (Exception ex) {
             Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -636,20 +667,20 @@ public class VAhorros extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLoggVIniciocio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogVInicioicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLoVInicionicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLVInicioInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new Inicio().setVisible(true);
+//             VInicio Inicio().setVisible(true);
 //            }
 //        });
 //    }
@@ -697,6 +728,13 @@ public class VAhorros extends javax.swing.JFrame {
         this.jcbo_Meta = jcbo_Meta;
     }
 
-    
+    // Obtener y establecer la posición de la ventana
+    public void obtenerPosicion() {
+        posicionX = this.getLocation().x;
+        posicionY = this.getLocation().y;
+    }
+    public void establecerPosicion(int posicionX,int posicionY) {
+        this.setLocation(posicionX,posicionY);
+    }
 
 }

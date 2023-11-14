@@ -20,6 +20,10 @@ import modelo.Gasto;
  * @author María José
  */
 public class VCuentas extends javax.swing.JFrame {
+    
+    //Almacenar la posición de la ventana
+    private int posicionX;  
+    private int posicionY;
 
     /**
      * Creates new form Inicio
@@ -486,42 +490,54 @@ public class VCuentas extends javax.swing.JFrame {
 
     private void jbtn_detHistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_detHistActionPerformed
         
+        this.obtenerPosicion();
         VDetalleHistorico detalleHistorico = new VDetalleHistorico();
+        detalleHistorico.establecerPosicion(posicionX,posicionY);
+        detalleHistorico.obtenerPosicion();
         detalleHistorico.setVisible(true);
-        this.dispose();
+        this.dispose(); 
         
     }//GEN-LAST:event_jbtn_detHistActionPerformed
 
     private void jbtn_ahorrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ahorrosActionPerformed
         
         try {
+            this.obtenerPosicion();
             VAhorros ahorros = new VAhorros();
-            ahorros.setVisible(true); 
+            ahorros.establecerPosicion(posicionX,posicionY);
+            ahorros.obtenerPosicion();
+            ahorros.setVisible(true);
             this.dispose();
         } catch (Exception ex) {
-            Logger.getLogger(VCuentas.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jbtn_ahorrosActionPerformed
 
     private void jbtn_ingresosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ingresosMesActionPerformed
         
+        this.obtenerPosicion();
         VIngresos ingresos = null;
         try {
             ingresos = new VIngresos();
+            ingresos.establecerPosicion(posicionX,posicionY);
+            ingresos.obtenerPosicion();
         } catch (Exception ex) {
-            Logger.getLogger(VCuentas.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
         }
         ingresos.setVisible(true);
-        this.dispose(); 
+        this.dispose();
         
     }//GEN-LAST:event_jbtn_ingresosMesActionPerformed
 
     private void jbtn_grupoFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliarActionPerformed
         
+        this.obtenerPosicion();
         VGrupoFamiliar grupoFamiliar = new VGrupoFamiliar();
+        grupoFamiliar.establecerPosicion(posicionX,posicionY);
+        grupoFamiliar.obtenerPosicion();
         grupoFamiliar.setVisible(true);
-        this.dispose();
+        this.dispose(); 
         
     }//GEN-LAST:event_jbtn_grupoFamiliarActionPerformed
 
@@ -529,48 +545,64 @@ public class VCuentas extends javax.swing.JFrame {
         
         try {
             String opcion = (String) jcbo_gastosMes.getSelectedItem();
-            
+            this.obtenerPosicion();
             switch (opcion) {
                 //case "Gastos del mes":
                 //JOptionPane.showMessageDialog(null, "Selecciona una categoría", "Error", JOptionPane.INFORMATION_MESSAGE);
                 //break;
                 case "Compras":
                     VCompras compras = new VCompras();
+                    compras.establecerPosicion(posicionX,posicionY);
+                    compras.obtenerPosicion();
                     compras.setVisible(true);
                     this.dispose();
                     break;
                 case "Cuentas":
                     VCuentas cuentas = new VCuentas();
+                    cuentas.establecerPosicion(posicionX,posicionY);
+                    cuentas.obtenerPosicion();
                     cuentas.setVisible(true);
                     this.dispose();
                     break;
                 case "Deudas":
                     VDeudas deudas = new VDeudas();
+                    deudas.establecerPosicion(posicionX,posicionY);
+                    deudas.obtenerPosicion();
                     deudas.setVisible(true);
                     this.dispose();
                     break;
                 case "Educación":
                     VEducacion educacion = new VEducacion();
+                    educacion.establecerPosicion(posicionX,posicionY);
+                    educacion.obtenerPosicion();
                     educacion.setVisible(true);
                     this.dispose();
                     break;
                 case "Salud":
                     VSalud salud = new VSalud();
+                    salud.establecerPosicion(posicionX,posicionY);
+                    salud.obtenerPosicion();
                     salud.setVisible(true);
                     this.dispose();
                     break;
                 case "Transporte":
                     VTransporte transporte = new VTransporte();
+                    transporte.establecerPosicion(posicionX,posicionY);
+                    transporte.obtenerPosicion();
                     transporte.setVisible(true);
                     this.dispose();
                     break;
                 case "Vivienda":
                     VVivienda vivienda = new VVivienda();
+                    vivienda.establecerPosicion(posicionX,posicionY);
+                    vivienda.obtenerPosicion();
                     vivienda.setVisible(true);
                     this.dispose();
                     break;
                 case "Otros":
                     VOtros otros = new VOtros();
+                    otros.establecerPosicion(posicionX,posicionY);
+                    otros.obtenerPosicion();
                     otros.setVisible(true);
                     this.dispose();
                     break;
@@ -578,7 +610,7 @@ public class VCuentas extends javax.swing.JFrame {
                     throw new AssertionError();
             }
         } catch (Exception ex) {
-            Logger.getLogger(VCuentas.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jcbo_gastosMesActionPerformed
@@ -631,11 +663,14 @@ public class VCuentas extends javax.swing.JFrame {
 
     private void jbtn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_inicioActionPerformed
         
+        this.obtenerPosicion();
         Inicio inicio = null;
         try {
             inicio = new Inicio();
+            inicio.establecerPosicion(posicionX,posicionY);
+            inicio.obtenerPosicion();
         } catch (Exception ex) {
-            Logger.getLogger(VCuentas.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
         }
         inicio.setVisible(true);
         this.dispose();
@@ -709,4 +744,14 @@ public class VCuentas extends javax.swing.JFrame {
     private javax.swing.JTextField jtxt_descGasto;
     private javax.swing.JTextField jtxt_montoGasto;
     // End of variables declaration//GEN-END:variables
+
+     // Obtener y establecer la posición de la ventana
+    public void obtenerPosicion() {
+        posicionX = this.getLocation().x;
+        posicionY = this.getLocation().y;
+    }
+    public void establecerPosicion(int posicionX,int posicionY) {
+        this.setLocation(posicionX,posicionY);
+    }
+    
 }
