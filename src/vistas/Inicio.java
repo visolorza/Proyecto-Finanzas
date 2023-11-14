@@ -82,7 +82,7 @@ public class Inicio extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jlbl_mesActual1 = new javax.swing.JLabel();
         jlbl_totalGastos = new javax.swing.JLabel();
-        jlbl_ingresosMes1 = new javax.swing.JLabel();
+        jlbl_gastosMes = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jlbl_ingresosMes = new javax.swing.JLabel();
@@ -152,9 +152,9 @@ public class Inicio extends javax.swing.JFrame {
         jlbl_totalGastos.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jlbl_totalGastos.setForeground(new java.awt.Color(0, 0, 0));
 
-        jlbl_ingresosMes1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jlbl_ingresosMes1.setForeground(new java.awt.Color(0, 0, 0));
-        jlbl_ingresosMes1.setText("GASTOS DEL MES");
+        jlbl_gastosMes.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jlbl_gastosMes.setForeground(new java.awt.Color(0, 0, 0));
+        jlbl_gastosMes.setText("GASTOS DEL MES");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -163,7 +163,7 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jlbl_ingresosMes1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlbl_gastosMes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jlbl_mesActual1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(135, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -175,7 +175,7 @@ public class Inicio extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jlbl_ingresosMes1)
+                .addComponent(jlbl_gastosMes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlbl_mesActual1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -328,9 +328,13 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jbtn_ahorrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ahorrosActionPerformed
         
-        VAhorros ahorros = new VAhorros();
-        ahorros.setVisible(true);
-        this.dispose(); 
+        try {
+            VAhorros ahorros = new VAhorros();
+            ahorros.setVisible(true); 
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jbtn_ahorrosActionPerformed
 
@@ -471,8 +475,8 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton jbtn_grupoFamiliar;
     private javax.swing.JButton jbtn_ingresosMes;
     private javax.swing.JComboBox<String> jcbo_gastosMes;
+    private javax.swing.JLabel jlbl_gastosMes;
     private javax.swing.JLabel jlbl_ingresosMes;
-    private javax.swing.JLabel jlbl_ingresosMes1;
     private javax.swing.JLabel jlbl_mesActual;
     private javax.swing.JLabel jlbl_mesActual1;
     private javax.swing.JLabel jlbl_totalGastos;

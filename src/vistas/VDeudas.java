@@ -73,7 +73,7 @@ public class VDeudas extends javax.swing.JFrame {
         jbtn_modificar = new javax.swing.JButton();
         jlbl_ListaDeudas = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jlbl_ingresosMes = new javax.swing.JLabel();
+        jlbl_deudas = new javax.swing.JLabel();
         jlbl_mesActual = new javax.swing.JLabel();
         jlbl_totalDeudas = new javax.swing.JLabel();
         jlbl_ingresosMes2 = new javax.swing.JLabel();
@@ -249,9 +249,9 @@ public class VDeudas extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
 
-        jlbl_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jlbl_ingresosMes.setForeground(new java.awt.Color(0, 0, 0));
-        jlbl_ingresosMes.setText("DEUDAS");
+        jlbl_deudas.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jlbl_deudas.setForeground(new java.awt.Color(0, 0, 0));
+        jlbl_deudas.setText("DEUDAS");
 
         jlbl_mesActual.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         jlbl_mesActual.setForeground(new java.awt.Color(0, 0, 0));
@@ -266,7 +266,7 @@ public class VDeudas extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlbl_ingresosMes)
+                    .addComponent(jlbl_deudas)
                     .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(140, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
@@ -278,7 +278,7 @@ public class VDeudas extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jlbl_ingresosMes)
+                .addComponent(jlbl_deudas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -465,9 +465,13 @@ public class VDeudas extends javax.swing.JFrame {
 
     private void jbtn_ahorrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ahorrosActionPerformed
         
-        VAhorros ahorros = new VAhorros();
-        ahorros.setVisible(true);
-        this.dispose(); 
+        try {
+            VAhorros ahorros = new VAhorros();
+            ahorros.setVisible(true); 
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(VDeudas.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jbtn_ahorrosActionPerformed
 
@@ -643,7 +647,7 @@ public class VDeudas extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcbo_gastosMes;
     private javax.swing.JComboBox<String> jcbo_integrante;
     private javax.swing.JLabel jlbl_ListaDeudas;
-    private javax.swing.JLabel jlbl_ingresosMes;
+    private javax.swing.JLabel jlbl_deudas;
     private javax.swing.JLabel jlbl_ingresosMes2;
     private javax.swing.JLabel jlbl_ingresosMes3;
     private javax.swing.JLabel jlbl_ingresosMes4;

@@ -115,4 +115,36 @@ public class ControlAhorro {
         }
     }
     
+    public ArrayList<Ahorro> mostrarAhorroPorMeta(int cod_meta) throws Exception {
+        
+        ArrayList<Ahorro> lista = new ArrayList<>();
+        
+        try {
+            ConexionBD con = new ConexionBD();
+            //Connection cnx = con.obtenerConexion();
+            Connection cnx = ConexionBD.obtenerConexion();
+
+            String query = "SELECT * FROM ahorro WHERE cod_ahor=?";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            stmt.setInt(1, cod_meta);
+            
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Ahorro ahorro = new Ahorro();
+                ahorro.setCod_ahorro(rs.getInt("COD_AHOR"));
+                ahorro.setFecha_ahorro(rs.getDate("FECHA_AHOR"));
+                ahorro.setMonto_ahorro(rs.getInt("MONTO_AHOR"));
+                ahorro.setCod_meta(rs.getInt("COD_META"));
+                lista.add(ahorro);
+            }
+            rs.close();
+            stmt.close();
+            cnx.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error SQL al listar ahorro" + e.getMessage());
+        }
+        return lista;
+    }
 }

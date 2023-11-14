@@ -72,7 +72,7 @@ public class VIngresos extends javax.swing.JFrame {
         jbtn_modificar = new javax.swing.JButton();
         jlbl_ListaIngresos = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jlbl_ingresosMes = new javax.swing.JLabel();
+        jlbl_ingresos = new javax.swing.JLabel();
         jlbl_mesActual = new javax.swing.JLabel();
         jlbl_totalIngresos = new javax.swing.JLabel();
         jlbl_ingresosMes2 = new javax.swing.JLabel();
@@ -244,9 +244,9 @@ public class VIngresos extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
 
-        jlbl_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes.setForeground(new java.awt.Color(0, 0, 0));
-        jlbl_ingresosMes.setText("INGRESOS");
+        jlbl_ingresos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_ingresos.setForeground(new java.awt.Color(0, 0, 0));
+        jlbl_ingresos.setText("INGRESOS");
 
         jlbl_mesActual.setFont(new java.awt.Font("Century Gothic", 0, 8)); // NOI18N
         jlbl_mesActual.setForeground(new java.awt.Color(0, 0, 0));
@@ -261,7 +261,7 @@ public class VIngresos extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlbl_ingresosMes)
+                    .addComponent(jlbl_ingresos)
                     .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
@@ -273,7 +273,7 @@ public class VIngresos extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jlbl_ingresosMes)
+                .addComponent(jlbl_ingresos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
@@ -469,9 +469,13 @@ public class VIngresos extends javax.swing.JFrame {
 
     private void jbtn_ahorrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ahorrosActionPerformed
        
-        VAhorros ahorros = new VAhorros();
-        ahorros.setVisible(true);
-        this.dispose(); 
+        try {
+            VAhorros ahorros = new VAhorros();
+            ahorros.setVisible(true); 
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(VIngresos.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jbtn_ahorrosActionPerformed
 
@@ -669,7 +673,7 @@ public class VIngresos extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcbo_gastosMes;
     private javax.swing.JComboBox<String> jcbo_integrante;
     private javax.swing.JLabel jlbl_ListaIngresos;
-    private javax.swing.JLabel jlbl_ingresosMes;
+    private javax.swing.JLabel jlbl_ingresos;
     private javax.swing.JLabel jlbl_ingresosMes2;
     private javax.swing.JLabel jlbl_ingresosMes3;
     private javax.swing.JLabel jlbl_ingresosMes4;

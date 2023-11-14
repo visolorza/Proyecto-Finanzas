@@ -46,7 +46,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         jlbl_ListaGrupoFamiliar = new javax.swing.JLabel();
         jtxt_nombreIntegrante = new javax.swing.JTextField();
         jlbl_ingresosMes3 = new javax.swing.JLabel();
-        jlbl_ingresosMes4 = new javax.swing.JLabel();
+        jlbl_grupoFamiliar = new javax.swing.JLabel();
         jbtn_anadir = new javax.swing.JButton();
         jcbo_gastosMes = new javax.swing.JComboBox<>();
         jbtn_inicio = new javax.swing.JButton();
@@ -189,9 +189,9 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         jlbl_ingresosMes3.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_ingresosMes3.setText("Nombre:");
 
-        jlbl_ingresosMes4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes4.setForeground(new java.awt.Color(0, 0, 0));
-        jlbl_ingresosMes4.setText("GRUPO FAMILIAR");
+        jlbl_grupoFamiliar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_grupoFamiliar.setForeground(new java.awt.Color(0, 0, 0));
+        jlbl_grupoFamiliar.setText("GRUPO FAMILIAR");
 
         jbtn_anadir.setBackground(new java.awt.Color(204, 204, 204));
         jbtn_anadir.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -213,7 +213,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jlbl_ingresosMes4)
+                        .addComponent(jlbl_grupoFamiliar)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -232,7 +232,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(59, 59, 59)
-                .addComponent(jlbl_ingresosMes4)
+                .addComponent(jlbl_grupoFamiliar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtxt_nombreIntegrante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -327,9 +327,13 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
 
     private void jbtn_ahorrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ahorrosActionPerformed
         
-        VAhorros ahorros = new VAhorros();
-        ahorros.setVisible(true);
-        this.dispose();
+        try {
+            VAhorros ahorros = new VAhorros();
+            ahorros.setVisible(true);
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(VGrupoFamiliar.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jbtn_ahorrosActionPerformed
 
@@ -497,8 +501,8 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
     private javax.swing.JButton jbtn_modificar;
     private javax.swing.JComboBox<String> jcbo_gastosMes;
     private javax.swing.JLabel jlbl_ListaGrupoFamiliar;
+    private javax.swing.JLabel jlbl_grupoFamiliar;
     private javax.swing.JLabel jlbl_ingresosMes3;
-    private javax.swing.JLabel jlbl_ingresosMes4;
     private javax.swing.JTextField jtxt_nombreIntegrante;
     // End of variables declaration//GEN-END:variables
 }

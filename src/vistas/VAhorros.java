@@ -1,9 +1,13 @@
 package vistas;
 
-import Utils.Utils;
-import java.util.Date;
+import controlador.ControlAhorro;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
+import modelo.Ahorro;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -19,15 +23,21 @@ public class VAhorros extends javax.swing.JFrame {
     /**
      * Creates new form Inicio
      */
-    public VAhorros() {
+    public VAhorros() throws Exception {
         initComponents();
+           
+        //Mostrar total ahorro en el año
+        ArrayList<Ahorro> listaAhorros;
+        ControlAhorro listaA = new ControlAhorro();
+        listaAhorros=listaA.mostrar();
+        int sumaAhorros=0;
+        for (Ahorro ahorro: listaAhorros) {
+            sumaAhorros += ahorro.getMonto_ahorro();}
+        NumberFormat formatoAhorros = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        String totalAhorros = formatoAhorros.format(sumaAhorros);
+        this.jlbl_totalAhorros.setText(totalAhorros);
+        jlbl_totalAhorros.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         
-        Date fechaActual;
-        String anno;
-        Utils utils = new Utils();
-        fechaActual=utils.obtenerFecha();
-        anno=utils.obtenerAnno(fechaActual);
-        this.jlbl_annoActual.setText(anno);
         
     }
 
@@ -57,9 +67,9 @@ public class VAhorros extends javax.swing.JFrame {
         jbtn_modificar = new javax.swing.JButton();
         jlbl_ListaMetas = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jlbl_ingresosMes = new javax.swing.JLabel();
-        jlbl_annoActual = new javax.swing.JLabel();
+        jlbl_ahorros = new javax.swing.JLabel();
         jlbl_totalAhorros = new javax.swing.JLabel();
+        jlbl_total = new javax.swing.JLabel();
         jlbl_ingresosMes5 = new javax.swing.JLabel();
         jtxt_montoCrearMeta = new javax.swing.JTextField();
         jtxt_descMeta = new javax.swing.JTextField();
@@ -241,41 +251,42 @@ public class VAhorros extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
 
-        jlbl_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes.setForeground(new java.awt.Color(0, 0, 0));
-        jlbl_ingresosMes.setText("AHORROS");
+        jlbl_ahorros.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jlbl_ahorros.setForeground(new java.awt.Color(0, 0, 0));
+        jlbl_ahorros.setText("AHORROS");
 
-        jlbl_annoActual.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jlbl_annoActual.setForeground(new java.awt.Color(0, 0, 0));
-
-        jlbl_totalAhorros.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_totalAhorros.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jlbl_totalAhorros.setForeground(new java.awt.Color(0, 0, 0));
+
+        jlbl_total.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        jlbl_total.setForeground(new java.awt.Color(0, 0, 0));
+        jlbl_total.setText("TOTAL");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(128, Short.MAX_VALUE)
+                .addComponent(jlbl_totalAhorros, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlbl_annoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlbl_ingresosMes))
+                    .addComponent(jlbl_total)
+                    .addComponent(jlbl_ahorros))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(137, Short.MAX_VALUE)
-                .addComponent(jlbl_totalAhorros, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jlbl_ingresosMes)
+                .addComponent(jlbl_ahorros)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlbl_annoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(jlbl_total)
+                .addGap(14, 14, 14)
                 .addComponent(jlbl_totalAhorros, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jlbl_ingresosMes5.setBackground(new java.awt.Color(0, 0, 0));
@@ -392,7 +403,7 @@ public class VAhorros extends javax.swing.JFrame {
                                 .addComponent(jtxt_descMeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtn_crearMeta, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -485,9 +496,13 @@ public class VAhorros extends javax.swing.JFrame {
 
     private void jbtn_ahorrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ahorrosActionPerformed
         
-        VAhorros ahorros = new VAhorros();
-        ahorros.setVisible(true);
-        this.dispose();
+        try {
+            VAhorros ahorros = new VAhorros();
+            ahorros.setVisible(true);
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jbtn_ahorrosActionPerformed
 
@@ -662,15 +677,26 @@ public class VAhorros extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcbo_Meta;
     private javax.swing.JComboBox<String> jcbo_gastosMes;
     private javax.swing.JLabel jlbl_ListaMetas;
-    private javax.swing.JLabel jlbl_annoActual;
-    private javax.swing.JLabel jlbl_ingresosMes;
+    private javax.swing.JLabel jlbl_ahorros;
     private javax.swing.JLabel jlbl_ingresosMes2;
     private javax.swing.JLabel jlbl_ingresosMes5;
     private javax.swing.JLabel jlbl_ingresosMes6;
     private javax.swing.JLabel jlbl_ingresosMes7;
+    private javax.swing.JLabel jlbl_total;
     private javax.swing.JLabel jlbl_totalAhorros;
     private javax.swing.JTextField jtxt_descMeta;
     private javax.swing.JTextField jtxt_montoCrearMeta;
     private javax.swing.JTextField jtxt_nombreMeta;
     // End of variables declaration//GEN-END:variables
+
+    public JComboBox<String> getJcbo_Meta() {
+        return jcbo_Meta;
+    }
+
+    public void setJcbo_Meta(JComboBox<String> jcbo_Meta) {
+        this.jcbo_Meta = jcbo_Meta;
+    }
+
+    
+
 }

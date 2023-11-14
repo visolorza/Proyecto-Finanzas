@@ -432,7 +432,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jlbl_ingresosMes" min="-2" max="-2" attributes="0"/>
+                              <Component id="jlbl_vivienda" min="-2" max="-2" attributes="0"/>
                               <Component id="jlbl_mesActual" min="-2" pref="98" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="138" max="32767" attributes="0"/>
@@ -448,7 +448,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Component id="jlbl_ingresosMes" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlbl_vivienda" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jlbl_mesActual" min="-2" pref="15" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -459,7 +459,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jlbl_ingresosMes">
+                <Component class="javax.swing.JLabel" name="jlbl_vivienda">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Century Gothic" size="14" style="0"/>

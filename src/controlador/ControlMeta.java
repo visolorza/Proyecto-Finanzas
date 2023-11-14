@@ -117,4 +117,30 @@ public class ControlMeta {
         }
     }
     
+    public int obtenerCodigoMeta(String seleccionMeta) throws Exception {
+        
+        int codigoObtenido=0;
+        try {
+            ConexionBD con = new ConexionBD();
+            //Connection cnx = con.obtenerConexion();
+            Connection cnx = ConexionBD.obtenerConexion();
+
+            String query = "SELECT * FROM meta WHERE nombre_meta=?";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            stmt.setString(1,seleccionMeta);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                codigoObtenido = rs.getInt("COD_META");
+            }
+            rs.close();
+            stmt.close();
+            cnx.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error SQL al listar metas" + e.getMessage());
+        }
+        return codigoObtenido;
+    }
 }
