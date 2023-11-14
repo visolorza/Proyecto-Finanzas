@@ -604,6 +604,10 @@ public class VCompras extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(VIngresos.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        this.jtxt_montoGasto.setText(""); 
+        this.jtxt_descGasto.setText(""); 
+        
     }//GEN-LAST:event_jbtn_anadirActionPerformed
 
     /**

@@ -1,7 +1,11 @@
 package vistas;
 
 import Utils.Utils;
+import controlador.ControlGasto;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.Gasto;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -461,6 +465,9 @@ public class VEducacion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    ControlGasto cgasto = new ControlGasto();
+    Gasto gasto = new Gasto();
+    
     private void jbtn_detHistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_detHistActionPerformed
         
         VDetalleHistorico detalleHistorico = new VDetalleHistorico();
@@ -545,7 +552,15 @@ public class VEducacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jcbo_gastosMesActionPerformed
 
     private void jcbo_integranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_integranteActionPerformed
-        // TODO add your handling code here:
+        
+        String desc_int = jcbo_integrante.getSelectedItem().toString().toUpperCase();
+        try {
+            cgasto.obt_int(gasto, desc_int);
+            System.out.println("integrsnte guardado "+gasto.getCodInt());
+        } catch (Exception ex) {
+            Logger.getLogger(VCompras.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jcbo_integranteActionPerformed
 
     private void jtxt_descGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_descGastoActionPerformed
@@ -557,7 +572,21 @@ public class VEducacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtn_grupoFamiliar2ActionPerformed
 
     private void jbtn_anadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_anadirActionPerformed
-        // TODO add your handling code here:
+        
+        gasto.setMontoGast(Integer.parseInt(this.jtxt_montoGasto.getText()));
+        gasto.setDescGast(this.jtxt_descGasto.getText());
+
+        try {
+            if(cgasto.agregar(gasto)){
+                System.out.println("gasto agregado con exto "+gasto.toString());
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(VIngresos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        this.jtxt_montoGasto.setText(""); 
+        this.jtxt_descGasto.setText(""); 
+        
     }//GEN-LAST:event_jbtn_anadirActionPerformed
 
     private void jbtn_grupoFamiliar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliar3ActionPerformed
@@ -569,7 +598,15 @@ public class VEducacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtn_grupoFamiliar4ActionPerformed
 
     private void jcbo_subcategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_subcategoriaActionPerformed
-        // TODO add your handling code here:
+        
+        String desc_subcat = jcbo_subcategoria.getSelectedItem().toString().toUpperCase();
+        try {
+            cgasto.obt_subcat(gasto, desc_subcat);
+            System.out.println("subcat guardado "+gasto.getCodSubcat());
+        } catch (Exception ex) {
+            Logger.getLogger(VCompras.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jcbo_subcategoriaActionPerformed
 
     private void jbtn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_inicioActionPerformed

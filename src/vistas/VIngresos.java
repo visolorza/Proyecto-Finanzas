@@ -361,9 +361,9 @@ public class VIngresos extends javax.swing.JFrame {
                             .addComponent(jlbl_ingresosMes4)
                             .addComponent(jtxt_montoIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jtxt_descIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlbl_ingresosMes3))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlbl_ingresosMes3)
+                            .addComponent(jtxt_descIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtn_anadir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -445,6 +445,9 @@ public class VIngresos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    ControlIngresos controlIngresos = new ControlIngresos();
+    Ingresos ingreso = new Ingresos();
+    
     private void jbtn_detHistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_detHistActionPerformed
         
         VDetalleHistorico detalleHistorico = new VDetalleHistorico();
@@ -529,7 +532,14 @@ public class VIngresos extends javax.swing.JFrame {
     }//GEN-LAST:event_jcbo_gastosMesActionPerformed
 
     private void jcbo_integranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_integranteActionPerformed
-        // TODO add your handling code here:
+        
+        String desc_int = jcbo_integrante.getSelectedItem().toString().toUpperCase();
+        try {
+            controlIngresos.obt_int(ingreso, desc_int);
+            System.out.println("integrante guardado "+ingreso.getCod_int());
+        } catch (Exception ex) {
+            Logger.getLogger(VCompras.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jcbo_integranteActionPerformed
 
     private void jtxt_descIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_descIngresoActionPerformed
@@ -542,23 +552,37 @@ public class VIngresos extends javax.swing.JFrame {
     
     private void jbtn_anadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_anadirActionPerformed
         
-        String desc = this.jtxt_descIngreso.getText();
-        int monto =  Integer.parseInt(this.jtxt_montoIngreso.getText());
+        //String desc = this.jtxt_descIngreso.getText();
+        //int monto =  Integer.parseInt(this.jtxt_montoIngreso.getText());
         //String integrante = (String) this.jcbo_integrante.getSelectedItem();
                 
-        Ingresos ingreso = new Ingresos();
+        //Ingresos ingreso = new Ingresos();
         
-        ingreso.setDesc_ing(desc);
-        ingreso.setMonto_ing(monto);
-        ingreso.setCod_int(1); //Esto debe ser modificado para que lo que obtenga sea de un integrante real.
+        //ingreso.setDesc_ing(desc);
+        //ingreso.setMonto_ing(monto);
+        //ingreso.setCod_int(1); //Esto debe ser modificado para que lo que obtenga sea de un integrante real.
         
-        ControlIngresos controlIngresos = new ControlIngresos();
+        //ControlIngresos controlIngresos = new ControlIngresos();
         
+        //try {
+            //controlIngresos.agregar(ingreso);
+        //} catch (Exception ex) {
+            //Logger.getLogger(VIngresos.class.getName()).log(Level.SEVERE, null, ex);
+        //}
+        
+        ingreso.setMonto_ing(Integer.parseInt(this.jtxt_montoIngreso.getText()));
+        ingreso.setDesc_ing(this.jtxt_descIngreso.getText());
+
         try {
-            controlIngresos.agregar(ingreso);
+            if(controlIngresos.agregar(ingreso)){
+                System.out.println("ingreso agregado con exito "+ingreso.toString());
+            }
         } catch (Exception ex) {
             Logger.getLogger(VIngresos.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        this.jtxt_montoIngreso.setText(""); 
+        this.jtxt_descIngreso.setText(""); 
         
     }//GEN-LAST:event_jbtn_anadirActionPerformed
 
