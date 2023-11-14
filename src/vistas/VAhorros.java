@@ -514,49 +514,98 @@ public class VAhorros extends javax.swing.JFrame {
 
     private void jcbo_gastosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_gastosMesActionPerformed
         
-        String opcion = (String) jcbo_gastosMes.getSelectedItem();
         
+        String opcion = (String) jcbo_gastosMes.getSelectedItem();
+
         switch (opcion) {
             case "Compras":
-                VCompras compras = new VCompras();
+                VCompras compras = null;
+                try {
+                    compras = new VCompras();
+                } catch (Exception ex) {
+                    Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 compras.setVisible(true);
-                this.dispose(); 
+                this.dispose();
                 break;
+
             case "Cuentas":
-                VCuentas cuentas = new VCuentas();
+                VCuentas cuentas = null;
+                try {
+                    cuentas = new VCuentas();
+                } catch (Exception ex) {
+                    Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 cuentas.setVisible(true);
                 this.dispose();
                 break;
+
             case "Deudas":
-                VDeudas deudas = new VDeudas();
+                VDeudas deudas = null;
+                try {
+                    deudas = new VDeudas();
+                } catch (Exception ex) {
+                    Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 deudas.setVisible(true);
                 this.dispose();
                 break;
+
             case "Educación":
-                VEducacion educacion = new VEducacion();
+                VEducacion educacion = null;
+                try {
+                    educacion = new VEducacion();
+                } catch (Exception ex) {
+                    Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 educacion.setVisible(true);
-                this.dispose(); 
+                this.dispose();
                 break;
+
             case "Salud":
-                VSalud salud = new VSalud();
+                VSalud salud = null;
+                try {
+                    salud = new VSalud();
+                } catch (Exception ex) {
+                    Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 salud.setVisible(true);
                 this.dispose();
                 break;
+
             case "Transporte":
-                VTransporte transporte = new VTransporte();
+                VTransporte transporte = null;
+                try {
+                    transporte = new VTransporte();
+                } catch (Exception ex) {
+                    Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 transporte.setVisible(true);
                 this.dispose();
                 break;
+
             case "Vivienda":
-                VVivienda vivienda = new VVivienda();
+                VVivienda vivienda = null;
+                try {
+                    vivienda = new VVivienda();
+                } catch (Exception ex) {
+                    Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 vivienda.setVisible(true);
                 this.dispose();
                 break;
+
             case "Otros":
-                VOtros otros = new VOtros();
+                VOtros otros = null;
+            try {
+                otros = new VOtros();
+            } catch (Exception ex) {
+                Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 otros.setVisible(true);
                 this.dispose();
                 break;
+
             default:
                 throw new AssertionError();
         }

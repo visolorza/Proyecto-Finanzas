@@ -1,6 +1,7 @@
 package vistas;
 
 import Utils.Utils;
+import controlador.ControlGasto;
 import controlador.ControlIngresos;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.Gasto;
 import modelo.Ingresos;
 
 /*
@@ -33,17 +35,31 @@ public class Inicio extends javax.swing.JFrame {
         fechaActual=utils.obtenerFecha();
         mesActual=utils.obtenerMes(fechaActual);
         this.jlbl_mesActual.setText(mesActual.toUpperCase());
+        this.jlbl_mesActual1.setText(mesActual.toUpperCase());
         
         //Mostrar total ingresos del mes
         ArrayList<Ingresos> listaIngresos;
-        ControlIngresos lista = new ControlIngresos();
-        listaIngresos=lista.mostrarIngresosMes();
-        int sumaMontos=0;
+        ControlIngresos listaI = new ControlIngresos();
+        listaIngresos=listaI.mostrarIngresosMes();
+        int sumaMontosIng=0;
         for (Ingresos ingreso: listaIngresos) {
-            sumaMontos += ingreso.getMonto_ing();}
-        NumberFormat formatoMonto = NumberFormat.getCurrencyInstance(Locale.getDefault());
-        String totalMes = formatoMonto.format(sumaMontos);
-        this.jlbl_totalIngresos.setText(totalMes);
+            sumaMontosIng += ingreso.getMonto_ing();}
+        NumberFormat formatoMontoIng = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        String totalIngMes = formatoMontoIng.format(sumaMontosIng);
+        this.jlbl_totalIngresos.setText(totalIngMes);
+        jlbl_totalIngresos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        
+        //Mostrar total gastos del mes
+        ArrayList<Gasto> listaGastos;
+        ControlGasto listaG = new ControlGasto();
+        listaGastos=listaG.mostrarGastosMes();
+        int sumaMontosGas=0;
+        for (Gasto gasto: listaGastos) {
+            sumaMontosGas += gasto.getMontoGast();}
+        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        String totalGasMes = formatoMontoGas.format(sumaMontosGas);
+        this.jlbl_totalGastos.setText(totalGasMes);
+        jlbl_totalGastos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
        
     }  
     
@@ -130,13 +146,13 @@ public class Inicio extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
 
-        jlbl_mesActual1.setFont(new java.awt.Font("Century Gothic", 0, 8)); // NOI18N
+        jlbl_mesActual1.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         jlbl_mesActual1.setForeground(new java.awt.Color(0, 0, 0));
 
-        jlbl_totalGastos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_totalGastos.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jlbl_totalGastos.setForeground(new java.awt.Color(0, 0, 0));
 
-        jlbl_ingresosMes1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_ingresosMes1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jlbl_ingresosMes1.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_ingresosMes1.setText("GASTOS DEL MES");
 
@@ -146,14 +162,14 @@ public class Inicio extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlbl_mesActual1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlbl_ingresosMes1))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jlbl_ingresosMes1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlbl_mesActual1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(135, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jlbl_totalGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jlbl_totalGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,9 +178,9 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(jlbl_ingresosMes1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlbl_mesActual1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jlbl_totalGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(204, 204, 204));
@@ -182,11 +198,11 @@ public class Inicio extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
 
-        jlbl_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jlbl_ingresosMes.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_ingresosMes.setText("INGRESOS DEL MES");
 
-        jlbl_mesActual.setFont(new java.awt.Font("Century Gothic", 0, 8)); // NOI18N
+        jlbl_mesActual.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         jlbl_mesActual.setForeground(new java.awt.Color(0, 0, 0));
 
         jlbl_totalIngresos.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
@@ -199,24 +215,24 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jlbl_totalIngresos, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jlbl_ingresosMes)))
+                    .addComponent(jlbl_ingresosMes)
+                    .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jlbl_totalIngresos, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jlbl_ingresosMes)
-                .addGap(5, 5, 5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jlbl_totalIngresos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -240,7 +256,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
@@ -348,45 +364,93 @@ public class Inicio extends javax.swing.JFrame {
                //JOptionPane.showMessageDialog(null, "Selecciona una categoría", "Error", JOptionPane.INFORMATION_MESSAGE);
                 //break;
             case "Compras":
-                VCompras compras = new VCompras();
+                VCompras compras = null;
+            try {
+                compras = new VCompras();
+            } catch (Exception ex) {
+                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 compras.setVisible(true);
                 this.dispose(); 
                 break;
+
             case "Cuentas":
-                VCuentas cuentas = new VCuentas();
+                VCuentas cuentas = null;
+            try {
+                cuentas = new VCuentas();
+            } catch (Exception ex) {
+                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 cuentas.setVisible(true);
                 this.dispose();
                 break;
+
             case "Deudas":
-                VDeudas deudas = new VDeudas();
+                VDeudas deudas = null;
+            try {
+                deudas = new VDeudas();
+            } catch (Exception ex) {
+                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 deudas.setVisible(true);
                 this.dispose();
                 break;
+
             case "Educación":
-                VEducacion educacion = new VEducacion();
+                VEducacion educacion = null;
+            try {
+                educacion = new VEducacion();
+            } catch (Exception ex) {
+                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 educacion.setVisible(true);
                 this.dispose(); 
                 break;
+
             case "Salud":
-                VSalud salud = new VSalud();
+                VSalud salud = null;
+            try {
+                salud = new VSalud();
+            } catch (Exception ex) {
+                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 salud.setVisible(true);
                 this.dispose();
                 break;
+
             case "Transporte":
-                VTransporte transporte = new VTransporte();
+                VTransporte transporte = null;
+            try {
+                transporte = new VTransporte();
+            } catch (Exception ex) {
+                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 transporte.setVisible(true);
                 this.dispose();
                 break;
+
             case "Vivienda":
-                VVivienda vivienda = new VVivienda();
+                VVivienda vivienda = null;
+            try {
+                vivienda = new VVivienda();
+            } catch (Exception ex) {
+                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 vivienda.setVisible(true);
                 this.dispose();
                 break;
+
             case "Otros":
-                VOtros otros = new VOtros();
+                VOtros otros = null;
+            try {
+                otros = new VOtros();
+            } catch (Exception ex) {
+                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 otros.setVisible(true);
                 this.dispose();
                 break;
+
             default:
                 throw new AssertionError();
         }

@@ -1,9 +1,14 @@
 package vistas;
 
 import Utils.Utils;
+import controlador.ControlGasto;
+import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.Gasto;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -19,7 +24,7 @@ public class VVivienda extends javax.swing.JFrame {
     /**
      * Creates new form Inicio
      */
-    public VVivienda() {
+    public VVivienda() throws Exception {
         initComponents();
         
         Date fechaActual;
@@ -28,6 +33,18 @@ public class VVivienda extends javax.swing.JFrame {
         fechaActual=utils.obtenerFecha();
         mesActual=utils.obtenerMes(fechaActual);
         this.jlbl_mesActual.setText(mesActual.toUpperCase());
+        
+         //Mostrar total gasto en vivienda en el mes
+        ArrayList<Gasto> listaGastos;
+        ControlGasto listaG = new ControlGasto();
+        listaGastos=listaG.mostrarGastosMesCat(5);
+        int sumaMontosGas=0;
+        for (Gasto gasto: listaGastos) {
+            sumaMontosGas += gasto.getMontoGast();}
+        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        String totalGasMes = formatoMontoGas.format(sumaMontosGas);
+        this.jlbl_totalVivienda.setText(totalGasMes);
+        jlbl_totalVivienda.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         
     }
 
@@ -230,14 +247,14 @@ public class VVivienda extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
 
-        jlbl_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jlbl_ingresosMes.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_ingresosMes.setText("VIVIENDA");
 
-        jlbl_mesActual.setFont(new java.awt.Font("Century Gothic", 0, 8)); // NOI18N
+        jlbl_mesActual.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         jlbl_mesActual.setForeground(new java.awt.Color(0, 0, 0));
 
-        jlbl_totalVivienda.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_totalVivienda.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jlbl_totalVivienda.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -249,11 +266,11 @@ public class VVivienda extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlbl_ingresosMes)
                     .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(137, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jlbl_totalVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(14, 14, 14))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,9 +279,9 @@ public class VVivienda extends javax.swing.JFrame {
                 .addComponent(jlbl_ingresosMes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jlbl_totalVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jlbl_ingresosMes2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -507,45 +524,93 @@ public class VVivienda extends javax.swing.JFrame {
         
         switch (opcion) {
             case "Compras":
-                VCompras compras = new VCompras();
+                VCompras compras = null;
+            try {
+                compras = new VCompras();
+            } catch (Exception ex) {
+                Logger.getLogger(VVivienda.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 compras.setVisible(true);
                 this.dispose(); 
                 break;
+
             case "Cuentas":
-                VCuentas cuentas = new VCuentas();
+                VCuentas cuentas = null;
+            try {
+                cuentas = new VCuentas();
+            } catch (Exception ex) {
+                Logger.getLogger(VVivienda.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 cuentas.setVisible(true);
                 this.dispose();
                 break;
+
             case "Deudas":
-                VDeudas deudas = new VDeudas();
+                VDeudas deudas = null;
+            try {
+                deudas = new VDeudas();
+            } catch (Exception ex) {
+                Logger.getLogger(VVivienda.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 deudas.setVisible(true);
                 this.dispose();
                 break;
+
             case "Educación":
-                VEducacion educacion = new VEducacion();
+                VEducacion educacion = null;
+            try {
+                educacion = new VEducacion();
+            } catch (Exception ex) {
+                Logger.getLogger(VVivienda.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 educacion.setVisible(true);
                 this.dispose(); 
                 break;
+
             case "Salud":
-                VSalud salud = new VSalud();
+                VSalud salud = null;
+            try {
+                salud = new VSalud();
+            } catch (Exception ex) {
+                Logger.getLogger(VVivienda.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 salud.setVisible(true);
                 this.dispose();
                 break;
+
             case "Transporte":
-                VTransporte transporte = new VTransporte();
+                VTransporte transporte = null;
+            try {
+                transporte = new VTransporte();
+            } catch (Exception ex) {
+                Logger.getLogger(VVivienda.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 transporte.setVisible(true);
                 this.dispose();
                 break;
+
             case "Vivienda":
-                VVivienda vivienda = new VVivienda();
+                VVivienda vivienda = null;
+            try {
+                vivienda = new VVivienda();
+            } catch (Exception ex) {
+                Logger.getLogger(VVivienda.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 vivienda.setVisible(true);
                 this.dispose();
                 break;
+
             case "Otros":
-                VOtros otros = new VOtros();
+                VOtros otros = null;
+            try {
+                otros = new VOtros();
+            } catch (Exception ex) {
+                Logger.getLogger(VVivienda.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 otros.setVisible(true);
                 this.dispose();
                 break;
+
             default:
                 throw new AssertionError();
         }
