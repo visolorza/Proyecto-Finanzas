@@ -39,7 +39,7 @@ public class VTransporte extends javax.swing.JFrame {
         mesActual=utils.obtenerMes(fechaActual);
         this.jlbl_mesActual.setText(mesActual.toUpperCase());
         
-         //Mostrar total gasto en transporte en el mes
+        //Mostrar total gasto en transporte en el mes
         ArrayList<Gasto> listaGastos;
         ControlGasto listaG = new ControlGasto();
         listaGastos=listaG.mostrarGastosMesCat(1);
@@ -648,13 +648,24 @@ public class VTransporte extends javax.swing.JFrame {
             if(cgasto.agregar(gasto)){
                 System.out.println("gasto agregado con exto "+gasto.toString());
             }
+            this.jtxt_montoGasto.setText(""); 
+            this.jtxt_descGasto.setText("");
+            
+            //Mostrar total gasto en transporte en el mes
+            ArrayList<Gasto> listaGastos;
+            ControlGasto listaG = new ControlGasto();
+            listaGastos=listaG.mostrarGastosMesCat(1);
+            int sumaMontosGas=0;
+            for (Gasto gasto: listaGastos) {
+                sumaMontosGas += gasto.getMontoGast();}
+            NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
+            String totalGasMes = formatoMontoGas.format(sumaMontosGas);
+            this.jlbl_totalTransporte.setText(totalGasMes);
+            jlbl_totalTransporte.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        
         } catch (Exception ex) {
             Logger.getLogger(VIngresos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        this.jtxt_montoGasto.setText(""); 
-        this.jtxt_descGasto.setText("");
-        
     }//GEN-LAST:event_jbtn_anadirActionPerformed
 
     private void jbtn_grupoFamiliar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliar3ActionPerformed

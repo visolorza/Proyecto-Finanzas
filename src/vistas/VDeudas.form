@@ -282,7 +282,6 @@
                           <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                           <Component id="jlbl_ListaDeudas" min="-2" pref="166" max="-2" attributes="0"/>
                           <EmptySpace pref="97" max="32767" attributes="0"/>
-
                       </Group>
                   </Group>
                 </DimensionLayout>

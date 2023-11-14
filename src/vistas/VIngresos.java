@@ -639,13 +639,23 @@ public class VIngresos extends javax.swing.JFrame {
             if(controlIngresos.agregar(ingreso)){
                 System.out.println("ingreso agregado con exito "+ingreso.toString());
             }
+            this.jtxt_montoIngreso.setText(""); 
+            this.jtxt_descIngreso.setText(""); 
+            
+            //Mostrar total ingresos del mes
+            ArrayList<Ingresos> listaIngresos;
+            ControlIngresos lista = new ControlIngresos();
+            listaIngresos=lista.mostrarIngresosMes();
+            int sumaMontos=0;
+            for (Ingresos ingreso: listaIngresos) {
+                sumaMontos += ingreso.getMonto_ing();}
+            NumberFormat formatoMonto = NumberFormat.getCurrencyInstance(Locale.getDefault());
+            String totalMes = formatoMonto.format(sumaMontos);
+            this.jlbl_totalIngresos.setText(totalMes);
+            
         } catch (Exception ex) {
             Logger.getLogger(VIngresos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        this.jtxt_montoIngreso.setText(""); 
-        this.jtxt_descIngreso.setText(""); 
-        
     }//GEN-LAST:event_jbtn_anadirActionPerformed
 
     private void jbtn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_inicioActionPerformed

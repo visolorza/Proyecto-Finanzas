@@ -691,12 +691,25 @@ public class VCompras extends javax.swing.JFrame {
             if(cgasto.agregar(gasto)){
                 System.out.println("gasto agregado con exto "+gasto.toString());
             }
-        } catch (Exception ex) {
-            Logger.getLogger(VIngresos.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
         this.jtxt_montoGasto.setText(""); 
         this.jtxt_descGasto.setText(""); 
+        
+         //Mostrar total gasto en compras en el mes
+        ArrayList<Gasto> listaGastos;
+        ControlGasto listaG = new ControlGasto();
+        listaGastos=listaG.mostrarGastosMesCat(4);
+        int sumaMontosGas=0;
+        for (Gasto gasto: listaGastos) {
+            sumaMontosGas += gasto.getMontoGast();}
+        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        String totalGasMes = formatoMontoGas.format(sumaMontosGas);
+        this.jlbl_totalCompras.setText(totalGasMes);
+        jlbl_totalCompras.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        
+        } catch (Exception ex) {
+            Logger.getLogger(VIngresos.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jbtn_anadirActionPerformed
 

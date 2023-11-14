@@ -41,6 +41,7 @@ public class VMeta extends javax.swing.JFrame {
         ControlMeta controlmeta= new ControlMeta();
         codigoMeta=controlmeta.obtenerCodigoMeta(seleccion.toUpperCase());
         
+        //Mostrar el monto total por meta
         ArrayList<Ahorro> listaMeta;
         ControlAhorro listaM = new ControlAhorro();
         listaMeta=listaM.mostrarAhorroPorMeta(codigoMeta);

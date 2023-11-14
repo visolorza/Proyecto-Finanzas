@@ -645,13 +645,24 @@ public class VEducacion extends javax.swing.JFrame {
             if(cgasto.agregar(gasto)){
                 System.out.println("gasto agregado con exto "+gasto.toString());
             }
+            this.jtxt_montoGasto.setText(""); 
+            this.jtxt_descGasto.setText(""); 
+            
+            //Mostrar total gasto en educacion en el mes
+            ArrayList<Gasto> listaGastos;
+            ControlGasto listaG = new ControlGasto();
+            listaGastos=listaG.mostrarGastosMesCat(3);
+            int sumaMontosGas=0;
+            for (Gasto gasto: listaGastos) {
+                sumaMontosGas += gasto.getMontoGast();}
+            NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
+            String totalGasMes = formatoMontoGas.format(sumaMontosGas);
+            this.jlbl_totalEducacion.setText(totalGasMes);
+            jlbl_totalEducacion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+            
         } catch (Exception ex) {
             Logger.getLogger(VIngresos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        this.jtxt_montoGasto.setText(""); 
-        this.jtxt_descGasto.setText(""); 
-        
     }//GEN-LAST:event_jbtn_anadirActionPerformed
 
     private void jbtn_grupoFamiliar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliar3ActionPerformed
