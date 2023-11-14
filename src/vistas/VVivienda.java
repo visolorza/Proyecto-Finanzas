@@ -520,99 +520,58 @@ public class VVivienda extends javax.swing.JFrame {
 
     private void jcbo_gastosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_gastosMesActionPerformed
         
-        String opcion = (String) jcbo_gastosMes.getSelectedItem();
-        
-        switch (opcion) {
-            case "Compras":
-                VCompras compras = null;
-            try {
-                compras = new VCompras();
-            } catch (Exception ex) {
-                Logger.getLogger(VVivienda.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+            String opcion = (String) jcbo_gastosMes.getSelectedItem();
+            
+            switch (opcion) {
+                //case "Gastos del mes":
+                //JOptionPane.showMessageDialog(null, "Selecciona una categoría", "Error", JOptionPane.INFORMATION_MESSAGE);
+                //break;
+                case "Compras":
+                    VCompras compras = new VCompras();
+                    compras.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Cuentas":
+                    VCuentas cuentas = new VCuentas();
+                    cuentas.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Deudas":
+                    VDeudas deudas = new VDeudas();
+                    deudas.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Educación":
+                    VEducacion educacion = new VEducacion();
+                    educacion.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Salud":
+                    VSalud salud = new VSalud();
+                    salud.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Transporte":
+                    VTransporte transporte = new VTransporte();
+                    transporte.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Vivienda":
+                    VVivienda vivienda = new VVivienda();
+                    vivienda.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Otros":
+                    VOtros otros = new VOtros();
+                    otros.setVisible(true);
+                    this.dispose();
+                    break;
+                default:
+                    throw new AssertionError();
             }
-                compras.setVisible(true);
-                this.dispose(); 
-                break;
-
-            case "Cuentas":
-                VCuentas cuentas = null;
-            try {
-                cuentas = new VCuentas();
-            } catch (Exception ex) {
-                Logger.getLogger(VVivienda.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                cuentas.setVisible(true);
-                this.dispose();
-                break;
-
-            case "Deudas":
-                VDeudas deudas = null;
-            try {
-                deudas = new VDeudas();
-            } catch (Exception ex) {
-                Logger.getLogger(VVivienda.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                deudas.setVisible(true);
-                this.dispose();
-                break;
-
-            case "Educación":
-                VEducacion educacion = null;
-            try {
-                educacion = new VEducacion();
-            } catch (Exception ex) {
-                Logger.getLogger(VVivienda.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                educacion.setVisible(true);
-                this.dispose(); 
-                break;
-
-            case "Salud":
-                VSalud salud = null;
-            try {
-                salud = new VSalud();
-            } catch (Exception ex) {
-                Logger.getLogger(VVivienda.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                salud.setVisible(true);
-                this.dispose();
-                break;
-
-            case "Transporte":
-                VTransporte transporte = null;
-            try {
-                transporte = new VTransporte();
-            } catch (Exception ex) {
-                Logger.getLogger(VVivienda.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                transporte.setVisible(true);
-                this.dispose();
-                break;
-
-            case "Vivienda":
-                VVivienda vivienda = null;
-            try {
-                vivienda = new VVivienda();
-            } catch (Exception ex) {
-                Logger.getLogger(VVivienda.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                vivienda.setVisible(true);
-                this.dispose();
-                break;
-
-            case "Otros":
-                VOtros otros = null;
-            try {
-                otros = new VOtros();
-            } catch (Exception ex) {
-                Logger.getLogger(VVivienda.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                otros.setVisible(true);
-                this.dispose();
-                break;
-
-            default:
-                throw new AssertionError();
+        } catch (Exception ex) {
+            Logger.getLogger(VVivienda.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jcbo_gastosMesActionPerformed
