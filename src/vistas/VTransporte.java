@@ -3,6 +3,10 @@ package vistas;
 import Utils.Utils;
 import controlador.ControlGasto;
 import java.util.Date;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Gasto;
@@ -17,11 +21,15 @@ import modelo.Gasto;
  * @author María José
  */
 public class VTransporte extends javax.swing.JFrame {
+    
+    //Almacenar la posición de la ventana
+    private int posicionX;  
+    private int posicionY;
 
     /**
      * Creates new form Inicio
      */
-    public VTransporte() {
+    public VTransporte() throws Exception {
         initComponents();
         
         Date fechaActual;
@@ -30,6 +38,18 @@ public class VTransporte extends javax.swing.JFrame {
         fechaActual=utils.obtenerFecha();
         mesActual=utils.obtenerMes(fechaActual);
         this.jlbl_mesActual.setText(mesActual.toUpperCase());
+        
+         //Mostrar total gasto en transporte en el mes
+        ArrayList<Gasto> listaGastos;
+        ControlGasto listaG = new ControlGasto();
+        listaGastos=listaG.mostrarGastosMesCat(1);
+        int sumaMontosGas=0;
+        for (Gasto gasto: listaGastos) {
+            sumaMontosGas += gasto.getMontoGast();}
+        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        String totalGasMes = formatoMontoGas.format(sumaMontosGas);
+        this.jlbl_totalTransporte.setText(totalGasMes);
+        jlbl_totalTransporte.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         
     }
 
@@ -58,7 +78,7 @@ public class VTransporte extends javax.swing.JFrame {
         jbtn_modificar = new javax.swing.JButton();
         jlbl_ListaTransporte = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jlbl_ingresosMes = new javax.swing.JLabel();
+        jlbl_transporte = new javax.swing.JLabel();
         jlbl_mesActual = new javax.swing.JLabel();
         jlbl_totalTransporte = new javax.swing.JLabel();
         jlbl_ingresosMes2 = new javax.swing.JLabel();
@@ -235,14 +255,14 @@ public class VTransporte extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
 
-        jlbl_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes.setForeground(new java.awt.Color(0, 0, 0));
-        jlbl_ingresosMes.setText("TRANSPORTE");
+        jlbl_transporte.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jlbl_transporte.setForeground(new java.awt.Color(0, 0, 0));
+        jlbl_transporte.setText("TRANSPORTE");
 
-        jlbl_mesActual.setFont(new java.awt.Font("Century Gothic", 0, 8)); // NOI18N
+        jlbl_mesActual.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         jlbl_mesActual.setForeground(new java.awt.Color(0, 0, 0));
 
-        jlbl_totalTransporte.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_totalTransporte.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jlbl_totalTransporte.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -252,24 +272,24 @@ public class VTransporte extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlbl_ingresosMes)
+                    .addComponent(jlbl_transporte)
                     .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(137, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jlbl_totalTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(15, 15, 15))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jlbl_ingresosMes)
+                .addComponent(jlbl_transporte)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jlbl_totalTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jlbl_ingresosMes2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -474,7 +494,10 @@ public class VTransporte extends javax.swing.JFrame {
     
     private void jbtn_detHistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_detHistActionPerformed
         
+        this.obtenerPosicion();
         VDetalleHistorico detalleHistorico = new VDetalleHistorico();
+        detalleHistorico.establecerPosicion(posicionX,posicionY);
+        detalleHistorico.obtenerPosicion();
         detalleHistorico.setVisible(true);
         this.dispose(); 
         
@@ -482,15 +505,30 @@ public class VTransporte extends javax.swing.JFrame {
 
     private void jbtn_ahorrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ahorrosActionPerformed
         
-        VAhorros ahorros = new VAhorros();
-        ahorros.setVisible(true);
-        this.dispose(); 
+        try {
+            this.obtenerPosicion();
+            VAhorros ahorros = new VAhorros();
+            ahorros.establecerPosicion(posicionX,posicionY);
+            ahorros.obtenerPosicion();
+            ahorros.setVisible(true);
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jbtn_ahorrosActionPerformed
 
     private void jbtn_ingresosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ingresosMesActionPerformed
         
-        VIngresos ingresos = new VIngresos();
+        this.obtenerPosicion();
+        VIngresos ingresos = null;
+        try {
+            ingresos = new VIngresos();
+            ingresos.establecerPosicion(posicionX,posicionY);
+            ingresos.obtenerPosicion();
+        } catch (Exception ex) {
+            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+        }
         ingresos.setVisible(true);
         this.dispose(); 
         
@@ -498,59 +536,85 @@ public class VTransporte extends javax.swing.JFrame {
 
     private void jbtn_grupoFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliarActionPerformed
         
+        this.obtenerPosicion();
         VGrupoFamiliar grupoFamiliar = new VGrupoFamiliar();
+        grupoFamiliar.establecerPosicion(posicionX,posicionY);
+        grupoFamiliar.obtenerPosicion();
         grupoFamiliar.setVisible(true);
-        this.dispose();
+        this.dispose(); 
         
     }//GEN-LAST:event_jbtn_grupoFamiliarActionPerformed
 
     private void jcbo_gastosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_gastosMesActionPerformed
         
-        String opcion = (String) jcbo_gastosMes.getSelectedItem();
-        
-        switch (opcion) {
-            case "Compras":
-                VCompras compras = new VCompras();
-                compras.setVisible(true);
-                this.dispose(); 
-                break;
-            case "Cuentas":
-                VCuentas cuentas = new VCuentas();
-                cuentas.setVisible(true);
-                this.dispose();
-                break;
-            case "Deudas":
-                VDeudas deudas = new VDeudas();
-                deudas.setVisible(true);
-                this.dispose();
-                break;
-            case "Educación":
-                VEducacion educacion = new VEducacion();
-                educacion.setVisible(true);
-                this.dispose(); 
-                break;
-            case "Salud":
-                VSalud salud = new VSalud();
-                salud.setVisible(true);
-                this.dispose();
-                break;
-            case "Transporte":
-                VTransporte transporte = new VTransporte();
-                transporte.setVisible(true);
-                this.dispose();
-                break;
-            case "Vivienda":
-                VVivienda vivienda = new VVivienda();
-                vivienda.setVisible(true);
-                this.dispose();
-                break;
-            case "Otros":
-                VOtros otros = new VOtros();
-                otros.setVisible(true);
-                this.dispose();
-                break;
-            default:
-                throw new AssertionError();
+        try {
+            String opcion = (String) jcbo_gastosMes.getSelectedItem();
+            this.obtenerPosicion();
+            switch (opcion) {
+                //case "Gastos del mes":
+                //JOptionPane.showMessageDialog(null, "Selecciona una categoría", "Error", JOptionPane.INFORMATION_MESSAGE);
+                //break;
+                case "Compras":
+                    VCompras compras = new VCompras();
+                    compras.establecerPosicion(posicionX,posicionY);
+                    compras.obtenerPosicion();
+                    compras.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Cuentas":
+                    VCuentas cuentas = new VCuentas();
+                    cuentas.establecerPosicion(posicionX,posicionY);
+                    cuentas.obtenerPosicion();
+                    cuentas.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Deudas":
+                    VDeudas deudas = new VDeudas();
+                    deudas.establecerPosicion(posicionX,posicionY);
+                    deudas.obtenerPosicion();
+                    deudas.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Educación":
+                    VEducacion educacion = new VEducacion();
+                    educacion.establecerPosicion(posicionX,posicionY);
+                    educacion.obtenerPosicion();
+                    educacion.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Salud":
+                    VSalud salud = new VSalud();
+                    salud.establecerPosicion(posicionX,posicionY);
+                    salud.obtenerPosicion();
+                    salud.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Transporte":
+                    VTransporte transporte = new VTransporte();
+                    transporte.establecerPosicion(posicionX,posicionY);
+                    transporte.obtenerPosicion();
+                    transporte.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Vivienda":
+                    VVivienda vivienda = new VVivienda();
+                    vivienda.establecerPosicion(posicionX,posicionY);
+                    vivienda.obtenerPosicion();
+                    vivienda.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Otros":
+                    VOtros otros = new VOtros();
+                    otros.establecerPosicion(posicionX,posicionY);
+                    otros.obtenerPosicion();
+                    otros.setVisible(true);
+                    this.dispose();
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jcbo_gastosMesActionPerformed
@@ -615,7 +679,15 @@ public class VTransporte extends javax.swing.JFrame {
 
     private void jbtn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_inicioActionPerformed
         
-        Inicio inicio = new Inicio();
+        this.obtenerPosicion();
+        Inicio inicio = null;
+        try {
+            inicio = new Inicio();
+            inicio.establecerPosicion(posicionX,posicionY);
+            inicio.obtenerPosicion();
+        } catch (Exception ex) {
+            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+        }
         inicio.setVisible(true);
         this.dispose();
         
@@ -678,14 +750,24 @@ public class VTransporte extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcbo_integrante;
     private javax.swing.JComboBox<String> jcbo_subcategoria;
     private javax.swing.JLabel jlbl_ListaTransporte;
-    private javax.swing.JLabel jlbl_ingresosMes;
     private javax.swing.JLabel jlbl_ingresosMes2;
     private javax.swing.JLabel jlbl_ingresosMes3;
     private javax.swing.JLabel jlbl_ingresosMes4;
     private javax.swing.JLabel jlbl_ingresosMes5;
     private javax.swing.JLabel jlbl_mesActual;
     private javax.swing.JLabel jlbl_totalTransporte;
+    private javax.swing.JLabel jlbl_transporte;
     private javax.swing.JTextField jtxt_descGasto;
     private javax.swing.JTextField jtxt_montoGasto;
     // End of variables declaration//GEN-END:variables
+
+    // Obtener y establecer la posición de la ventana
+    public void obtenerPosicion() {
+        posicionX = this.getLocation().x;
+        posicionY = this.getLocation().y;
+    }
+    public void establecerPosicion(int posicionX,int posicionY) {
+        this.setLocation(posicionX,posicionY);
+    }
+
 }

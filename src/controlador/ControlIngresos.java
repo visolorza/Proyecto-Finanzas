@@ -149,4 +149,39 @@ public class ControlIngresos {
     
     }
     
+    public ArrayList<Ingresos> mostrarIngresosMes() throws Exception {
+        
+        ArrayList<Ingresos> lista = new ArrayList<>();
+        
+        try {
+            ConexionBD con = new ConexionBD();
+            //Connection cnx = con.obtenerConexion();
+            Connection cnx = ConexionBD.obtenerConexion();
+
+            String query = "SELECT * FROM ingreso WHERE EXTRACT(MONTH FROM fecha_ing)=EXTRACT(MONTH FROM SYSDATE)";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Ingresos ingresos = new Ingresos();
+                ingresos.setCod_ing(rs.getInt("COD_ING"));
+                ingresos.setFecha_ing(rs.getDate("FECHA_ING"));
+                ingresos.setDesc_ing(rs.getString("DESC_ING"));
+                ingresos.setMonto_ing(rs.getInt("MONTO_ING"));
+                ingresos.setCod_int(rs.getInt("COD_INT"));
+                lista.add(ingresos);
+            }
+            rs.close();
+            stmt.close();
+            cnx.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error SQL al listar ingresos" + e.getMessage());
+        }
+        return lista;
+    }
+    
+    
+    
 }

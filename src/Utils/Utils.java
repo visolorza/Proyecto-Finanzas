@@ -21,9 +21,16 @@ public class Utils {
     }
     
     public String obtenerMes(Date fecha){
-        SimpleDateFormat fechaFormato = new SimpleDateFormat("MMMM");
-        String nombreMes = fechaFormato.format(fecha);
+        SimpleDateFormat fechaFormatoMes = new SimpleDateFormat("MMMM");
+        String nombreMes = fechaFormatoMes.format(fecha);
         return nombreMes;
     }
+    
+    public String obtenerAnno(Date fecha){
+        SimpleDateFormat fechaFormatoAnno = new SimpleDateFormat("yyyy");
+        String anno = fechaFormatoAnno.format(fecha);
+        return anno;
+    }
+    
     
 }
