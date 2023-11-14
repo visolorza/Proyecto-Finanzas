@@ -1,8 +1,16 @@
 package vistas;
 
 import Utils.Utils;
+import controlador.ControlGasto;
+import controlador.ControlIngresos;
+import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Date;
-
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.Gasto;
+import modelo.Ingresos;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -14,11 +22,15 @@ import java.util.Date;
  * @author María José
  */
 public class Inicio extends javax.swing.JFrame {
+    
+    //Almacenar la posición de la ventana
+    private int posicionX;  
+    private int posicionY;  
 
     /**
      * Creates new form Inicio
      */
-    public Inicio() {
+    public Inicio() throws Exception {
         initComponents();
         
         Date fechaActual;
@@ -27,6 +39,32 @@ public class Inicio extends javax.swing.JFrame {
         fechaActual=utils.obtenerFecha();
         mesActual=utils.obtenerMes(fechaActual);
         this.jlbl_mesActual.setText(mesActual.toUpperCase());
+        this.jlbl_mesActual1.setText(mesActual.toUpperCase());
+        
+        //Mostrar total ingresos del mes
+        ArrayList<Ingresos> listaIngresos;
+        ControlIngresos listaI = new ControlIngresos();
+        listaIngresos=listaI.mostrarIngresosMes();
+        int sumaMontosIng=0;
+        for (Ingresos ingreso: listaIngresos) {
+            sumaMontosIng += ingreso.getMonto_ing();}
+        NumberFormat formatoMontoIng = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        String totalIngMes = formatoMontoIng.format(sumaMontosIng);
+        this.jlbl_totalIngresos.setText(totalIngMes);
+        jlbl_totalIngresos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        
+        //Mostrar total gastos del mes
+        ArrayList<Gasto> listaGastos;
+        ControlGasto listaG = new ControlGasto();
+        listaGastos=listaG.mostrarGastosMes();
+        int sumaMontosGas=0;
+        for (Gasto gasto: listaGastos) {
+            sumaMontosGas += gasto.getMontoGast();}
+        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        String totalGasMes = formatoMontoGas.format(sumaMontosGas);
+        this.jlbl_totalGastos.setText(totalGasMes);
+        jlbl_totalGastos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+       
     }  
     
     /**
@@ -48,7 +86,7 @@ public class Inicio extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jlbl_mesActual1 = new javax.swing.JLabel();
         jlbl_totalGastos = new javax.swing.JLabel();
-        jlbl_ingresosMes1 = new javax.swing.JLabel();
+        jlbl_gastosMes = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jlbl_ingresosMes = new javax.swing.JLabel();
@@ -112,15 +150,15 @@ public class Inicio extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
 
-        jlbl_mesActual1.setFont(new java.awt.Font("Century Gothic", 0, 8)); // NOI18N
+        jlbl_mesActual1.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         jlbl_mesActual1.setForeground(new java.awt.Color(0, 0, 0));
 
-        jlbl_totalGastos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_totalGastos.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jlbl_totalGastos.setForeground(new java.awt.Color(0, 0, 0));
 
-        jlbl_ingresosMes1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes1.setForeground(new java.awt.Color(0, 0, 0));
-        jlbl_ingresosMes1.setText("GASTOS DEL MES");
+        jlbl_gastosMes.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jlbl_gastosMes.setForeground(new java.awt.Color(0, 0, 0));
+        jlbl_gastosMes.setText("GASTOS DEL MES");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -128,25 +166,25 @@ public class Inicio extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlbl_mesActual1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlbl_ingresosMes1))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jlbl_gastosMes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlbl_mesActual1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(135, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jlbl_totalGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jlbl_totalGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jlbl_ingresosMes1)
+                .addComponent(jlbl_gastosMes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlbl_mesActual1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jlbl_totalGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(204, 204, 204));
@@ -164,14 +202,14 @@ public class Inicio extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
 
-        jlbl_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jlbl_ingresosMes.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_ingresosMes.setText("INGRESOS DEL MES");
 
-        jlbl_mesActual.setFont(new java.awt.Font("Century Gothic", 0, 8)); // NOI18N
+        jlbl_mesActual.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         jlbl_mesActual.setForeground(new java.awt.Color(0, 0, 0));
 
-        jlbl_totalIngresos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_totalIngresos.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jlbl_totalIngresos.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -181,24 +219,24 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jlbl_totalIngresos, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jlbl_ingresosMes)))
+                    .addComponent(jlbl_ingresosMes)
+                    .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jlbl_totalIngresos, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jlbl_ingresosMes)
-                .addGap(5, 5, 5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jlbl_totalIngresos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -222,7 +260,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
@@ -286,7 +324,10 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jbtn_detHistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_detHistActionPerformed
         
+        this.obtenerPosicion();
         VDetalleHistorico detalleHistorico = new VDetalleHistorico();
+        detalleHistorico.establecerPosicion(posicionX,posicionY);
+        detalleHistorico.obtenerPosicion();
         detalleHistorico.setVisible(true);
         this.dispose(); 
         
@@ -294,15 +335,30 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jbtn_ahorrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ahorrosActionPerformed
         
-        VAhorros ahorros = new VAhorros();
-        ahorros.setVisible(true);
-        this.dispose(); 
+        try {
+            this.obtenerPosicion();
+            VAhorros ahorros = new VAhorros();
+            ahorros.establecerPosicion(posicionX,posicionY);
+            ahorros.obtenerPosicion();
+            ahorros.setVisible(true); 
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jbtn_ahorrosActionPerformed
 
     private void jbtn_ingresosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ingresosMesActionPerformed
         
-        VIngresos ingresos = new VIngresos();
+        this.obtenerPosicion();
+        VIngresos ingresos = null;
+        try {
+            ingresos = new VIngresos();
+            ingresos.establecerPosicion(posicionX,posicionY);
+            ingresos.obtenerPosicion();
+        } catch (Exception ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
         ingresos.setVisible(true);
         this.dispose(); 
 
@@ -310,7 +366,10 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jbtn_grupoFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliarActionPerformed
 
+        this.obtenerPosicion();
         VGrupoFamiliar grupoFamiliar = new VGrupoFamiliar();
+        grupoFamiliar.establecerPosicion(posicionX,posicionY);
+        grupoFamiliar.obtenerPosicion();
         grupoFamiliar.setVisible(true);
         this.dispose(); 
         
@@ -318,54 +377,74 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jcbo_gastosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_gastosMesActionPerformed
         
-        String opcion = (String) jcbo_gastosMes.getSelectedItem();
-        
-        switch (opcion) {
-            //case "Gastos del mes":
-               //JOptionPane.showMessageDialog(null, "Selecciona una categoría", "Error", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            String opcion = (String) jcbo_gastosMes.getSelectedItem();
+            this.obtenerPosicion();
+            switch (opcion) {
+                //case "Gastos del mes":
+                //JOptionPane.showMessageDialog(null, "Selecciona una categoría", "Error", JOptionPane.INFORMATION_MESSAGE);
                 //break;
-            case "Compras":
-                VCompras compras = new VCompras();
-                compras.setVisible(true);
-                this.dispose(); 
-                break;
-            case "Cuentas":
-                VCuentas cuentas = new VCuentas();
-                cuentas.setVisible(true);
-                this.dispose();
-                break;
-            case "Deudas":
-                VDeudas deudas = new VDeudas();
-                deudas.setVisible(true);
-                this.dispose();
-                break;
-            case "Educación":
-                VEducacion educacion = new VEducacion();
-                educacion.setVisible(true);
-                this.dispose(); 
-                break;
-            case "Salud":
-                VSalud salud = new VSalud();
-                salud.setVisible(true);
-                this.dispose();
-                break;
-            case "Transporte":
-                VTransporte transporte = new VTransporte();
-                transporte.setVisible(true);
-                this.dispose();
-                break;
-            case "Vivienda":
-                VVivienda vivienda = new VVivienda();
-                vivienda.setVisible(true);
-                this.dispose();
-                break;
-            case "Otros":
-                VOtros otros = new VOtros();
-                otros.setVisible(true);
-                this.dispose();
-                break;
-            default:
-                throw new AssertionError();
+                case "Compras":
+                    VCompras compras = new VCompras();
+                    compras.establecerPosicion(posicionX,posicionY);
+                    compras.obtenerPosicion();
+                    compras.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Cuentas":
+                    VCuentas cuentas = new VCuentas();
+                    cuentas.establecerPosicion(posicionX,posicionY);
+                    cuentas.obtenerPosicion();
+                    cuentas.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Deudas":
+                    VDeudas deudas = new VDeudas();
+                    deudas.establecerPosicion(posicionX,posicionY);
+                    deudas.obtenerPosicion();
+                    deudas.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Educación":
+                    VEducacion educacion = new VEducacion();
+                    educacion.establecerPosicion(posicionX,posicionY);
+                    educacion.obtenerPosicion();
+                    educacion.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Salud":
+                    VSalud salud = new VSalud();
+                    salud.establecerPosicion(posicionX,posicionY);
+                    salud.obtenerPosicion();
+                    salud.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Transporte":
+                    VTransporte transporte = new VTransporte();
+                    transporte.establecerPosicion(posicionX,posicionY);
+                    transporte.obtenerPosicion();
+                    transporte.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Vivienda":
+                    VVivienda vivienda = new VVivienda();
+                    vivienda.establecerPosicion(posicionX,posicionY);
+                    vivienda.obtenerPosicion();
+                    vivienda.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Otros":
+                    VOtros otros = new VOtros();
+                    otros.establecerPosicion(posicionX,posicionY);
+                    otros.obtenerPosicion();
+                    otros.setVisible(true);
+                    this.dispose();
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jcbo_gastosMesActionPerformed
@@ -403,11 +482,39 @@ public class Inicio extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Inicio().setVisible(true);
+                try {
+                    new Inicio().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -424,11 +531,21 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton jbtn_grupoFamiliar;
     private javax.swing.JButton jbtn_ingresosMes;
     private javax.swing.JComboBox<String> jcbo_gastosMes;
+    private javax.swing.JLabel jlbl_gastosMes;
     private javax.swing.JLabel jlbl_ingresosMes;
-    private javax.swing.JLabel jlbl_ingresosMes1;
     private javax.swing.JLabel jlbl_mesActual;
     private javax.swing.JLabel jlbl_mesActual1;
     private javax.swing.JLabel jlbl_totalGastos;
     private javax.swing.JLabel jlbl_totalIngresos;
     // End of variables declaration//GEN-END:variables
+
+    // Obtener y establecer la posición de la ventana
+    public void obtenerPosicion() {
+        posicionX = this.getLocation().x;
+        posicionY = this.getLocation().y;
+    }
+    public void establecerPosicion(int posicionX,int posicionY) {
+        this.setLocation(posicionX,posicionY);
+    }
+
 }
