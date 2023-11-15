@@ -99,7 +99,7 @@ public class Utils {
         return formatoMontoGas.format(sumaMontosGas);
     }
     
-    public JTable refrescar(JTable tabla) throws Exception{
+    public JTable refrescar(JTable tabla,int codcat) throws Exception{
         
         ArrayList<Gasto> listaGast = new ArrayList<>();
         
@@ -111,7 +111,7 @@ public class Utils {
         modelo.addColumn("monto");
         ControlGasto cgasto = new ControlGasto();
         
-        listaGast = cgasto.mostrar(4);
+        listaGast = cgasto.mostrar(codcat);
        
         while (modelo.getRowCount()>0) {
             modelo.removeRow(0);

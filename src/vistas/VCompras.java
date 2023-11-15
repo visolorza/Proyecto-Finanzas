@@ -48,7 +48,7 @@ public class VCompras extends javax.swing.JFrame {
         utils.RellenarComboSubcat("subcategoria", "desc_subcat", this.jcbo_subcategoria,4);
         
         try {
-            utils.refrescar(jTableMostrar);
+            utils.refrescar(jTableMostrar,4);
         } catch (Exception ex) {
             Logger.getLogger(VCompras.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -642,7 +642,7 @@ public class VCompras extends javax.swing.JFrame {
         try {
             if(cgasto.agregar(gasto)){
                 System.out.println("gasto agregado con exto "+gasto.toString());
-                utils.refrescar(jTableMostrar);
+                utils.refrescar(jTableMostrar,4);
                 
                 this.jtxt_montoGasto.setText(""); 
                 this.jtxt_descGasto.setText("");
@@ -671,7 +671,7 @@ public class VCompras extends javax.swing.JFrame {
             // TODO add your handling code here:
         
         try {
-            utils.refrescar(jTableMostrar);
+            utils.refrescar(jTableMostrar,4);
         } catch (Exception ex) {
             Logger.getLogger(VCompras.class.getName()).log(Level.SEVERE, null, ex);
         }
