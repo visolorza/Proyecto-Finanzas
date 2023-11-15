@@ -87,6 +87,17 @@ public class Utils {
         return formatoMontoGas.format(sumaMontosGas);
     }
     
+        public int obtenerTotalCatInt (int codcat) throws Exception{
+        ArrayList<Gasto> listaGastos;
+        ControlGasto cgasto = new ControlGasto();
+        listaGastos=cgasto.mostrarGastosMesCat(codcat);
+        int sumaMontosGas=0;
+        for (Gasto gasto : listaGastos) {
+            sumaMontosGas+=gasto.getMontoGast();
+        }
+        return sumaMontosGas;
+    }
+    
     public String obtenerTotalGastosMes () throws Exception{
         ArrayList<Gasto> listaGastos;
         ControlGasto cgasto = new ControlGasto();

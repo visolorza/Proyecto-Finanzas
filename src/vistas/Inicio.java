@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import Utils.GraficoUtils;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -24,7 +25,9 @@ public class Inicio extends javax.swing.JFrame {
     
     //Almacenar la posición de la ventana
     private int posicionX;  
-    private int posicionY;  
+    private int posicionY; 
+    
+    GraficoUtils graficoUtils = new GraficoUtils();
 
     /**
      * Creates new form Inicio
@@ -41,33 +44,15 @@ public class Inicio extends javax.swing.JFrame {
         this.jlbl_mesActual1.setText(mesActual.toUpperCase());
         
         this.jlbl_totalIngresos.setText(utils.obtenerTotalIngresosMes());
-        jlbl_totalIngresos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.jlbl_totalIngresos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         
         this.jlbl_totalGastos.setText(utils.obtenerTotalGastosMes());
-        jlbl_totalGastos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        
-        
-        // Crear datos (ejemplo de datos estáticos)
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.addValue(1.0, "Serie", "Categoría1");
-        dataset.addValue(2.0, "Serie", "Categoría2");
-        dataset.addValue(3.0, "Serie", "Categoría3");
-        
-        
-        
-        
-        // Crear el gráfico
-        JFreeChart chart = ChartFactory.createBarChart(
-            "Mi Gráfico",         // Título del gráfico
-            "Categoría",          // Etiqueta del eje X
-            "Valor",              // Etiqueta del eje Y
-            dataset);               // Datos
-        
-        ChartPanel chartPanel = new ChartPanel(chart);
-        
-        jpan_grafico.setLayout(new java.awt.BorderLayout());
-        jpan_grafico.add(chartPanel, BorderLayout.CENTER);
-        jpan_grafico.validate();
+        this.jlbl_totalGastos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+                  
+        ChartPanel chartPanel = graficoUtils.crearGraficoInicio();       
+        this.jpan_grafico.setLayout(new java.awt.BorderLayout());
+        this.jpan_grafico.add(chartPanel, BorderLayout.CENTER);
+        this.jpan_grafico.validate();
 
        
     }  
@@ -202,7 +187,7 @@ public class Inicio extends javax.swing.JFrame {
         );
         jpan_graficoLayout.setVerticalGroup(
             jpan_graficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 309, Short.MAX_VALUE)
+            .addGap(0, 291, Short.MAX_VALUE)
         );
 
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
@@ -267,7 +252,7 @@ public class Inicio extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jpan_grafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+                .addGap(35, 35, 35))
         );
 
         jcbo_gastosMes.setBackground(new java.awt.Color(204, 204, 204));
