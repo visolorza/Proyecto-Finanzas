@@ -1,23 +1,14 @@
 package vistas;
 
 import Utils.Utils;
-import controlador.ControlGasto;
-import controlador.ControlIngresos;
 import java.awt.BorderLayout;
-import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modelo.Gasto;
-import modelo.Ingresos;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.util.PublicCloneable;
-import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 /*
@@ -49,28 +40,10 @@ public class Inicio extends javax.swing.JFrame {
         this.jlbl_mesActual.setText(mesActual.toUpperCase());
         this.jlbl_mesActual1.setText(mesActual.toUpperCase());
         
-        //Mostrar total ingresos del mes
-        ArrayList<Ingresos> listaIngresos;
-        ControlIngresos listaI = new ControlIngresos();
-        listaIngresos=listaI.mostrarIngresosMes();
-        int sumaMontosIng=0;
-        for (Ingresos ingreso: listaIngresos) {
-            sumaMontosIng += ingreso.getMonto_ing();}
-        NumberFormat formatoMontoIng = NumberFormat.getCurrencyInstance(Locale.getDefault());
-        String totalIngMes = formatoMontoIng.format(sumaMontosIng);
-        this.jlbl_totalIngresos.setText(totalIngMes);
+        this.jlbl_totalIngresos.setText(utils.obtenerTotalIngresosMes());
         jlbl_totalIngresos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         
-        //Mostrar total gastos del mes
-        ArrayList<Gasto> listaGastos;
-        ControlGasto listaG = new ControlGasto();
-        listaGastos=listaG.mostrarGastosMes();
-        int sumaMontosGas=0;
-        for (Gasto gasto: listaGastos) {
-            sumaMontosGas += gasto.getMontoGast();}
-        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
-        String totalGasMes = formatoMontoGas.format(sumaMontosGas);
-        this.jlbl_totalGastos.setText(totalGasMes);
+        this.jlbl_totalGastos.setText(utils.obtenerTotalGastosMes());
         jlbl_totalGastos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         
         
@@ -79,6 +52,8 @@ public class Inicio extends javax.swing.JFrame {
         dataset.addValue(1.0, "Serie", "Categoría1");
         dataset.addValue(2.0, "Serie", "Categoría2");
         dataset.addValue(3.0, "Serie", "Categoría3");
+        
+        
         
         
         // Crear el gráfico
@@ -90,10 +65,9 @@ public class Inicio extends javax.swing.JFrame {
         
         ChartPanel chartPanel = new ChartPanel(chart);
         
-        // Suponiendo que tienes un JPanel llamado "chartContainer"
         jpan_grafico.setLayout(new java.awt.BorderLayout());
         jpan_grafico.add(chartPanel, BorderLayout.CENTER);
-        jpan_grafico.validate();  // Puedes necesitar llamar a esto para actualizar la interfaz
+        jpan_grafico.validate();
 
        
     }  
@@ -507,36 +481,7 @@ public class Inicio extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+      
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

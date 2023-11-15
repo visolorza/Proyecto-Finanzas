@@ -158,7 +158,8 @@ public class ControlIngresos {
             //Connection cnx = con.obtenerConexion();
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "SELECT * FROM ingreso WHERE EXTRACT(MONTH FROM fecha_ing)=EXTRACT(MONTH FROM SYSDATE)";
+            String query = "SELECT * FROM ingreso WHERE EXTRACT(MONTH FROM fecha_ing)=EXTRACT(MONTH FROM SYSDATE)"
+                    + "AND EXTRACT(YEAR FROM fecha_ing)=EXTRACT(YEAR FROM SYSDATE)";
             PreparedStatement stmt = cnx.prepareStatement(query);
             
             ResultSet rs = stmt.executeQuery();

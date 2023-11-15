@@ -3,10 +3,6 @@ package vistas;
 import Utils.Utils;
 import controlador.ControlGasto;
 import java.util.Date;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Gasto;
@@ -34,21 +30,11 @@ public class VVivienda extends javax.swing.JFrame {
         
         Date fechaActual;
         String mesActual;
-        Utils utils = new Utils();
         fechaActual=utils.obtenerFecha();
         mesActual=utils.obtenerMes(fechaActual);
         this.jlbl_mesActual.setText(mesActual.toUpperCase());
         
-        //Mostrar total gasto en vivienda en el mes
-        ArrayList<Gasto> listaGastos;
-        ControlGasto listaG = new ControlGasto();
-        listaGastos=listaG.mostrarGastosMesCat(5);
-        int sumaMontosGas=0;
-        for (Gasto gasto: listaGastos) {
-            sumaMontosGas += gasto.getMontoGast();}
-        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
-        String totalGasMes = formatoMontoGas.format(sumaMontosGas);
-        this.jlbl_totalVivienda.setText(totalGasMes);
+        this.jlbl_totalVivienda.setText(utils.obtenerTotalCat(5));
         jlbl_totalVivienda.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         
     }
@@ -488,6 +474,7 @@ public class VVivienda extends javax.swing.JFrame {
 
     ControlGasto cgasto = new ControlGasto();
     Gasto gasto = new Gasto();
+    Utils utils = new Utils();
     
     private void jbtn_detHistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_detHistActionPerformed
         
@@ -648,16 +635,7 @@ public class VVivienda extends javax.swing.JFrame {
             this.jtxt_montoGasto.setText(""); 
             this.jtxt_descGasto.setText("");
 
-            //Mostrar total gasto en vivienda en el mes
-            ArrayList<Gasto> listaGastos;
-            ControlGasto listaG = new ControlGasto();
-            listaGastos=listaG.mostrarGastosMesCat(5);
-            int sumaMontosGas=0;
-            for (Gasto gasto: listaGastos) {
-                sumaMontosGas += gasto.getMontoGast();}
-            NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
-            String totalGasMes = formatoMontoGas.format(sumaMontosGas);
-            this.jlbl_totalVivienda.setText(totalGasMes);
+            this.jlbl_totalVivienda.setText(utils.obtenerTotalCat(5));
             jlbl_totalVivienda.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         
         } catch (Exception ex) {

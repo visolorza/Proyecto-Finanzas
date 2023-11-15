@@ -2,11 +2,7 @@ package vistas;
 
 import Utils.Utils;
 import controlador.ControlGasto;
-import controlador.ControlIngresos;
-import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Gasto;
@@ -33,22 +29,12 @@ public class VCuentas extends javax.swing.JFrame {
         initComponents();
         
         Date fechaActual;
-        String mesActual;
-        Utils utils = new Utils();
+        String mesActual;        
         fechaActual=utils.obtenerFecha();
         mesActual=utils.obtenerMes(fechaActual);
         this.jlbl_mesActual.setText(mesActual.toUpperCase());
         
-        //Mostrar total gasto en cuentas en el mes
-        ArrayList<Gasto> listaGastos;
-        ControlGasto listaG = new ControlGasto();
-        listaGastos=listaG.mostrarGastosMesCat(6);
-        int sumaMontosGas=0;
-        for (Gasto gasto: listaGastos) {
-            sumaMontosGas += gasto.getMontoGast();}
-        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
-        String totalGasMes = formatoMontoGas.format(sumaMontosGas);
-        this.jlbl_totalCuentas.setText(totalGasMes);
+        this.jlbl_totalCuentas.setText(utils.obtenerTotalCat(6));
         jlbl_totalCuentas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         
         //this.jcbo_gastosMes.setSelectedItem("Cuentas"); posible forma de hacer que un combo box 
@@ -491,6 +477,7 @@ public class VCuentas extends javax.swing.JFrame {
 
     ControlGasto cgasto = new ControlGasto();
     Gasto gasto = new Gasto();
+    Utils utils = new Utils();
     
     private void jbtn_detHistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_detHistActionPerformed
         
@@ -650,17 +637,8 @@ public class VCuentas extends javax.swing.JFrame {
             }
             this.jtxt_montoGasto.setText(""); 
             this.jtxt_descGasto.setText(""); 
-            
-            //Mostrar total gasto en cuentas en el mes
-            ArrayList<Gasto> listaGastos;
-            ControlGasto listaG = new ControlGasto();
-            listaGastos=listaG.mostrarGastosMesCat(6);
-            int sumaMontosGas=0;
-            for (Gasto gasto: listaGastos) {
-                sumaMontosGas += gasto.getMontoGast();}
-            NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
-            String totalGasMes = formatoMontoGas.format(sumaMontosGas);
-            this.jlbl_totalCuentas.setText(totalGasMes);
+                    
+            this.jlbl_totalCuentas.setText(utils.obtenerTotalCat(6));
             jlbl_totalCuentas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         } catch (Exception ex) {

@@ -196,7 +196,8 @@ public class ControlGasto {
             ConexionBD con = new ConexionBD();
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "SELECT * FROM gasto WHERE EXTRACT(MONTH FROM fecha_gast) = EXTRACT(MONTH FROM SYSDATE) AND EXTRACT(YEAR FROM fecha_gast)=EXTRACT(YEAR FROM SYSDATE)";
+            String query = "SELECT * FROM gasto WHERE EXTRACT(MONTH FROM fecha_gast) = EXTRACT(MONTH FROM SYSDATE) "
+                    + "AND EXTRACT(YEAR FROM fecha_gast)=EXTRACT(YEAR FROM SYSDATE)";
             PreparedStatement stmt = cnx.prepareStatement(query);
             
             ResultSet rs = stmt.executeQuery();

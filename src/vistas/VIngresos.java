@@ -33,21 +33,12 @@ public class VIngresos extends javax.swing.JFrame {
         
         Date fechaActual;
         String mesActual;
-        Utils utils = new Utils();
         fechaActual=utils.obtenerFecha();
         mesActual=utils.obtenerMes(fechaActual);
         this.jlbl_mesActual.setText(mesActual.toUpperCase());
         
-        //Mostrar total ingresos del mes
-        ArrayList<Ingresos> listaIngresos;
-        ControlIngresos lista = new ControlIngresos();
-        listaIngresos=lista.mostrarIngresosMes();
-        int sumaMontos=0;
-        for (Ingresos ingreso: listaIngresos) {
-            sumaMontos += ingreso.getMonto_ing();}
-        NumberFormat formatoMonto = NumberFormat.getCurrencyInstance(Locale.getDefault());
-        String totalMes = formatoMonto.format(sumaMontos);
-        this.jlbl_totalIngresos.setText(totalMes);
+        this.jlbl_totalIngresos.setText(utils.obtenerTotalIngresosMes());
+        jlbl_totalIngresos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         
     }
 
@@ -465,6 +456,7 @@ public class VIngresos extends javax.swing.JFrame {
 
     ControlIngresos controlIngresos = new ControlIngresos();
     Ingresos ingreso = new Ingresos();
+    Utils utils = new Utils();
     
     private void jbtn_detHistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_detHistActionPerformed
         

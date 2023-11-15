@@ -53,8 +53,7 @@ public class VCompras extends javax.swing.JFrame {
             Logger.getLogger(VCompras.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        //Mostrar total gasto en compras en el mes
-        this.jlbl_totalCompras.setText(utils.obtenerTotal(gasto, 4));
+        this.jlbl_totalCompras.setText(utils.obtenerTotalCat(4));
         jlbl_totalCompras.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
     }
     
@@ -647,8 +646,7 @@ public class VCompras extends javax.swing.JFrame {
                 this.jtxt_montoGasto.setText(""); 
                 this.jtxt_descGasto.setText("");
                 
-                //Mostrar total gasto en compras en el mes
-                this.jlbl_totalCompras.setText(utils.obtenerTotal(gasto, 4));
+                this.jlbl_totalCompras.setText(utils.obtenerTotalCat(4));
                 jlbl_totalCompras.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT); 
                 
             }
