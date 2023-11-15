@@ -4,13 +4,20 @@
  */
 package Utils;
 
+import controlador.ControlGasto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import modelo.ConexionBD;
+import modelo.Gasto;
 
 /**
  *
@@ -72,13 +79,56 @@ public class Utils {
        
     }
         
-
     public String obtenerAnno(Date fecha){
         SimpleDateFormat fechaFormatoAnno = new SimpleDateFormat("yyyy");
         String anno = fechaFormatoAnno.format(fecha);
         return anno;
     }
     
+    public String obtenerTotal (Gasto gasto, int codcat) throws Exception{
+        ArrayList<Gasto> listaGastos;
+        ControlGasto cgasto = new ControlGasto();
+        
+        listaGastos=cgasto.mostrarGastosMesCat(codcat);
+        int sumaMontosGas=0;
+        
+        for (Gasto listaGasto : listaGastos) {
+            sumaMontosGas+=listaGasto.getMontoGast();
+        }
+        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        return formatoMontoGas.format(sumaMontosGas);
+    }
     
-
+    public JTable refrescar(JTable tabla) throws Exception{
+        
+        ArrayList<Gasto> listaGast = new ArrayList<>();
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        modelo.addColumn("codigo");
+        modelo.addColumn("fecha");
+        modelo.addColumn("descripcion");
+        modelo.addColumn("monto");
+        ControlGasto cgasto = new ControlGasto();
+        
+        listaGast = cgasto.mostrar(4);
+       
+        while (modelo.getRowCount()>0) {
+            modelo.removeRow(0);
+        }
+        
+        tabla.setModel(modelo);
+        
+        for (Gasto listag : listaGast) {
+            Object a[] = new Object[4];
+            a[0]=listag.getCodGast();
+            a[1]=listag.getFechaGast();
+            a[2]=listag.getDescGast();
+            a[3]=listag.getMontoGast();
+            modelo.addRow(a);
+        }
+        return tabla;
+    } 
+    
+    
 }

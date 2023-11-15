@@ -194,10 +194,9 @@ public class ControlGasto {
         
         try {
             ConexionBD con = new ConexionBD();
-            //Connection cnx = con.obtenerConexion();
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "SELECT * FROM gasto WHERE EXTRACT(MONTH FROM fecha_gast) = EXTRACT(MONTH FROM SYSDATE)";
+            String query = "SELECT * FROM gasto WHERE EXTRACT(MONTH FROM fecha_gast) = EXTRACT(MONTH FROM SYSDATE) AND EXTRACT(YEAR FROM fecha_gast)=EXTRACT(YEAR FROM SYSDATE)";
             PreparedStatement stmt = cnx.prepareStatement(query);
             
             ResultSet rs = stmt.executeQuery();
@@ -232,7 +231,7 @@ public class ControlGasto {
             Connection cnx = ConexionBD.obtenerConexion();
 
             String query = "SELECT * FROM gasto g JOIN subcategoria s ON(s.cod_subcat = g.cod_subcat) "
-                    + "AND EXTRACT(MONTH FROM fecha_gast) = EXTRACT(MONTH FROM SYSDATE) WHERE s.cod_cat = ?";
+                    + "AND EXTRACT(MONTH FROM fecha_gast) = EXTRACT(MONTH FROM SYSDATE) AND EXTRACT(YEAR FROM fecha_gast)=EXTRACT(YEAR FROM SYSDATE) WHERE s.cod_cat = ?";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setInt(1, cod_cat);
             

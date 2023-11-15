@@ -2,7 +2,6 @@ package vistas;
 
 import Utils.Utils;
 import controlador.ControlGasto;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,8 +9,6 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Gasto;
 import Emergente.ActulizarGastos;
 import Emergente.EliminarGastos;
-import java.text.NumberFormat;
-import java.util.Locale;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -43,35 +40,21 @@ public class VCompras extends javax.swing.JFrame {
         
         Date fechaActual;
         String mesActual;
-        Utils utils = new Utils();
         fechaActual=utils.obtenerFecha();
         mesActual=utils.obtenerMes(fechaActual);
         this.jlbl_mesActual.setText(mesActual.toUpperCase());
-        
-        modelo.addColumn("codigo");
-        modelo.addColumn("fecha");
-        modelo.addColumn("descripcion");
-        modelo.addColumn("monto");
         
         utils.RellenarComboInt("integrante", "desc_int", this.jcbo_integrante);
         utils.RellenarComboSubcat("subcategoria", "desc_subcat", this.jcbo_subcategoria,4);
         
         try {
-            refrescar();
+            utils.refrescar(jTableMostrar);
         } catch (Exception ex) {
             Logger.getLogger(VCompras.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         //Mostrar total gasto en compras en el mes
-        ArrayList<Gasto> listaGastos;
-        ControlGasto listaG = new ControlGasto();
-        listaGastos=listaG.mostrarGastosMesCat(4);
-        int sumaMontosGas=0;
-        for (Gasto gasto: listaGastos) {
-            sumaMontosGas += gasto.getMontoGast();}
-        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
-        String totalGasMes = formatoMontoGas.format(sumaMontosGas);
-        this.jlbl_totalCompras.setText(totalGasMes);
+        this.jlbl_totalCompras.setText(utils.obtenerTotal(gasto, 4));
         jlbl_totalCompras.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
     }
     
@@ -471,26 +454,7 @@ public class VCompras extends javax.swing.JFrame {
     
     ControlGasto cgasto = new ControlGasto();
     Gasto gasto = new Gasto();
-    
-    
-    public void refrescar() throws Exception{
-        
-        ArrayList<Gasto> lista=cgasto.mostrar(4);
-        while (modelo.getRowCount()>0) {
-            modelo.removeRow(0);
-        }
-        
-        this.jTableMostrar.setModel(modelo);
-        
-        for (Gasto gasto : lista) {
-            Object a[] = new Object[4];
-            a[0]=gasto.getCodGast();
-            a[1]=gasto.getFechaGast();
-            a[2]=gasto.getDescGast();
-            a[3]=gasto.getMontoGast();
-            modelo.addRow(a);
-        }
-    }
+    Utils utils = new Utils();
     
     private void jbtn_detHistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_detHistActionPerformed
         
@@ -678,21 +642,13 @@ public class VCompras extends javax.swing.JFrame {
         try {
             if(cgasto.agregar(gasto)){
                 System.out.println("gasto agregado con exto "+gasto.toString());
-                refrescar();
+                utils.refrescar(jTableMostrar);
                 
                 this.jtxt_montoGasto.setText(""); 
                 this.jtxt_descGasto.setText("");
                 
-                //Mostrar total gasto en compras en el mes//????
-                ArrayList<Gasto> listaGastos;
-                ControlGasto listaG = new ControlGasto();
-                    listaGastos=listaG.mostrarGastosMesCat(4);
-                int sumaMontosGas=0;
-                for (Gasto gasto: listaGastos) {
-                    sumaMontosGas += gasto.getMontoGast();}
-                NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
-                String totalGasMes = formatoMontoGas.format(sumaMontosGas);
-                this.jlbl_totalCompras.setText(totalGasMes);
+                //Mostrar total gasto en compras en el mes
+                this.jlbl_totalCompras.setText(utils.obtenerTotal(gasto, 4));
                 jlbl_totalCompras.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT); 
                 
             }
@@ -715,7 +671,7 @@ public class VCompras extends javax.swing.JFrame {
             // TODO add your handling code here:
         
         try {
-            refrescar();
+            utils.refrescar(jTableMostrar);
         } catch (Exception ex) {
             Logger.getLogger(VCompras.class.getName()).log(Level.SEVERE, null, ex);
         }
