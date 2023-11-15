@@ -3,6 +3,7 @@ package vistas;
 import Utils.Utils;
 import controlador.ControlGasto;
 import controlador.ControlIngresos;
+import java.awt.BorderLayout;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,6 +12,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Gasto;
 import modelo.Ingresos;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.util.PublicCloneable;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -64,6 +72,29 @@ public class Inicio extends javax.swing.JFrame {
         String totalGasMes = formatoMontoGas.format(sumaMontosGas);
         this.jlbl_totalGastos.setText(totalGasMes);
         jlbl_totalGastos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        
+        
+        // Crear datos (ejemplo de datos estáticos)
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        dataset.addValue(1.0, "Serie", "Categoría1");
+        dataset.addValue(2.0, "Serie", "Categoría2");
+        dataset.addValue(3.0, "Serie", "Categoría3");
+        
+        
+        // Crear el gráfico
+        JFreeChart chart = ChartFactory.createBarChart(
+            "Mi Gráfico",         // Título del gráfico
+            "Categoría",          // Etiqueta del eje X
+            "Valor",              // Etiqueta del eje Y
+            dataset);               // Datos
+        
+        ChartPanel chartPanel = new ChartPanel(chart);
+        
+        // Suponiendo que tienes un JPanel llamado "chartContainer"
+        jpan_grafico.setLayout(new java.awt.BorderLayout());
+        jpan_grafico.add(chartPanel, BorderLayout.CENTER);
+        jpan_grafico.validate();  // Puedes necesitar llamar a esto para actualizar la interfaz
+
        
     }  
     
@@ -87,7 +118,7 @@ public class Inicio extends javax.swing.JFrame {
         jlbl_mesActual1 = new javax.swing.JLabel();
         jlbl_totalGastos = new javax.swing.JLabel();
         jlbl_gastosMes = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
+        jpan_grafico = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jlbl_ingresosMes = new javax.swing.JLabel();
         jlbl_mesActual = new javax.swing.JLabel();
@@ -187,16 +218,16 @@ public class Inicio extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel5.setBackground(new java.awt.Color(204, 204, 204));
+        jpan_grafico.setBackground(new java.awt.Color(204, 204, 204));
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jpan_graficoLayout = new javax.swing.GroupLayout(jpan_grafico);
+        jpan_grafico.setLayout(jpan_graficoLayout);
+        jpan_graficoLayout.setHorizontalGroup(
+            jpan_graficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 526, Short.MAX_VALUE)
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jpan_graficoLayout.setVerticalGroup(
+            jpan_graficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 309, Short.MAX_VALUE)
         );
 
@@ -246,7 +277,7 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpan_grafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
@@ -261,7 +292,7 @@ public class Inicio extends javax.swing.JFrame {
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpan_grafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
 
@@ -523,7 +554,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbtn_ahorros;
@@ -537,6 +567,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jlbl_mesActual1;
     private javax.swing.JLabel jlbl_totalGastos;
     private javax.swing.JLabel jlbl_totalIngresos;
+    private javax.swing.JPanel jpan_grafico;
     // End of variables declaration//GEN-END:variables
 
     // Obtener y establecer la posición de la ventana
