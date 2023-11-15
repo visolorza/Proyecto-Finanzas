@@ -1,5 +1,7 @@
 package vistas;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.Integrante;
 
 /*
@@ -12,6 +14,10 @@ import modelo.Integrante;
  * @author María José
  */
 public class VGrupoFamiliar extends javax.swing.JFrame {
+    
+    //Almacenar la posición de la ventana
+    private int posicionX;  
+    private int posicionY;
 
     /**
      * Creates new form Inicio
@@ -44,7 +50,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         jlbl_ListaGrupoFamiliar = new javax.swing.JLabel();
         jtxt_nombreIntegrante = new javax.swing.JTextField();
         jlbl_ingresosMes3 = new javax.swing.JLabel();
-        jlbl_ingresosMes4 = new javax.swing.JLabel();
+        jlbl_grupoFamiliar = new javax.swing.JLabel();
         jbtn_anadir = new javax.swing.JButton();
         jcbo_gastosMes = new javax.swing.JComboBox<>();
         jbtn_inicio = new javax.swing.JButton();
@@ -187,9 +193,9 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         jlbl_ingresosMes3.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_ingresosMes3.setText("Nombre:");
 
-        jlbl_ingresosMes4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes4.setForeground(new java.awt.Color(0, 0, 0));
-        jlbl_ingresosMes4.setText("GRUPO FAMILIAR");
+        jlbl_grupoFamiliar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_grupoFamiliar.setForeground(new java.awt.Color(0, 0, 0));
+        jlbl_grupoFamiliar.setText("GRUPO FAMILIAR");
 
         jbtn_anadir.setBackground(new java.awt.Color(204, 204, 204));
         jbtn_anadir.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -211,7 +217,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jlbl_ingresosMes4)
+                        .addComponent(jlbl_grupoFamiliar)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -230,7 +236,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(59, 59, 59)
-                .addComponent(jlbl_ingresosMes4)
+                .addComponent(jlbl_grupoFamiliar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtxt_nombreIntegrante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -317,7 +323,10 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
 
     private void jbtn_detHistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_detHistActionPerformed
         
+        this.obtenerPosicion();
         VDetalleHistorico detalleHistorico = new VDetalleHistorico();
+        detalleHistorico.establecerPosicion(posicionX,posicionY);
+        detalleHistorico.obtenerPosicion();
         detalleHistorico.setVisible(true);
         this.dispose(); 
         
@@ -325,15 +334,30 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
 
     private void jbtn_ahorrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ahorrosActionPerformed
         
-        VAhorros ahorros = new VAhorros();
-        ahorros.setVisible(true);
-        this.dispose();
+        try {
+            this.obtenerPosicion();
+            VAhorros ahorros = new VAhorros();
+            ahorros.establecerPosicion(posicionX,posicionY);
+            ahorros.obtenerPosicion();
+            ahorros.setVisible(true);
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jbtn_ahorrosActionPerformed
 
     private void jbtn_ingresosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ingresosMesActionPerformed
         
-        VIngresos ingresos = new VIngresos();
+        this.obtenerPosicion();
+        VIngresos ingresos = null;
+        try {
+            ingresos = new VIngresos();
+            ingresos.establecerPosicion(posicionX,posicionY);
+            ingresos.obtenerPosicion();
+        } catch (Exception ex) {
+            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+        }
         ingresos.setVisible(true);
         this.dispose();
         
@@ -341,7 +365,10 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
 
     private void jbtn_grupoFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliarActionPerformed
         
+        this.obtenerPosicion();
         VGrupoFamiliar grupoFamiliar = new VGrupoFamiliar();
+        grupoFamiliar.establecerPosicion(posicionX,posicionY);
+        grupoFamiliar.obtenerPosicion();
         grupoFamiliar.setVisible(true);
         this.dispose(); 
         
@@ -349,51 +376,74 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
 
     private void jcbo_gastosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_gastosMesActionPerformed
         
-        String opcion = (String) jcbo_gastosMes.getSelectedItem();
-        
-        switch (opcion) {
-            case "Compras":
-                VCompras compras = new VCompras();
-                compras.setVisible(true);
-                this.dispose(); 
-                break;
-            case "Cuentas":
-                VCuentas cuentas = new VCuentas();
-                cuentas.setVisible(true);
-                this.dispose();
-                break;
-            case "Deudas":
-                VDeudas deudas = new VDeudas();
-                deudas.setVisible(true);
-                this.dispose();
-                break;
-            case "Educación":
-                VEducacion educacion = new VEducacion();
-                educacion.setVisible(true);
-                this.dispose(); 
-                break;
-            case "Salud":
-                VSalud salud = new VSalud();
-                salud.setVisible(true);
-                this.dispose();
-                break;
-            case "Transporte":
-                VTransporte transporte = new VTransporte();
-                transporte.setVisible(true);
-                this.dispose();
-                break;
-            case "Vivienda":
-                VVivienda vivienda = new VVivienda();
-                vivienda.setVisible(true);
-                this.dispose();
-                break;
-            case "Otros":
-                VOtros otros = new VOtros();
-                otros.setVisible(true);
-                this.dispose();
-                break;
-            default:
-                throw new AssertionError();
+        try {
+            String opcion = (String) jcbo_gastosMes.getSelectedItem();
+            this.obtenerPosicion();
+            switch (opcion) {
+                //case "Gastos del mes":
+                //JOptionPane.showMessageDialog(null, "Selecciona una categoría", "Error", JOptionPane.INFORMATION_MESSAGE);
+                //break;
+                case "Compras":
+                    VCompras compras = new VCompras();
+                    compras.establecerPosicion(posicionX,posicionY);
+                    compras.obtenerPosicion();
+                    compras.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Cuentas":
+                    VCuentas cuentas = new VCuentas();
+                    cuentas.establecerPosicion(posicionX,posicionY);
+                    cuentas.obtenerPosicion();
+                    cuentas.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Deudas":
+                    VDeudas deudas = new VDeudas();
+                    deudas.establecerPosicion(posicionX,posicionY);
+                    deudas.obtenerPosicion();
+                    deudas.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Educación":
+                    VEducacion educacion = new VEducacion();
+                    educacion.establecerPosicion(posicionX,posicionY);
+                    educacion.obtenerPosicion();
+                    educacion.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Salud":
+                    VSalud salud = new VSalud();
+                    salud.establecerPosicion(posicionX,posicionY);
+                    salud.obtenerPosicion();
+                    salud.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Transporte":
+                    VTransporte transporte = new VTransporte();
+                    transporte.establecerPosicion(posicionX,posicionY);
+                    transporte.obtenerPosicion();
+                    transporte.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Vivienda":
+                    VVivienda vivienda = new VVivienda();
+                    vivienda.establecerPosicion(posicionX,posicionY);
+                    vivienda.obtenerPosicion();
+                    vivienda.setVisible(true);
+                    this.dispose();
+                    break;
+                case "Otros":
+                    VOtros otros = new VOtros();
+                    otros.establecerPosicion(posicionX,posicionY);
+                    otros.obtenerPosicion();
+                    otros.setVisible(true);
+                    this.dispose();
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jcbo_gastosMesActionPerformed
@@ -415,7 +465,15 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
 
     private void jbtn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_inicioActionPerformed
         
-        Inicio inicio = new Inicio();
+        this.obtenerPosicion();
+        Inicio inicio = null;
+        try {
+            inicio = new Inicio();
+            inicio.establecerPosicion(posicionX,posicionY);
+            inicio.obtenerPosicion();
+        } catch (Exception ex) {
+            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+        }
         inicio.setVisible(true);
         this.dispose();
         
@@ -478,8 +536,18 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
     private javax.swing.JButton jbtn_modificar;
     private javax.swing.JComboBox<String> jcbo_gastosMes;
     private javax.swing.JLabel jlbl_ListaGrupoFamiliar;
+    private javax.swing.JLabel jlbl_grupoFamiliar;
     private javax.swing.JLabel jlbl_ingresosMes3;
-    private javax.swing.JLabel jlbl_ingresosMes4;
     private javax.swing.JTextField jtxt_nombreIntegrante;
     // End of variables declaration//GEN-END:variables
+
+     // Obtener y establecer la posición de la ventana
+    public void obtenerPosicion() {
+        posicionX = this.getLocation().x;
+        posicionY = this.getLocation().y;
+    }
+    public void establecerPosicion(int posicionX,int posicionY) {
+        this.setLocation(posicionX,posicionY);
+    }
+
 }

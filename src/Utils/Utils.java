@@ -26,11 +26,12 @@ public class Utils {
     }
     
     public String obtenerMes(Date fecha){
-        SimpleDateFormat fechaFormato = new SimpleDateFormat("MMMM");
-        String nombreMes = fechaFormato.format(fecha);
+        SimpleDateFormat fechaFormatoMes = new SimpleDateFormat("MMMM");
+        String nombreMes = fechaFormatoMes.format(fecha);
         return nombreMes;
     }
     
+
     public void RellenarComboInt(String tabla, String valor, JComboBox combo){
         
         try {
@@ -71,4 +72,13 @@ public class Utils {
        
     }
         
+
+    public String obtenerAnno(Date fecha){
+        SimpleDateFormat fechaFormatoAnno = new SimpleDateFormat("yyyy");
+        String anno = fechaFormatoAnno.format(fecha);
+        return anno;
+    }
+    
+    
+
 }
