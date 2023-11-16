@@ -52,15 +52,14 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         jlbl_ingresosMes3 = new javax.swing.JLabel();
         jlbl_grupoFamiliar = new javax.swing.JLabel();
         jbtn_anadir = new javax.swing.JButton();
-        jcbo_gastosMes = new javax.swing.JComboBox<>();
         jbtn_inicio = new javax.swing.JButton();
+        jbtn_GastosMes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         jbtn_grupoFamiliar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_grupoFamiliar.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_grupoFamiliar.setText("Grupo familiar");
         jbtn_grupoFamiliar.setBorder(null);
         jbtn_grupoFamiliar.setBorderPainted(false);
@@ -72,7 +71,6 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         });
 
         jbtn_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_ingresosMes.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_ingresosMes.setText("Ingresos del mes");
         jbtn_ingresosMes.setBorder(null);
         jbtn_ingresosMes.setBorderPainted(false);
@@ -84,7 +82,6 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         });
 
         jbtn_ahorros.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_ahorros.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_ahorros.setText("Ahorros");
         jbtn_ahorros.setBorder(null);
         jbtn_ahorros.setBorderPainted(false);
@@ -96,7 +93,6 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         });
 
         jbtn_detHist.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_detHist.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_detHist.setText("Detalle histórico");
         jbtn_detHist.setBorder(null);
         jbtn_detHist.setBorderPainted(false);
@@ -114,7 +110,6 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(153, 153, 153));
 
         jbtn_grupoFamiliar2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_grupoFamiliar2.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_grupoFamiliar2.setText("Integrantes");
         jbtn_grupoFamiliar2.setBorder(null);
         jbtn_grupoFamiliar2.setBorderPainted(false);
@@ -149,7 +144,6 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         jbtn_modificar.setFont(new java.awt.Font("Century Gothic", 0, 8)); // NOI18N
 
         jlbl_ListaGrupoFamiliar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ListaGrupoFamiliar.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -181,7 +175,6 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         );
 
         jtxt_nombreIntegrante.setBackground(new java.awt.Color(204, 204, 204));
-        jtxt_nombreIntegrante.setForeground(new java.awt.Color(0, 0, 0));
         jtxt_nombreIntegrante.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jtxt_nombreIntegrante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,16 +183,13 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         });
 
         jlbl_ingresosMes3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes3.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_ingresosMes3.setText("Nombre:");
 
         jlbl_grupoFamiliar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_grupoFamiliar.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_grupoFamiliar.setText("GRUPO FAMILIAR");
 
         jbtn_anadir.setBackground(new java.awt.Color(204, 204, 204));
         jbtn_anadir.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_anadir.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_anadir.setText("Añadir");
         jbtn_anadir.setBorder(null);
         jbtn_anadir.setBorderPainted(false);
@@ -248,20 +238,8 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        jcbo_gastosMes.setBackground(new java.awt.Color(204, 204, 204));
-        jcbo_gastosMes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jcbo_gastosMes.setForeground(new java.awt.Color(0, 0, 0));
-        jcbo_gastosMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gastos del mes", "Compras", "Cuentas", "Deudas", "Educación", "Salud", "Transporte", "Vivienda", "Otros" }));
-        jcbo_gastosMes.setBorder(null);
-        jcbo_gastosMes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbo_gastosMesActionPerformed(evt);
-            }
-        });
-
         jbtn_inicio.setBackground(new java.awt.Color(204, 204, 204));
         jbtn_inicio.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_inicio.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_inicio.setText("Inicio");
         jbtn_inicio.setBorder(null);
         jbtn_inicio.setBorderPainted(false);
@@ -269,6 +247,17 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         jbtn_inicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtn_inicioActionPerformed(evt);
+            }
+        });
+
+        jbtn_GastosMes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jbtn_GastosMes.setText("Gastos del mes");
+        jbtn_GastosMes.setBorder(null);
+        jbtn_GastosMes.setBorderPainted(false);
+        jbtn_GastosMes.setContentAreaFilled(false);
+        jbtn_GastosMes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_GastosMesActionPerformed(evt);
             }
         });
 
@@ -281,11 +270,11 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbtn_ingresosMes)
                     .addComponent(jbtn_grupoFamiliar)
-                    .addComponent(jcbo_gastosMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtn_ahorros)
                     .addComponent(jbtn_detHist)
-                    .addComponent(jbtn_inicio))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                    .addComponent(jbtn_inicio)
+                    .addComponent(jbtn_GastosMes))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -298,9 +287,9 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
                 .addComponent(jbtn_grupoFamiliar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtn_ingresosMes)
-                .addGap(16, 16, 16)
-                .addComponent(jcbo_gastosMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(14, 14, 14)
+                .addComponent(jbtn_GastosMes)
+                .addGap(18, 18, 18)
                 .addComponent(jbtn_ahorros, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtn_detHist)
@@ -336,13 +325,13 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         
         try {
             this.obtenerPosicion();
-            VAhorros ahorros = new VAhorros();
+            VMeta ahorros = new VMeta();
             ahorros.establecerPosicion(posicionX,posicionY);
             ahorros.obtenerPosicion();
             ahorros.setVisible(true);
             this.dispose();
         } catch (Exception ex) {
-            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VGrupoFamiliar.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jbtn_ahorrosActionPerformed
@@ -356,7 +345,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
             ingresos.establecerPosicion(posicionX,posicionY);
             ingresos.obtenerPosicion();
         } catch (Exception ex) {
-            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VGrupoFamiliar.class.getName()).log(Level.SEVERE, null, ex);
         }
         ingresos.setVisible(true);
         this.dispose();
@@ -373,80 +362,6 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         this.dispose(); 
         
     }//GEN-LAST:event_jbtn_grupoFamiliarActionPerformed
-
-    private void jcbo_gastosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_gastosMesActionPerformed
-        
-        try {
-            String opcion = (String) jcbo_gastosMes.getSelectedItem();
-            this.obtenerPosicion();
-            switch (opcion) {
-                //case "Gastos del mes":
-                //JOptionPane.showMessageDialog(null, "Selecciona una categoría", "Error", JOptionPane.INFORMATION_MESSAGE);
-                //break;
-                case "Compras":
-                    VCompras compras = new VCompras();
-                    compras.establecerPosicion(posicionX,posicionY);
-                    compras.obtenerPosicion();
-                    compras.setVisible(true);
-                    this.dispose();
-                    break;
-                case "Cuentas":
-                    VCuentas cuentas = new VCuentas();
-                    cuentas.establecerPosicion(posicionX,posicionY);
-                    cuentas.obtenerPosicion();
-                    cuentas.setVisible(true);
-                    this.dispose();
-                    break;
-                case "Deudas":
-                    VDeudas deudas = new VDeudas();
-                    deudas.establecerPosicion(posicionX,posicionY);
-                    deudas.obtenerPosicion();
-                    deudas.setVisible(true);
-                    this.dispose();
-                    break;
-                case "Educación":
-                    VEducacion educacion = new VEducacion();
-                    educacion.establecerPosicion(posicionX,posicionY);
-                    educacion.obtenerPosicion();
-                    educacion.setVisible(true);
-                    this.dispose();
-                    break;
-                case "Salud":
-                    VSalud salud = new VSalud();
-                    salud.establecerPosicion(posicionX,posicionY);
-                    salud.obtenerPosicion();
-                    salud.setVisible(true);
-                    this.dispose();
-                    break;
-                case "Transporte":
-                    VTransporte transporte = new VTransporte();
-                    transporte.establecerPosicion(posicionX,posicionY);
-                    transporte.obtenerPosicion();
-                    transporte.setVisible(true);
-                    this.dispose();
-                    break;
-                case "Vivienda":
-                    VVivienda vivienda = new VVivienda();
-                    vivienda.establecerPosicion(posicionX,posicionY);
-                    vivienda.obtenerPosicion();
-                    vivienda.setVisible(true);
-                    this.dispose();
-                    break;
-                case "Otros":
-                    VOtros otros = new VOtros();
-                    otros.establecerPosicion(posicionX,posicionY);
-                    otros.obtenerPosicion();
-                    otros.setVisible(true);
-                    this.dispose();
-                    break;
-                default:
-                    throw new AssertionError();
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }//GEN-LAST:event_jcbo_gastosMesActionPerformed
 
     private void jtxt_nombreIntegranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_nombreIntegranteActionPerformed
         // TODO add your handling code here:
@@ -472,7 +387,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
             inicio.establecerPosicion(posicionX,posicionY);
             inicio.obtenerPosicion();
         } catch (Exception ex) {
-            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VGrupoFamiliar.class.getName()).log(Level.SEVERE, null, ex);
         }
         inicio.setVisible(true);
         this.dispose();
@@ -482,6 +397,10 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
     private void jbtn_grupoFamiliar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliar2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtn_grupoFamiliar2ActionPerformed
+
+    private void jbtn_GastosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_GastosMesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtn_GastosMesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -525,6 +444,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton jbtn_GastosMes;
     private javax.swing.JButton jbtn_ahorros;
     private javax.swing.JButton jbtn_anadir;
     private javax.swing.JButton jbtn_detHist;
@@ -534,7 +454,6 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
     private javax.swing.JButton jbtn_ingresosMes;
     private javax.swing.JButton jbtn_inicio;
     private javax.swing.JButton jbtn_modificar;
-    private javax.swing.JComboBox<String> jcbo_gastosMes;
     private javax.swing.JLabel jlbl_ListaGrupoFamiliar;
     private javax.swing.JLabel jlbl_grupoFamiliar;
     private javax.swing.JLabel jlbl_ingresosMes3;

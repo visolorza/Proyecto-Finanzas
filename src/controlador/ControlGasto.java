@@ -257,7 +257,24 @@ public class ControlGasto {
         }
         return lista;
     }
+    
+    public int obtCat(String desc_cat) throws Exception {
+        
+    ConexionBD con = new ConexionBD();
+    Connection cnx = ConexionBD.obtenerConexion();
 
+    String query = "SELECT cod_cat FROM categoria WHERE desc_cat=?";
+    PreparedStatement stmt = cnx.prepareStatement(query);
+    stmt.setString(1, desc_cat);
+
+    ResultSet rs = stmt.executeQuery();
+
+    if (rs.next()) {
+        return rs.getInt("cod_cat");
+    } else {
+        throw new Exception("No se encontró ninguna categoría con la descripción proporcionada");
+    }
+}
 }
     
     

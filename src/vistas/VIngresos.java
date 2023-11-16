@@ -481,13 +481,13 @@ public class VIngresos extends javax.swing.JFrame {
        
         try {
             this.obtenerPosicion();
-            VAhorros ahorros = new VAhorros();
+            VMeta ahorros = new VMeta();
             ahorros.establecerPosicion(posicionX,posicionY);
             ahorros.obtenerPosicion();
             ahorros.setVisible(true);
             this.dispose();
         } catch (Exception ex) {
-            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VIngresos.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jbtn_ahorrosActionPerformed
@@ -501,7 +501,7 @@ public class VIngresos extends javax.swing.JFrame {
             ingresos.establecerPosicion(posicionX,posicionY);
             ingresos.obtenerPosicion();
         } catch (Exception ex) {
-            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VIngresos.class.getName()).log(Level.SEVERE, null, ex);
         }
         ingresos.setVisible(true);
         this.dispose();
@@ -524,71 +524,9 @@ public class VIngresos extends javax.swing.JFrame {
         try {
             String opcion = (String) jcbo_gastosMes.getSelectedItem();
             this.obtenerPosicion();
-            switch (opcion) {
-                //case "Gastos del mes":
-                //JOptionPane.showMessageDialog(null, "Selecciona una categoría", "Error", JOptionPane.INFORMATION_MESSAGE);
-                //break;
-                case "Compras":
-                    VCompras compras = new VCompras();
-                    compras.establecerPosicion(posicionX,posicionY);
-                    compras.obtenerPosicion();
-                    compras.setVisible(true);
-                    this.dispose();
-                    break;
-                case "Cuentas":
-                    VCuentas cuentas = new VCuentas();
-                    cuentas.establecerPosicion(posicionX,posicionY);
-                    cuentas.obtenerPosicion();
-                    cuentas.setVisible(true);
-                    this.dispose();
-                    break;
-                case "Deudas":
-                    VDeudas deudas = new VDeudas();
-                    deudas.establecerPosicion(posicionX,posicionY);
-                    deudas.obtenerPosicion();
-                    deudas.setVisible(true);
-                    this.dispose();
-                    break;
-                case "Educación":
-                    VEducacion educacion = new VEducacion();
-                    educacion.establecerPosicion(posicionX,posicionY);
-                    educacion.obtenerPosicion();
-                    educacion.setVisible(true);
-                    this.dispose();
-                    break;
-                case "Salud":
-                    VSalud salud = new VSalud();
-                    salud.establecerPosicion(posicionX,posicionY);
-                    salud.obtenerPosicion();
-                    salud.setVisible(true);
-                    this.dispose();
-                    break;
-                case "Transporte":
-                    VTransporte transporte = new VTransporte();
-                    transporte.establecerPosicion(posicionX,posicionY);
-                    transporte.obtenerPosicion();
-                    transporte.setVisible(true);
-                    this.dispose();
-                    break;
-                case "Vivienda":
-                    VVivienda vivienda = new VVivienda();
-                    vivienda.establecerPosicion(posicionX,posicionY);
-                    vivienda.obtenerPosicion();
-                    vivienda.setVisible(true);
-                    this.dispose();
-                    break;
-                case "Otros":
-                    VOtros otros = new VOtros();
-                    otros.establecerPosicion(posicionX,posicionY);
-                    otros.obtenerPosicion();
-                    otros.setVisible(true);
-                    this.dispose();
-                    break;
-                default:
-                    throw new AssertionError();
-            }
+            
         } catch (Exception ex) {
-            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VIngresos.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jcbo_gastosMesActionPerformed
@@ -667,7 +605,7 @@ public class VIngresos extends javax.swing.JFrame {
             inicio.establecerPosicion(posicionX,posicionY);
             inicio.obtenerPosicion();
         } catch (Exception ex) {
-            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VIngresos.class.getName()).log(Level.SEVERE, null, ex);
         }
         inicio.setVisible(true);
         this.dispose();

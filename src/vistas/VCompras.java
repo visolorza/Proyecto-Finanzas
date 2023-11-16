@@ -43,36 +43,20 @@ public class VCompras extends javax.swing.JFrame {
         
         Date fechaActual;
         String mesActual;
-        Utils utils = new Utils();
         fechaActual=utils.obtenerFecha();
         mesActual=utils.obtenerMes(fechaActual);
         this.jlbl_mesActual.setText(mesActual.toUpperCase());
         
+        utils.RellenarCombocat("categoria", "desc_cat", this.jcbo_gastosMes);
+        utils.RellenarComboInt("integrante", "desc_int", this.jcbo_integrante);
+        
+        DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("codigo");
         modelo.addColumn("fecha");
         modelo.addColumn("descripcion");
         modelo.addColumn("monto");
         
-        utils.RellenarComboInt("integrante", "desc_int", this.jcbo_integrante);
-        utils.RellenarComboSubcat("subcategoria", "desc_subcat", this.jcbo_subcategoria,4);
-        
-        try {
-            refrescar();
-        } catch (Exception ex) {
-            Logger.getLogger(VCompras.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        //Mostrar total gasto en compras en el mes
-        ArrayList<Gasto> listaGastos;
-        ControlGasto listaG = new ControlGasto();
-        listaGastos=listaG.mostrarGastosMesCat(4);
-        int sumaMontosGas=0;
-        for (Gasto gasto: listaGastos) {
-            sumaMontosGas += gasto.getMontoGast();}
-        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
-        String totalGasMes = formatoMontoGas.format(sumaMontosGas);
-        this.jlbl_totalCompras.setText(totalGasMes);
-        jlbl_totalCompras.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.jTableMostrar.setModel(modelo);
     }
     
     /**
@@ -88,7 +72,7 @@ public class VCompras extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jbtn_grupoFamiliar = new javax.swing.JButton();
         jbtn_ingresosMes = new javax.swing.JButton();
-        jbtn_ahorros = new javax.swing.JButton();
+        jbtn_metas = new javax.swing.JButton();
         jbtn_detHist = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -141,14 +125,14 @@ public class VCompras extends javax.swing.JFrame {
             }
         });
 
-        jbtn_ahorros.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_ahorros.setText("Ahorros");
-        jbtn_ahorros.setBorder(null);
-        jbtn_ahorros.setBorderPainted(false);
-        jbtn_ahorros.setContentAreaFilled(false);
-        jbtn_ahorros.addActionListener(new java.awt.event.ActionListener() {
+        jbtn_metas.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jbtn_metas.setText("Metas");
+        jbtn_metas.setBorder(null);
+        jbtn_metas.setBorderPainted(false);
+        jbtn_metas.setContentAreaFilled(false);
+        jbtn_metas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtn_ahorrosActionPerformed(evt);
+                jbtn_metasActionPerformed(evt);
             }
         });
 
@@ -400,7 +384,7 @@ public class VCompras extends javax.swing.JFrame {
 
         jcbo_gastosMes.setBackground(new java.awt.Color(204, 204, 204));
         jcbo_gastosMes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jcbo_gastosMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gastos del mes", "Compras", "Cuentas", "Deudas", "Educación", "Salud", "Transporte", "Vivienda", "Otros" }));
+        jcbo_gastosMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--seleccionar--" }));
         jcbo_gastosMes.setBorder(null);
         jcbo_gastosMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -430,10 +414,10 @@ public class VCompras extends javax.swing.JFrame {
                     .addComponent(jbtn_ingresosMes)
                     .addComponent(jbtn_grupoFamiliar)
                     .addComponent(jcbo_gastosMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtn_ahorros)
+                    .addComponent(jbtn_metas)
                     .addComponent(jbtn_detHist)
                     .addComponent(jbtn_inicio))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -449,7 +433,7 @@ public class VCompras extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(jcbo_gastosMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbtn_ahorros, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbtn_metas, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtn_detHist)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -471,27 +455,8 @@ public class VCompras extends javax.swing.JFrame {
     
     ControlGasto cgasto = new ControlGasto();
     Gasto gasto = new Gasto();
-    
-    
-    public void refrescar() throws Exception{
-        
-        ArrayList<Gasto> lista=cgasto.mostrar(4);
-        while (modelo.getRowCount()>0) {
-            modelo.removeRow(0);
-        }
-        
-        this.jTableMostrar.setModel(modelo);
-        
-        for (Gasto gasto : lista) {
-            Object a[] = new Object[4];
-            a[0]=gasto.getCodGast();
-            a[1]=gasto.getFechaGast();
-            a[2]=gasto.getDescGast();
-            a[3]=gasto.getMontoGast();
-            modelo.addRow(a);
-        }
-    }
-    
+    Utils utils = new Utils();
+ 
     private void jbtn_detHistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_detHistActionPerformed
         
         this.obtenerPosicion();
@@ -503,20 +468,20 @@ public class VCompras extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jbtn_detHistActionPerformed
 
-    private void jbtn_ahorrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ahorrosActionPerformed
+    private void jbtn_metasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_metasActionPerformed
         
         try {
             this.obtenerPosicion();
-            VAhorros ahorros = new VAhorros();
+            VMeta ahorros = new VMeta();
             ahorros.establecerPosicion(posicionX,posicionY);
             ahorros.obtenerPosicion();
             ahorros.setVisible(true);
             this.dispose();
         } catch (Exception ex) {
-            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }//GEN-LAST:event_jbtn_ahorrosActionPerformed
+    }//GEN-LAST:event_jbtn_metasActionPerformed
 
     private void jbtn_ingresosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ingresosMesActionPerformed
         
@@ -527,7 +492,7 @@ public class VCompras extends javax.swing.JFrame {
             ingresos.establecerPosicion(posicionX,posicionY);
             ingresos.obtenerPosicion();
         } catch (Exception ex) {
-            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
         }
         ingresos.setVisible(true);
         this.dispose();
@@ -549,73 +514,21 @@ public class VCompras extends javax.swing.JFrame {
 
         
         try {
-            String opcion = (String) jcbo_gastosMes.getSelectedItem();
-            this.obtenerPosicion();
-            switch (opcion) {
-                //case "Gastos del mes":
-                //JOptionPane.showMessageDialog(null, "Selecciona una categoría", "Error", JOptionPane.INFORMATION_MESSAGE);
-                //break;
-                case "Compras":
-                    VCompras compras = new VCompras();
-                    compras.establecerPosicion(posicionX,posicionY);
-                    compras.obtenerPosicion();
-                    compras.setVisible(true);
-                    this.dispose();
-                    break;
-                case "Cuentas":
-                    VCuentas cuentas = new VCuentas();
-                    cuentas.establecerPosicion(posicionX,posicionY);
-                    cuentas.obtenerPosicion();
-                    cuentas.setVisible(true);
-                    this.dispose();
-                    break;
-                case "Deudas":
-                    VDeudas deudas = new VDeudas();
-                    deudas.establecerPosicion(posicionX,posicionY);
-                    deudas.obtenerPosicion();
-                    deudas.setVisible(true);
-                    this.dispose();
-                    break;
-                case "Educación":
-                    VEducacion educacion = new VEducacion();
-                    educacion.establecerPosicion(posicionX,posicionY);
-                    educacion.obtenerPosicion();
-                    educacion.setVisible(true);
-                    this.dispose();
-                    break;
-                case "Salud":
-                    VSalud salud = new VSalud();
-                    salud.establecerPosicion(posicionX,posicionY);
-                    salud.obtenerPosicion();
-                    salud.setVisible(true);
-                    this.dispose();
-                    break;
-                case "Transporte":
-                    VTransporte transporte = new VTransporte();
-                    transporte.establecerPosicion(posicionX,posicionY);
-                    transporte.obtenerPosicion();
-                    transporte.setVisible(true);
-                    this.dispose();
-                    break;
-                case "Vivienda":
-                    VVivienda vivienda = new VVivienda();
-                    vivienda.establecerPosicion(posicionX,posicionY);
-                    vivienda.obtenerPosicion();
-                    vivienda.setVisible(true);
-                    this.dispose();
-                    break;
-                case "Otros":
-                    VOtros otros = new VOtros();
-                    otros.establecerPosicion(posicionX,posicionY);
-                    otros.obtenerPosicion();
-                    otros.setVisible(true);
-                    this.dispose();
-                    break;
-                default:
-                    throw new AssertionError();
-            }
+            this.jcbo_subcategoria.removeAllItems();
+            this.jcbo_subcategoria.addItem("--seleccionar--");
+                
+                String desc_cat = jcbo_gastosMes.getSelectedItem() != null ? jcbo_gastosMes.getSelectedItem().toString() : "";
+                int codcat = cgasto.obtCat(desc_cat);
+                utils.RellenarComboSubcat("subcategoria", "desc_subcat", this.jcbo_subcategoria, codcat);
+
+                this.jlbl_totalCompras.setText(utils.obtenerTotal(gasto, codcat));
+                this.jlbl_ingresosMes.setText(desc_cat);
+                utils.refrescar(jTableMostrar, codcat);
+                
+                jlbl_totalCompras.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
         } catch (Exception ex) {
-            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VCompras.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jcbo_gastosMesActionPerformed
@@ -640,10 +553,11 @@ public class VCompras extends javax.swing.JFrame {
     private void jcbo_subcategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_subcategoriaActionPerformed
         // TODO add your handling code here:
         
-        String desc_subcat = jcbo_subcategoria.getSelectedItem().toString().toUpperCase();
+        String desc_subcat = jcbo_subcategoria.getSelectedItem() != null ? jcbo_subcategoria.getSelectedItem().toString().toUpperCase() : "";
         try {
             cgasto.obt_subcat(gasto, desc_subcat);
             System.out.println("subcat guardado "+gasto.getCodSubcat());
+            
         } catch (Exception ex) {
             Logger.getLogger(VCompras.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -659,7 +573,7 @@ public class VCompras extends javax.swing.JFrame {
             inicio.establecerPosicion(posicionX,posicionY);
             inicio.obtenerPosicion();
         } catch (Exception ex) {
-            Logger.getLogger(VAhorros.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
         }
         inicio.setVisible(true);
         this.dispose();
@@ -676,28 +590,22 @@ public class VCompras extends javax.swing.JFrame {
         gasto.setDescGast(this.jtxt_descGasto.getText());
 
         try {
+            String desc_cat = jcbo_gastosMes.getSelectedItem() != null ? jcbo_gastosMes.getSelectedItem().toString() : "";
+            int codcat = cgasto.obtCat(desc_cat);
             if(cgasto.agregar(gasto)){
                 System.out.println("gasto agregado con exto "+gasto.toString());
-                refrescar();
+                utils.refrescar(jTableMostrar,codcat);
                 
                 this.jtxt_montoGasto.setText(""); 
                 this.jtxt_descGasto.setText("");
                 
-                //Mostrar total gasto en compras en el mes//????
-                ArrayList<Gasto> listaGastos;
-                ControlGasto listaG = new ControlGasto();
-                    listaGastos=listaG.mostrarGastosMesCat(4);
-                int sumaMontosGas=0;
-                for (Gasto gasto: listaGastos) {
-                    sumaMontosGas += gasto.getMontoGast();}
-                NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
-                String totalGasMes = formatoMontoGas.format(sumaMontosGas);
-                this.jlbl_totalCompras.setText(totalGasMes);
+                //Mostrar total gasto en compras en el mes
+                this.jlbl_totalCompras.setText(utils.obtenerTotal(gasto, codcat));
                 jlbl_totalCompras.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT); 
                 
             }
         } catch (Exception ex) {
-            Logger.getLogger(VIngresos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VCompras.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jbtn_anadirActionPerformed
@@ -711,11 +619,12 @@ public class VCompras extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtn_modificarActionPerformed
 
     private void jbtn_refrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_refrescarActionPerformed
-        
             // TODO add your handling code here:
         
-        try {
-            refrescar();
+            try {
+            String desc_cat = jcbo_gastosMes.getSelectedItem().toString().toUpperCase();
+            int codcat=cgasto.obtCat(desc_cat);
+            utils.refrescar(jTableMostrar,codcat);
         } catch (Exception ex) {
             Logger.getLogger(VCompras.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -773,13 +682,13 @@ public class VCompras extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTableMostrar;
-    private javax.swing.JButton jbtn_ahorros;
     private javax.swing.JButton jbtn_anadir;
     private javax.swing.JButton jbtn_detHist;
     private javax.swing.JButton jbtn_eliminar;
     private javax.swing.JButton jbtn_grupoFamiliar;
     private javax.swing.JButton jbtn_ingresosMes;
     private javax.swing.JButton jbtn_inicio;
+    private javax.swing.JButton jbtn_metas;
     private javax.swing.JButton jbtn_modificar;
     private javax.swing.JButton jbtn_refrescar;
     private javax.swing.JComboBox<String> jcbo_gastosMes;
