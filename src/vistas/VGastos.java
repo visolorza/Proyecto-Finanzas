@@ -2,7 +2,6 @@ package vistas;
 
 import Utils.Utils;
 import controlador.ControlGasto;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,8 +9,6 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Gasto;
 import Emergente.ActulizarGastos;
 import Emergente.EliminarGastos;
-import java.text.NumberFormat;
-import java.util.Locale;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -518,6 +515,8 @@ public class VGastos extends javax.swing.JFrame {
             this.jcbo_subcategoria.addItem("--seleccionar--");
                 
                 String desc_cat = jcbo_gastosMes.getSelectedItem() != null ? jcbo_gastosMes.getSelectedItem().toString() : "";
+                if (!"--seleccionar--".equals(desc_cat) && !"".equals(desc_cat)) {
+                    
                 int codcat = cgasto.obtCat(desc_cat);
                 utils.RellenarComboSubcat("subcategoria", "desc_subcat", this.jcbo_subcategoria, codcat);
 
@@ -525,7 +524,12 @@ public class VGastos extends javax.swing.JFrame {
                 this.jlbl_ingresosMes.setText(desc_cat);
                 utils.refrescar(jTableMostrar, codcat);
                 
+                gasto.setCodInt(0);
+                gasto.setCodSubcat(0);
+                
                 jlbl_totalCompras.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+            }
+                    
 
         } catch (Exception ex) {
             Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
@@ -554,13 +558,19 @@ public class VGastos extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         String desc_subcat = jcbo_subcategoria.getSelectedItem() != null ? jcbo_subcategoria.getSelectedItem().toString().toUpperCase() : "";
-        try {
+        
+        
+        if (!"".equals(desc_subcat) && !"--SELECCIONAR--".equals(desc_subcat)) {
+           try {    
             cgasto.obt_subcat(gasto, desc_subcat);
             System.out.println("subcat guardado "+gasto.getCodSubcat());
             
-        } catch (Exception ex) {
-            Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
+            } 
         }
+        
+        
  
     }//GEN-LAST:event_jcbo_subcategoriaActionPerformed
 
