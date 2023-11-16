@@ -177,12 +177,19 @@ public class Utils {
         }
         
         tabla.setModel(modelo);
+        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(Locale.getDefault());
         
+        String monto;
+            
         for (Ahorro listag : listaAhorro) {
+            
+            int sumaMontosGas=listag.getMonto_ahorro();
+            monto=formatoMeta.format(sumaMontosGas);
+            
             Object a[] = new Object[3];
             a[0]=listag.getCod_ahorro();
             a[1]=listag.getFecha_ahorro();
-            a[2]=listag.getMonto_ahorro();
+            a[2]=monto;
             modelo.addRow(a);
         }
         return tabla;

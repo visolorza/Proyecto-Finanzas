@@ -54,7 +54,7 @@ public class ControlAhorro {
          
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "insert into ahorro(monto_ahor, cod_meta) values(?,?)";
+            String query = "insert into ahorro(cod_ahor, fecha_ahor, monto_ahor, cod_meta) values(seq_ahor.nextval,SYSDATE,?,?)";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setInt(1, ahorro.getMonto_ahorro());
             stmt.setInt(2, ahorro.getCod_meta());
@@ -124,7 +124,7 @@ public class ControlAhorro {
             //Connection cnx = con.obtenerConexion();
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "SELECT * FROM ahorro WHERE cod_ahor=?";
+            String query = "SELECT * FROM ahorro WHERE cod_meta=?";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setInt(1, cod_meta);
             
