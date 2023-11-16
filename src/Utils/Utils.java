@@ -141,12 +141,19 @@ public class Utils {
         
         tabla.setModel(modelo);
         
+        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        
+        String monto;
+        
         for (Gasto listag : listaGast) {
             Object a[] = new Object[4];
+            int sumaMontosGas=listag.getMontoGast();
+            monto=formatoMontoGas.format(sumaMontosGas);
+                    
             a[0]=listag.getCodGast();
             a[1]=listag.getFechaGast();
             a[2]=listag.getDescGast();
-            a[3]=listag.getMontoGast();
+            a[3]=monto;
             modelo.addRow(a);
         }
         return tabla;

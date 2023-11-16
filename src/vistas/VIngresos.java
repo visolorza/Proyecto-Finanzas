@@ -538,7 +538,7 @@ public class VIngresos extends javax.swing.JFrame {
             controlIngresos.obt_int(ingreso, desc_int);
             System.out.println("integrante guardado "+ingreso.getCod_int());
         } catch (Exception ex) {
-            Logger.getLogger(VCompras.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jcbo_integranteActionPerformed
 

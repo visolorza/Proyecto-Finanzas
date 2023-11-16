@@ -22,7 +22,7 @@ import java.util.Locale;
  *
  * @author María José/michimisimo
  */
-public class VCompras extends javax.swing.JFrame {
+public class VGastos extends javax.swing.JFrame {
 
     //Almacenar la posición de la ventana
     private int posicionX;  
@@ -38,7 +38,7 @@ public class VCompras extends javax.swing.JFrame {
     
     DefaultTableModel modelo = new DefaultTableModel();
     
-    public VCompras() throws Exception {
+    public VGastos() throws Exception {
         initComponents();
         
         Date fechaActual;
@@ -528,7 +528,7 @@ public class VCompras extends javax.swing.JFrame {
                 jlbl_totalCompras.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         } catch (Exception ex) {
-            Logger.getLogger(VCompras.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jcbo_gastosMesActionPerformed
@@ -541,7 +541,7 @@ public class VCompras extends javax.swing.JFrame {
             cgasto.obt_int(gasto, desc_int);
             System.out.println("integrsnte guardado "+gasto.getCodInt());
         } catch (Exception ex) {
-            Logger.getLogger(VCompras.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jcbo_integranteActionPerformed
@@ -559,7 +559,7 @@ public class VCompras extends javax.swing.JFrame {
             System.out.println("subcat guardado "+gasto.getCodSubcat());
             
         } catch (Exception ex) {
-            Logger.getLogger(VCompras.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
         }
  
     }//GEN-LAST:event_jcbo_subcategoriaActionPerformed
@@ -605,7 +605,7 @@ public class VCompras extends javax.swing.JFrame {
                 
             }
         } catch (Exception ex) {
-            Logger.getLogger(VCompras.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jbtn_anadirActionPerformed
@@ -626,7 +626,7 @@ public class VCompras extends javax.swing.JFrame {
             int codcat=cgasto.obtCat(desc_cat);
             utils.refrescar(jTableMostrar,codcat);
         } catch (Exception ex) {
-            Logger.getLogger(VCompras.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jbtn_refrescarActionPerformed

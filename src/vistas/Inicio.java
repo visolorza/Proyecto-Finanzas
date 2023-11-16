@@ -80,7 +80,7 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jbtn_grupoFamiliar = new javax.swing.JButton();
         jbtn_ingresosMes = new javax.swing.JButton();
-        jbtn_ahorros = new javax.swing.JButton();
+        jbtn_Meta = new javax.swing.JButton();
         jbtn_detHist = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -120,14 +120,14 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        jbtn_ahorros.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_ahorros.setText("Ahorros");
-        jbtn_ahorros.setBorder(null);
-        jbtn_ahorros.setBorderPainted(false);
-        jbtn_ahorros.setContentAreaFilled(false);
-        jbtn_ahorros.addActionListener(new java.awt.event.ActionListener() {
+        jbtn_Meta.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jbtn_Meta.setText("Metas y ahorros");
+        jbtn_Meta.setBorder(null);
+        jbtn_Meta.setBorderPainted(false);
+        jbtn_Meta.setContentAreaFilled(false);
+        jbtn_Meta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtn_ahorrosActionPerformed(evt);
+                jbtn_MetaActionPerformed(evt);
             }
         });
 
@@ -275,7 +275,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbtn_ingresosMes)
                     .addComponent(jbtn_grupoFamiliar)
-                    .addComponent(jbtn_ahorros)
+                    .addComponent(jbtn_Meta)
                     .addComponent(jbtn_detHist)
                     .addComponent(jbtn_GastosMes))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
@@ -292,7 +292,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jbtn_GastosMes)
                 .addGap(14, 14, 14)
-                .addComponent(jbtn_ahorros, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbtn_Meta, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtn_detHist)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -323,10 +323,20 @@ public class Inicio extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jbtn_detHistActionPerformed
 
-    private void jbtn_ahorrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ahorrosActionPerformed
-
+    private void jbtn_MetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_MetaActionPerformed
         
-    }//GEN-LAST:event_jbtn_ahorrosActionPerformed
+        try {
+            this.obtenerPosicion();
+            VMeta detalleHistorico = new VMeta();
+            detalleHistorico.establecerPosicion(posicionX,posicionY);
+            detalleHistorico.obtenerPosicion();
+            detalleHistorico.setVisible(true); 
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jbtn_MetaActionPerformed
 
     private void jbtn_ingresosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ingresosMesActionPerformed
         
@@ -360,7 +370,7 @@ public class Inicio extends javax.swing.JFrame {
         try {
             
             this.obtenerPosicion();
-            VCompras detalleHistorico = new VCompras();
+            VGastos detalleHistorico = new VGastos();
             detalleHistorico.establecerPosicion(posicionX,posicionY);
             detalleHistorico.obtenerPosicion();
             detalleHistorico.setVisible(true); 
@@ -450,7 +460,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbtn_GastosMes;
-    private javax.swing.JButton jbtn_ahorros;
+    private javax.swing.JButton jbtn_Meta;
     private javax.swing.JButton jbtn_detHist;
     private javax.swing.JButton jbtn_grupoFamiliar;
     private javax.swing.JButton jbtn_ingresosMes;

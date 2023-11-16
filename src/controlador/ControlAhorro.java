@@ -147,4 +147,34 @@ public class ControlAhorro {
         }
         return lista;
     }
+    
+    public Ahorro obt_meta(Ahorro ahorro,String nombre_meta) throws Exception {
+    
+    try {
+        ConexionBD con = new ConexionBD();
+        Connection cnx = ConexionBD.obtenerConexion();
+
+        String query = "SELECT cod_meta FROM meta WHERE nombre_meta=?";
+        PreparedStatement stmt = cnx.prepareStatement(query);
+        stmt.setString(1, nombre_meta);
+
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            ahorro.setCod_meta(rs.getInt("cod_meta"));
+            System.out.println("cod_meta agregado "+ahorro.toString());
+            return  ahorro;
+        } else {
+            // Manejar el caso en el que no se encontraron filas
+            System.out.println("No se encontraron resultados para nombre_meta: " + nombre_meta);
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Error SQL al obtener cod_meta: " + e.getMessage());
+        // Puedes lanzar una excepción más específica aquí si es necesario
+    } 
+        return ahorro;
+    
+    }
+    
 }
