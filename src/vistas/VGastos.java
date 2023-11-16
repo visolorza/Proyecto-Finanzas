@@ -2,7 +2,6 @@ package vistas;
 
 import Utils.Utils;
 import controlador.ControlGasto;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,8 +9,6 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Gasto;
 import Emergente.ActulizarGastos;
 import Emergente.EliminarGastos;
-import java.text.NumberFormat;
-import java.util.Locale;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -521,7 +518,7 @@ public class VGastos extends javax.swing.JFrame {
                 int codcat = cgasto.obtCat(desc_cat);
                 utils.RellenarComboSubcat("subcategoria", "desc_subcat", this.jcbo_subcategoria, codcat);
 
-                this.jlbl_totalCompras.setText(utils.obtenerTotal(gasto, codcat));
+                this.jlbl_totalCompras.setText(utils.obtenerTotal(codcat));
                 this.jlbl_ingresosMes.setText(desc_cat);
                 utils.refrescar(jTableMostrar, codcat);
                 
@@ -600,7 +597,7 @@ public class VGastos extends javax.swing.JFrame {
                 this.jtxt_descGasto.setText("");
                 
                 //Mostrar total gasto en compras en el mes
-                this.jlbl_totalCompras.setText(utils.obtenerTotal(gasto, codcat));
+                this.jlbl_totalCompras.setText(utils.obtenerTotal(codcat));
                 jlbl_totalCompras.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT); 
                 
             }

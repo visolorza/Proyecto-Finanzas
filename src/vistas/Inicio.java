@@ -1,16 +1,13 @@
 package vistas;
 
+import Utils.Grafico;
 import Utils.Utils;
-import controlador.ControlGasto;
-import controlador.ControlIngresos;
-import java.text.NumberFormat;
-import java.util.ArrayList;
+import java.awt.BorderLayout;
 import java.util.Date;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modelo.Gasto;
-import modelo.Ingresos;
+
+import org.jfree.chart.ChartPanel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -25,7 +22,9 @@ public class Inicio extends javax.swing.JFrame {
     
     //Almacenar la posición de la ventana
     private int posicionX;  
-    private int posicionY;  
+    private int posicionY;
+    
+    Grafico grafico = new Grafico();
 
     /**
      * Creates new form Inicio
@@ -41,29 +40,16 @@ public class Inicio extends javax.swing.JFrame {
         this.jlbl_mesActual.setText(mesActual.toUpperCase());
         this.jlbl_mesActual1.setText(mesActual.toUpperCase());
         
-        //Mostrar total ingresos del mes
-        ArrayList<Ingresos> listaIngresos;
-        ControlIngresos listaI = new ControlIngresos();
-        listaIngresos=listaI.mostrarIngresosMes();
-        int sumaMontosIng=0;
-        for (Ingresos ingreso: listaIngresos) {
-            sumaMontosIng += ingreso.getMonto_ing();}
-        NumberFormat formatoMontoIng = NumberFormat.getCurrencyInstance(Locale.getDefault());
-        String totalIngMes = formatoMontoIng.format(sumaMontosIng);
-        this.jlbl_totalIngresos.setText(totalIngMes);
-        jlbl_totalIngresos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.jlbl_totalIngresos.setText(utils.obtenerTotalIngresosMes());
+        this.jlbl_totalIngresos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         
-        //Mostrar total gastos del mes
-        ArrayList<Gasto> listaGastos;
-        ControlGasto listaG = new ControlGasto();
-        listaGastos=listaG.mostrarGastosMes();
-        int sumaMontosGas=0;
-        for (Gasto gasto: listaGastos) {
-            sumaMontosGas += gasto.getMontoGast();}
-        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
-        String totalGasMes = formatoMontoGas.format(sumaMontosGas);
-        this.jlbl_totalGastos.setText(totalGasMes);
-        jlbl_totalGastos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.jlbl_totalGastos.setText(utils.obtenerTotalGastosMes());
+        this.jlbl_totalGastos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+                  
+        ChartPanel chartPanel = grafico.crearGraficoInicio();       
+        this.jpan_grafico.setLayout(new java.awt.BorderLayout());
+        this.jpan_grafico.add(chartPanel, BorderLayout.CENTER);
+        this.jpan_grafico.validate();
        
     }  
     
@@ -87,7 +73,7 @@ public class Inicio extends javax.swing.JFrame {
         jlbl_mesActual1 = new javax.swing.JLabel();
         jlbl_totalGastos = new javax.swing.JLabel();
         jlbl_gastosMes = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
+        jpan_grafico = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jlbl_ingresosMes = new javax.swing.JLabel();
         jlbl_mesActual = new javax.swing.JLabel();
@@ -180,16 +166,16 @@ public class Inicio extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel5.setBackground(new java.awt.Color(204, 204, 204));
+        jpan_grafico.setBackground(new java.awt.Color(204, 204, 204));
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jpan_graficoLayout = new javax.swing.GroupLayout(jpan_grafico);
+        jpan_grafico.setLayout(jpan_graficoLayout);
+        jpan_graficoLayout.setHorizontalGroup(
+            jpan_graficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 526, Short.MAX_VALUE)
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jpan_graficoLayout.setVerticalGroup(
+            jpan_graficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 309, Short.MAX_VALUE)
         );
 
@@ -236,7 +222,7 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpan_grafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
@@ -251,7 +237,7 @@ public class Inicio extends javax.swing.JFrame {
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpan_grafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
 
@@ -456,7 +442,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbtn_GastosMes;
@@ -470,6 +455,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jlbl_mesActual1;
     private javax.swing.JLabel jlbl_totalGastos;
     private javax.swing.JLabel jlbl_totalIngresos;
+    private javax.swing.JPanel jpan_grafico;
     // End of variables declaration//GEN-END:variables
 
     // Obtener y establecer la posición de la ventana
