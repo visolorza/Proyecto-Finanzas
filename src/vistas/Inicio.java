@@ -23,8 +23,6 @@ public class Inicio extends javax.swing.JFrame {
     //Almacenar la posición de la ventana
     private int posicionX;  
     private int posicionY;
-    
-    Grafico grafico = new Grafico();
 
     /**
      * Creates new form Inicio
@@ -46,6 +44,7 @@ public class Inicio extends javax.swing.JFrame {
         this.jlbl_totalGastos.setText(utils.obtenerTotalGastosMes());
         this.jlbl_totalGastos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
                   
+        Grafico grafico = new Grafico();
         ChartPanel chartPanel = grafico.crearGraficoInicio();       
         this.jpan_grafico.setLayout(new java.awt.BorderLayout());
         this.jpan_grafico.add(chartPanel, BorderLayout.CENTER);
@@ -79,12 +78,14 @@ public class Inicio extends javax.swing.JFrame {
         jlbl_mesActual = new javax.swing.JLabel();
         jlbl_totalIngresos = new javax.swing.JLabel();
         jbtn_GastosMes = new javax.swing.JButton();
+        jbtn_inicio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         jbtn_grupoFamiliar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jbtn_grupoFamiliar.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_grupoFamiliar.setText("Grupo familiar");
         jbtn_grupoFamiliar.setBorder(null);
         jbtn_grupoFamiliar.setBorderPainted(false);
@@ -96,6 +97,7 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         jbtn_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jbtn_ingresosMes.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_ingresosMes.setText("Ingresos del mes");
         jbtn_ingresosMes.setBorder(null);
         jbtn_ingresosMes.setBorderPainted(false);
@@ -107,7 +109,8 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         jbtn_Meta.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_Meta.setText("Metas y ahorros");
+        jbtn_Meta.setForeground(new java.awt.Color(0, 0, 0));
+        jbtn_Meta.setText("Ahorros");
         jbtn_Meta.setBorder(null);
         jbtn_Meta.setBorderPainted(false);
         jbtn_Meta.setContentAreaFilled(false);
@@ -118,6 +121,7 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         jbtn_detHist.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jbtn_detHist.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_detHist.setText("Detalle histórico");
         jbtn_detHist.setBorder(null);
         jbtn_detHist.setBorderPainted(false);
@@ -133,10 +137,13 @@ public class Inicio extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
 
         jlbl_mesActual1.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        jlbl_mesActual1.setForeground(new java.awt.Color(0, 0, 0));
 
         jlbl_totalGastos.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        jlbl_totalGastos.setForeground(new java.awt.Color(0, 0, 0));
 
         jlbl_gastosMes.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jlbl_gastosMes.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_gastosMes.setText("GASTOS DEL MES");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -182,11 +189,14 @@ public class Inicio extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
 
         jlbl_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jlbl_ingresosMes.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_ingresosMes.setText("INGRESOS DEL MES");
 
         jlbl_mesActual.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        jlbl_mesActual.setForeground(new java.awt.Color(0, 0, 0));
 
         jlbl_totalIngresos.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        jlbl_totalIngresos.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -242,6 +252,7 @@ public class Inicio extends javax.swing.JFrame {
         );
 
         jbtn_GastosMes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jbtn_GastosMes.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_GastosMes.setText("Gastos del mes");
         jbtn_GastosMes.setBorder(null);
         jbtn_GastosMes.setBorderPainted(false);
@@ -257,42 +268,59 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbtn_ingresosMes)
                     .addComponent(jbtn_grupoFamiliar)
                     .addComponent(jbtn_Meta)
                     .addComponent(jbtn_detHist)
                     .addComponent(jbtn_GastosMes))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(95, 95, 95)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbtn_grupoFamiliar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(30, 30, 30)
                 .addComponent(jbtn_ingresosMes)
-                .addGap(18, 18, 18)
+                .addGap(31, 31, 31)
                 .addComponent(jbtn_GastosMes)
-                .addGap(14, 14, 14)
+                .addGap(31, 31, 31)
                 .addComponent(jbtn_Meta, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(30, 30, 30)
                 .addComponent(jbtn_detHist)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(141, 141, 141))
         );
+
+        jbtn_inicio.setBackground(new java.awt.Color(204, 204, 204));
+        jbtn_inicio.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jbtn_inicio.setText("Inicio");
+        jbtn_inicio.setBorder(null);
+        jbtn_inicio.setBorderPainted(false);
+        jbtn_inicio.setContentAreaFilled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jbtn_inicio)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jbtn_inicio)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -394,36 +422,7 @@ public class Inicio extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */
@@ -449,6 +448,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton jbtn_detHist;
     private javax.swing.JButton jbtn_grupoFamiliar;
     private javax.swing.JButton jbtn_ingresosMes;
+    private javax.swing.JButton jbtn_inicio;
     private javax.swing.JLabel jlbl_gastosMes;
     private javax.swing.JLabel jlbl_ingresosMes;
     private javax.swing.JLabel jlbl_mesActual;
