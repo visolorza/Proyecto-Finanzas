@@ -140,10 +140,10 @@ public class Utils {
         
         DefaultTableModel modelo = new DefaultTableModel();
         
-        modelo.addColumn("codigo");
-        modelo.addColumn("fecha");
-        modelo.addColumn("descripcion");
-        modelo.addColumn("monto");
+        modelo.addColumn("CODIGO");
+        modelo.addColumn("FECHA");
+        modelo.addColumn("DESCRIPCION");
+        modelo.addColumn("MONTO");
         ControlGasto cgasto = new ControlGasto();
         
         listaGast = cgasto.mostrar(codcat);
@@ -161,6 +161,7 @@ public class Utils {
         for (Gasto listag : listaGast) {
             Object a[] = new Object[4];
             int sumaMontosGas=listag.getMontoGast();
+            
             monto=formatoMontoGas.format(sumaMontosGas);
                     
             a[0]=listag.getCodGast();
@@ -178,9 +179,9 @@ public class Utils {
         
         DefaultTableModel modelo = new DefaultTableModel();
         
-        modelo.addColumn("codigo");
-        modelo.addColumn("fecha");
-        modelo.addColumn("monto");
+        modelo.addColumn("CODIGO");
+        modelo.addColumn("FECHA");
+        modelo.addColumn("MONTO");
         ControlAhorro cAhorro = new ControlAhorro();
         
         listaAhorro = cAhorro.mostrarAhorroPorMeta(codmeta);
