@@ -114,7 +114,7 @@ public class Utils {
         for (Gasto listaGasto : listaGastos) {
             sumaMontosGas+=listaGasto.getMontoGast();
         }
-        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
         return formatoMontoGas.format(sumaMontosGas);
     }
     
@@ -149,7 +149,8 @@ public class Utils {
         
         tabla.setModel(modelo);
         
-        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+        tabla.getColumnModel().getColumn(1).setCellRenderer(new FormatoTabla("dd-MM-yyyy"));
         
         String monto;
         
@@ -186,7 +187,7 @@ public class Utils {
         }
         
         tabla.setModel(modelo);
-        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
         
         String monto;
             
@@ -232,7 +233,7 @@ public class Utils {
         for (Gasto gasto : listaGastos) {
             sumaMontosGas+=gasto.getMontoGast();
         }
-        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
         return formatoMontoGas.format(sumaMontosGas);
     }
     
@@ -244,7 +245,7 @@ public class Utils {
         for (Ingresos ingreso : listaIngresos) {
             sumaMontosIng+=ingreso.getMonto_ing();
         }
-        NumberFormat formatoMontoIng = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        NumberFormat formatoMontoIng = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
         return formatoMontoIng.format(sumaMontosIng);
     }
 }
