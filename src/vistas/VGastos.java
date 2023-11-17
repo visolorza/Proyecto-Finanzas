@@ -38,11 +38,7 @@ public class VGastos extends javax.swing.JFrame {
     public VGastos() throws Exception {
         initComponents();
         
-        Date fechaActual;
-        String mesActual;
-        fechaActual=utils.obtenerFecha();
-        mesActual=utils.obtenerMes(fechaActual);
-        this.jlbl_mesActual.setText(mesActual.toUpperCase());
+        this.jlbl_mesActual.setText(utils.obtenerMesActual());
         
         this.jlbl_totalGastos.setText(utils.obtenerTotalGastosMes());
         this.jlbl_totalGastos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -580,13 +576,12 @@ public class VGastos extends javax.swing.JFrame {
             String desc_cat = jcbo_gastosMes.getSelectedItem() != null ? jcbo_gastosMes.getSelectedItem().toString() : "";
             int codcat = cgasto.obtCat(desc_cat);
             if(cgasto.agregar(gasto)){
-                System.out.println("gasto agregado con exto "+gasto.toString());
+                System.out.println("gasto agregado con exito "+gasto.toString());
                 utils.refrescar(jTableMostrar,codcat);
                 
                 this.jtxt_montoGasto.setText(""); 
                 this.jtxt_descGasto.setText("");
                 
-                //Mostrar total gasto en compras en el mes
                 this.jlbl_totalGastos.setText(utils.obtenerTotal(codcat));
                 jlbl_totalGastos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT); 
                 

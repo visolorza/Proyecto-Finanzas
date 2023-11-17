@@ -4,7 +4,6 @@ import Utils.Utils;
 import controlador.ControlIngresos;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,23 +30,11 @@ public class VIngresos extends javax.swing.JFrame {
     public VIngresos() throws Exception {
         initComponents();
         
-        Date fechaActual;
-        String mesActual;
         Utils utils = new Utils();
-        fechaActual=utils.obtenerFecha();
-        mesActual=utils.obtenerMes(fechaActual);
-        this.jlbl_mesActual.setText(mesActual.toUpperCase());
+        this.jlbl_mesActual.setText(utils.obtenerMesActual());
         
-        //Mostrar total ingresos del mes
-        ArrayList<Ingresos> listaIngresos;
-        ControlIngresos lista = new ControlIngresos();
-        listaIngresos=lista.mostrarIngresosMes();
-        int sumaMontos=0;
-        for (Ingresos ingreso: listaIngresos) {
-            sumaMontos += ingreso.getMonto_ing();}
-        NumberFormat formatoMonto = NumberFormat.getCurrencyInstance(Locale.getDefault());
-        String totalMes = formatoMonto.format(sumaMontos);
-        this.jlbl_totalIngresos.setText(totalMes);
+        this.jlbl_totalIngresos.setText(utils.obtenerTotalIngresosMes());
+        this.jlbl_totalIngresos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         
     }
 

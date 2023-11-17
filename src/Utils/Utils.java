@@ -31,17 +31,12 @@ public class Utils {
     
     //Escribir aquí lo que está en métodos.
     
-    public Date obtenerFecha() {
-        Date fechaActual = new Date();
-        return fechaActual;
-    }
-    
-    public String obtenerMes(Date fecha){
+    public String obtenerMesActual(){
+        Date fecha = new Date();
         SimpleDateFormat fechaFormatoMes = new SimpleDateFormat("MMMM");
         String nombreMes = fechaFormatoMes.format(fecha);
-        return nombreMes;
+        return nombreMes.toUpperCase();
     }
-    
 
     public void RellenarComboInt(String tabla, String valor, JComboBox combo){
         

@@ -43,11 +43,8 @@ public class VMeta extends javax.swing.JFrame {
     public VMeta() throws Exception {
         initComponents();
         
-        Date fechaActual;
-        String mesActual;
-        fechaActual=utils.obtenerFecha();
-        mesActual=utils.obtenerMes(fechaActual);
-        this.jlbl_mesActual.setText(mesActual.toUpperCase());
+        Utils utils = new Utils();
+        this.jlbl_mesActual.setText(utils.obtenerMesActual());
         
         utils.RellenarComboMeta("meta", "nombre_meta", this.jcbo_Meta);
         
