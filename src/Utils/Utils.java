@@ -6,6 +6,7 @@ package Utils;
 
 import controlador.ControlAhorro;
 import controlador.ControlGasto;
+import controlador.ControlIngresos;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Ahorro;
 import modelo.ConexionBD;
 import modelo.Gasto;
+import modelo.Ingresos;
 
 /**
  *
@@ -107,7 +109,7 @@ public class Utils {
         return anno;
     }
     
-    public String obtenerTotal (Gasto gasto, int codcat) throws Exception{
+    public String obtenerTotal (int codcat) throws Exception{
         ArrayList<Gasto> listaGastos;
         ControlGasto cgasto = new ControlGasto();
         
@@ -119,6 +121,17 @@ public class Utils {
         }
         NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
         return formatoMontoGas.format(sumaMontosGas);
+    }
+    
+    public int obtenerTotalCat (int codcat) throws Exception{
+        ArrayList<Gasto> listaGastos;
+        ControlGasto cgasto = new ControlGasto();
+        listaGastos=cgasto.mostrarGastosMesCat(codcat);
+        int sumaMontosGas=0;
+        for (Gasto gasto : listaGastos) {
+            sumaMontosGas+=gasto.getMontoGast();
+        }
+        return sumaMontosGas;
     }
     
     public JTable refrescar(JTable tabla,int codcat) throws Exception{
@@ -213,5 +226,29 @@ public class Utils {
         } catch (Exception e) {
         }
        
+    }
+    
+    public String obtenerTotalGastosMes () throws Exception{
+        ArrayList<Gasto> listaGastos;
+        ControlGasto cgasto = new ControlGasto();
+        listaGastos=cgasto.mostrarGastosMes();
+        int sumaMontosGas=0;
+        for (Gasto gasto : listaGastos) {
+            sumaMontosGas+=gasto.getMontoGast();
+        }
+        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        return formatoMontoGas.format(sumaMontosGas);
+    }
+    
+    public String obtenerTotalIngresosMes () throws Exception{
+        ArrayList<Ingresos> listaIngresos;
+        ControlIngresos cingresos = new ControlIngresos();
+        listaIngresos=cingresos.mostrarIngresosMes();
+        int sumaMontosIng=0;
+        for (Ingresos ingreso : listaIngresos) {
+            sumaMontosIng+=ingreso.getMonto_ing();
+        }
+        NumberFormat formatoMontoIng = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        return formatoMontoIng.format(sumaMontosIng);
     }
 }

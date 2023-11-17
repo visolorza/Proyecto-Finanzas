@@ -520,7 +520,7 @@ public class VGastos extends javax.swing.JFrame {
                 int codcat = cgasto.obtCat(desc_cat);
                 utils.RellenarComboSubcat("subcategoria", "desc_subcat", this.jcbo_subcategoria, codcat);
 
-                this.jlbl_totalCompras.setText(utils.obtenerTotal(gasto, codcat));
+                this.jlbl_totalCompras.setText(utils.obtenerTotal(codcat));
                 this.jlbl_ingresosMes.setText(desc_cat);
                 utils.refrescar(jTableMostrar, codcat);
                 
@@ -610,7 +610,7 @@ public class VGastos extends javax.swing.JFrame {
                 this.jtxt_descGasto.setText("");
                 
                 //Mostrar total gasto en compras en el mes
-                this.jlbl_totalCompras.setText(utils.obtenerTotal(gasto, codcat));
+                this.jlbl_totalCompras.setText(utils.obtenerTotal(codcat));
                 jlbl_totalCompras.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT); 
                 
             }
