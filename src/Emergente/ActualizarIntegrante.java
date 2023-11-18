@@ -11,18 +11,19 @@ import modelo.Integrante;
  *
  * @author michimisimo
  */
-public class ActulizarIntegrante extends javax.swing.JFrame {
+public class ActualizarIntegrante extends javax.swing.JFrame {
 
     /**
      * Creates new form actualizargastos
      */
-    public ActulizarIntegrante() {
+    public ActualizarIntegrante() {
         initComponents();
         
         Utils utils = new Utils();
     
-    //utils.RellenarComboInt("integrante", "desc_int", this.jcbo_integrante);
-    //utils.RellenarComboSubcat("subcategoria", "desc_subcat", this.jcbo_subcategoria,4);
+        utils.RellenarComboInt("integrante", "desc_int", this.jcbo_integrante);
+        
+        
     }
 
     /**
@@ -37,13 +38,13 @@ public class ActulizarIntegrante extends javax.swing.JFrame {
         jlbl_ingresosMes2 = new javax.swing.JLabel();
         jbtn_actualizar = new javax.swing.JButton();
         jcbo_integrante = new javax.swing.JComboBox<>();
-        jlbl_ingresosMes6 = new javax.swing.JLabel();
-        jtxt_cod_gast = new javax.swing.JTextField();
+        jtxt_nuevoNombre = new javax.swing.JTextField();
+        jlbl_ingresosMes3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jlbl_ingresosMes2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes2.setText("Nombre:");
+        jlbl_ingresosMes2.setText("Integrante");
 
         jbtn_actualizar.setBackground(new java.awt.Color(204, 204, 204));
         jbtn_actualizar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -66,16 +67,16 @@ public class ActulizarIntegrante extends javax.swing.JFrame {
             }
         });
 
-        jlbl_ingresosMes6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes6.setText("Codigo Integrante");
-
-        jtxt_cod_gast.setBackground(new java.awt.Color(204, 204, 204));
-        jtxt_cod_gast.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jtxt_cod_gast.addActionListener(new java.awt.event.ActionListener() {
+        jtxt_nuevoNombre.setBackground(new java.awt.Color(204, 204, 204));
+        jtxt_nuevoNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jtxt_nuevoNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxt_cod_gastActionPerformed(evt);
+                jtxt_nuevoNombreActionPerformed(evt);
             }
         });
+
+        jlbl_ingresosMes3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_ingresosMes3.setText("Nuevo nombre");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,29 +86,30 @@ public class ActulizarIntegrante extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jlbl_ingresosMes6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtxt_cod_gast, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbtn_actualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jbtn_actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlbl_ingresosMes2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jcbo_integrante, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jcbo_integrante, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jlbl_ingresosMes3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addComponent(jtxt_nuevoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtxt_cod_gast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlbl_ingresosMes6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlbl_ingresosMes2)
                     .addComponent(jcbo_integrante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(107, 107, 107)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtxt_nuevoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlbl_ingresosMes3))
+                .addGap(110, 110, 110)
                 .addComponent(jbtn_actualizar, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                 .addGap(24, 24, 24))
         );
@@ -119,19 +121,18 @@ public class ActulizarIntegrante extends javax.swing.JFrame {
     ControlGrupoFamiliar cintegrante = new ControlGrupoFamiliar();
     
     private void jbtn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_actualizarActionPerformed
-//
-//        integrante.setMontoGast(Integer.parseInt(this.jtxt_montoGasto.getText()));
-//        gasto.setDescGast(this.jtxt_descGasto.getText());
-//        gasto.setCodGast(Integer.parseInt(this.jtxt_cod_gast.getText()));
-//        
-//        try {
-//            if(cgasto.actualizar(gasto)){
-//                System.out.println("gasto modificado con exto "+gasto.toString());   
-//                this.setVisible(false);
-//            }
-//                    } catch (Exception ex) {
-//            Logger.getLogger(ActulizarIntegrante.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+
+        integrante.setDesc_int(this.jtxt_nuevoNombre.getText().toUpperCase());
+        //integrante.setCod_int(Integer.parseInt(this.jtxt_cod_gast.getText()));
+        
+        try {
+            if(cintegrante.actualizar(integrante)){
+                System.out.println("integrante modificado con exto "+ integrante.toString());   
+                this.setVisible(false);
+            }
+                    } catch (Exception ex) {
+            Logger.getLogger(ActualizarIntegrante.class.getName()).log(Level.SEVERE, null, ex);
+        }
       
     }//GEN-LAST:event_jbtn_actualizarActionPerformed
 
@@ -139,18 +140,18 @@ public class ActulizarIntegrante extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         String desc_int = jcbo_integrante.getSelectedItem().toString().toUpperCase();
-//        try {
-//            cgasto.obt_int(gasto, desc_int);
-//            System.out.println("integrsnte guardado "+gasto.getCodInt());
-//        } catch (Exception ex) {
-//            Logger.getLogger(ActulizarIntegrante.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            cintegrante.obt_int(integrante, desc_int);
+            System.out.println("integrsnte guardado "+integrante.getCod_int());
+        } catch (Exception ex) {
+            Logger.getLogger(ActualizarIntegrante.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_jcbo_integranteActionPerformed
 
-    private void jtxt_cod_gastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_cod_gastActionPerformed
+    private void jtxt_nuevoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_nuevoNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtxt_cod_gastActionPerformed
+    }//GEN-LAST:event_jtxt_nuevoNombreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,14 +170,46 @@ public class ActulizarIntegrante extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ActulizarIntegrante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ActualizarIntegrante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ActulizarIntegrante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ActualizarIntegrante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ActulizarIntegrante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ActualizarIntegrante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ActulizarIntegrante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ActualizarIntegrante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
         //</editor-fold>
 
         //</editor-fold>
@@ -217,7 +250,7 @@ public class ActulizarIntegrante extends javax.swing.JFrame {
     private javax.swing.JButton jbtn_actualizar;
     private javax.swing.JComboBox<String> jcbo_integrante;
     private javax.swing.JLabel jlbl_ingresosMes2;
-    private javax.swing.JLabel jlbl_ingresosMes6;
-    private javax.swing.JTextField jtxt_cod_gast;
+    private javax.swing.JLabel jlbl_ingresosMes3;
+    private javax.swing.JTextField jtxt_nuevoNombre;
     // End of variables declaration//GEN-END:variables
 }

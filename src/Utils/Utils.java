@@ -192,6 +192,14 @@ public class Utils {
         }
         
         tabla.setModel(modelo);
+        
+        for (Integrante listaGr : listaGrupo) {
+            Object a[] = new Object[2];
+                    
+            a[0]=listaGr.getCod_int();
+            a[1]=listaGr.getDesc_int();
+            modelo.addRow(a);
+        }
  
         return tabla;
     }

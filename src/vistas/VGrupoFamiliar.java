@@ -1,5 +1,7 @@
 package vistas;
 
+import Emergente.ActualizarIntegrante;
+import Emergente.EliminarIntegrante;
 import controlador.ControlGrupoFamiliar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,6 +36,12 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         modelo.addColumn("INTEGRANTE");
  
         this.jTableMostrar.setModel(modelo);
+        
+        try {
+            utils.refrescarGrupoFamiliar(jTableMostrar);
+        } catch (Exception ex) {
+            Logger.getLogger(VGrupoFamiliar.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 
@@ -353,6 +361,8 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         
         try {
             cintegrante.agregar(integrante);
+            
+            utils.refrescarGrupoFamiliar(jTableMostrar);
         } catch (Exception ex) {
             Logger.getLogger(VGrupoFamiliar.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -441,13 +451,19 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtn_inicioActionPerformed
 
     private void jbtn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_eliminarActionPerformed
-        // TODO add your handling code here:
+        
+        EliminarIntegrante eliminar = new EliminarIntegrante();
+        eliminar.setVisible(true);
+        eliminar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
     }//GEN-LAST:event_jbtn_eliminarActionPerformed
 
     private void jbtn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_modificarActionPerformed
-        // TODO add your handling code here:
-
+        
+        ActualizarIntegrante actualizar = new ActualizarIntegrante();
+        actualizar.setVisible(true);
+        actualizar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        
     }//GEN-LAST:event_jbtn_modificarActionPerformed
 
     private void jbtn_refrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_refrescarActionPerformed

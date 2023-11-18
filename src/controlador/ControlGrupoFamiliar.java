@@ -95,9 +95,10 @@ public class ControlGrupoFamiliar {
             ConexionBD con = new ConexionBD();
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "update integrante set desc_int = ?";
+            String query = "update integrante set desc_int = ? where cod_int = ?";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setString(1,integrante.getDesc_int());
+            stmt.setInt(2,integrante.getCod_int());
 
             stmt.executeUpdate();
             stmt.close();
@@ -110,34 +111,35 @@ public class ControlGrupoFamiliar {
         }
     }
     
-//    public Integrante obtenerCodigoInt(Integrante integrante) throws Exception {
-//
-//    try {
-//        ConexionBD con = new ConexionBD();
-//        Connection cnx = ConexionBD.obtenerConexion();
-//
-//        String query = "SELECT cod_int FROM integrante";
-//        PreparedStatement stmt = cnx.prepareStatement(query);
-//        
-//        ResultSet rs = stmt.executeQuery();
-//
-//        rs = stmt.executeQuery();
-//
-//        if (rs.next()) {
-//            gasto.setCodInt(rs.getInt("cod_int")); 
-//            System.out.println("cod_int agregado"+gasto.toString());
-//            return gasto;
-//        } else {
-//            // Manejar el caso en el que no se encontraron filas
-//            System.out.println("No se encontraron resultados para desc_int: " + desc_int);
-//        }
-//
-//    } catch (SQLException e) {
-//        System.out.println("Error SQL al obtener cod_int: " + e.getMessage());
-//        // Puedes lanzar una excepción más específica aquí si es necesario
-//    } 
-//
-//        return gasto;
-//    }
+    public int obt_int(Integrante integrante, String desc_int) throws Exception {
+
+    try {
+        ConexionBD con = new ConexionBD();
+        Connection cnx = ConexionBD.obtenerConexion();
+
+        String query = "SELECT cod_int FROM integrante WHERE desc_int=?";
+        PreparedStatement stmt = cnx.prepareStatement(query);
+        stmt.setString(1, desc_int);
+        
+        ResultSet rs = stmt.executeQuery();
+
+        rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            integrante.setCod_int(rs.getInt("cod_int")); 
+            System.out.println("cod_int agregado"+integrante.toString());
+            return integrante.getCod_int();
+        } else {
+            // Manejar el caso en el que no se encontraron filas
+            System.out.println("No se encontraron resultados para desc_int: " + desc_int);
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Error SQL al obtener cod_int: " + e.getMessage());
+        // Puedes lanzar una excepción más específica aquí si es necesario
+    } 
+
+        return integrante.getCod_int();
+    }
     
 }
