@@ -1,5 +1,7 @@
 package vistas;
 
+import Utils.Utils;
+import controlador.ControlGasto;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -38,12 +40,16 @@ public class VDetalleHistorico extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
-        jbtn_grupoFamiliar2 = new javax.swing.JButton();
-        jbtn_grupoFamiliar3 = new javax.swing.JButton();
-        jbtn_grupoFamiliar4 = new javax.swing.JButton();
-        jlbl_ListaDetHist = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableDHist = new javax.swing.JTable();
         jPanel8 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jcbo_mes = new javax.swing.JComboBox<>();
+        jcbo_año = new javax.swing.JComboBox<>();
+        jcbo_cat = new javax.swing.JComboBox<>();
+        jlbl_ingresosMes = new javax.swing.JLabel();
         jbtn_inicio = new javax.swing.JButton();
         jbtn_grupoFamiliar = new javax.swing.JButton();
         jbtn_ingresosMes = new javax.swing.JButton();
@@ -59,89 +65,28 @@ public class VDetalleHistorico extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(204, 204, 204));
 
-        jPanel7.setBackground(new java.awt.Color(153, 153, 153));
-
-        jbtn_grupoFamiliar2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_grupoFamiliar2.setForeground(new java.awt.Color(0, 0, 0));
-        jbtn_grupoFamiliar2.setText("Fecha");
-        jbtn_grupoFamiliar2.setBorder(null);
-        jbtn_grupoFamiliar2.setBorderPainted(false);
-        jbtn_grupoFamiliar2.setContentAreaFilled(false);
-        jbtn_grupoFamiliar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtn_grupoFamiliar2ActionPerformed(evt);
+        jTableDHist.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        });
-
-        jbtn_grupoFamiliar3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_grupoFamiliar3.setForeground(new java.awt.Color(0, 0, 0));
-        jbtn_grupoFamiliar3.setText("Detalle");
-        jbtn_grupoFamiliar3.setBorder(null);
-        jbtn_grupoFamiliar3.setBorderPainted(false);
-        jbtn_grupoFamiliar3.setContentAreaFilled(false);
-        jbtn_grupoFamiliar3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtn_grupoFamiliar3ActionPerformed(evt);
-            }
-        });
-
-        jbtn_grupoFamiliar4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_grupoFamiliar4.setForeground(new java.awt.Color(0, 0, 0));
-        jbtn_grupoFamiliar4.setText("Monto");
-        jbtn_grupoFamiliar4.setBorder(null);
-        jbtn_grupoFamiliar4.setBorderPainted(false);
-        jbtn_grupoFamiliar4.setContentAreaFilled(false);
-        jbtn_grupoFamiliar4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtn_grupoFamiliar4ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jbtn_grupoFamiliar2)
-                .addGap(89, 89, 89)
-                .addComponent(jbtn_grupoFamiliar3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 234, Short.MAX_VALUE)
-                .addComponent(jbtn_grupoFamiliar4)
-                .addGap(48, 48, 48))
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtn_grupoFamiliar2)
-                    .addComponent(jbtn_grupoFamiliar3)
-                    .addComponent(jbtn_grupoFamiliar4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jlbl_ListaDetHist.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        ));
+        jScrollPane1.setViewportView(jTableDHist);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jlbl_ListaDetHist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlbl_ListaDetHist, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
         );
 
         jPanel8.setBackground(new java.awt.Color(204, 204, 204));
@@ -150,12 +95,42 @@ public class VDetalleHistorico extends javax.swing.JFrame {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 280, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 206, Short.MAX_VALUE)
+            .addGap(0, 235, Short.MAX_VALUE)
         );
+
+        jLabel1.setText("año:");
+
+        jLabel2.setText("mes:");
+
+        jLabel3.setText("Categoria:");
+
+        jcbo_mes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- SELECCIONAR -" }));
+        jcbo_mes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbo_mesActionPerformed(evt);
+            }
+        });
+
+        jcbo_año.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- SELECCIONAR -" }));
+        jcbo_año.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbo_añoActionPerformed(evt);
+            }
+        });
+
+        jcbo_cat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- SELECCIONAR -", "INGRESO", "GASTO", "AHORRO" }));
+        jcbo_cat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbo_catActionPerformed(evt);
+            }
+        });
+
+        jlbl_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jlbl_ingresosMes.setText("DETALLE HISTÓRICO");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -163,24 +138,54 @@ public class VDetalleHistorico extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jcbo_cat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jcbo_mes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jcbo_año, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jlbl_ingresosMes))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jlbl_ingresosMes)
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jcbo_cat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jcbo_año, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jcbo_mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(66, 66, 66)))
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
         );
 
         jbtn_inicio.setBackground(new java.awt.Color(204, 204, 204));
         jbtn_inicio.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_inicio.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_inicio.setText("Inicio");
         jbtn_inicio.setBorder(null);
         jbtn_inicio.setBorderPainted(false);
@@ -192,7 +197,6 @@ public class VDetalleHistorico extends javax.swing.JFrame {
         });
 
         jbtn_grupoFamiliar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_grupoFamiliar.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_grupoFamiliar.setText("Grupo familiar");
         jbtn_grupoFamiliar.setBorder(null);
         jbtn_grupoFamiliar.setBorderPainted(false);
@@ -204,7 +208,6 @@ public class VDetalleHistorico extends javax.swing.JFrame {
         });
 
         jbtn_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_ingresosMes.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_ingresosMes.setText("Ingresos del mes");
         jbtn_ingresosMes.setBorder(null);
         jbtn_ingresosMes.setBorderPainted(false);
@@ -216,7 +219,6 @@ public class VDetalleHistorico extends javax.swing.JFrame {
         });
 
         jbtn_GastosMes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_GastosMes.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_GastosMes.setText("Gastos del mes");
         jbtn_GastosMes.setBorder(null);
         jbtn_GastosMes.setBorderPainted(false);
@@ -228,7 +230,6 @@ public class VDetalleHistorico extends javax.swing.JFrame {
         });
 
         jbtn_Meta.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_Meta.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_Meta.setText("Ahorros");
         jbtn_Meta.setBorder(null);
         jbtn_Meta.setBorderPainted(false);
@@ -240,7 +241,6 @@ public class VDetalleHistorico extends javax.swing.JFrame {
         });
 
         jbtn_detHist.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_detHist.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_detHist.setText("Detalle histórico");
         jbtn_detHist.setBorder(null);
         jbtn_detHist.setBorderPainted(false);
@@ -300,18 +300,9 @@ public class VDetalleHistorico extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtn_grupoFamiliar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliar4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtn_grupoFamiliar4ActionPerformed
-
-    private void jbtn_grupoFamiliar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliar3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtn_grupoFamiliar3ActionPerformed
-
-    private void jbtn_grupoFamiliar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_grupoFamiliar2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtn_grupoFamiliar2ActionPerformed
-
+    Utils utils = new Utils();
+    ControlGasto cgasto = new ControlGasto();
+    
     private void jbtn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_inicioActionPerformed
 
         this.obtenerPosicion();
@@ -396,58 +387,233 @@ public class VDetalleHistorico extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jbtn_detHistActionPerformed
 
+    private void jcbo_mesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_mesActionPerformed
+        
+        int year = 0; 
+
+        Object item1 = this.jcbo_año.getSelectedItem();
+        if (item1 != null) {
+            if (!"- SELECCIONAR -".equals(item1)) {
+                try {
+                    
+                    year = Integer.parseInt(item1.toString());
+                    
+                } catch (NumberFormatException e) {
+                    System.err.println("Error al convertir el año a un entero: " + e.getMessage());
+                }
+            }
+        }
+        
+        
+        int mes = 0; 
+
+        Object item2 = this.jcbo_mes.getSelectedItem();
+        if (item2 != null) {
+            if (!"- SELECCIONAR -".equals(item2)) {
+                try {
+                    
+                    mes = Integer.parseInt(item2.toString());
+                    
+                } catch (NumberFormatException e) {
+                    System.err.println("Error al convertir el año a un entero: " + e.getMessage());
+                }
+            }
+        }
+        
+
+        String cat = this.jcbo_cat.getSelectedItem() != null ? this.jcbo_cat.getSelectedItem().toString() : "";
+        
+        
+        
+        if (!"- SELECCIONAR -".equals(year) && !"".equals(year)) {
+
+            String fecha;
+            switch (cat) {
+                case "INGRESO":
+                    fecha = "fecha_ing";
+                    
+                     try {
+                        utils.refrescarIngresoMes(jTableDHist, year, mes);
+                    } catch (Exception ex) {
+                        Logger.getLogger(VDetalleHistorico.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+                case "GASTO":
+                    fecha = "fecha_gast";
+                    
+                    try {
+                        utils.refrescarGastoMes(jTableDHist, year, mes);
+                    } catch (Exception ex) {
+                        Logger.getLogger(VDetalleHistorico.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+                case "AHORRO":
+                    fecha = "fecha_ahor";
+         
+                    try {
+                        utils.refrescarAhorroMes(jTableDHist, year, mes);
+                    } catch (Exception ex) {
+                        Logger.getLogger(VDetalleHistorico.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+
+                default:
+                    throw new AssertionError();
+            }
+        }
+        
+    }//GEN-LAST:event_jcbo_mesActionPerformed
+
+    private void jcbo_catActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_catActionPerformed
+        // TODO add your handling code here:
+        
+        String cat = this.jcbo_cat.getSelectedItem() != null ? this.jcbo_cat.getSelectedItem().toString() : "";
+        
+        if (!"- SELECCIONAR -".equals(cat) && !"".equals(cat)) {
+            
+            this.jcbo_año.removeAllItems();
+            this.jcbo_año.addItem("- SELECCIONAR -");
+            
+            String fecha_cat="";
+            
+            switch (cat) {
+                case "GASTO":
+                    
+                    try {
+                        utils.refrescarTodoGasto(this.jTableDHist);
+                        fecha_cat="fecha_gast"; 
+                        if (!"".equals(fecha_cat)) {
+                            utils.RellenarComboAño(cat,fecha_cat, this.jcbo_año); 
+                        }
+                        
+                    } catch (Exception ex) {
+                        Logger.getLogger(VDetalleHistorico.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+                
+                case("INGRESO"):
+                    
+                    try {
+                        utils.refrescarTodoIngreso(this.jTableDHist);
+                        fecha_cat="fecha_ing";
+                        if (!"".equals(fecha_cat)) {
+                            utils.RellenarComboAño(cat,fecha_cat, this.jcbo_año); 
+                        }
+                        
+                    } catch (Exception ex) {
+                    Logger.getLogger(VDetalleHistorico.class.getName()).log(Level.SEVERE, null, ex);
+                    }  
+                    break;
+                
+                case ("AHORRO"):
+                    
+                    try {
+                        utils.refrescarTodoMeta(this.jTableDHist);
+                        fecha_cat="fecha_ahor";
+                        if (!"".equals(fecha_cat)) {
+                            utils.RellenarComboAño(cat,fecha_cat, this.jcbo_año); 
+                        }
+                  
+                    } catch (Exception ex) {
+                    Logger.getLogger(VDetalleHistorico.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+                    
+                default:
+                    throw new AssertionError();
+            }   
+        }
+    }//GEN-LAST:event_jcbo_catActionPerformed
+
+    private void jcbo_añoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_añoActionPerformed
+        // TODO add your handling code here:
+        int year = 0; 
+
+        Object item = this.jcbo_año.getSelectedItem();
+        if (item != null) {
+            if (!"- SELECCIONAR -".equals(item)) {
+                try {
+                    
+                    year = Integer.parseInt(item.toString());
+                    
+                } catch (NumberFormatException e) {
+                    System.err.println("Error al convertir el año a un entero: " + e.getMessage());
+                }
+            }
+        }
+        
+
+        String cat = this.jcbo_cat.getSelectedItem() != null ? this.jcbo_cat.getSelectedItem().toString() : "";
+        
+
+        if (!"- SELECCIONAR -".equals(year) && !"".equals(year)) {
+            this.jcbo_mes.removeAllItems();
+            this.jcbo_mes.addItem("- SELECCIONAR -");
+            String fecha;
+            switch (cat) {
+                case "INGRESO":
+                    fecha = "fecha_ing";
+                    
+                     try {
+                        utils.refrescarIngresoAño(jTableDHist, year);
+                        utils.RellenarComboMes(year, cat, fecha, this.jcbo_mes);
+                    } catch (Exception ex) {
+                        Logger.getLogger(VDetalleHistorico.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+                case "GASTO":
+                    fecha = "fecha_gast";
+                    
+                    try {
+                        utils.refrescarGastoAño(jTableDHist, year);
+                        utils.RellenarComboMes(year, cat, fecha, this.jcbo_mes);
+                    } catch (Exception ex) {
+                        Logger.getLogger(VDetalleHistorico.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+                case "AHORRO":
+                    fecha = "fecha_ahor";
+         
+                    try {
+                        utils.refrescarAhorroAño(jTableDHist, year);
+                        utils.RellenarComboMes(year, cat, fecha, this.jcbo_mes);
+                    } catch (Exception ex) {
+                        Logger.getLogger(VDetalleHistorico.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+
+                default:
+                    throw new AssertionError();
+            }
+        }
+     
+    }//GEN-LAST:event_jcbo_añoActionPerformed
+
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Inicio().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable jTableDHist;
     private javax.swing.JButton jbtn_GastosMes;
     private javax.swing.JButton jbtn_Meta;
     private javax.swing.JButton jbtn_detHist;
     private javax.swing.JButton jbtn_grupoFamiliar;
-    private javax.swing.JButton jbtn_grupoFamiliar2;
-    private javax.swing.JButton jbtn_grupoFamiliar3;
-    private javax.swing.JButton jbtn_grupoFamiliar4;
     private javax.swing.JButton jbtn_ingresosMes;
     private javax.swing.JButton jbtn_inicio;
-    private javax.swing.JLabel jlbl_ListaDetHist;
+    private javax.swing.JComboBox<String> jcbo_año;
+    private javax.swing.JComboBox<String> jcbo_cat;
+    private javax.swing.JComboBox<String> jcbo_mes;
+    private javax.swing.JLabel jlbl_ingresosMes;
     // End of variables declaration//GEN-END:variables
 
     // Obtener y establecer la posición de la ventana

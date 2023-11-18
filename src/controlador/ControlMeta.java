@@ -54,7 +54,7 @@ public class ControlMeta {
          
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "insert into meta(nombre_meta, monto_meta, cod_int) values(?,?,?)";
+            String query = "insert into meta(cod_meta, nombre_meta, monto_meta, cod_int) values(seq_meta.nextval,?,?,?)";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setString(1, meta.getNombre_meta());
             stmt.setInt(2, meta.getMonto_meta());
@@ -143,4 +143,36 @@ public class ControlMeta {
         }
         return codigoObtenido;
     }
+    
+    public Meta obt_int(Meta meta,String desc_int) throws Exception {
+
+    try {
+        ConexionBD con = new ConexionBD();
+        Connection cnx = ConexionBD.obtenerConexion();
+
+        String query = "SELECT cod_int FROM integrante WHERE desc_int=?";
+        PreparedStatement stmt = cnx.prepareStatement(query);
+        stmt.setString(1, desc_int);
+        
+        ResultSet rs = stmt.executeQuery();
+
+        rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            meta.setCod_int(rs.getInt("cod_int")); 
+            System.out.println("cod_int agregado"+meta.toString());
+            return meta;
+        } else {
+            // Manejar el caso en el que no se encontraron filas
+            System.out.println("No se encontraron resultados para desc_int: " + desc_int);
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Error SQL al obtener cod_int: " + e.getMessage());
+        // Puedes lanzar una excepción más específica aquí si es necesario
+    } 
+
+        return meta;
+    }
+    
 }

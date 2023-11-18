@@ -1,17 +1,17 @@
 
 package Emergente;
 
-import controlador.ControlGasto;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modelo.Gasto;
 import Utils.Utils;
+import controlador.ControlMeta;
+import modelo.Meta;
 
 /**
  *
  * @author michimisimo
  */
-public class ActulizarGastos extends javax.swing.JFrame {
+public class IngresarMeta extends javax.swing.JFrame {
     
     private int posicionX;  
     private int posicionY;
@@ -20,17 +20,16 @@ public class ActulizarGastos extends javax.swing.JFrame {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-    
     /**
      * Creates new form actualizargastos
      */
-    public ActulizarGastos() {
+    public IngresarMeta() {
         initComponents();
         
         Utils utils = new Utils();
-    
-    utils.RellenarComboInt("integrante", "desc_int", this.jcbo_integrante);
-    utils.RellenarComboSubcat("subcategoria", "desc_subcat", this.jcbo_subcategoria,4);
+        
+        
+        utils.RellenarComboInt("integrante", "desc_int", this.jcbo_integrante);
     }
 
     /**
@@ -42,8 +41,6 @@ public class ActulizarGastos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jcbo_subcategoria = new javax.swing.JComboBox<>();
-        jlbl_ingresosMes5 = new javax.swing.JLabel();
         jlbl_ingresosMes2 = new javax.swing.JLabel();
         jlbl_ingresosMes4 = new javax.swing.JLabel();
         jtxt_montoGasto = new javax.swing.JTextField();
@@ -51,23 +48,8 @@ public class ActulizarGastos extends javax.swing.JFrame {
         jtxt_descGasto = new javax.swing.JTextField();
         jbtn_actualizar = new javax.swing.JButton();
         jcbo_integrante = new javax.swing.JComboBox<>();
-        jlbl_ingresosMes6 = new javax.swing.JLabel();
-        jtxt_cod_gast = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jcbo_subcategoria.setBackground(new java.awt.Color(204, 204, 204));
-        jcbo_subcategoria.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jcbo_subcategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Seleccionar -" }));
-        jcbo_subcategoria.setBorder(null);
-        jcbo_subcategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbo_subcategoriaActionPerformed(evt);
-            }
-        });
-
-        jlbl_ingresosMes5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes5.setText("Subcategoría:");
 
         jlbl_ingresosMes2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jlbl_ingresosMes2.setText("Integrante:");
@@ -84,7 +66,7 @@ public class ActulizarGastos extends javax.swing.JFrame {
         });
 
         jlbl_ingresosMes3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes3.setText("Descripción:");
+        jlbl_ingresosMes3.setText("Nombre meta:");
 
         jtxt_descGasto.setBackground(new java.awt.Color(204, 204, 204));
         jtxt_descGasto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -96,7 +78,7 @@ public class ActulizarGastos extends javax.swing.JFrame {
 
         jbtn_actualizar.setBackground(new java.awt.Color(204, 204, 204));
         jbtn_actualizar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_actualizar.setText("modificar");
+        jbtn_actualizar.setText("Ingresar");
         jbtn_actualizar.setBorder(null);
         jbtn_actualizar.setBorderPainted(false);
         jbtn_actualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -115,17 +97,6 @@ public class ActulizarGastos extends javax.swing.JFrame {
             }
         });
 
-        jlbl_ingresosMes6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes6.setText("codigo gasto:");
-
-        jtxt_cod_gast.setBackground(new java.awt.Color(204, 204, 204));
-        jtxt_cod_gast.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jtxt_cod_gast.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxt_cod_gastActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,41 +105,30 @@ public class ActulizarGastos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jlbl_ingresosMes3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jtxt_descGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jlbl_ingresosMes4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jtxt_montoGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jlbl_ingresosMes2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jcbo_integrante, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbtn_actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jlbl_ingresosMes6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                        .addComponent(jtxt_cod_gast, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jlbl_ingresosMes3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jbtn_actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(68, 68, 68))
+                                    .addComponent(jtxt_descGasto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jlbl_ingresosMes4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jtxt_montoGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(21, 21, 21)))
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jlbl_ingresosMes5)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jcbo_subcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtxt_cod_gast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlbl_ingresosMes6))
-                .addGap(39, 39, 39)
+                .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jcbo_integrante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlbl_ingresosMes2))
@@ -177,43 +137,21 @@ public class ActulizarGastos extends javax.swing.JFrame {
                     .addComponent(jtxt_montoGasto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlbl_ingresosMes4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtxt_descGasto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlbl_ingresosMes3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlbl_ingresosMes3)
+                    .addComponent(jtxt_descGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jbtn_actualizar, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                .addGap(24, 24, 24))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(48, 48, 48)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jcbo_subcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jlbl_ingresosMes5))
-                    .addContainerGap(162, Short.MAX_VALUE)))
+                .addGap(35, 35, 35))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    ControlGasto cgasto = new ControlGasto();
-    Gasto gasto = new Gasto();
+    ControlMeta cmeta = new ControlMeta();
+    Meta meta = new Meta();
     
     
-    private void jcbo_subcategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_subcategoriaActionPerformed
-        // TODO add your handling code here:
-
-        String desc_subcat = jcbo_subcategoria.getSelectedItem().toString().toUpperCase();
-        
-        try {
-            cgasto.obt_subcat(gasto, desc_subcat);
-        } catch (Exception ex) {
-            Logger.getLogger(ActulizarGastos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            System.out.println("subcat guardado "+gasto.getCodSubcat());
-        
-
-    }//GEN-LAST:event_jcbo_subcategoriaActionPerformed
-
     private void jtxt_montoGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_montoGastoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxt_montoGastoActionPerformed
@@ -224,17 +162,16 @@ public class ActulizarGastos extends javax.swing.JFrame {
 
     private void jbtn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_actualizarActionPerformed
 
-        gasto.setMontoGast(Integer.parseInt(this.jtxt_montoGasto.getText()));
-        gasto.setDescGast(this.jtxt_descGasto.getText());
-        gasto.setCodGast(Integer.parseInt(this.jtxt_cod_gast.getText()));
+        meta.setMonto_meta(Integer.parseInt(this.jtxt_montoGasto.getText()));
+        meta.setNombre_meta(this.jtxt_descGasto.getText().toUpperCase());
         
         try {
-            if(cgasto.actualizar(gasto)){
-                System.out.println("gasto modificado con exto "+gasto.toString());   
+            if(cmeta.agregar(meta)){
+                System.out.println("gasto modificado con exto " + meta.toString());   
                 this.setVisible(false);
             }
                     } catch (Exception ex) {
-            Logger.getLogger(ActulizarGastos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(IngresarMeta.class.getName()).log(Level.SEVERE, null, ex);
         }
       
     }//GEN-LAST:event_jbtn_actualizarActionPerformed
@@ -244,17 +181,13 @@ public class ActulizarGastos extends javax.swing.JFrame {
 
         String desc_int = jcbo_integrante.getSelectedItem().toString().toUpperCase();
         try {
-            cgasto.obt_int(gasto, desc_int);
-            System.out.println("integrsnte guardado "+gasto.getCodInt());
+            cmeta.obt_int(meta, desc_int);
+            System.out.println("integrante guardado "+meta.getCod_int());
         } catch (Exception ex) {
-            Logger.getLogger(ActulizarGastos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(IngresarMeta.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_jcbo_integranteActionPerformed
-
-    private void jtxt_cod_gastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_cod_gastActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtxt_cod_gastActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,13 +196,9 @@ public class ActulizarGastos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbtn_actualizar;
     private javax.swing.JComboBox<String> jcbo_integrante;
-    private javax.swing.JComboBox<String> jcbo_subcategoria;
     private javax.swing.JLabel jlbl_ingresosMes2;
     private javax.swing.JLabel jlbl_ingresosMes3;
     private javax.swing.JLabel jlbl_ingresosMes4;
-    private javax.swing.JLabel jlbl_ingresosMes5;
-    private javax.swing.JLabel jlbl_ingresosMes6;
-    private javax.swing.JTextField jtxt_cod_gast;
     private javax.swing.JTextField jtxt_descGasto;
     private javax.swing.JTextField jtxt_montoGasto;
     // End of variables declaration//GEN-END:variables
@@ -284,3 +213,4 @@ public class ActulizarGastos extends javax.swing.JFrame {
     }
 
 }
+

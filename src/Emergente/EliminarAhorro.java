@@ -1,10 +1,11 @@
+package Emergente;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Emergente;
 
-import controlador.ControlGasto;
+import controlador.ControlAhorro;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -12,7 +13,7 @@ import java.util.logging.Logger;
  *
  * @author felip
  */
-public class EliminarGastos extends javax.swing.JFrame {
+public class EliminarAhorro extends javax.swing.JFrame {
     
     private int posicionX;  
     private int posicionY;
@@ -25,7 +26,7 @@ public class EliminarGastos extends javax.swing.JFrame {
     /**
      * Creates new form EliminarGastos
      */
-    public EliminarGastos() {
+    public EliminarAhorro() {
         initComponents();
     }
 
@@ -43,11 +44,10 @@ public class EliminarGastos extends javax.swing.JFrame {
         jbtn_eliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(259, 230));
         setResizable(false);
 
         jlbl_ingresosMes6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes6.setText("codigo gasto:");
+        jlbl_ingresosMes6.setText("codigo Ahorro:");
 
         jtxt_cod_gast.setBackground(new java.awt.Color(204, 204, 204));
         jtxt_cod_gast.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -95,7 +95,7 @@ public class EliminarGastos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    ControlGasto cgasto = new ControlGasto();
+    ControlAhorro cgasto = new ControlAhorro();
     
     private void jtxt_cod_gastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_cod_gastActionPerformed
         // TODO add your handling code here:
@@ -107,11 +107,11 @@ public class EliminarGastos extends javax.swing.JFrame {
 
         try {
             if(cgasto.eliminar(cod_gast)){
-                System.out.println("gasto eliminado con exto ");
+                System.out.println("ahorro eliminado con exto ");
                 this.setVisible(false);
             }
         } catch (Exception ex) {
-            Logger.getLogger(EliminarGastos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EliminarAhorro.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_jbtn_eliminarActionPerformed

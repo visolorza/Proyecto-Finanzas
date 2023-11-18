@@ -17,7 +17,41 @@ public class ControlGasto {
 
     public ControlGasto() {
     }
-     
+    
+    public ArrayList mostrarTodo() throws Exception {
+        
+        ArrayList<Gasto> lista = new ArrayList<>();
+        
+        try {
+            ConexionBD con = new ConexionBD();
+            Connection cnx = ConexionBD.obtenerConexion();
+
+            String query = "SELECT * FROM gasto order by fecha_gast desc";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Gasto gasto = new Gasto();
+                gasto.setCodGast(rs.getInt("COD_GAST"));
+                gasto.setFechaGast(rs.getDate("FECHA_GAST"));
+                gasto.setDescGast(rs.getString("DESC_GAST"));
+                gasto.setMontoGast(rs.getInt("MONTO_GAST"));
+                gasto.setCodSubcat(rs.getInt("COD_SUBCAT"));
+                gasto.setCodInt(rs.getInt("COD_INT"));
+                lista.add(gasto);
+            }
+            rs.close();
+            stmt.close();
+            cnx.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error SQL al listar gastos" + e.getMessage());
+        }
+        
+        return lista;
+    }
+    
     public ArrayList mostrar(int cod_cat) throws Exception {
         
         ArrayList<Gasto> lista = new ArrayList<>();
@@ -269,12 +303,80 @@ public class ControlGasto {
 
     ResultSet rs = stmt.executeQuery();
 
-    if (rs.next()) {
-        return rs.getInt("cod_cat");
-    } else {
-        throw new Exception("No se encontró ninguna categoría con la descripción proporcionada");
+        if (rs.next()) {
+            return rs.getInt("cod_cat");
+        } else {
+            throw new Exception("No se encontró ninguna categoría con la descripción proporcionada");
+        }
     }
-}
+    
+    public ArrayList<Gasto> mostrarGastoPoraño(int año) throws Exception {
+        
+        ArrayList<Gasto> lista = new ArrayList<>();
+        
+        try {
+            ConexionBD con = new ConexionBD();
+            //Connection cnx = con.obtenerConexion();
+            Connection cnx = ConexionBD.obtenerConexion();
+
+            String query = "SELECT * FROM gasto WHERE EXTRACT(YEAR FROM fecha_gast)=?";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            stmt.setInt(1, año);
+            
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Gasto ahorro = new Gasto();
+                ahorro.setCodGast(rs.getInt("COD_GAST"));
+                ahorro.setFechaGast(rs.getDate("FECHA_GAST"));
+                ahorro.setDescGast(rs.getString("DESC_GAST"));
+                ahorro.setMontoGast(rs.getInt("MONTO_GAST"));
+                lista.add(ahorro);
+            }
+            rs.close();
+            stmt.close();
+            cnx.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error SQL al listar gasto por año " + e.getMessage());
+        }
+        return lista;
+    }
+    
+    public ArrayList<Gasto> mostrarGastoPorMes(int año, int mes) throws Exception {
+        
+        ArrayList<Gasto> lista = new ArrayList<>();
+        
+        try {
+            ConexionBD con = new ConexionBD();
+            //Connection cnx = con.obtenerConexion();
+            Connection cnx = ConexionBD.obtenerConexion();
+
+            String query = "SELECT * FROM gasto WHERE EXTRACT(YEAR FROM fecha_gast)=? AND EXTRACT(MONTH FROM fecha_gast)=? ";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            stmt.setInt(1, año);
+            stmt.setInt(2, mes);
+            
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Gasto ahorro = new Gasto();
+                ahorro.setCodGast(rs.getInt("COD_GAST"));
+                ahorro.setFechaGast(rs.getDate("FECHA_GAST"));
+                ahorro.setDescGast(rs.getString("DESC_GAST"));
+                ahorro.setMontoGast(rs.getInt("MONTO_GAST"));
+                lista.add(ahorro);
+            }
+            rs.close();
+            stmt.close();
+            cnx.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error SQL al listar gasto por año " + e.getMessage());
+        }
+        return lista;
+    }
+    
 }
     
     

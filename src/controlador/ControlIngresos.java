@@ -21,10 +21,9 @@ public class ControlIngresos {
         
         try {
             ConexionBD con = new ConexionBD();
-            //Connection cnx = con.obtenerConexion();
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "select * from Ingreso";
+            String query = "select * from Ingreso order by fecha_ing desc";
             PreparedStatement stmt = cnx.prepareStatement(query);
             
             ResultSet rs = stmt.executeQuery();
@@ -182,6 +181,68 @@ public class ControlIngresos {
         return lista;
     }
     
+    public ArrayList<Ingresos> mostraringresoPorAño(int año) throws Exception {
+        
+        ArrayList<Ingresos> lista = new ArrayList<>();
+        
+        try {
+            ConexionBD con = new ConexionBD();
+            Connection cnx = ConexionBD.obtenerConexion();
+
+            String query = "SELECT * FROM ingreso WHERE EXTRACT(YEAR FROM fecha_ing)=?";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            stmt.setInt(1, año);
+            
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Ingresos ahorro = new Ingresos();
+                ahorro.setCod_ing(rs.getInt("COD_ING"));
+                ahorro.setFecha_ing(rs.getDate("FECHA_ING"));
+                ahorro.setDesc_ing(rs.getString("DESC_ING"));
+                ahorro.setMonto_ing(rs.getInt("MONTO_ING"));
+                lista.add(ahorro);
+            }
+            rs.close();
+            stmt.close();
+            cnx.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error SQL al listar ingreso por año " + e.getMessage());
+        }
+        return lista;
+    }
     
-    
+    public ArrayList<Ingresos> mostraringresoPorMes(int año,int mes) throws Exception {
+        
+        ArrayList<Ingresos> lista = new ArrayList<>();
+        
+        try {
+            ConexionBD con = new ConexionBD();
+            Connection cnx = ConexionBD.obtenerConexion();
+
+            String query = "SELECT * FROM ingreso WHERE EXTRACT(YEAR FROM fecha_ing)=? and EXTRACT(MONTH FROM fecha_ing)=?";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            stmt.setInt(1, año);
+            stmt.setInt(2, mes);
+            
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Ingresos ahorro = new Ingresos();
+                ahorro.setCod_ing(rs.getInt("COD_ING"));
+                ahorro.setFecha_ing(rs.getDate("FECHA_ING"));
+                ahorro.setDesc_ing(rs.getString("DESC_ING"));
+                ahorro.setMonto_ing(rs.getInt("MONTO_ING"));
+                lista.add(ahorro);
+            }
+            rs.close();
+            stmt.close();
+            cnx.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error SQL al listar ingreso por año " + e.getMessage());
+        }
+        return lista;
+    }
 }

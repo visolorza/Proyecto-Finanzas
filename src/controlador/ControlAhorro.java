@@ -24,7 +24,7 @@ public class ControlAhorro {
             //Connection cnx = con.obtenerConexion();
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "select * from ahorro";
+            String query = "select * from ahorro order by fecha_ahor desc";
             PreparedStatement stmt = cnx.prepareStatement(query);
             
             ResultSet rs = stmt.executeQuery();
@@ -175,6 +175,73 @@ public class ControlAhorro {
     } 
         return ahorro;
     
+    }
+    
+    public ArrayList<Ahorro> mostrarAhorroPoraño(int año) throws Exception {
+        
+        ArrayList<Ahorro> lista = new ArrayList<>();
+        
+        try {
+            ConexionBD con = new ConexionBD();
+            //Connection cnx = con.obtenerConexion();
+            Connection cnx = ConexionBD.obtenerConexion();
+
+            String query = "SELECT * FROM ahorro WHERE EXTRACT(YEAR FROM fecha_ahor)=?";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            stmt.setInt(1, año);
+            
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Ahorro ahorro = new Ahorro();
+                ahorro.setCod_ahorro(rs.getInt("COD_AHOR"));
+                ahorro.setFecha_ahorro(rs.getDate("FECHA_AHOR"));
+                ahorro.setMonto_ahorro(rs.getInt("MONTO_AHOR"));
+                ahorro.setCod_meta(rs.getInt("COD_META"));
+                lista.add(ahorro);
+            }
+            rs.close();
+            stmt.close();
+            cnx.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error SQL al listar ahorro " + e.getMessage());
+        }
+        return lista;
+    }
+    
+    public ArrayList<Ahorro> mostrarAhorroPorMes(int año,int mes) throws Exception {
+        
+        ArrayList<Ahorro> lista = new ArrayList<>();
+        
+        try {
+            ConexionBD con = new ConexionBD();
+            //Connection cnx = con.obtenerConexion();
+            Connection cnx = ConexionBD.obtenerConexion();
+
+            String query = "SELECT * FROM ahorro WHERE EXTRACT(YEAR FROM fecha_ahor)=? AND EXTRACT(MONTH FROM fecha_ahor)=?";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            stmt.setInt(1, año);
+            stmt.setInt(2, mes);
+            
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Ahorro ahorro = new Ahorro();
+                ahorro.setCod_ahorro(rs.getInt("COD_AHOR"));
+                ahorro.setFecha_ahorro(rs.getDate("FECHA_AHOR"));
+                ahorro.setMonto_ahorro(rs.getInt("MONTO_AHOR"));
+                ahorro.setCod_meta(rs.getInt("COD_META"));
+                lista.add(ahorro);
+            }
+            rs.close();
+            stmt.close();
+            cnx.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error SQL al listar ahorro " + e.getMessage());
+        }
+        return lista;
     }
     
 }
