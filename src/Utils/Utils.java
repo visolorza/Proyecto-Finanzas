@@ -6,6 +6,7 @@ package Utils;
 
 import controlador.ControlAhorro;
 import controlador.ControlGasto;
+import controlador.ControlGrupoFamiliar;
 import controlador.ControlIngresos;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,6 +23,7 @@ import modelo.Ahorro;
 import modelo.ConexionBD;
 import modelo.Gasto;
 import modelo.Ingresos;
+import modelo.Integrante;
 
 /**
  *
@@ -170,6 +172,27 @@ public class Utils {
             a[3]=monto;
             modelo.addRow(a);
         }
+        return tabla;
+    }
+    
+     public JTable refrescarGrupoFamiliar(JTable tabla) throws Exception{
+        
+        ArrayList<Integrante> listaGrupo = new ArrayList<>();
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        modelo.addColumn("CODIGO");
+        modelo.addColumn("INTEGRANTE");
+        ControlGrupoFamiliar cintegrante = new ControlGrupoFamiliar();
+        
+        listaGrupo = cintegrante.mostrar();
+       
+        while (modelo.getRowCount()>0) {
+            modelo.removeRow(0);
+        }
+        
+        tabla.setModel(modelo);
+ 
         return tabla;
     }
     
