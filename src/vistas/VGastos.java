@@ -602,6 +602,7 @@ public class VGastos extends javax.swing.JFrame {
         
         ActulizarGastos actualizar = new ActulizarGastos();
         actualizar.setVisible(true);
+        actualizar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
     }//GEN-LAST:event_jbtn_modificarActionPerformed
 
@@ -623,6 +624,7 @@ public class VGastos extends javax.swing.JFrame {
         
         EliminarGastos eliminar = new EliminarGastos();
         eliminar.setVisible(true);
+        eliminar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
     }//GEN-LAST:event_jbtn_eliminarActionPerformed
 

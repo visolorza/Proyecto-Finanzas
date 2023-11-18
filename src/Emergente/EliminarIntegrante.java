@@ -5,27 +5,21 @@
 package Emergente;
 
 import controlador.ControlGasto;
+import controlador.ControlGrupoFamiliar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.Integrante;
 
 /**
  *
  * @author felip
  */
-public class EliminarGastos extends javax.swing.JFrame {
-    
-    private int posicionX;  
-    private int posicionY;
-    
-    public static void actualizar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    
+public class EliminarIntegrante extends javax.swing.JFrame {
+
     /**
      * Creates new form EliminarGastos
      */
-    public EliminarGastos() {
+    public EliminarIntegrante() {
         initComponents();
     }
 
@@ -39,20 +33,20 @@ public class EliminarGastos extends javax.swing.JFrame {
     private void initComponents() {
 
         jlbl_ingresosMes6 = new javax.swing.JLabel();
-        jtxt_cod_gast = new javax.swing.JTextField();
+        jtxt_cod_int = new javax.swing.JTextField();
         jbtn_eliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jlbl_ingresosMes6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes6.setText("codigo gasto:");
+        jlbl_ingresosMes6.setText("Codigo Integrante:");
 
-        jtxt_cod_gast.setBackground(new java.awt.Color(204, 204, 204));
-        jtxt_cod_gast.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jtxt_cod_gast.addActionListener(new java.awt.event.ActionListener() {
+        jtxt_cod_int.setBackground(new java.awt.Color(204, 204, 204));
+        jtxt_cod_int.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jtxt_cod_int.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxt_cod_gastActionPerformed(evt);
+                jtxt_cod_intActionPerformed(evt);
             }
         });
 
@@ -72,9 +66,9 @@ public class EliminarGastos extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(62, Short.MAX_VALUE)
+                .addContainerGap(57, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jtxt_cod_gast, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtxt_cod_int, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlbl_ingresosMes6)
                     .addComponent(jbtn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60))
@@ -85,7 +79,7 @@ public class EliminarGastos extends javax.swing.JFrame {
                 .addContainerGap(97, Short.MAX_VALUE)
                 .addComponent(jlbl_ingresosMes6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtxt_cod_gast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtxt_cod_int, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
                 .addComponent(jbtn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(67, 67, 67))
@@ -94,23 +88,25 @@ public class EliminarGastos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    ControlGasto cgasto = new ControlGasto();
+    Integrante integrante = new Integrante();
+    ControlGrupoFamiliar cintegrante = new ControlGrupoFamiliar();
     
-    private void jtxt_cod_gastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_cod_gastActionPerformed
+    
+    private void jtxt_cod_intActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_cod_intActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtxt_cod_gastActionPerformed
+    }//GEN-LAST:event_jtxt_cod_intActionPerformed
 
     private void jbtn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_eliminarActionPerformed
 
-        int cod_gast=Integer.parseInt(this.jtxt_cod_gast.getText());
+        int cod_int = Integer.parseInt(this.jtxt_cod_int.getText());
 
         try {
-            if(cgasto.eliminar(cod_gast)){
-                System.out.println("gasto eliminado con exto ");
+            if(cintegrante.eliminar(cod_int)){
+                System.out.println("integrante eliminado con exto ");
                 this.setVisible(false);
             }
         } catch (Exception ex) {
-            Logger.getLogger(EliminarGastos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EliminarIntegrante.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_jbtn_eliminarActionPerformed
@@ -119,19 +115,10 @@ public class EliminarGastos extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbtn_eliminar;
     private javax.swing.JLabel jlbl_ingresosMes6;
-    private javax.swing.JTextField jtxt_cod_gast;
+    private javax.swing.JTextField jtxt_cod_int;
     // End of variables declaration//GEN-END:variables
-
-    // Obtener y establecer la posición de la ventana
-    public void obtenerPosicion() {
-        posicionX = this.getLocation().x;
-        posicionY = this.getLocation().y;
-    }
-    public void establecerPosicion(int posicionX,int posicionY) {
-        this.setLocation(posicionX,posicionY);
-    }
-
 }

@@ -6,6 +6,7 @@ package Utils;
 
 import controlador.ControlAhorro;
 import controlador.ControlGasto;
+import controlador.ControlGrupoFamiliar;
 import controlador.ControlIngresos;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,6 +23,7 @@ import modelo.Ahorro;
 import modelo.ConexionBD;
 import modelo.Gasto;
 import modelo.Ingresos;
+import modelo.Integrante;
 
 /**
  *
@@ -410,6 +412,7 @@ public class Utils {
         NumberFormat formatoMontoIng = NumberFormat.getCurrencyInstance(Locale.getDefault());
         return formatoMontoIng.format(sumaMontosIng);
     }
+
     
     public JTable refrescarAhorroAño(JTable tabla,int año) throws Exception{
         
@@ -633,6 +636,35 @@ public class Utils {
             modelo.addRow(a);
         }
         return tabla;
-    } 
+    }
+    
+    public JTable refrescarGrupoFamiliar(JTable tabla) throws Exception{
+
+        ArrayList<Integrante> listaGrupo = new ArrayList<>();
+
+        DefaultTableModel modelo = new DefaultTableModel();
+
+        modelo.addColumn("CODIGO");
+        modelo.addColumn("INTEGRANTE");
+        ControlGrupoFamiliar cintegrante = new ControlGrupoFamiliar();
+
+        listaGrupo = cintegrante.mostrar();
+
+        while (modelo.getRowCount()>0) {
+            modelo.removeRow(0);
+        }
+
+        tabla.setModel(modelo);
+
+        for (Integrante listaGr : listaGrupo) {
+            Object a[] = new Object[2];
+
+            a[0]=listaGr.getCod_int();
+            a[1]=listaGr.getDesc_int();
+            modelo.addRow(a);
+        }
+
+        return tabla;
+    }
     
 }
