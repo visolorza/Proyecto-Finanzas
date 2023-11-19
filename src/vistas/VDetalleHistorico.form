@@ -224,12 +224,12 @@
             </Container>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a&#xf1;o:"/>
+                <Property name="text" type="java.lang.String" value="A&#xf1;o:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="mes:"/>
+                <Property name="text" type="java.lang.String" value="Mes:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">

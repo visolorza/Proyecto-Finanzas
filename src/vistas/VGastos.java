@@ -2,13 +2,13 @@ package vistas;
 
 import Utils.Utils;
 import controlador.ControlGasto;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import modelo.Gasto;
 import Emergente.ActulizarGastos;
 import Emergente.EliminarGastos;
+import java.util.Locale;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -38,11 +38,7 @@ public class VGastos extends javax.swing.JFrame {
     public VGastos() throws Exception {
         initComponents();
         
-        Date fechaActual;
-        String mesActual;
-        fechaActual=utils.obtenerFecha();
-        mesActual=utils.obtenerMes(fechaActual);
-        this.jlbl_mesActual.setText(mesActual.toUpperCase());
+        this.jlbl_mesActual.setText(utils.obtenerMesActual());
         
         this.jlbl_totalGastos.setText(utils.obtenerTotalGastosMes());
         this.jlbl_totalGastos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -56,7 +52,9 @@ public class VGastos extends javax.swing.JFrame {
         modelo.addColumn("DESCRIPCION");
         modelo.addColumn("MONTO");
         
-        this.jTableMostrar.setModel(modelo);
+        Locale.setDefault(new Locale("es", "ES"));
+        
+        this.jTableMostrar.setModel(modelo); 
     }
     
     /**
@@ -79,7 +77,7 @@ public class VGastos extends javax.swing.JFrame {
         jTableMostrar = new javax.swing.JTable();
         jbtn_refrescar = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
-        jlbl_ingresosMes = new javax.swing.JLabel();
+        jlbl_tituloCat = new javax.swing.JLabel();
         jlbl_mesActual = new javax.swing.JLabel();
         jlbl_totalGastos = new javax.swing.JLabel();
         jlbl_ingresosMes2 = new javax.swing.JLabel();
@@ -185,15 +183,12 @@ public class VGastos extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
 
-        jlbl_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jlbl_ingresosMes.setForeground(new java.awt.Color(0, 0, 0));
-        jlbl_ingresosMes.setText("GASTOS DEL MES");
+        jlbl_tituloCat.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jlbl_tituloCat.setText("GASTOS DEL MES");
 
         jlbl_mesActual.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jlbl_mesActual.setForeground(new java.awt.Color(0, 0, 0));
 
         jlbl_totalGastos.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jlbl_totalGastos.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -202,7 +197,7 @@ public class VGastos extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlbl_ingresosMes)
+                    .addComponent(jlbl_tituloCat)
                     .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(131, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
@@ -214,7 +209,7 @@ public class VGastos extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jlbl_ingresosMes)
+                .addComponent(jlbl_tituloCat)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -223,20 +218,16 @@ public class VGastos extends javax.swing.JFrame {
         );
 
         jlbl_ingresosMes2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes2.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_ingresosMes2.setText("Integrante:");
 
         jlbl_ingresosMes3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes3.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_ingresosMes3.setText("Descripción:");
 
         jlbl_ingresosMes4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes4.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_ingresosMes4.setText("Monto:");
 
         jcbo_integrante.setBackground(new java.awt.Color(204, 204, 204));
         jcbo_integrante.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jcbo_integrante.setForeground(new java.awt.Color(0, 0, 0));
         jcbo_integrante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- SELECCIONAR -" }));
         jcbo_integrante.setBorder(null);
         jcbo_integrante.addActionListener(new java.awt.event.ActionListener() {
@@ -246,7 +237,6 @@ public class VGastos extends javax.swing.JFrame {
         });
 
         jtxt_montoGasto.setBackground(new java.awt.Color(204, 204, 204));
-        jtxt_montoGasto.setForeground(new java.awt.Color(0, 0, 0));
         jtxt_montoGasto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jtxt_montoGasto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -255,7 +245,6 @@ public class VGastos extends javax.swing.JFrame {
         });
 
         jtxt_descGasto.setBackground(new java.awt.Color(204, 204, 204));
-        jtxt_descGasto.setForeground(new java.awt.Color(0, 0, 0));
         jtxt_descGasto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jtxt_descGasto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,7 +254,6 @@ public class VGastos extends javax.swing.JFrame {
 
         jcbo_subcategoria.setBackground(new java.awt.Color(204, 204, 204));
         jcbo_subcategoria.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jcbo_subcategoria.setForeground(new java.awt.Color(0, 0, 0));
         jcbo_subcategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- SELECCIONAR -" }));
         jcbo_subcategoria.setBorder(null);
         jcbo_subcategoria.addActionListener(new java.awt.event.ActionListener() {
@@ -275,12 +263,10 @@ public class VGastos extends javax.swing.JFrame {
         });
 
         jlbl_ingresosMes5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes5.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_ingresosMes5.setText("Subcategoría:");
 
         jbtn_anadir.setBackground(new java.awt.Color(204, 204, 204));
         jbtn_anadir.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_anadir.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_anadir.setText("Añadir");
         jbtn_anadir.setBorder(null);
         jbtn_anadir.setBorderPainted(false);
@@ -292,7 +278,6 @@ public class VGastos extends javax.swing.JFrame {
 
         jcbo_gastosMes.setBackground(new java.awt.Color(204, 204, 204));
         jcbo_gastosMes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jcbo_gastosMes.setForeground(new java.awt.Color(0, 0, 0));
         jcbo_gastosMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- SELECCIONAR -" }));
         jcbo_gastosMes.setBorder(null);
         jcbo_gastosMes.addActionListener(new java.awt.event.ActionListener() {
@@ -302,7 +287,6 @@ public class VGastos extends javax.swing.JFrame {
         });
 
         jlbl_ingresosMes6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes6.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_ingresosMes6.setText("Categoría:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -313,7 +297,7 @@ public class VGastos extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 531, Short.MAX_VALUE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 538, Short.MAX_VALUE)
                         .addGap(32, 32, 32))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -377,7 +361,6 @@ public class VGastos extends javax.swing.JFrame {
 
         jbtn_inicio.setBackground(new java.awt.Color(204, 204, 204));
         jbtn_inicio.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_inicio.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_inicio.setText("Inicio");
         jbtn_inicio.setBorder(null);
         jbtn_inicio.setBorderPainted(false);
@@ -389,7 +372,6 @@ public class VGastos extends javax.swing.JFrame {
         });
 
         jbtn_grupoFamiliar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_grupoFamiliar.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_grupoFamiliar.setText("Grupo familiar");
         jbtn_grupoFamiliar.setBorder(null);
         jbtn_grupoFamiliar.setBorderPainted(false);
@@ -401,7 +383,6 @@ public class VGastos extends javax.swing.JFrame {
         });
 
         jbtn_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_ingresosMes.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_ingresosMes.setText("Ingresos del mes");
         jbtn_ingresosMes.setBorder(null);
         jbtn_ingresosMes.setBorderPainted(false);
@@ -413,7 +394,6 @@ public class VGastos extends javax.swing.JFrame {
         });
 
         jbtn_GastosMes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_GastosMes.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_GastosMes.setText("Gastos del mes");
         jbtn_GastosMes.setBorder(null);
         jbtn_GastosMes.setBorderPainted(false);
@@ -425,7 +405,6 @@ public class VGastos extends javax.swing.JFrame {
         });
 
         jbtn_Meta.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_Meta.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_Meta.setText("Ahorros");
         jbtn_Meta.setBorder(null);
         jbtn_Meta.setBorderPainted(false);
@@ -437,7 +416,6 @@ public class VGastos extends javax.swing.JFrame {
         });
 
         jbtn_detHist.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_detHist.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_detHist.setText("Detalle histórico");
         jbtn_detHist.setBorder(null);
         jbtn_detHist.setBorderPainted(false);
@@ -511,18 +489,19 @@ public class VGastos extends javax.swing.JFrame {
                 String desc_cat = jcbo_gastosMes.getSelectedItem() != null ? jcbo_gastosMes.getSelectedItem().toString() : "";
                 if (!"- SELECCIONAR -".equals(desc_cat) && !"".equals(desc_cat)) {
                     
-                int codcat = cgasto.obtCat(desc_cat);
-                utils.RellenarComboSubcat("subcategoria", "desc_subcat", this.jcbo_subcategoria, codcat);
+                    int codcat = cgasto.obtCat(desc_cat);
+                    utils.RellenarComboSubcat("subcategoria", "desc_subcat", this.jcbo_subcategoria, codcat);
 
-                this.jlbl_totalGastos.setText(utils.obtenerTotal(codcat));
-                this.jlbl_ingresosMes.setText(desc_cat);
-                utils.refrescar(jTableMostrar, codcat);
-                
-                gasto.setCodInt(0);
-                gasto.setCodSubcat(0);
-                
-                jlbl_totalGastos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-            }
+                    this.jlbl_totalGastos.setText(utils.obtenerTotal(codcat));
+                    this.jlbl_tituloCat.setText(desc_cat);
+                    
+                    utils.refrescar(jTableMostrar, codcat);
+
+                    gasto.setCodInt(0);
+                    gasto.setCodSubcat(0);
+
+                    jlbl_totalGastos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+                }
 
         } catch (Exception ex) {
             Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
@@ -536,7 +515,7 @@ public class VGastos extends javax.swing.JFrame {
         String desc_int = jcbo_integrante.getSelectedItem().toString().toUpperCase();
         try {
             cgasto.obt_int(gasto, desc_int);
-            System.out.println("integrsnte guardado "+gasto.getCodInt());
+            System.out.println("integrante guardado "+gasto.getCodInt());
         } catch (Exception ex) {
             Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -580,15 +559,15 @@ public class VGastos extends javax.swing.JFrame {
             String desc_cat = jcbo_gastosMes.getSelectedItem() != null ? jcbo_gastosMes.getSelectedItem().toString() : "";
             int cod_cat = cgasto.obtCat(desc_cat);
             if(cgasto.agregar(gasto)){
-                System.out.println("gasto agregado con exto "+gasto.toString());
+
+                System.out.println("gasto agregado con exito "+gasto.toString());
                 utils.refrescar(jTableMostrar,cod_cat);
                 
                 this.jtxt_montoGasto.setText(""); 
                 this.jtxt_descGasto.setText("");
                 
-                //Mostrar total gasto en compras en el mes
                 this.jlbl_totalGastos.setText(utils.obtenerTotal(cod_cat));
-                jlbl_totalGastos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT); 
+
                 
             }
         } catch (Exception ex) {
@@ -738,13 +717,13 @@ public class VGastos extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcbo_integrante;
     private javax.swing.JComboBox<String> jcbo_subcategoria;
     private javax.swing.JLabel jlbl_ListaCompras;
-    private javax.swing.JLabel jlbl_ingresosMes;
     private javax.swing.JLabel jlbl_ingresosMes2;
     private javax.swing.JLabel jlbl_ingresosMes3;
     private javax.swing.JLabel jlbl_ingresosMes4;
     private javax.swing.JLabel jlbl_ingresosMes5;
     private javax.swing.JLabel jlbl_ingresosMes6;
     private javax.swing.JLabel jlbl_mesActual;
+    private javax.swing.JLabel jlbl_tituloCat;
     private javax.swing.JLabel jlbl_totalGastos;
     private javax.swing.JTextField jtxt_descGasto;
     private javax.swing.JTextField jtxt_montoGasto;

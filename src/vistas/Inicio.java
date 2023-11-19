@@ -3,7 +3,6 @@ package vistas;
 import Utils.Grafico;
 import Utils.Utils;
 import java.awt.BorderLayout;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,13 +29,9 @@ public class Inicio extends javax.swing.JFrame {
     public Inicio() throws Exception {
         initComponents();
         
-        Date fechaActual;
-        String mesActual;
         Utils utils = new Utils();
-        fechaActual=utils.obtenerFecha();
-        mesActual=utils.obtenerMes(fechaActual);
-        this.jlbl_mesActual.setText(mesActual.toUpperCase());
-        this.jlbl_mesActual1.setText(mesActual.toUpperCase());
+        this.jlbl_mesActual.setText(utils.obtenerMesActual());
+        this.jlbl_mesActual1.setText(utils.obtenerMesActual());
         
         this.jlbl_totalIngresos.setText(utils.obtenerTotalIngresosMes());
         this.jlbl_totalIngresos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);

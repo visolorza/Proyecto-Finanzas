@@ -102,9 +102,9 @@ public class VDetalleHistorico extends javax.swing.JFrame {
             .addGap(0, 235, Short.MAX_VALUE)
         );
 
-        jLabel1.setText("año:");
+        jLabel1.setText("Año:");
 
-        jLabel2.setText("mes:");
+        jLabel2.setText("Mes:");
 
         jLabel3.setText("Categoria:");
 

@@ -25,6 +25,7 @@ import modelo.Gasto;
 import modelo.Ingresos;
 import modelo.Integrante;
 
+
 /**
  *
  * @author Usuario
@@ -33,17 +34,12 @@ public class Utils {
     
     //Escribir aquí lo que está en métodos.
     
-    public Date obtenerFecha() {
-        Date fechaActual = new Date();
-        return fechaActual;
-    }
-    
-    public String obtenerMes(Date fecha){
+    public String obtenerMesActual(){
+        Date fecha = new Date();
         SimpleDateFormat fechaFormatoMes = new SimpleDateFormat("MMMM");
         String nombreMes = fechaFormatoMes.format(fecha);
-        return nombreMes;
+        return nombreMes.toUpperCase();
     }
-    
 
     public void RellenarComboInt(String tabla, String valor, JComboBox combo){
         
@@ -121,7 +117,7 @@ public class Utils {
         for (Gasto listaGasto : listaGastos) {
             sumaMontosGas+=listaGasto.getMontoGast();
         }
-        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
         return formatoMontoGas.format(sumaMontosGas);
     }
     
@@ -156,7 +152,8 @@ public class Utils {
         
         tabla.setModel(modelo);
         
-        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+        tabla.getColumnModel().getColumn(1).setCellRenderer(new FormatoTabla("dd-MM-yyyy"));
         
         String monto;
         
@@ -308,7 +305,7 @@ public class Utils {
         }
         
         tabla.setModel(modelo);
-        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
         
         String monto;
             
@@ -397,7 +394,7 @@ public class Utils {
         for (Gasto gasto : listaGastos) {
             sumaMontosGas+=gasto.getMontoGast();
         }
-        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
         return formatoMontoGas.format(sumaMontosGas);
     }
     
@@ -409,7 +406,7 @@ public class Utils {
         for (Ingresos ingreso : listaIngresos) {
             sumaMontosIng+=ingreso.getMonto_ing();
         }
-        NumberFormat formatoMontoIng = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        NumberFormat formatoMontoIng = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
         return formatoMontoIng.format(sumaMontosIng);
     }
 
@@ -667,4 +664,16 @@ public class Utils {
         return tabla;
     }
     
+    public String obtenerTotalAhorros () throws Exception{
+        ArrayList<Ahorro> listaAhorros;
+        ControlAhorro cahorro = new ControlAhorro();
+        listaAhorros=cahorro.mostrar();
+        int sumaMontosA=0;
+        for (Ahorro ahorro : listaAhorros) {
+            sumaMontosA+=ahorro.getMonto_ahorro();
+        }
+        NumberFormat formatoMontoA = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+        return formatoMontoA.format(sumaMontosA);
+    }
+
 }
