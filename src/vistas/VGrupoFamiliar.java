@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import modelo.Integrante;
 import Utils.Utils;
+import javax.swing.JTable;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -350,6 +351,11 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
     Integrante integrante = new Integrante();
     ControlGrupoFamiliar cintegrante = new ControlGrupoFamiliar();
     Utils utils = new Utils();
+
+    public JTable getjTableMostrar() {
+        return jTableMostrar;
+    }
+    
     
     private void jtxt_nombreIntegranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_nombreIntegranteActionPerformed
         // TODO add your handling code here:
@@ -367,6 +373,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
             Logger.getLogger(VGrupoFamiliar.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        this.jtxt_nombreIntegrante.setText("");
         
     }//GEN-LAST:event_jbtn_anadirActionPerformed
 
