@@ -720,4 +720,15 @@ public class Utils {
         return tabla;
     }
     
+    public int obtenerTotalGastoDH (int year,int mes, int codcat) throws Exception{
+        ArrayList<Gasto> listaGastos;
+        ControlGasto cgasto = new ControlGasto();
+        listaGastos=cgasto.mostrarGastosDetHis(year,mes,codcat);
+        int sumaMontosGas=0;
+        for (Gasto gasto : listaGastos) {
+            sumaMontosGas+=gasto.getMontoGast();
+        }
+        return sumaMontosGas;
+    }
+    
 }

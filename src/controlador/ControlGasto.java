@@ -420,7 +420,43 @@ public class ControlGasto {
         return lista;
     }
     
-    
+    public ArrayList<Gasto> mostrarGastosDetHis(int year, int mes, int cod_cat) throws Exception {
+        
+        ArrayList<Gasto> lista = new ArrayList<>();
+        
+        try {
+            ConexionBD con = new ConexionBD();
+            //Connection cnx = con.obtenerConexion();
+            Connection cnx = ConexionBD.obtenerConexion();
+
+            String query = "SELECT * FROM gasto g JOIN subcategoria s ON(s.cod_subcat = g.cod_subcat) "
+                    + "AND EXTRACT(YEAR FROM fecha_gast)=? AND EXTRACT(MONTH FROM fecha_gast) = ? WHERE s.cod_cat = ?";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            stmt.setInt(1, year);
+            stmt.setInt(2, mes);
+            stmt.setInt(3, cod_cat);
+            
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Gasto gasto = new Gasto();
+                gasto.setCodGast(rs.getInt("COD_GAST"));
+                gasto.setFechaGast(rs.getDate("FECHA_GAST"));
+                gasto.setDescGast(rs.getString("DESC_GAST"));
+                gasto.setMontoGast(rs.getInt("MONTO_GAST"));
+                gasto.setCodSubcat(rs.getInt("COD_SUBCAT"));
+                gasto.setCodInt(rs.getInt("COD_INT"));
+                lista.add(gasto);
+            }
+            rs.close();
+            stmt.close();
+            cnx.close();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage() + "Error SQL al listar gastos");
+        }
+        return lista;
+    }
     
 }
        

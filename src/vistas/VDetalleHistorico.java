@@ -1,9 +1,12 @@
 package vistas;
 
+import Utils.Grafico;
 import Utils.Utils;
 import controlador.ControlGasto;
+import java.awt.BorderLayout;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.jfree.chart.ChartPanel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -42,7 +45,7 @@ public class VDetalleHistorico extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableDHist = new javax.swing.JTable();
-        jPanel8 = new javax.swing.JPanel();
+        jpan_grafico = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -89,16 +92,16 @@ public class VDetalleHistorico extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
         );
 
-        jPanel8.setBackground(new java.awt.Color(204, 204, 204));
+        jpan_grafico.setBackground(new java.awt.Color(204, 204, 204));
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jpan_graficoLayout = new javax.swing.GroupLayout(jpan_grafico);
+        jpan_grafico.setLayout(jpan_graficoLayout);
+        jpan_graficoLayout.setHorizontalGroup(
+            jpan_graficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 280, Short.MAX_VALUE)
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jpan_graficoLayout.setVerticalGroup(
+            jpan_graficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 235, Short.MAX_VALUE)
         );
 
@@ -153,7 +156,7 @@ public class VDetalleHistorico extends javax.swing.JFrame {
                                     .addComponent(jcbo_año, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jlbl_ingresosMes))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jpan_grafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
@@ -163,7 +166,7 @@ public class VDetalleHistorico extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jpan_grafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jlbl_ingresosMes)
@@ -427,10 +430,10 @@ public class VDetalleHistorico extends javax.swing.JFrame {
         
         if (!"- SELECCIONAR -".equals(year) && !"".equals(year)) {
 
-            String fecha;
             switch (cat) {
                 case "INGRESO":
-                    fecha = "fecha_ing";
+                    
+                    this.jpan_grafico.removeAll();
                     
                      try {
                         utils.refrescarIngresoMes(jTableDHist, year, mes);
@@ -439,17 +442,34 @@ public class VDetalleHistorico extends javax.swing.JFrame {
                     }
                     break;
                 case "GASTO":
-                    fecha = "fecha_gast";
+                    
+                    this.jpan_grafico.removeAll();
                     
                     try {
                         utils.refrescarGastoMes(jTableDHist, year, mes);
+                        if (year!=0 && mes!=0) {
+                        
+                            Grafico grafico = new Grafico();
+                            ChartPanel chartPanel;       
+                            try {
+                                chartPanel = grafico.crearGraficoGasDetHis(year,mes);
+                                this.jpan_grafico.setLayout(new java.awt.BorderLayout());
+                                this.jpan_grafico.add(chartPanel, BorderLayout.CENTER);
+                                this.jpan_grafico.revalidate();
+                                this.jpan_grafico.repaint();
+                            } catch (Exception ex) {
+                                Logger.getLogger(VDetalleHistorico.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
                     } catch (Exception ex) {
                         Logger.getLogger(VDetalleHistorico.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     break;
+                    
                 case "AHORRO":
-                    fecha = "fecha_ahor";
-         
+                    
+                    this.jpan_grafico.removeAll();
+                    
                     try {
                         utils.refrescarAhorroMes(jTableDHist, year, mes);
                     } catch (Exception ex) {
@@ -600,7 +620,6 @@ public class VDetalleHistorico extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTableDHist;
@@ -614,6 +633,7 @@ public class VDetalleHistorico extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcbo_cat;
     private javax.swing.JComboBox<String> jcbo_mes;
     private javax.swing.JLabel jlbl_ingresosMes;
+    private javax.swing.JPanel jpan_grafico;
     // End of variables declaration//GEN-END:variables
 
     // Obtener y establecer la posición de la ventana

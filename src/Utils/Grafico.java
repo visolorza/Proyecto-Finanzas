@@ -50,4 +50,36 @@ public class Grafico {
         return chartPanel;
     }   
     
+    public ChartPanel crearGraficoGasDetHis(int year,int mes) throws Exception {
+        Utils utils = new Utils();
+        //Datos
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        dataset.setValue("Transporte", utils.obtenerTotalGastoDH(year, mes, 1));
+        dataset.setValue("Salud",utils.obtenerTotalGastoDH(year, mes, 2));
+        dataset.setValue("Educacion", utils.obtenerTotalGastoDH(year, mes, 3));
+        dataset.setValue("Compras", utils.obtenerTotalGastoDH(year, mes, 4));
+        dataset.setValue("Vivienda", utils.obtenerTotalGastoDH(year, mes, 5));
+        dataset.setValue("Cuentas", utils.obtenerTotalGastoDH(year, mes, 6));
+        dataset.setValue("Deudas", utils.obtenerTotalGastoDH(year, mes, 7));
+        dataset.setValue("Otros", utils.obtenerTotalGastoDH(year, mes, 8));
+        //Crear grafico
+        JFreeChart chart = ChartFactory.createPieChart(
+        " ",  
+        dataset,        
+        true,          
+        true,
+        false);                
+        //Ver porcentajes
+        PiePlot plot = (PiePlot) chart.getPlot();
+        PieSectionLabelGenerator labelGenerator = new StandardPieSectionLabelGenerator(
+        "{0} ({2})",  // "{0}" categorÃ­a, "{2}" porcentaje
+        new java.text.DecimalFormat("0.00"),  // Formato porcentajes num
+        new java.text.DecimalFormat("0.00%")); // Formato porcentajes "%" 
+        plot.setLabelGenerator(labelGenerator);
+
+        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new java.awt.Dimension(280, 235));
+        return chartPanel;
+    }
+    
 }
