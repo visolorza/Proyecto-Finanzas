@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Gasto;
 import Utils.Utils;
+import vistas.VGastos;
 
 /**
  *
@@ -24,12 +25,13 @@ public class ActulizarGastos extends javax.swing.JFrame {
     /**
      * Creates new form actualizargastos
      */
-    public ActulizarGastos() {
+    public ActulizarGastos() throws Exception {
         initComponents();
         
         Utils utils = new Utils();
     
     utils.RellenarComboInt("integrante", "desc_int", this.jcbo_integrante);
+    VGastos vgastos= new VGastos();
     utils.RellenarComboSubcat("subcategoria", "desc_subcat", this.jcbo_subcategoria,4);
     }
 

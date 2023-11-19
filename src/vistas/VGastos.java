@@ -578,16 +578,16 @@ public class VGastos extends javax.swing.JFrame {
 
         try {
             String desc_cat = jcbo_gastosMes.getSelectedItem() != null ? jcbo_gastosMes.getSelectedItem().toString() : "";
-            int codcat = cgasto.obtCat(desc_cat);
+            int cod_cat = cgasto.obtCat(desc_cat);
             if(cgasto.agregar(gasto)){
                 System.out.println("gasto agregado con exto "+gasto.toString());
-                utils.refrescar(jTableMostrar,codcat);
+                utils.refrescar(jTableMostrar,cod_cat);
                 
                 this.jtxt_montoGasto.setText(""); 
                 this.jtxt_descGasto.setText("");
                 
                 //Mostrar total gasto en compras en el mes
-                this.jlbl_totalGastos.setText(utils.obtenerTotal(codcat));
+                this.jlbl_totalGastos.setText(utils.obtenerTotal(cod_cat));
                 jlbl_totalGastos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT); 
                 
             }
@@ -598,11 +598,15 @@ public class VGastos extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtn_anadirActionPerformed
 
     private void jbtn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_modificarActionPerformed
-        // TODO add your handling code here:
-        
-        ActulizarGastos actualizar = new ActulizarGastos();
-        actualizar.setVisible(true);
-        actualizar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        try {
+            // TODO add your handling code here:
+            
+            ActulizarGastos actualizar = new ActulizarGastos();
+            actualizar.setVisible(true);
+            actualizar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        } catch (Exception ex) {
+            Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_jbtn_modificarActionPerformed
 
@@ -707,42 +711,11 @@ public class VGastos extends javax.swing.JFrame {
         detalleHistorico.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbtn_detHistActionPerformed
-    
+     
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Inicio().setVisible(true);
-//            }
-//        });
-//    }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
