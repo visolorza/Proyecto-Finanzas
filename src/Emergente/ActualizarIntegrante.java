@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import Utils.Utils;
 import controlador.ControlGrupoFamiliar;
 import modelo.Integrante;
+import vistas.VGrupoFamiliar;
 
 /**
  *
@@ -119,6 +120,8 @@ public class ActualizarIntegrante extends javax.swing.JFrame {
 
     Integrante integrante = new Integrante();
     ControlGrupoFamiliar cintegrante = new ControlGrupoFamiliar();
+    Utils utils = new Utils();
+    VGrupoFamiliar grupoFamiliar = new VGrupoFamiliar();
     
     private void jbtn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_actualizarActionPerformed
 
@@ -129,6 +132,8 @@ public class ActualizarIntegrante extends javax.swing.JFrame {
             if(cintegrante.actualizar(integrante)){
                 System.out.println("integrante modificado con exto "+ integrante.toString());   
                 this.setVisible(false);
+                utils.refrescarGrupoFamiliar(grupoFamiliar.getjTableMostrar()); 
+                // De esta forma debería refrescarse automáticamente la tabla al modificarla, no esta funcionando.
             }
                     } catch (Exception ex) {
             Logger.getLogger(ActualizarIntegrante.class.getName()).log(Level.SEVERE, null, ex);

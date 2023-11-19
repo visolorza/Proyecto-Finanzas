@@ -99,10 +99,10 @@ public class ControlIngresos {
             ConexionBD con = new ConexionBD();
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "update gasto set desc_ing=?,monto_ing=?,cod_subcat=?,cod_int=? where cod_ing=?";
+            String query = "update ingreso set desc_ing=?, monto_ing=?, cod_int=? where cod_ing=?";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setString(1,ingresos.getDesc_ing());
-            stmt.setInt(2,ingresos.getMonto_ing());
+            stmt.setInt(2, ingresos.getMonto_ing());
             stmt.setInt(3, ingresos.getCod_int());
             stmt.setInt(4, ingresos.getCod_ing());
 
