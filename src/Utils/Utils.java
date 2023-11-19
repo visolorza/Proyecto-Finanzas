@@ -8,6 +8,7 @@ import controlador.ControlAhorro;
 import controlador.ControlGasto;
 import controlador.ControlGrupoFamiliar;
 import controlador.ControlIngresos;
+import controlador.ControlMeta;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -675,5 +676,92 @@ public class Utils {
         NumberFormat formatoMontoA = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
         return formatoMontoA.format(sumaMontosA);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public String ahorroPorMeta (String nombre_meta) throws Exception{
+        
+        ArrayList<Ahorro> listaAhorro = new ArrayList<>();
+        
+        ControlAhorro cAhorro = new ControlAhorro();
+        ControlMeta cMeta = new ControlMeta();
+        
+        listaAhorro = cAhorro.mostrarAhorroPorMeta(cMeta.obtenerCodigoMeta(nombre_meta));
+        
+        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        
+        String monto = "";
+        int sumaMontoAhorro = 0;
+        
+        for (Ahorro listaAhorros : listaAhorro) {
+            
+            sumaMontoAhorro += listaAhorros.getMonto_ahorro();
+            monto=formatoMeta.format(sumaMontoAhorro);
+        }
+        return monto;
+    }
+
+
+
+
 
 }

@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import controlador.ControlAhorro;
+import controlador.ControlMeta;
 import modelo.Ahorro;
 
 /*
@@ -178,13 +179,11 @@ public class VMeta extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
 
         jlbl_tituloAhorro.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jlbl_tituloAhorro.setForeground(new java.awt.Color(0, 0, 0));
         jlbl_tituloAhorro.setText("AHORROS");
 
         jlbl_mesActual.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
 
         jlbl_totalAhorros.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jlbl_totalAhorros.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -448,12 +447,13 @@ public class VMeta extends javax.swing.JFrame {
     DefaultTableModel modelo = new DefaultTableModel();
     ControlAhorro cAhorro = new ControlAhorro();
     Ahorro ahorro = new Ahorro();
+    ControlMeta cMeta = new ControlMeta();
     Utils utils = new Utils();
  
     private void jcbo_MetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_MetaActionPerformed
         // TODO add your handling code here:
         
-         String nombre_meta= jcbo_Meta.getSelectedItem().toString();
+        String nombre_meta= jcbo_Meta.getSelectedItem().toString().toUpperCase();
          
         try {
             cAhorro.obt_meta(ahorro, nombre_meta);
@@ -461,7 +461,20 @@ public class VMeta extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
         }
- 
+
+        if (!"- SELECCIONAR -".equals(nombre_meta) && nombre_meta != null) {
+            this.jlbl_tituloAhorro.setText(nombre_meta);
+            
+             try {
+                 this.jlbl_totalAhorros.setText(utils.ahorroPorMeta(nombre_meta));
+             } catch (Exception ex) {
+                 Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        }
+        else {
+            this.jlbl_tituloAhorro.setText("AHORROS");
+        }
+        
     }//GEN-LAST:event_jcbo_MetaActionPerformed
 
     private void jbtn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_modificarActionPerformed
@@ -471,6 +484,7 @@ public class VMeta extends javax.swing.JFrame {
         actualizar.establecerPosicion(posicionX,posicionY);
         actualizar.obtenerPosicion();
         actualizar.setVisible(true);
+        actualizar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
     }//GEN-LAST:event_jbtn_modificarActionPerformed
 
@@ -492,6 +506,7 @@ public class VMeta extends javax.swing.JFrame {
         eliminar.establecerPosicion(posicionX,posicionY);
         eliminar.obtenerPosicion();
         eliminar.setVisible(true);
+        eliminar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jbtn_eliminarActionPerformed
 
     private void jbtn_abonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_abonarActionPerformed
@@ -533,6 +548,8 @@ public class VMeta extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
     }//GEN-LAST:event_jbtn_MetaActionPerformed
 
     private void jbtn_GastosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_GastosMesActionPerformed
@@ -598,6 +615,7 @@ public class VMeta extends javax.swing.JFrame {
         ingresar.establecerPosicion(posicionX,posicionY);
         ingresar.obtenerPosicion();
         ingresar.setVisible(true);
+        ingresar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
     }//GEN-LAST:event_jbtn_agregarMetaActionPerformed
 
@@ -608,6 +626,7 @@ public class VMeta extends javax.swing.JFrame {
         actualizar.establecerPosicion(posicionX,posicionY);
         actualizar.obtenerPosicion();
         actualizar.setVisible(true);
+        actualizar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
  
     }//GEN-LAST:event_jbtn_modificarMetaActionPerformed
 
@@ -618,6 +637,7 @@ public class VMeta extends javax.swing.JFrame {
         eliminar.establecerPosicion(posicionX,posicionY);
         eliminar.obtenerPosicion();
         eliminar.setVisible(true);
+        eliminar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
     }//GEN-LAST:event_jbtn_eliminarMetaActionPerformed
     
