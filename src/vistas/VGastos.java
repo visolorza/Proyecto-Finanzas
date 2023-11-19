@@ -50,6 +50,7 @@ public class VGastos extends javax.swing.JFrame {
         modelo.addColumn("CODIGO");
         modelo.addColumn("FECHA");
         modelo.addColumn("DESCRIPCION");
+        modelo.addColumn("INTEGRANTE");
         modelo.addColumn("MONTO");
         
         Locale.setDefault(new Locale("es", "ES"));
@@ -532,9 +533,17 @@ public class VGastos extends javax.swing.JFrame {
         
         if (!"".equals(desc_subcat) && !"- SELECCIONAR -".equals(desc_subcat)) {
            try {    
-            cgasto.obt_subcat(gasto, desc_subcat);
-            System.out.println("subcat guardado "+gasto.getCodSubcat());
             
+                cgasto.obt_subcat(gasto, desc_subcat);
+                String desc_cat = this.jcbo_gastosMes.getSelectedItem() != null ? this.jcbo_gastosMes.getSelectedItem().toString() : "";
+            
+                if (!"- SELECCIONAR -".equals(desc_cat) && !"".equals(desc_cat)) {
+                    
+                    int codcat = cgasto.obtCat(desc_cat);
+                    utils.refrescarPorSubcat(jTableMostrar, codcat,gasto.getCodSubcat());
+             
+            System.out.println("subcat guardado "+gasto.getCodSubcat());
+                }
             } catch (Exception ex) {
                 Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
             } 

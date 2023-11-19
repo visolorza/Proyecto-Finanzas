@@ -141,6 +141,7 @@ public class Utils {
         modelo.addColumn("CODIGO");
         modelo.addColumn("FECHA");
         modelo.addColumn("DESCRIPCION");
+        modelo.addColumn("INTEGRANTE");
         modelo.addColumn("MONTO");
         ControlGasto cgasto = new ControlGasto();
         
@@ -158,7 +159,7 @@ public class Utils {
         String monto;
         
         for (Gasto listag : listaGast) {
-            Object a[] = new Object[4];
+            Object a[] = new Object[5];
             int sumaMontosGas=listag.getMontoGast();
             
             monto=formatoMontoGas.format(sumaMontosGas);
@@ -166,7 +167,8 @@ public class Utils {
             a[0]=listag.getCodGast();
             a[1]=listag.getFechaGast();
             a[2]=listag.getDescGast();
-            a[3]=monto;
+            a[3]=listag.getDesc_int();
+            a[4]=monto;
             modelo.addRow(a);
         }
         return tabla;
@@ -675,5 +677,47 @@ public class Utils {
         NumberFormat formatoMontoA = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
         return formatoMontoA.format(sumaMontosA);
     }
-
+    
+    public JTable refrescarPorSubcat(JTable tabla,int codcat,int subcat) throws Exception{
+        
+        ArrayList<Gasto> listaGast = new ArrayList<>();
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        modelo.addColumn("CODIGO");
+        modelo.addColumn("FECHA");
+        modelo.addColumn("DESCRIPCION");
+        modelo.addColumn("INTEGRANTE");
+        modelo.addColumn("MONTO");
+        ControlGasto cgasto = new ControlGasto();
+        
+        listaGast = cgasto.mostrarSubcat(codcat,subcat);
+       
+        while (modelo.getRowCount()>0) {
+            modelo.removeRow(0);
+        }
+        
+        tabla.setModel(modelo);
+        
+        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+        tabla.getColumnModel().getColumn(1).setCellRenderer(new FormatoTabla("dd-MM-yyyy"));
+        
+        String monto;
+        
+        for (Gasto listag : listaGast) {
+            Object a[] = new Object[5];
+            int sumaMontosGas=listag.getMontoGast();
+            
+            monto=formatoMontoGas.format(sumaMontosGas);
+                    
+            a[0]=listag.getCodGast();
+            a[1]=listag.getFechaGast();
+            a[2]=listag.getDescGast();
+            a[3]=listag.getDesc_int();
+            a[4]=monto;
+            modelo.addRow(a);
+        }
+        return tabla;
+    }
+    
 }

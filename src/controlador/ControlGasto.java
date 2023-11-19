@@ -60,7 +60,11 @@ public class ControlGasto {
             ConexionBD con = new ConexionBD();
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "SELECT * FROM gasto g JOIN subcategoria s ON(s.cod_subcat = g.cod_subcat) WHERE s.cod_cat = ? order by fecha_gast desc";
+            String query = "SELECT g.cod_gast cod, g.fecha_gast fecha, g.desc_gast descri, i.desc_int integrante, g.monto_gast monto " +
+                            "FROM gasto g JOIN subcategoria s ON (s.cod_subcat = g.cod_subcat) " +
+                            "JOIN integrante i ON (i.cod_int = g.cod_int) " +
+                            "WHERE s.cod_cat = ? " +
+                            "ORDER BY g.fecha_gast DESC";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setInt(1, cod_cat);
             
@@ -68,12 +72,11 @@ public class ControlGasto {
 
             while (rs.next()) {
                 Gasto gasto = new Gasto();
-                gasto.setCodGast(rs.getInt("COD_GAST"));
-                gasto.setFechaGast(rs.getDate("FECHA_GAST"));
-                gasto.setDescGast(rs.getString("DESC_GAST"));
-                gasto.setMontoGast(rs.getInt("MONTO_GAST"));
-                gasto.setCodSubcat(rs.getInt("COD_SUBCAT"));
-                gasto.setCodInt(rs.getInt("COD_INT"));
+                gasto.setCodGast(rs.getInt("cod")); 
+                gasto.setFechaGast(rs.getDate("fecha"));
+                gasto.setDescGast(rs.getString("descri"));
+                gasto.setDesc_int(rs.getString("integrante"));
+                gasto.setMontoGast(rs.getInt("monto"));
                 lista.add(gasto);
             }
             rs.close();
@@ -377,7 +380,47 @@ public class ControlGasto {
         return lista;
     }
     
+    public ArrayList mostrarSubcat(int cod_cat,int cod_subcat) throws Exception {
+        
+        ArrayList<Gasto> lista = new ArrayList<>();
+        
+        try {
+            ConexionBD con = new ConexionBD();
+            Connection cnx = ConexionBD.obtenerConexion();
+
+            String query =  "SELECT g.cod_gast cod, g.fecha_gast fecha, g.desc_gast descri, i.desc_int integrante, g.monto_gast monto " +
+                            "FROM gasto g JOIN subcategoria s ON (s.cod_subcat = g.cod_subcat) " +
+                            "JOIN integrante i ON (i.cod_int = g.cod_int) " +
+                            "WHERE s.cod_cat = ? AND s.cod_subcat = ? " +
+                            "ORDER BY g.fecha_gast DESC";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            stmt.setInt(1, cod_cat);
+            stmt.setInt(2, cod_subcat);
+            ResultSet rs = stmt.executeQuery();
+            
+            System.out.println("Consulta SQL: " + query);
+
+            while (rs.next()) {
+                Gasto gasto = new Gasto();
+                gasto.setCodGast(rs.getInt("cod")); 
+                gasto.setFechaGast(rs.getDate("fecha"));
+                gasto.setDescGast(rs.getString("descri"));
+                gasto.setDesc_int(rs.getString("integrante"));
+                gasto.setMontoGast(rs.getInt("monto"));
+                lista.add(gasto);
+            }
+            rs.close();
+            stmt.close();
+            cnx.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error SQL al listar gastos" + e.getMessage());
+        }
+        
+        return lista;
+    }
+    
+    
+    
 }
-    
-    
-    
+       
