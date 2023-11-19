@@ -159,7 +159,7 @@ public class ActualizarAhorro extends javax.swing.JFrame {
     private void jbtn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_actualizarActionPerformed
 
         gasto.setMonto_ahorro(Integer.parseInt(this.jtxt_montoGasto.getText()));
-        gasto.setCod_ahorro(Integer.parseInt(this.jtxt_cod_gast.getText()));
+        gasto.setCod_ahorro(Integer.parseInt(this.jtxt_cod_gast.getText().toUpperCase()));
         
         try {
             if(cgasto.actualizar(gasto)){

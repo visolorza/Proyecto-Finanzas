@@ -182,7 +182,7 @@ public class ActualizarIngresos extends javax.swing.JFrame {
     private void jbtn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_actualizarActionPerformed
 
         ingreso.setMonto_ing(Integer.parseInt(this.jtxt_montoIngreso.getText()));
-        ingreso.setDesc_ing(this.jtxt_descIngreso.getText());
+        ingreso.setDesc_ing(this.jtxt_descIngreso.getText().toUpperCase());
         ingreso.setCod_ing(Integer.parseInt(this.jtxt_cod_ing.getText()));
         
         try {

@@ -189,7 +189,7 @@ public class ActulizarMeta extends javax.swing.JFrame {
     private void jbtn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_actualizarActionPerformed
 
         meta.setMonto_meta(Integer.parseInt(this.jtxt_montoGasto.getText()));
-        meta.setNombre_meta(this.jtxt_descGasto.getText());
+        meta.setNombre_meta(this.jtxt_descGasto.getText().toUpperCase());
         
         try {
             if(cmeta.actualizar(meta)){
