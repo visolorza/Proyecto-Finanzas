@@ -9,7 +9,6 @@ import modelo.Gasto;
 import Emergente.ActulizarGastos;
 import Emergente.EliminarGastos;
 import java.util.Locale;
-import Utils.FormatoTabla;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -78,7 +77,7 @@ public class VGastos extends javax.swing.JFrame {
         jTableMostrar = new javax.swing.JTable();
         jbtn_refrescar = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
-        jlbl_ingresosMes = new javax.swing.JLabel();
+        jlbl_tituloCat = new javax.swing.JLabel();
         jlbl_mesActual = new javax.swing.JLabel();
         jlbl_totalGastos = new javax.swing.JLabel();
         jlbl_ingresosMes2 = new javax.swing.JLabel();
@@ -184,8 +183,8 @@ public class VGastos extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
 
-        jlbl_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jlbl_ingresosMes.setText("GASTOS DEL MES");
+        jlbl_tituloCat.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jlbl_tituloCat.setText("GASTOS DEL MES");
 
         jlbl_mesActual.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
 
@@ -198,7 +197,7 @@ public class VGastos extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlbl_ingresosMes)
+                    .addComponent(jlbl_tituloCat)
                     .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(131, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
@@ -210,7 +209,7 @@ public class VGastos extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jlbl_ingresosMes)
+                .addComponent(jlbl_tituloCat)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -494,7 +493,7 @@ public class VGastos extends javax.swing.JFrame {
                     utils.RellenarComboSubcat("subcategoria", "desc_subcat", this.jcbo_subcategoria, codcat);
 
                     this.jlbl_totalGastos.setText(utils.obtenerTotal(codcat));
-                    this.jlbl_ingresosMes.setText(desc_cat);
+                    this.jlbl_tituloCat.setText(desc_cat);
                     
                     utils.refrescar(jTableMostrar, codcat);
 
@@ -516,7 +515,7 @@ public class VGastos extends javax.swing.JFrame {
         String desc_int = jcbo_integrante.getSelectedItem().toString().toUpperCase();
         try {
             cgasto.obt_int(gasto, desc_int);
-            System.out.println("integrsnte guardado "+gasto.getCodInt());
+            System.out.println("integrante guardado "+gasto.getCodInt());
         } catch (Exception ex) {
             Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -742,13 +741,13 @@ public class VGastos extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcbo_integrante;
     private javax.swing.JComboBox<String> jcbo_subcategoria;
     private javax.swing.JLabel jlbl_ListaCompras;
-    private javax.swing.JLabel jlbl_ingresosMes;
     private javax.swing.JLabel jlbl_ingresosMes2;
     private javax.swing.JLabel jlbl_ingresosMes3;
     private javax.swing.JLabel jlbl_ingresosMes4;
     private javax.swing.JLabel jlbl_ingresosMes5;
     private javax.swing.JLabel jlbl_ingresosMes6;
     private javax.swing.JLabel jlbl_mesActual;
+    private javax.swing.JLabel jlbl_tituloCat;
     private javax.swing.JLabel jlbl_totalGastos;
     private javax.swing.JTextField jtxt_descGasto;
     private javax.swing.JTextField jtxt_montoGasto;

@@ -202,8 +202,6 @@ public class ActulizarGastos extends javax.swing.JFrame {
             Logger.getLogger(ActulizarGastos.class.getName()).log(Level.SEVERE, null, ex);
         }
             System.out.println("subcat guardado "+gasto.getCodSubcat());
-        
-
     }//GEN-LAST:event_jcbo_subcategoriaActionPerformed
 
     private void jtxt_montoGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_montoGastoActionPerformed

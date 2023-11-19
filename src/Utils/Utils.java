@@ -7,6 +7,7 @@ package Utils;
 import controlador.ControlAhorro;
 import controlador.ControlGasto;
 import controlador.ControlIngresos;
+import controlador.ControlMeta;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,6 +23,7 @@ import modelo.Ahorro;
 import modelo.ConexionBD;
 import modelo.Gasto;
 import modelo.Ingresos;
+import modelo.Meta;
 
 /**
  *
@@ -247,5 +249,17 @@ public class Utils {
         }
         NumberFormat formatoMontoIng = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
         return formatoMontoIng.format(sumaMontosIng);
+    }
+    
+    public String obtenerTotalAhorros () throws Exception{
+        ArrayList<Ahorro> listaAhorros;
+        ControlAhorro cahorro = new ControlAhorro();
+        listaAhorros=cahorro.mostrar();
+        int sumaMontosA=0;
+        for (Ahorro ahorro : listaAhorros) {
+            sumaMontosA+=ahorro.getMonto_ahorro();
+        }
+        NumberFormat formatoMontoA = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+        return formatoMontoA.format(sumaMontosA);
     }
 }

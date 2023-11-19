@@ -1,18 +1,12 @@
 package vistas;
 
 import Utils.Utils;
-import controlador.ControlGasto;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import modelo.Gasto;
 import Emergente.ActulizarGastos;
 import Emergente.EliminarGastos;
 import controlador.ControlAhorro;
-import java.text.NumberFormat;
-import java.util.Locale;
 import modelo.Ahorro;
 
 /*
@@ -46,6 +40,9 @@ public class VMeta extends javax.swing.JFrame {
         Utils utils = new Utils();
         this.jlbl_mesActual.setText(utils.obtenerMesActual());
         
+        this.jlbl_totalAhorros.setText(utils.obtenerTotalAhorros());
+        this.jlbl_totalAhorros.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        
         utils.RellenarComboMeta("meta", "nombre_meta", this.jcbo_Meta);
         
         DefaultTableModel modelo = new DefaultTableModel();
@@ -75,9 +72,9 @@ public class VMeta extends javax.swing.JFrame {
         jTableMostrarMeta = new javax.swing.JTable();
         jbtn_refrescar = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
-        jlbl_ingresosMes = new javax.swing.JLabel();
+        jlbl_tituloAhorro = new javax.swing.JLabel();
         jlbl_mesActual = new javax.swing.JLabel();
-        jlbl_totalCompras = new javax.swing.JLabel();
+        jlbl_totalAhorros = new javax.swing.JLabel();
         jcbo_Meta = new javax.swing.JComboBox<>();
         jlbl_ingresosMes5 = new javax.swing.JLabel();
         jtxt_montoAbonoMeta = new javax.swing.JTextField();
@@ -175,15 +172,15 @@ public class VMeta extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
 
-        jlbl_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jlbl_ingresosMes.setForeground(new java.awt.Color(0, 0, 0));
-        jlbl_ingresosMes.setText("AHORROS");
+        jlbl_tituloAhorro.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jlbl_tituloAhorro.setForeground(new java.awt.Color(0, 0, 0));
+        jlbl_tituloAhorro.setText("AHORROS");
 
         jlbl_mesActual.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         jlbl_mesActual.setForeground(new java.awt.Color(0, 0, 0));
 
-        jlbl_totalCompras.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jlbl_totalCompras.setForeground(new java.awt.Color(0, 0, 0));
+        jlbl_totalAhorros.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        jlbl_totalAhorros.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -192,23 +189,23 @@ public class VMeta extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlbl_ingresosMes)
+                    .addComponent(jlbl_tituloAhorro)
                     .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(131, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jlbl_totalCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlbl_totalAhorros, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jlbl_ingresosMes)
+                .addComponent(jlbl_tituloAhorro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jlbl_totalCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlbl_totalAhorros, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -425,7 +422,7 @@ public class VMeta extends javax.swing.JFrame {
         // TODO add your handling code here:
         
          String nombre_meta= jcbo_Meta.getSelectedItem().toString();
-
+         
         try {
             cAhorro.obt_meta(ahorro, nombre_meta);
             utils.refrescarMeta(jTableMostrarMeta, ahorro.getCod_meta());
@@ -614,11 +611,11 @@ public class VMeta extends javax.swing.JFrame {
     private javax.swing.JButton jbtn_refrescar;
     private javax.swing.JComboBox<String> jcbo_Meta;
     private javax.swing.JLabel jlbl_ListaCompras;
-    private javax.swing.JLabel jlbl_ingresosMes;
     private javax.swing.JLabel jlbl_ingresosMes4;
     private javax.swing.JLabel jlbl_ingresosMes5;
     private javax.swing.JLabel jlbl_mesActual;
-    private javax.swing.JLabel jlbl_totalCompras;
+    private javax.swing.JLabel jlbl_tituloAhorro;
+    private javax.swing.JLabel jlbl_totalAhorros;
     private javax.swing.JTextField jtxt_montoAbonoMeta;
     // End of variables declaration//GEN-END:variables
 
