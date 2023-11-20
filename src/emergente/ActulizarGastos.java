@@ -5,8 +5,10 @@ import dao.DAOGasto;
 import interfaz.IGasto;
 import dao.DAOGrupoFamiliar;
 import interfaz.IGrupoFamiliar;
+import static java.awt.image.ImageObserver.HEIGHT;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.Gasto;
 
 /**
@@ -157,14 +159,20 @@ public class ActulizarGastos extends javax.swing.JFrame {
 
     private void jbtn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_actualizarActionPerformed
 
-        gasto.setMontoGast(Integer.parseInt(this.jtxt_montoGasto.getText()));
-        gasto.setDescGast(this.jtxt_descGasto.getText().toUpperCase());
-        gasto.setCodGast(Integer.parseInt(this.jtxt_cod_gast.getText()));
-        
         try {
-            if(IGasto.actualizar(gasto)){
-                System.out.println("gasto modificado con exto "+gasto.toString());   
-                this.setVisible(false);
+            if (this.jtxt_cod_gast.getText().isBlank() || this.jtxt_descGasto.getText().isBlank() || this.jtxt_montoGasto.getText().isBlank()) {
+                JOptionPane.showMessageDialog(null, "Asegurese de ingresar el códigol gasto, monto nuevo y descripción", "Error: falta rellenar campos", HEIGHT);
+            }
+            else {
+                gasto.setMontoGast(Integer.parseInt(this.jtxt_montoGasto.getText()));
+                gasto.setDescGast(this.jtxt_descGasto.getText().toUpperCase());
+                gasto.setCodGast(Integer.parseInt(this.jtxt_cod_gast.getText()));
+                
+                if(IGasto.actualizar(gasto)){
+                    System.out.println("gasto modificado con exto "+gasto.toString());   
+                    this.setVisible(false);
+                    JOptionPane.showMessageDialog(null, "Modificación hecha con éxito", "Moficación gasto", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
                     } catch (Exception ex) {
             Logger.getLogger(ActulizarGastos.class.getName()).log(Level.SEVERE, null, ex);

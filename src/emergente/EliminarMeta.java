@@ -7,6 +7,7 @@ package emergente;
 import dao.DAOMeta;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.Meta;
 
 /**
@@ -107,12 +108,21 @@ public class EliminarMeta extends javax.swing.JFrame {
         int cod_meta=meta.getCod_meta();
 
         try {
-            if(cmeta.eliminar(cod_meta)){
-                System.out.println("meta eliminado con exito ");
-                this.setVisible(false);
+            if (this.jcbo_Meta.getSelectedItem().toString().equalsIgnoreCase("- SELECCIONAR -")) {
+                JOptionPane.showMessageDialog(null, "Seleccione una meta", "Error: falta rellenar campos", HEIGHT);
             }
+            else {
+                if(cmeta.eliminar(cod_meta)){
+                    System.out.println("meta eliminado con exito ");
+                    this.setVisible(false);
+                    JOptionPane.showMessageDialog(null, "Eliminación hecha con éxito", "Eliminar meta", JOptionPane.INFORMATION_MESSAGE);
+                }
+                    else {
+                        JOptionPane.showMessageDialog(null, "No es posible eliminar la meta si aún tiene ahorros", "Error: meta con ahorros", HEIGHT);
+                    }
+                }
         } catch (Exception ex) {
-            Logger.getLogger(EliminarMeta.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EliminarMeta.class.getName()).log(Level.SEVERE, null, ex);        
         }
 
     }//GEN-LAST:event_jbtn_eliminarActionPerformed
