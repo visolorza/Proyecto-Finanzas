@@ -453,7 +453,7 @@ public class VMeta extends javax.swing.JFrame {
     private void jcbo_MetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_MetaActionPerformed
         // TODO add your handling code here:
         
-        String nombre_meta= jcbo_Meta.getSelectedItem().toString().toUpperCase();
+        String nombre_meta= jcbo_Meta.getSelectedItem().toString();
          
         try {
             cAhorro.obt_meta(ahorro, nombre_meta);
@@ -463,7 +463,7 @@ public class VMeta extends javax.swing.JFrame {
         }
 
         if (!"- SELECCIONAR -".equals(nombre_meta) && nombre_meta != null) {
-            this.jlbl_tituloAhorro.setText(nombre_meta);
+            this.jlbl_tituloAhorro.setText(nombre_meta.toUpperCase());
             
              try {
                  this.jlbl_totalAhorros.setText(utils.ahorroPorMeta(nombre_meta));
@@ -513,10 +513,9 @@ public class VMeta extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         ahorro.setMonto_ahorro(Integer.parseInt(this.jtxt_montoAbonoMeta.getText()));
-        ahorro.toString();
         try {
             if(cAhorro.agregar(ahorro)){
-                System.out.println("ahorro agregado con exto "+ahorro.toString());
+               
                 utils.refrescarMeta(jTableMostrarMeta, ahorro.getCod_meta());
                 this.jtxt_montoAbonoMeta.setText("");
             }

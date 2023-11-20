@@ -26,20 +26,21 @@ public class ControlGasto {
             ConexionBD con = new ConexionBD();
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "SELECT * FROM gasto order by fecha_gast desc";
+            String query = "SELECT g.cod_gast cod, g.fecha_gast fecha, s.desc_subcat subcat, g.desc_gast descri, g.monto_gast monto " +
+                           "FROM gasto g JOIN subcategoria s ON (g.cod_subcat = s.cod_subcat) ";
+                           
             PreparedStatement stmt = cnx.prepareStatement(query);
             
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Gasto gasto = new Gasto();
-                gasto.setCodGast(rs.getInt("COD_GAST"));
-                gasto.setFechaGast(rs.getDate("FECHA_GAST"));
-                gasto.setDescGast(rs.getString("DESC_GAST"));
-                gasto.setMontoGast(rs.getInt("MONTO_GAST"));
-                gasto.setCodSubcat(rs.getInt("COD_SUBCAT"));
-                gasto.setCodInt(rs.getInt("COD_INT"));
-                lista.add(gasto);
+                Gasto ahorro = new Gasto();
+                ahorro.setCodGast(rs.getInt("cod"));
+                ahorro.setFechaGast(rs.getDate("fecha"));
+                ahorro.setDescSubcat(rs.getString("subcat"));
+                ahorro.setDescGast(rs.getString("descri"));
+                ahorro.setMontoGast(rs.getInt("monto"));
+                lista.add(ahorro);
             }
             rs.close();
             stmt.close();
@@ -323,7 +324,9 @@ public class ControlGasto {
             //Connection cnx = con.obtenerConexion();
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "SELECT * FROM gasto WHERE EXTRACT(YEAR FROM fecha_gast)=?";
+            String query = "SELECT g.cod_gast cod, g.fecha_gast fecha, s.desc_subcat subcat, g.desc_gast descri, g.monto_gast monto " +
+                           "FROM gasto g JOIN subcategoria s ON (g.cod_subcat = s.cod_subcat) " +
+                           " WHERE EXTRACT(YEAR FROM fecha_gast)=?";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setInt(1, año);
             
@@ -331,10 +334,11 @@ public class ControlGasto {
 
             while (rs.next()) {
                 Gasto ahorro = new Gasto();
-                ahorro.setCodGast(rs.getInt("COD_GAST"));
-                ahorro.setFechaGast(rs.getDate("FECHA_GAST"));
-                ahorro.setDescGast(rs.getString("DESC_GAST"));
-                ahorro.setMontoGast(rs.getInt("MONTO_GAST"));
+                ahorro.setCodGast(rs.getInt("cod"));
+                ahorro.setFechaGast(rs.getDate("fecha"));
+                ahorro.setDescSubcat(rs.getString("subcat"));
+                ahorro.setDescGast(rs.getString("descri"));
+                ahorro.setMontoGast(rs.getInt("monto"));
                 lista.add(ahorro);
             }
             rs.close();
@@ -356,7 +360,10 @@ public class ControlGasto {
             //Connection cnx = con.obtenerConexion();
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "SELECT * FROM gasto WHERE EXTRACT(YEAR FROM fecha_gast)=? AND EXTRACT(MONTH FROM fecha_gast)=? ";
+            String query = "SELECT g.cod_gast cod, g.fecha_gast fecha, s.desc_subcat subcat, g.desc_gast descri, g.monto_gast monto "
+                    + "FROM gasto g JOIN subcategoria s ON (g.cod_subcat = s.cod_subcat) "
+                    + "WHERE EXTRACT(YEAR FROM fecha_gast)=? AND EXTRACT(MONTH FROM fecha_gast)=? "
+                    + "ORDER BY g.fecha_gast DESC";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setInt(1, año);
             stmt.setInt(2, mes);
@@ -365,10 +372,11 @@ public class ControlGasto {
 
             while (rs.next()) {
                 Gasto ahorro = new Gasto();
-                ahorro.setCodGast(rs.getInt("COD_GAST"));
-                ahorro.setFechaGast(rs.getDate("FECHA_GAST"));
-                ahorro.setDescGast(rs.getString("DESC_GAST"));
-                ahorro.setMontoGast(rs.getInt("MONTO_GAST"));
+                ahorro.setCodGast(rs.getInt("cod"));
+                ahorro.setFechaGast(rs.getDate("fecha"));
+                ahorro.setDescSubcat(rs.getString("subcat"));
+                ahorro.setDescGast(rs.getString("descri"));
+                ahorro.setMontoGast(rs.getInt("monto"));
                 lista.add(ahorro);
             }
             rs.close();

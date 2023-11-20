@@ -21,7 +21,6 @@ public class ControlAhorro {
         
         try {
             ConexionBD con = new ConexionBD();
-            //Connection cnx = con.obtenerConexion();
             Connection cnx = ConexionBD.obtenerConexion();
 
             String query = "select * from ahorro order by fecha_ahor desc";
@@ -51,7 +50,6 @@ public class ControlAhorro {
 
         try {
             ConexionBD con = new ConexionBD();
-         
             Connection cnx = ConexionBD.obtenerConexion();
 
             String query = "insert into ahorro(cod_ahor, fecha_ahor, monto_ahor, cod_meta) values(seq_ahor.nextval,SYSDATE,?,?)";
@@ -121,7 +119,6 @@ public class ControlAhorro {
         
         try {
             ConexionBD con = new ConexionBD();
-            //Connection cnx = con.obtenerConexion();
             Connection cnx = ConexionBD.obtenerConexion();
 
             String query = "SELECT * FROM ahorro WHERE cod_meta=?";
@@ -162,7 +159,6 @@ public class ControlAhorro {
 
         if (rs.next()) {
             ahorro.setCod_meta(rs.getInt("cod_meta"));
-            System.out.println("cod_meta agregado "+ahorro.toString());
             return  ahorro;
         } else {
             // Manejar el caso en el que no se encontraron filas
@@ -183,10 +179,12 @@ public class ControlAhorro {
         
         try {
             ConexionBD con = new ConexionBD();
-            //Connection cnx = con.obtenerConexion();
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "SELECT * FROM ahorro WHERE EXTRACT(YEAR FROM fecha_ahor)=?";
+            String query = "SELECT a.cod_ahor cod, a.fecha_ahor fecha, m.nombre_meta meta, a.monto_ahor monto " +
+                           "FROM ahorro a JOIN meta m ON (a.cod_meta = m.cod_meta) " +
+                           "WHERE EXTRACT(YEAR FROM fecha_ahor)=? " +
+                           "ORDER BY a.fecha_ahor DESC";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setInt(1, año);
             
@@ -194,10 +192,10 @@ public class ControlAhorro {
 
             while (rs.next()) {
                 Ahorro ahorro = new Ahorro();
-                ahorro.setCod_ahorro(rs.getInt("COD_AHOR"));
-                ahorro.setFecha_ahorro(rs.getDate("FECHA_AHOR"));
-                ahorro.setMonto_ahorro(rs.getInt("MONTO_AHOR"));
-                ahorro.setCod_meta(rs.getInt("COD_META"));
+                ahorro.setCod_ahorro(rs.getInt("cod"));
+                ahorro.setFecha_ahorro(rs.getDate("fecha"));
+                ahorro.setDesc_meta(rs.getString("meta"));
+                ahorro.setMonto_ahorro(rs.getInt("monto"));
                 lista.add(ahorro);
             }
             rs.close();
@@ -219,7 +217,10 @@ public class ControlAhorro {
             //Connection cnx = con.obtenerConexion();
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "SELECT * FROM ahorro WHERE EXTRACT(YEAR FROM fecha_ahor)=? AND EXTRACT(MONTH FROM fecha_ahor)=?";
+            String query = "SELECT a.cod_ahor cod, a.fecha_ahor fecha, m.nombre_meta meta, a.monto_ahor monto " +
+                           "FROM ahorro a JOIN meta m ON (a.cod_meta = m.cod_meta) " +
+                           "WHERE EXTRACT(YEAR FROM fecha_ahor)=? AND EXTRACT(MONTH FROM fecha_ahor)=? " +
+                           "ORDER BY a.fecha_ahor DESC";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setInt(1, año);
             stmt.setInt(2, mes);
@@ -228,10 +229,44 @@ public class ControlAhorro {
 
             while (rs.next()) {
                 Ahorro ahorro = new Ahorro();
-                ahorro.setCod_ahorro(rs.getInt("COD_AHOR"));
-                ahorro.setFecha_ahorro(rs.getDate("FECHA_AHOR"));
-                ahorro.setMonto_ahorro(rs.getInt("MONTO_AHOR"));
-                ahorro.setCod_meta(rs.getInt("COD_META"));
+                ahorro.setCod_ahorro(rs.getInt("cod"));
+                ahorro.setFecha_ahorro(rs.getDate("fecha"));
+                ahorro.setDesc_meta(rs.getString("meta"));
+                ahorro.setMonto_ahorro(rs.getInt("monto"));
+                lista.add(ahorro);
+            }
+            rs.close();
+            stmt.close();
+            cnx.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error SQL al listar ahorro " + e.getMessage());
+        }
+        return lista;
+    }
+    
+    public ArrayList<Ahorro> mostrarTodoAhorro() throws Exception {
+        
+        ArrayList<Ahorro> lista = new ArrayList<>();
+        
+        try {
+            ConexionBD con = new ConexionBD();
+            //Connection cnx = con.obtenerConexion();
+            Connection cnx = ConexionBD.obtenerConexion();
+
+            String query = "SELECT a.cod_ahor cod, a.fecha_ahor fecha, m.nombre_meta meta, a.monto_ahor monto " +
+                           "FROM ahorro a JOIN meta m ON (a.cod_meta = m.cod_meta) " +
+                           "ORDER BY a.fecha_ahor DESC";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Ahorro ahorro = new Ahorro();
+                ahorro.setCod_ahorro(rs.getInt("cod"));
+                ahorro.setFecha_ahorro(rs.getDate("fecha"));
+                ahorro.setDesc_meta(rs.getString("meta"));
+                ahorro.setMonto_ahorro(rs.getInt("monto"));
                 lista.add(ahorro);
             }
             rs.close();

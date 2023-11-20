@@ -10,15 +10,17 @@ import java.util.Date;
 public class Ahorro {
     
     private int cod_ahorro, cod_meta, monto_ahorro;
+    private String desc_meta;
     private Date fecha_ahorro;
 
     public Ahorro() {
     }
 
-    public Ahorro(int cod_ahorro, int cod_meta, int monto_ahorro, Date fecha_ahorro) {
+    public Ahorro(int cod_ahorro, int cod_meta, int monto_ahorro, String desc_meta, Date fecha_ahorro) {
         this.cod_ahorro = cod_ahorro;
         this.cod_meta = cod_meta;
         this.monto_ahorro = monto_ahorro;
+        this.desc_meta = desc_meta;
         this.fecha_ahorro = fecha_ahorro;
     }
 
@@ -46,6 +48,14 @@ public class Ahorro {
         this.monto_ahorro = monto_ahorro;
     }
 
+    public String getDesc_meta() {
+        return desc_meta;
+    }
+
+    public void setDesc_meta(String desc_meta) {
+        this.desc_meta = desc_meta;
+    }
+
     public Date getFecha_ahorro() {
         return fecha_ahorro;
     }
@@ -56,7 +66,7 @@ public class Ahorro {
 
     @Override
     public String toString() {
-        return "Ahorro{" + "cod_ahorro=" + cod_ahorro + ", cod_meta=" + cod_meta + ", monto_ahorro=" + monto_ahorro + ", fecha_ahorro=" + fecha_ahorro + '}';
+        return "Ahorro{" + "cod_ahorro=" + cod_ahorro + ", cod_meta=" + cod_meta + ", monto_ahorro=" + monto_ahorro + ", desc_meta=" + desc_meta + ", fecha_ahorro=" + fecha_ahorro + '}';
     }
 
 }

@@ -183,7 +183,8 @@ public class Utils {
         
         modelo.addColumn("CODIGO");
         modelo.addColumn("FECHA");
-        modelo.addColumn("DESCRIPCION");
+        modelo.addColumn("SUBCATEGORIA");
+        modelo.addColumn("DETALLE");
         modelo.addColumn("MONTO");
         ControlGasto cgasto = new ControlGasto();
         
@@ -201,15 +202,16 @@ public class Utils {
         String monto;
         
         for (Gasto listag : listaGast) {
-            Object a[] = new Object[4];
-            int sumaMontosGas=listag.getMontoGast();
             
+            int sumaMontosGas=listag.getMontoGast();
             monto=formatoMontoGas.format(sumaMontosGas);
-                    
+            
+            Object a[] = new Object[5];
             a[0]=listag.getCodGast();
             a[1]=listag.getFechaGast();
-            a[2]=listag.getDescGast();
-            a[3]=monto;
+            a[2]=listag.getDescSubcat();
+            a[3]=listag.getDescGast();
+            a[4]=monto;
             modelo.addRow(a);
         }
         return tabla;
@@ -264,10 +266,11 @@ public class Utils {
         
         modelo.addColumn("CODIGO");
         modelo.addColumn("FECHA");
+        modelo.addColumn("META");
         modelo.addColumn("MONTO");
         ControlAhorro cAhorro = new ControlAhorro();
         
-        listaAhorro = cAhorro.mostrar();
+        listaAhorro = cAhorro.mostrarTodoAhorro();
        
         while (modelo.getRowCount()>0) {
             modelo.removeRow(0);
@@ -283,11 +286,11 @@ public class Utils {
             
             int sumaMontosGas=listag.getMonto_ahorro();
             monto=formatoMeta.format(sumaMontosGas);
-            
-            Object a[] = new Object[3];
+            Object a[] = new Object[4];
             a[0]=listag.getCod_ahorro();
             a[1]=listag.getFecha_ahorro();
-            a[2]=monto;
+            a[2]=listag.getDesc_meta();
+            a[3]=monto;
             modelo.addRow(a);
         }
         return tabla;
@@ -426,6 +429,7 @@ public class Utils {
         
         modelo.addColumn("CODIGO");
         modelo.addColumn("FECHA");
+        modelo.addColumn("META");
         modelo.addColumn("MONTO");
         ControlAhorro cAhorro = new ControlAhorro();
         
@@ -446,10 +450,11 @@ public class Utils {
             int sumaMontosGas=listag.getMonto_ahorro();
             monto=formatoMeta.format(sumaMontosGas);
             
-            Object a[] = new Object[3];
+            Object a[] = new Object[4];
             a[0]=listag.getCod_ahorro();
             a[1]=listag.getFecha_ahorro();
-            a[2]=monto;
+            a[2]=listag.getDesc_meta();
+            a[3]=monto;
             modelo.addRow(a);
         }
         return tabla;
@@ -502,6 +507,7 @@ public class Utils {
         
         modelo.addColumn("CODIGO");
         modelo.addColumn("FECHA");
+        modelo.addColumn("SUBCATEGORIA");
         modelo.addColumn("DETALLE");
         modelo.addColumn("MONTO");
         ControlGasto cAhorro = new ControlGasto();
@@ -523,11 +529,12 @@ public class Utils {
             int sumaMontosGas=listag.getMontoGast();
             monto=formatoMeta.format(sumaMontosGas);
             
-            Object a[] = new Object[4];
+            Object a[] = new Object[5];
             a[0]=listag.getCodGast();
             a[1]=listag.getFechaGast();
-            a[2]=listag.getDescGast();
-            a[3]=monto;
+            a[2]=listag.getDescSubcat();
+            a[3]=listag.getDescGast();
+            a[4]=monto;
             modelo.addRow(a);
         }
         return tabla;
@@ -541,6 +548,7 @@ public class Utils {
         
         modelo.addColumn("CODIGO");
         modelo.addColumn("FECHA");
+        modelo.addColumn("SUBCATEGORIA");
         modelo.addColumn("DETALLE");
         modelo.addColumn("MONTO");
         ControlGasto cAhorro = new ControlGasto();
@@ -562,11 +570,12 @@ public class Utils {
             int sumaMontosGas=listag.getMontoGast();
             monto=formatoMeta.format(sumaMontosGas);
             
-            Object a[] = new Object[4];
+            Object a[] = new Object[5];
             a[0]=listag.getCodGast();
             a[1]=listag.getFechaGast();
-            a[2]=listag.getDescGast();
-            a[3]=monto;
+            a[2]=listag.getDescSubcat();
+            a[3]=listag.getDescGast();
+            a[4]=monto;
             modelo.addRow(a);
         }
         return tabla;
@@ -618,6 +627,7 @@ public class Utils {
         DefaultTableModel modelo = new DefaultTableModel();
         
         modelo.addColumn("CODIGO");
+        modelo.addColumn("META");
         modelo.addColumn("FECHA");
         modelo.addColumn("MONTO");
         ControlAhorro cAhorro = new ControlAhorro();
@@ -638,10 +648,11 @@ public class Utils {
             
             int sumaMontosGas=listag.getMonto_ahorro();
             monto=formatoMeta.format(sumaMontosGas);
-            Object a[] = new Object[3];
+            Object a[] = new Object[4];
             a[0]=listag.getCod_ahorro();
             a[1]=listag.getFecha_ahorro();
-            a[2]=monto;
+            a[2]=listag.getDesc_meta();
+            a[3]=monto;
             modelo.addRow(a);
         }
         return tabla;

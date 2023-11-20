@@ -9,19 +9,20 @@ import java.util.Date;
 public class Gasto {
     
     private int CodGast,montoGast,codInt,codSubcat;
-    private String descGast,desc_int;
+    private String descGast,desc_int,descSubcat;
     private Date fechaGast;
 
     public Gasto() {
     }
 
-    public Gasto(int CodGast, int montoGast, int codInt, int codSubcat, String descGast, String desc_int, Date fechaGast) {
+    public Gasto(int CodGast, int montoGast, int codInt, int codSubcat, String descGast, String desc_int, String descSubcat, Date fechaGast) {
         this.CodGast = CodGast;
         this.montoGast = montoGast;
         this.codInt = codInt;
         this.codSubcat = codSubcat;
         this.descGast = descGast;
         this.desc_int = desc_int;
+        this.descSubcat = descSubcat;
         this.fechaGast = fechaGast;
     }
 
@@ -73,6 +74,14 @@ public class Gasto {
         this.desc_int = desc_int;
     }
 
+    public String getDescSubcat() {
+        return descSubcat;
+    }
+
+    public void setDescSubcat(String descSubcat) {
+        this.descSubcat = descSubcat;
+    }
+
     public Date getFechaGast() {
         return fechaGast;
     }
@@ -83,7 +92,7 @@ public class Gasto {
 
     @Override
     public String toString() {
-        return "Gasto{" + "CodGast=" + CodGast + ", montoGast=" + montoGast + ", codInt=" + codInt + ", codSubcat=" + codSubcat + ", descGast=" + descGast + ", desc_int=" + desc_int + ", fechaGast=" + fechaGast + '}';
+        return "Gasto{" + "CodGast=" + CodGast + ", montoGast=" + montoGast + ", codInt=" + codInt + ", codSubcat=" + codSubcat + ", descGast=" + descGast + ", desc_int=" + desc_int + ", descSubcat=" + descSubcat + ", fechaGast=" + fechaGast + '}';
     }
 
 }       
