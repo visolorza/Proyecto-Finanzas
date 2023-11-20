@@ -77,7 +77,7 @@ public class ActualizarAhorro extends javax.swing.JFrame {
         });
 
         jlbl_ingresosMes6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes6.setText("Código gasto:");
+        jlbl_ingresosMes6.setText("Código:");
 
         jtxt_cod_gast.setBackground(new java.awt.Color(204, 204, 204));
         jtxt_cod_gast.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -113,7 +113,7 @@ public class ActualizarAhorro extends javax.swing.JFrame {
                         .addComponent(jtxt_montoGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jlbl_ingresosMes6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                         .addComponent(jtxt_cod_gast, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jlbl_ingresosMes7)

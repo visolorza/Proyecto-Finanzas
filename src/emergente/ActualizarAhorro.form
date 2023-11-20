@@ -33,7 +33,7 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jlbl_ingresosMes6" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="7" max="32767" attributes="0"/>
+                      <EmptySpace pref="44" max="32767" attributes="0"/>
                       <Component id="jtxt_cod_gast" min="-2" pref="165" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -127,7 +127,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="12" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="C&#xf3;digo gasto:"/>
+        <Property name="text" type="java.lang.String" value="C&#xf3;digo:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtxt_cod_gast">

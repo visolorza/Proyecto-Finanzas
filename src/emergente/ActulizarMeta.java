@@ -84,7 +84,7 @@ public class ActulizarMeta extends javax.swing.JFrame {
 
         jbtn_actualizar.setBackground(new java.awt.Color(204, 204, 204));
         jbtn_actualizar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_actualizar.setText("modificar");
+        jbtn_actualizar.setText("Modificar");
         jbtn_actualizar.setBorder(null);
         jbtn_actualizar.setBorderPainted(false);
         jbtn_actualizar.addActionListener(new java.awt.event.ActionListener() {
