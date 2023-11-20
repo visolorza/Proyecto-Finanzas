@@ -17,6 +17,7 @@ import interfaz.IAhorro;
 import interfaz.IMeta;
 import java.text.NumberFormat;
 import java.util.Locale;
+import javax.swing.JOptionPane;
 import modelo.Ahorro;
 
 /*
@@ -185,7 +186,7 @@ public class VMeta extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
 
         jlbl_tituloAhorro.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jlbl_tituloAhorro.setText("AHORROS");
+        jlbl_tituloAhorro.setText("TOTAL AHORROS");
 
         jlbl_totalMeta.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
 
@@ -214,7 +215,7 @@ public class VMeta extends javax.swing.JFrame {
                         .addComponent(jlbl_tituloMeta1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jlbl_totalMeta, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -522,9 +523,11 @@ public class VMeta extends javax.swing.JFrame {
              }
         }
         else {
-            this.jlbl_tituloAhorro.setText("AHORROS");
+            this.jlbl_tituloAhorro.setText("TOTAL AHORROS");
             this.jlbl_tituloAhorro1.setText("");
             this.jlbl_tituloMeta1.setText((""));
+            this.jlbl_totalAhorro.setText("");
+            this.jlbl_totalMeta.setText("");
             
         }
         
@@ -565,14 +568,19 @@ public class VMeta extends javax.swing.JFrame {
     private void jbtn_abonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_abonarActionPerformed
         // TODO add your handling code here:
         
-        ahorro.setMonto_ahorro(Integer.parseInt(this.jtxt_montoAbonoMeta.getText()));
-        ahorro.toString();
+        
         try {
-            if(IAhorro.agregar(ahorro)){
-                System.out.println("ahorro agregado con exto "+ahorro.toString());
-                controlMeta.refrescarMeta(jTableMostrarMeta, ahorro.getCod_meta());
-                this.jtxt_montoAbonoMeta.setText("");
-            }
+            if (this.jtxt_montoAbonoMeta.getText().isBlank() || this.jcbo_Meta.getSelectedItem().toString().equalsIgnoreCase("- SELECCIONAR -")) {
+                    JOptionPane.showMessageDialog(null, "Asegurese de ingresar monto y seleccionar meta", "Error: falta rellenar campos", HEIGHT);
+            }else{
+                ahorro.setMonto_ahorro(Integer.parseInt(this.jtxt_montoAbonoMeta.getText()));
+                ahorro.toString();
+                if(IAhorro.agregar(ahorro)){
+                    System.out.println("ahorro agregado con exto "+ahorro.toString());
+                    controlMeta.refrescarMeta(jTableMostrarMeta, ahorro.getCod_meta());
+                    this.jtxt_montoAbonoMeta.setText("");
+                }
+            }        
         } catch (Exception ex) {
             Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
         }

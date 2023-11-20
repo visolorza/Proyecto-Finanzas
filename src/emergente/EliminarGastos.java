@@ -47,7 +47,7 @@ public class EliminarGastos extends javax.swing.JFrame {
         setResizable(false);
 
         jlbl_ingresosMes6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes6.setText("codigo gasto:");
+        jlbl_ingresosMes6.setText("Código gasto:");
 
         jtxt_cod_gast.setBackground(new java.awt.Color(204, 204, 204));
         jtxt_cod_gast.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -59,7 +59,7 @@ public class EliminarGastos extends javax.swing.JFrame {
 
         jbtn_eliminar.setBackground(new java.awt.Color(204, 204, 204));
         jbtn_eliminar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_eliminar.setText("eliminar");
+        jbtn_eliminar.setText("Eliminar");
         jbtn_eliminar.setBorder(null);
         jbtn_eliminar.setBorderPainted(false);
         jbtn_eliminar.addActionListener(new java.awt.event.ActionListener() {

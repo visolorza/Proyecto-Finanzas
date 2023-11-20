@@ -104,7 +104,7 @@ public class ActulizarMeta extends javax.swing.JFrame {
         });
 
         jlbl_ingresosMes6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes6.setText("meta:");
+        jlbl_ingresosMes6.setText("Meta:");
 
         jcbo_Meta.setBackground(new java.awt.Color(204, 204, 204));
         jcbo_Meta.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
