@@ -195,7 +195,8 @@ public class Utils {
         
         tabla.setModel(modelo);
         
-        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+        tabla.getColumnModel().getColumn(1).setCellRenderer(new FormatoTabla("dd-MM-yyyy"));
         
         String monto;
         
@@ -234,7 +235,8 @@ public class Utils {
         
         tabla.setModel(modelo);
         
-        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+        tabla.getColumnModel().getColumn(1).setCellRenderer(new FormatoTabla("dd-MM-yyyy"));
         
         String monto;
         
@@ -272,7 +274,8 @@ public class Utils {
         }
         
         tabla.setModel(modelo);
-        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+        tabla.getColumnModel().getColumn(1).setCellRenderer(new FormatoTabla("dd-MM-yyyy"));
         
         String monto;
             
@@ -309,6 +312,7 @@ public class Utils {
         
         tabla.setModel(modelo);
         NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+        tabla.getColumnModel().getColumn(1).setCellRenderer(new FormatoTabla("dd-MM-yyyy"));
         
         String monto;
             
@@ -432,7 +436,8 @@ public class Utils {
         }
         
         tabla.setModel(modelo);
-        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+        tabla.getColumnModel().getColumn(1).setCellRenderer(new FormatoTabla("dd-MM-yyyy"));
         
         String monto;
             
@@ -469,7 +474,8 @@ public class Utils {
         }
         
         tabla.setModel(modelo);
-        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+        tabla.getColumnModel().getColumn(1).setCellRenderer(new FormatoTabla("dd-MM-yyyy"));
         
         String monto;
             
@@ -507,7 +513,8 @@ public class Utils {
         }
         
         tabla.setModel(modelo);
-        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+        tabla.getColumnModel().getColumn(1).setCellRenderer(new FormatoTabla("dd-MM-yyyy"));
         
         String monto;
             
@@ -545,7 +552,8 @@ public class Utils {
         }
         
         tabla.setModel(modelo);
-        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+        tabla.getColumnModel().getColumn(1).setCellRenderer(new FormatoTabla("dd-MM-yyyy"));
         
         String monto;
             
@@ -583,7 +591,8 @@ public class Utils {
         }
         
         tabla.setModel(modelo);
-        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+        tabla.getColumnModel().getColumn(1).setCellRenderer(new FormatoTabla("dd-MM-yyyy"));
         
         String monto;
             
@@ -620,7 +629,8 @@ public class Utils {
         }
         
         tabla.setModel(modelo);
-        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+        tabla.getColumnModel().getColumn(1).setCellRenderer(new FormatoTabla("dd-MM-yyyy"));
         
         String monto;
             
@@ -628,7 +638,6 @@ public class Utils {
             
             int sumaMontosGas=listag.getMonto_ahorro();
             monto=formatoMeta.format(sumaMontosGas);
-            
             Object a[] = new Object[3];
             a[0]=listag.getCod_ahorro();
             a[1]=listag.getFecha_ahorro();
@@ -732,7 +741,7 @@ public class Utils {
         return sumaMontosGas;
     }
     
- public String ahorroPorMeta (String nombre_meta) throws Exception{
+    public String ahorroPorMeta (String nombre_meta) throws Exception{
         
         ArrayList<Ahorro> listaAhorro = new ArrayList<>();
         
@@ -741,7 +750,7 @@ public class Utils {
         
         listaAhorro = cAhorro.mostrarAhorroPorMeta(cMeta.obtenerCodigoMeta(nombre_meta));
         
-        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
         
         String monto = "";
         int sumaMontoAhorro = 0;
@@ -752,5 +761,38 @@ public class Utils {
             monto=formatoMeta.format(sumaMontoAhorro);
         }
         return monto;
+    }
+ 
+    public int obtenerTotalGastoMesDH (int year,int mes) throws Exception{
+        ArrayList<Gasto> listaGastos;
+        ControlGasto cgasto = new ControlGasto();
+        listaGastos=cgasto.mostrarGastoPorMes(year,mes);
+        int sumaMontosGas=0;
+        for (Gasto gasto : listaGastos) {
+            sumaMontosGas+=gasto.getMontoGast();
+        }
+        return sumaMontosGas;
+    }
+    
+    public int obtenerTotalIngresoMesDH (int year,int mes) throws Exception{
+        ArrayList<Ingresos> listaIngresos;
+        ControlIngresos cingreso = new ControlIngresos();
+        listaIngresos=cingreso.mostraringresoPorMes(year,mes);
+        int sumaMontosIng=0;
+        for (Ingresos ingreso : listaIngresos) {
+            sumaMontosIng+=ingreso.getMonto_ing();
+        }
+        return sumaMontosIng;
+    }
+    
+    public int obtenerTotalAhorroMesDH (int year,int mes) throws Exception{
+        ArrayList<Ahorro> listaAhorros;
+        ControlAhorro cahorro = new ControlAhorro();
+        listaAhorros=cahorro.mostrarAhorroPorMes(year, mes);
+        int sumaMontosAho=0;
+        for (Ahorro ahorro : listaAhorros) {
+            sumaMontosAho+=ahorro.getMonto_ahorro();
+        }
+        return sumaMontosAho;
     }
 }

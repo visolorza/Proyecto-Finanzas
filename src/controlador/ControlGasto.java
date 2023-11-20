@@ -458,6 +458,10 @@ public class ControlGasto {
         }
         return lista;
     }
+
+    public ArrayList<Gasto> mostrarGastos(int year, int mes) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }
        
