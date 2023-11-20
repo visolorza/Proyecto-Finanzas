@@ -599,6 +599,8 @@ public class VGastos extends javax.swing.JFrame {
                     NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
                     String sumaFormato=formatoMontoGas.format(sumaMontosGas);
                     this.jlbl_totalGastos.setText(sumaFormato);
+                    
+                    JOptionPane.showMessageDialog(null, "Gasto añadido con éxito", "Nuevo gasto", JOptionPane.INFORMATION_MESSAGE);
                 }    
             }
         } catch (Exception ex) {

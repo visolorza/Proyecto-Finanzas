@@ -7,6 +7,8 @@ import java.util.logging.Logger;
 import utils.Utils;
 import dao.DAOMeta;
 import interfaz.IGrupoFamiliar;
+import static java.awt.image.ImageObserver.HEIGHT;
+import javax.swing.JOptionPane;
 import modelo.Meta;
 
 /**
@@ -164,14 +166,19 @@ public class IngresarMeta extends javax.swing.JFrame {
     }//GEN-LAST:event_jtxt_descGastoActionPerformed
 
     private void jbtn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_actualizarActionPerformed
-
-        meta.setMonto_meta(Integer.parseInt(this.jtxt_montoGasto.getText()));
-        meta.setNombre_meta(this.jtxt_descGasto.getText().toUpperCase());
-        
+     
         try {
-            if(cmeta.agregar(meta)){
-                System.out.println("gasto modificado con exto " + meta.toString());   
-                this.setVisible(false);
+            if (this.jtxt_descGasto.getText().isBlank() || this.jtxt_montoGasto.getText().isBlank() || this.jcbo_integrante.getSelectedItem().toString().equalsIgnoreCase("- SELECCIONAR -")) {
+                JOptionPane.showMessageDialog(null, "Asegurese de escribir un monto, descripción y seleccionar integrante", "Error: falta rellenar campos", HEIGHT);
+            }
+            else {   
+                meta.setMonto_meta(Integer.parseInt(this.jtxt_montoGasto.getText()));
+                meta.setNombre_meta(this.jtxt_descGasto.getText().toUpperCase());
+                if(cmeta.agregar(meta)){
+                    System.out.println("gasto modificado con exto " + meta.toString());   
+                    this.setVisible(false);
+                    JOptionPane.showMessageDialog(null, "Meta creada con éxito", "Nueva meta", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
                     } catch (Exception ex) {
             Logger.getLogger(IngresarMeta.class.getName()).log(Level.SEVERE, null, ex);

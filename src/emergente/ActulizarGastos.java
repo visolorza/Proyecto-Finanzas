@@ -2,6 +2,8 @@
 package emergente;
 
 import dao.DAOGasto;
+import dao.DAOGrupoFamiliar;
+import interfaz.IGrupoFamiliar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Gasto;
@@ -142,7 +144,7 @@ public class ActulizarGastos extends javax.swing.JFrame {
 
     DAOGasto cgasto = new DAOGasto();
     Gasto gasto = new Gasto();
-    
+    IGrupoFamiliar IGrupoFamiliar = new DAOGrupoFamiliar();
     
     private void jtxt_montoGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_montoGastoActionPerformed
         // TODO add your handling code here:

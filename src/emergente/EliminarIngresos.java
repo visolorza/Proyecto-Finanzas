@@ -6,8 +6,10 @@ package emergente;
 
 import dao.DAOGasto;
 import dao.DAOIngreso;
+import static java.awt.image.ImageObserver.HEIGHT;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.Ingreso;
 
 /**
@@ -106,12 +108,18 @@ public class EliminarIngresos extends javax.swing.JFrame {
 
     private void jbtn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_eliminarActionPerformed
 
-        int cod_ing=Integer.parseInt(this.jtxt_cod_ing.getText());
 
         try {
-            if(cingresos.eliminar(cod_ing)){
-                System.out.println("ingreso eliminado con exto ");
-                this.setVisible(false);
+            if (this.jtxt_cod_ing.getText().isBlank()) {
+                JOptionPane.showMessageDialog(null, "Escriba un código de ingreso", "Error: falta rellenar campos", HEIGHT);
+            }
+            else{
+                int cod_ing=Integer.parseInt(this.jtxt_cod_ing.getText());
+                if(cingresos.eliminar(cod_ing)){
+                    System.out.println("ingreso eliminado con exto ");
+                    this.setVisible(false);
+                    JOptionPane.showMessageDialog(null, "Eliminación hecha con éxito", "Eliminar ingreso", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
         } catch (Exception ex) {
             Logger.getLogger(EliminarIngresos.class.getName()).log(Level.SEVERE, null, ex);

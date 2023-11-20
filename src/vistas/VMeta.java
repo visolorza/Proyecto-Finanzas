@@ -579,6 +579,7 @@ public class VMeta extends javax.swing.JFrame {
                     System.out.println("ahorro agregado con exto "+ahorro.toString());
                     controlMeta.refrescarMeta(jTableMostrarMeta, ahorro.getCod_meta());
                     this.jtxt_montoAbonoMeta.setText("");
+                    JOptionPane.showMessageDialog(null, "Abono hecho con éxito", "Abono meta", JOptionPane.INFORMATION_MESSAGE);
                 }
             }        
         } catch (Exception ex) {

@@ -18,7 +18,7 @@ import java.util.Properties;
 public class ConexionBD {
  
 
-    private static final String WALLET_PATH = "C:\\Users\\María José\\OneDrive\\Desktop\\wallet\\Wallet_HVTBZKZNLTAGAD9H";
+    private static final String WALLET_PATH = "C:\\Users\\Usuario\\Desktop\\Wallet_HVTBZKZNLTAGAD9H";
 
     //en WALLET_PHAT se copia la ruta en la cual se encuentra la wallet (la wallet no debe estar en formato zip)
     private static final String WALLET_PASSWORD = "Basededatos123";

@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import utils.Utils;
 import dao.DAOGrupoFamiliar;
 import interfaz.IGrupoFamiliar;
+import javax.swing.JOptionPane;
 import modelo.Integrante;
 import vistas.VGrupoFamiliar;
 
@@ -131,13 +132,20 @@ public class ActualizarIntegrante extends javax.swing.JFrame {
         //integrante.setCod_int(Integer.parseInt(this.jtxt_cod_gast.getText()));
         
         try {
-            if(IGrupoFamiliar.actualizar(integrante)){
-                System.out.println("integrante modificado con exto "+ integrante.toString());   
-                this.setVisible(false);
-                controlGrupoFamiliar.refrescarGrupoFamiliar(grupoFamiliar.getjTableMostrar()); 
-                // De esta forma debería refrescarse automáticamente la tabla al modificarla, no esta funcionando.
+            
+            if (this.jtxt_nuevoNombre.getText().isBlank() || this.jcbo_integrante.getSelectedItem().toString().equalsIgnoreCase("- SELECCIONAR -")) {
+                JOptionPane.showMessageDialog(null, "Asegurese de seleccionar integrante y escribir un nuevo nombre", "Error: falta rellenar campos", HEIGHT);
             }
-                    } catch (Exception ex) {
+            else {
+                if(IGrupoFamiliar.actualizar(integrante)){
+                    System.out.println("integrante modificado con exto "+ integrante.toString());   
+                    this.setVisible(false);
+                    controlGrupoFamiliar.refrescarGrupoFamiliar(grupoFamiliar.getjTableMostrar()); 
+                    // De esta forma debería refrescarse automáticamente la tabla al modificarla, no esta funcionando.
+                    JOptionPane.showMessageDialog(null, "Modificación hecha con éxito", "Moficación integrante", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+            } catch (Exception ex) {
             Logger.getLogger(ActualizarIntegrante.class.getName()).log(Level.SEVERE, null, ex);
         }
       

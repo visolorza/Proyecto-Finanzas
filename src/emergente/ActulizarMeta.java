@@ -8,6 +8,8 @@ import utils.Utils;
 import dao.DAOMeta;
 import interfaz.IGrupoFamiliar;
 import interfaz.IMeta;
+import static java.awt.image.ImageObserver.HEIGHT;
+import javax.swing.JOptionPane;
 import modelo.Meta;
 
 /**
@@ -192,15 +194,26 @@ public class ActulizarMeta extends javax.swing.JFrame {
 
     private void jbtn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_actualizarActionPerformed
 
-        meta.setMonto_meta(Integer.parseInt(this.jtxt_montoGasto.getText()));
-        meta.setNombre_meta(this.jtxt_descGasto.getText().toUpperCase());
+        
         
         try {
-            if(IMeta.actualizar(meta)){
-                System.out.println("meta modificado con exito " +meta.toString());   
-                this.setVisible(false);
+            if (this.jtxt_descGasto.getText().isBlank() || this.jtxt_montoGasto.getText().isBlank() || this.jcbo_Meta.getSelectedItem().toString().equalsIgnoreCase("- SELECCIONAR -")
+                || this.jcbo_integrante.getSelectedItem().toString().equalsIgnoreCase("- SELECCIONAR -")) {
+                JOptionPane.showMessageDialog(null, "Asegurese de seleccionar en todos lo campos y escribir un monto y descripción", "Error: falta rellenar campos", HEIGHT);
             }
-                    } catch (Exception ex) {
+            else {
+                
+                meta.setMonto_meta(Integer.parseInt(this.jtxt_montoGasto.getText()));
+                meta.setNombre_meta(this.jtxt_descGasto.getText().toUpperCase());
+                
+                if(IMeta.actualizar(meta)){
+                    System.out.println("meta modificado con exito " +meta.toString());   
+                    this.setVisible(false);
+                    
+                    JOptionPane.showMessageDialog(null, "Modificación hecha con éxito", "Moficación integrante", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        } catch (Exception ex) {
             Logger.getLogger(ActulizarMeta.class.getName()).log(Level.SEVERE, null, ex);
         }
       

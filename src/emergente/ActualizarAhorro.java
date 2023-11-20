@@ -9,6 +9,8 @@ import utils.Utils;
 import dao.DAOMeta;
 import interfaz.IAhorro;
 import interfaz.IMeta;
+import static java.awt.image.ImageObserver.HEIGHT;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -77,7 +79,7 @@ public class ActualizarAhorro extends javax.swing.JFrame {
         });
 
         jlbl_ingresosMes6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes6.setText("Código gasto:");
+        jlbl_ingresosMes6.setText("Código:");
 
         jtxt_cod_gast.setBackground(new java.awt.Color(204, 204, 204));
         jtxt_cod_gast.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -113,7 +115,7 @@ public class ActualizarAhorro extends javax.swing.JFrame {
                         .addComponent(jtxt_montoGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jlbl_ingresosMes6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jtxt_cod_gast, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jlbl_ingresosMes7)
@@ -159,15 +161,22 @@ public class ActualizarAhorro extends javax.swing.JFrame {
 
     private void jbtn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_actualizarActionPerformed
 
-        ahorro.setMonto_ahorro(Integer.parseInt(this.jtxt_montoGasto.getText()));
-        ahorro.setCod_ahorro(Integer.parseInt(this.jtxt_cod_gast.getText().toUpperCase()));
-        
         try {
-            if(IAhorro.actualizar(ahorro)){
-                System.out.println("ahorro modificado con exito "+ahorro.toString());   
-                this.setVisible(false);
+            if (this.jtxt_cod_gast.getText().isBlank() || this.jtxt_montoGasto.getText().isBlank() || this.jcbo_Meta.getSelectedItem().toString().equalsIgnoreCase("- SELECCIONAR -")) {
+                JOptionPane.showMessageDialog(null, "Asegurese de ingresar el código de la meta, su monto y seleccionar una meta", "Error: falta rellenar campos", HEIGHT);
             }
-                    } catch (Exception ex) {
+            else {
+                
+                ahorro.setMonto_ahorro(Integer.parseInt(this.jtxt_montoGasto.getText()));
+                ahorro.setCod_ahorro(Integer.parseInt(this.jtxt_cod_gast.getText().toUpperCase()));
+                
+                if(IAhorro.actualizar(ahorro)){
+
+                }   System.out.println("ahorro modificado con exito "+ahorro.toString());   
+                    this.setVisible(false);
+                    JOptionPane.showMessageDialog(null, "Modificación hecha con éxito", "Moficación ahorro", JOptionPane.INFORMATION_MESSAGE);
+                }
+            } catch (Exception ex) {
             Logger.getLogger(ActualizarAhorro.class.getName()).log(Level.SEVERE, null, ex);
         }
       

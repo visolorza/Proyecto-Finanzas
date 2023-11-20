@@ -9,6 +9,8 @@ import modelo.Gasto;
 import utils.Utils;
 import dao.DAOIngreso;
 import interfaz.IGrupoFamiliar;
+import static java.awt.image.ImageObserver.HEIGHT;
+import javax.swing.JOptionPane;
 import modelo.Ingreso;
 
 /**
@@ -184,16 +186,24 @@ public class ActualizarIngresos extends javax.swing.JFrame {
 
     private void jbtn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_actualizarActionPerformed
 
-        ingreso.setMonto_ing(Integer.parseInt(this.jtxt_montoIngreso.getText()));
-        ingreso.setDesc_ing(this.jtxt_descIngreso.getText().toUpperCase());
-        ingreso.setCod_ing(Integer.parseInt(this.jtxt_cod_ing.getText()));
-        
         try {
-            if(cingresos.actualizar(ingreso)){
-                System.out.println("ingreso modificado con exto "+ingreso.toString());   
-                this.setVisible(false);
+            if (this.jtxt_cod_ing.getText().isBlank() || this.jtxt_descIngreso.getText().isBlank() || this.jtxt_montoIngreso.getText().isBlank() || this.jcbo_integrante.getSelectedItem().toString().equalsIgnoreCase("- SELECCIONAR -")) {
+                JOptionPane.showMessageDialog(null, "Asegurese de ingresar el código del ingreso, su monto y seleccionar un integrante", "Error: falta rellenar campos", HEIGHT);
             }
-                    } catch (Exception ex) {
+            else {
+                ingreso.setMonto_ing(Integer.parseInt(this.jtxt_montoIngreso.getText()));
+                ingreso.setDesc_ing(this.jtxt_descIngreso.getText().toUpperCase());
+                ingreso.setCod_ing(Integer.parseInt(this.jtxt_cod_ing.getText()));
+                
+                if(cingresos.actualizar(ingreso)){
+                    System.out.println("ingreso modificado con exto "+ingreso.toString());   
+                    this.setVisible(false);
+                    
+                    JOptionPane.showMessageDialog(null, "Modificación hecha con éxito", "Moficación ingreso", JOptionPane.INFORMATION_MESSAGE);
+                }
+                
+            }    
+            } catch (Exception ex) {
             Logger.getLogger(ActualizarIngresos.class.getName()).log(Level.SEVERE, null, ex);
         }
       

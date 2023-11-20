@@ -6,8 +6,10 @@ package emergente;
 
 import dao.DAOGasto;
 import dao.DAOGrupoFamiliar;
+import static java.awt.image.ImageObserver.HEIGHT;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.Integrante;
 
 /**
@@ -99,12 +101,19 @@ public class EliminarIntegrante extends javax.swing.JFrame {
 
     private void jbtn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_eliminarActionPerformed
 
-        int cod_int = Integer.parseInt(this.jtxt_cod_int.getText());
-
         try {
-            if(cintegrante.eliminar(cod_int)){
-                System.out.println("integrante eliminado con exto ");
-                this.setVisible(false);
+            if (this.jtxt_cod_int.getText().isBlank()) {
+                JOptionPane.showMessageDialog(null, "Escriba un código de integrante", "Error: falta rellenar campos", HEIGHT);
+            }
+            else {
+                int cod_int = Integer.parseInt(this.jtxt_cod_int.getText());
+                
+                if(cintegrante.eliminar(cod_int)){
+                    System.out.println("integrante eliminado con exto ");
+                    this.setVisible(false);
+                    
+                    JOptionPane.showMessageDialog(null, "Eliminación hecha con éxito", "Eliminar integrante", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
         } catch (Exception ex) {
             Logger.getLogger(EliminarIntegrante.class.getName()).log(Level.SEVERE, null, ex);
