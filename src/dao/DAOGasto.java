@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -414,5 +415,34 @@ public class DAOGasto implements IGasto{
             throw new Exception("No se encontró ninguna categoría con la descripción proporcionada");
         }
     }
+    
+    @Override
+    public void RellenarComboCatSubcat(String tabla, String valor, JComboBox combo,int codcat){
+        
+        try {
+        
+        ConexionBD con = new ConexionBD();
+        Connection cnx = ConexionBD.obtenerConexion();
+        
+        if(codcat==0){
+            String query = "SELECT * FROM "+tabla;
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                combo.addItem(rs.getString(valor));
+            }
+        }if(codcat!=0){
+            String query = "SELECT * FROM "+tabla+" where cod_cat = "+codcat;
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                combo.addItem(rs.getString(valor));
+            }
+        }
+        } catch (Exception e) {
+        }
+       
+    }
+    
 }
        

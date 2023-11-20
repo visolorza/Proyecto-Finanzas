@@ -7,6 +7,8 @@ import java.util.logging.Logger;
 import modelo.Ahorro;
 import utils.Utils;
 import dao.DAOMeta;
+import interfaz.IAhorro;
+import interfaz.IMeta;
 
 /**
  *
@@ -29,7 +31,7 @@ public class ActualizarAhorro extends javax.swing.JFrame {
         initComponents();
         
         Utils utils = new Utils();
-        utils.RellenarComboMeta("meta", "nombre_meta", this.jcbo_Meta);
+        IMeta.RellenarComboMeta("meta", "nombre_meta", this.jcbo_Meta);
     }
 
     /**
@@ -145,10 +147,9 @@ public class ActualizarAhorro extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    DAOMeta cmeta = new DAOMeta();
-    DAOAhorro cgasto = new DAOAhorro();
-    Ahorro gasto = new Ahorro();
+    IAhorro IAhorro = new DAOAhorro();
+    Ahorro ahorro = new Ahorro();
+    IMeta IMeta = new DAOMeta();
     
     
     private void jtxt_montoGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_montoGastoActionPerformed
@@ -157,12 +158,12 @@ public class ActualizarAhorro extends javax.swing.JFrame {
 
     private void jbtn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_actualizarActionPerformed
 
-        gasto.setMonto_ahorro(Integer.parseInt(this.jtxt_montoGasto.getText()));
-        gasto.setCod_ahorro(Integer.parseInt(this.jtxt_cod_gast.getText().toUpperCase()));
+        ahorro.setMonto_ahorro(Integer.parseInt(this.jtxt_montoGasto.getText()));
+        ahorro.setCod_ahorro(Integer.parseInt(this.jtxt_cod_gast.getText().toUpperCase()));
         
         try {
-            if(cgasto.actualizar(gasto)){
-                System.out.println("ahorro modificado con exito "+gasto.toString());   
+            if(IAhorro.actualizar(ahorro)){
+                System.out.println("ahorro modificado con exito "+ahorro.toString());   
                 this.setVisible(false);
             }
                     } catch (Exception ex) {
@@ -180,7 +181,7 @@ public class ActualizarAhorro extends javax.swing.JFrame {
             // TODO add your handling code here:
 
             String nombre_meta= jcbo_Meta.getSelectedItem().toString();
-            gasto.setCod_meta(cmeta.obtenerCodigoMeta(nombre_meta));
+            ahorro.setCod_meta(IMeta.obtenerCodigoMeta(nombre_meta));
         } catch (Exception ex) {
             Logger.getLogger(ActulizarMeta.class.getName()).log(Level.SEVERE, null, ex);
         }

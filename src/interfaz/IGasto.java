@@ -5,6 +5,7 @@
 package interfaz;
 
 import java.util.ArrayList;
+import javax.swing.JComboBox;
 import modelo.Gasto;
 
 /**
@@ -25,4 +26,6 @@ public interface IGasto {
     Gasto obtenerCodSubcat(Gasto gasto,String desc_subcat) throws Exception;
     Gasto obtenerGastoCodInt(Gasto gasto,String desc_int) throws Exception;
     int obtenerCodCat(String desc_cat) throws Exception;
+    
+     void RellenarComboCatSubcat(String tabla, String valor, JComboBox combo,int codcat);
 }

@@ -25,7 +25,7 @@ public class DAOIngreso implements IIngreso {
             ConexionBD con = new ConexionBD();
             Connection cnx = ConexionBD.obtenerConexion();
             String query="";
-            if (year!=0) {
+            if (year!=0 && mes==0) {
                 query = "SELECT * FROM ingreso WHERE EXTRACT(YEAR FROM fecha_ing)=?";
                 PreparedStatement stmt = cnx.prepareStatement(query);
                 stmt.setInt(1, year);
@@ -44,8 +44,8 @@ public class DAOIngreso implements IIngreso {
                 stmt.close();
             }
             if (mes!=0 && year!=0) {
-                query = "SELECT * FROM ingreso WHERE EXTRACT(MONTH FROM fecha_ing)=? AND"
-                        + "EXTRACT(YEAR FROM fecha_ing)=?";
+                query = "SELECT * FROM ingreso WHERE EXTRACT(MONTH FROM fecha_ing)= ? AND "
+                        + "EXTRACT(YEAR FROM fecha_ing)= ?";
                 PreparedStatement stmt = cnx.prepareStatement(query);
                 stmt.setInt(1, mes);
                 stmt.setInt(2, year);
@@ -62,7 +62,9 @@ public class DAOIngreso implements IIngreso {
                 }
                 rs.close();
                 stmt.close();
-            }if(year==0 && mes==0){
+               
+            }
+            if(year==0 && mes==0){
                 query = "select * from Ingreso order by fecha_ing desc";
                 PreparedStatement stmt = cnx.prepareStatement(query);
                 ResultSet rs = stmt.executeQuery();

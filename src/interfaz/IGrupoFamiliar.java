@@ -5,6 +5,7 @@
 package interfaz;
 
 import java.util.ArrayList;
+import javax.swing.JComboBox;
 import modelo.Integrante;
 
 /**
@@ -19,4 +20,6 @@ public interface IGrupoFamiliar {
     boolean actualizar(Integrante integrante) throws Exception;
     
     int obtenerCodInt(Integrante integrante, String desc_int) throws Exception;
+    
+    void RellenarComboInt(String tabla, String valor, JComboBox combo);
 }

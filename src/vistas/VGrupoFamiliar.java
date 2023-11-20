@@ -1,5 +1,6 @@
 package vistas;
 
+import controlador.ControlGrupoFamiliar;
 import emergente.ActualizarIntegrante;
 import emergente.EliminarIntegrante;
 import dao.DAOGrupoFamiliar;
@@ -40,7 +41,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         this.jTableMostrar.setModel(modelo);
         
         try {
-            utils.refrescarGrupoFamiliar(jTableMostrar);
+            controlGrupoFamiliar.refrescarGrupoFamiliar(jTableMostrar);
         } catch (Exception ex) {
             Logger.getLogger(VGrupoFamiliar.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -359,6 +360,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
     Integrante integrante = new Integrante();
     IGrupoFamiliar IGrupoFamiliar = new DAOGrupoFamiliar();
     Utils utils = new Utils();
+    ControlGrupoFamiliar controlGrupoFamiliar = new ControlGrupoFamiliar();
 
     public JTable getjTableMostrar() {
         return jTableMostrar;
@@ -376,7 +378,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         try {
             IGrupoFamiliar.agregar(integrante);
             
-            utils.refrescarGrupoFamiliar(jTableMostrar);
+            controlGrupoFamiliar.refrescarGrupoFamiliar(jTableMostrar);
         } catch (Exception ex) {
             Logger.getLogger(VGrupoFamiliar.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -485,7 +487,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try {
-            utils.refrescarGrupoFamiliar(jTableMostrar);
+            controlGrupoFamiliar.refrescarGrupoFamiliar(jTableMostrar);
         } catch (Exception ex) {
             Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
         }

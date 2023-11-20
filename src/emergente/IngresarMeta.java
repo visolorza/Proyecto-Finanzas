@@ -1,10 +1,12 @@
 
 package emergente;
 
+import dao.DAOGrupoFamiliar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import utils.Utils;
 import dao.DAOMeta;
+import interfaz.IGrupoFamiliar;
 import modelo.Meta;
 
 /**
@@ -29,7 +31,7 @@ public class IngresarMeta extends javax.swing.JFrame {
         Utils utils = new Utils();
         
         
-        utils.RellenarComboInt("integrante", "desc_int", this.jcbo_integrante);
+        IGrupoFamiliar.RellenarComboInt("integrante", "desc_int", this.jcbo_integrante);
     }
 
     /**
@@ -150,7 +152,7 @@ public class IngresarMeta extends javax.swing.JFrame {
 
     DAOMeta cmeta = new DAOMeta();
     Meta meta = new Meta();
-    
+    IGrupoFamiliar IGrupoFamiliar = new DAOGrupoFamiliar();
     
     private void jtxt_montoGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_montoGastoActionPerformed
         // TODO add your handling code here:

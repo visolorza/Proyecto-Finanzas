@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -178,6 +179,26 @@ public class DAOMeta implements IMeta{
     } 
 
         return meta;
+    }
+    
+    public void RellenarComboMeta(String tabla, String valor, JComboBox combo){
+        
+            try {
+
+            ConexionBD con = new ConexionBD();
+            Connection cnx = ConexionBD.obtenerConexion();
+
+            String query = "SELECT * FROM "+tabla;
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    combo.addItem(rs.getString(valor));
+                }
+
+            } catch (Exception e) {
+            }
+       
     }
         
 }

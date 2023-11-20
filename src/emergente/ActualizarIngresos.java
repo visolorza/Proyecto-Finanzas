@@ -2,11 +2,13 @@
 package emergente;
 
 import dao.DAOGasto;
+import dao.DAOGrupoFamiliar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Gasto;
 import utils.Utils;
 import dao.DAOIngreso;
+import interfaz.IGrupoFamiliar;
 import modelo.Ingreso;
 
 /**
@@ -31,7 +33,7 @@ public class ActualizarIngresos extends javax.swing.JFrame {
         
         Utils utils = new Utils();
     
-    utils.RellenarComboInt("integrante", "desc_int", this.jcbo_integrante);
+    IGrupoFamiliar.RellenarComboInt("integrante", "desc_int", this.jcbo_integrante);
     }
 
     /**
@@ -169,7 +171,7 @@ public class ActualizarIngresos extends javax.swing.JFrame {
 
     DAOIngreso cingresos = new DAOIngreso();
     Ingreso ingreso = new Ingreso();
-    
+    IGrupoFamiliar IGrupoFamiliar = new DAOGrupoFamiliar();
     
     private void jtxt_montoIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_montoIngresoActionPerformed
         // TODO add your handling code here:

@@ -1,8 +1,14 @@
 package vistas;
 
+import controlador.ControlAhorro;
+import controlador.ControlGasto;
+import controlador.ControlIngreso;
+import controlador.ControlMeta;
+import dao.DAODetalleHistorico;
 import utils.Grafico;
 import utils.Utils;
 import dao.DAOGasto;
+import interfaz.IDetalleHistorico;
 import interfaz.IGasto;
 import java.awt.BorderLayout;
 import java.text.NumberFormat;
@@ -334,6 +340,11 @@ public class VDetalleHistorico extends javax.swing.JFrame {
 
     Utils utils = new Utils();
     IGasto IGasto = new DAOGasto();
+    ControlGasto controlGasto = new ControlGasto();
+    ControlIngreso controlIngreso = new ControlIngreso();
+    ControlMeta controlMeta = new ControlMeta();
+    IDetalleHistorico IDetalleHistorico = new DAODetalleHistorico();
+    ControlAhorro controlAhorro = new ControlAhorro();
     
     private void jbtn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_inicioActionPerformed
 
@@ -466,7 +477,7 @@ public class VDetalleHistorico extends javax.swing.JFrame {
                     this.jpan_grafico.removeAll();
                     
                      try {
-                        utils.refrescarIngresoMes(jTableDHist, year, mes);
+                        controlIngreso.refrescarIngresoMes(jTableDHist, year, mes);
                         if (year!=0 && mes!=0) {
                         
                             Grafico grafico = new Grafico();
@@ -482,7 +493,7 @@ public class VDetalleHistorico extends javax.swing.JFrame {
                             }
                             this.jlbl_total.setText("TOTAL:");
                             NumberFormat formato = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
-                            this.jlbl_montoTotal.setText(formato.format(utils.obtenerTotalIngresoMesDH(year,mes)));
+                            this.jlbl_montoTotal.setText(formato.format(controlIngreso.obtenerTotalIngresoMesDH(year,mes)));
                         }
                         
                     } catch (Exception ex) {
@@ -495,7 +506,7 @@ public class VDetalleHistorico extends javax.swing.JFrame {
                     this.jpan_grafico.removeAll();
                     
                     try {
-                        utils.refrescarGastoMes(jTableDHist, year, mes);
+                        controlGasto.refrescarGastoMes(jTableDHist, year, mes);
                         if (year!=0 && mes!=0) {
                         
                             Grafico grafico = new Grafico();
@@ -511,7 +522,7 @@ public class VDetalleHistorico extends javax.swing.JFrame {
                             }
                             this.jlbl_total.setText("TOTAL:");
                             NumberFormat formato = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
-                            this.jlbl_montoTotal.setText(formato.format(utils.obtenerTotalGastoMesDH(year,mes)));
+                            this.jlbl_montoTotal.setText(formato.format(controlGasto.obtenerTotalGastoMesDH(year,mes)));
                         }
                         
                     } catch (Exception ex) {
@@ -525,7 +536,7 @@ public class VDetalleHistorico extends javax.swing.JFrame {
                     this.jpan_grafico.removeAll();
                     
                     try {
-                        utils.refrescarAhorroMes(jTableDHist, year, mes);
+                        controlAhorro.refrescarAhorroMes(jTableDHist, year, mes);
                         
                         if (year!=0 && mes!=0) {
                             Grafico grafico = new Grafico();
@@ -541,7 +552,7 @@ public class VDetalleHistorico extends javax.swing.JFrame {
                             }
                             this.jlbl_total.setText("TOTAL:");
                             NumberFormat formato = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
-                            this.jlbl_montoTotal.setText(formato.format(utils.obtenerTotalAhorroMesDH(year,mes)));
+                            this.jlbl_montoTotal.setText(formato.format(controlAhorro.obtenerTotalAhorroMesDH(year,mes)));
                         }
                     } catch (Exception ex) {
                         Logger.getLogger(VDetalleHistorico.class.getName()).log(Level.SEVERE, null, ex);
@@ -571,10 +582,10 @@ public class VDetalleHistorico extends javax.swing.JFrame {
                 case "GASTO":
                     
                     try {
-                        utils.refrescarTodoGasto(this.jTableDHist);
+                        controlGasto.refrescarTodoGasto(this.jTableDHist);
                         fecha_cat="fecha_gast"; 
                         if (!"".equals(fecha_cat)) {
-                            utils.RellenarComboAño(cat,fecha_cat, this.jcbo_año); 
+                            IDetalleHistorico.RellenarComboAño(cat,fecha_cat, this.jcbo_año); 
                         }
                         
                     } catch (Exception ex) {
@@ -585,10 +596,10 @@ public class VDetalleHistorico extends javax.swing.JFrame {
                 case("INGRESO"):
                     
                     try {
-                        utils.refrescarTodoIngreso(this.jTableDHist);
+                        controlIngreso.refrescarTodoIngreso(this.jTableDHist);
                         fecha_cat="fecha_ing";
                         if (!"".equals(fecha_cat)) {
-                            utils.RellenarComboAño(cat,fecha_cat, this.jcbo_año); 
+                            IDetalleHistorico.RellenarComboAño(cat,fecha_cat, this.jcbo_año); 
                         }
                         
                     } catch (Exception ex) {
@@ -599,10 +610,10 @@ public class VDetalleHistorico extends javax.swing.JFrame {
                 case ("AHORRO"):
                     
                     try {
-                        utils.refrescarTodoMeta(this.jTableDHist);
+                        controlMeta.refrescarTodoMeta(this.jTableDHist);
                         fecha_cat="fecha_ahor";
                         if (!"".equals(fecha_cat)) {
-                            utils.RellenarComboAño(cat,fecha_cat, this.jcbo_año); 
+                            IDetalleHistorico.RellenarComboAño(cat,fecha_cat, this.jcbo_año); 
                         }
                   
                     } catch (Exception ex) {
@@ -646,8 +657,8 @@ public class VDetalleHistorico extends javax.swing.JFrame {
                     fecha = "fecha_ing";
                     
                      try {
-                        utils.refrescarIngresoAño(jTableDHist, year);
-                        utils.RellenarComboMes(year, cat, fecha, this.jcbo_mes);
+                        controlIngreso.refrescarIngresoAño(jTableDHist, year);
+                        IDetalleHistorico.RellenarComboMes(year, cat, fecha, this.jcbo_mes);
                     } catch (Exception ex) {
                         Logger.getLogger(VDetalleHistorico.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -656,8 +667,8 @@ public class VDetalleHistorico extends javax.swing.JFrame {
                     fecha = "fecha_gast";
                     
                     try {
-                        utils.refrescarGastoAño(jTableDHist, year);
-                        utils.RellenarComboMes(year, cat, fecha, this.jcbo_mes);
+                        controlGasto.refrescarGastoAño(jTableDHist, year);
+                        IDetalleHistorico.RellenarComboMes(year, cat, fecha, this.jcbo_mes);
                     } catch (Exception ex) {
                         Logger.getLogger(VDetalleHistorico.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -666,8 +677,8 @@ public class VDetalleHistorico extends javax.swing.JFrame {
                     fecha = "fecha_ahor";
          
                     try {
-                        utils.refrescarAhorroAño(jTableDHist, year);
-                        utils.RellenarComboMes(year, cat, fecha, this.jcbo_mes);
+                        controlAhorro.refrescarAhorroAño(jTableDHist, year);
+                        IDetalleHistorico.RellenarComboMes(year, cat, fecha, this.jcbo_mes);
                     } catch (Exception ex) {
                         Logger.getLogger(VDetalleHistorico.class.getName()).log(Level.SEVERE, null, ex);
                     }

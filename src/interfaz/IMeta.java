@@ -5,6 +5,7 @@
 package interfaz;
 
 import java.util.ArrayList;
+import javax.swing.JComboBox;
 import modelo.Meta;
 
 /**
@@ -20,6 +21,8 @@ public interface IMeta {
     
     int obtenerCodigoMeta(String nombreMeta) throws Exception;
     Meta obtenerMetaCodInt(Meta meta,String desc_int) throws Exception;
+    
+    void RellenarComboMeta(String tabla, String valor, JComboBox combo);
     
     
 }

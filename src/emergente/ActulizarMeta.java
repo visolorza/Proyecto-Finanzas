@@ -1,10 +1,13 @@
 
 package emergente;
 
+import dao.DAOGrupoFamiliar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import utils.Utils;
 import dao.DAOMeta;
+import interfaz.IGrupoFamiliar;
+import interfaz.IMeta;
 import modelo.Meta;
 
 /**
@@ -27,8 +30,8 @@ public class ActulizarMeta extends javax.swing.JFrame {
         initComponents();
         
         Utils utils = new Utils();
-        utils.RellenarComboMeta("meta", "nombre_meta", this.jcbo_Meta);
-        utils.RellenarComboInt("integrante", "desc_int", this.jcbo_integrante);
+        IMeta.RellenarComboMeta("meta", "nombre_meta", this.jcbo_Meta);
+        IGrupoFamiliar.RellenarComboInt("integrante", "desc_int", this.jcbo_integrante);
 
     }
 
@@ -174,9 +177,9 @@ public class ActulizarMeta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    DAOMeta cmeta = new DAOMeta();
     Meta meta = new Meta();
-    
+    IGrupoFamiliar IGrupoFamiliar = new DAOGrupoFamiliar();
+    IMeta IMeta = new DAOMeta();
     
     private void jtxt_montoGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_montoGastoActionPerformed
         // TODO add your handling code here:
@@ -192,7 +195,7 @@ public class ActulizarMeta extends javax.swing.JFrame {
         meta.setNombre_meta(this.jtxt_descGasto.getText().toUpperCase());
         
         try {
-            if(cmeta.actualizar(meta)){
+            if(IMeta.actualizar(meta)){
                 System.out.println("meta modificado con exito " +meta.toString());   
                 this.setVisible(false);
             }
@@ -207,7 +210,7 @@ public class ActulizarMeta extends javax.swing.JFrame {
 
         String desc_int = jcbo_integrante.getSelectedItem().toString().toUpperCase();
         try {
-            cmeta.obtenerMetaCodInt(meta, desc_int);
+            IMeta.obtenerMetaCodInt(meta, desc_int);
             System.out.println("integrsnte guardado "+meta.getCod_int());
         } catch (Exception ex) {
             Logger.getLogger(ActulizarMeta.class.getName()).log(Level.SEVERE, null, ex);
@@ -220,7 +223,7 @@ public class ActulizarMeta extends javax.swing.JFrame {
             // TODO add your handling code here:
             
             String nombre_meta= jcbo_Meta.getSelectedItem().toString();
-            meta.setCod_meta(cmeta.obtenerCodigoMeta(nombre_meta));
+            meta.setCod_meta(IMeta.obtenerCodigoMeta(nombre_meta));
         } catch (Exception ex) {
             Logger.getLogger(ActulizarMeta.class.getName()).log(Level.SEVERE, null, ex);
         }

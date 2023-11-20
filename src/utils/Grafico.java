@@ -4,6 +4,9 @@
  */
 package utils;
 
+import controlador.ControlAhorro;
+import controlador.ControlGasto;
+import controlador.ControlIngreso;
 import org.jfree.chart.labels.PieSectionLabelGenerator;
 import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
 import org.jfree.chart.plot.PiePlot;
@@ -12,9 +15,6 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.category.BarRenderer;
-import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
@@ -22,19 +22,24 @@ import org.jfree.data.category.DefaultCategoryDataset;
  * @author María José
  */
 public class Grafico {
+    
+    ControlGasto controlGasto = new ControlGasto();
+    Utils utils = new Utils();
+    ControlIngreso controlIngreso = new ControlIngreso();
+    ControlAhorro controlAhorro = new ControlAhorro();
         
     public ChartPanel crearGraficoInicio() throws Exception {
-        Utils utils = new Utils();
+        
         //Datos
         DefaultPieDataset dataset = new DefaultPieDataset();
-        dataset.setValue("Transporte", utils.obtenerTotalCat(1));
-        dataset.setValue("Salud",utils.obtenerTotalCat(2));
-        dataset.setValue("Educacion", utils.obtenerTotalCat(3));
-        dataset.setValue("Compras", utils.obtenerTotalCat(4));
-        dataset.setValue("Vivienda", utils.obtenerTotalCat(5));
-        dataset.setValue("Cuentas", utils.obtenerTotalCat(6));
-        dataset.setValue("Deudas", utils.obtenerTotalCat(7));
-        dataset.setValue("Otros", utils.obtenerTotalCat(8));
+        dataset.setValue("Transporte", controlGasto.obtenerTotalCat(1));
+        dataset.setValue("Salud",controlGasto.obtenerTotalCat(2));
+        dataset.setValue("Educacion", controlGasto.obtenerTotalCat(3));
+        dataset.setValue("Compras", controlGasto.obtenerTotalCat(4));
+        dataset.setValue("Vivienda", controlGasto.obtenerTotalCat(5));
+        dataset.setValue("Cuentas", controlGasto.obtenerTotalCat(6));
+        dataset.setValue("Deudas", controlGasto.obtenerTotalCat(7));
+        dataset.setValue("Otros", controlGasto.obtenerTotalCat(8));
         //Crear grafico
         JFreeChart chart = ChartFactory.createPieChart(
         "Gastos del Mes",  
@@ -56,17 +61,16 @@ public class Grafico {
     }   
     
     public ChartPanel crearGraficoGasDetHis(int year,int mes) throws Exception {
-        Utils utils = new Utils();
         //Datos
         DefaultPieDataset dataset = new DefaultPieDataset();
-        dataset.setValue("Transporte", utils.obtenerTotalGastoDH(year, mes, 1));
-        dataset.setValue("Salud",utils.obtenerTotalGastoDH(year, mes, 2));
-        dataset.setValue("Educacion", utils.obtenerTotalGastoDH(year, mes, 3));
-        dataset.setValue("Compras", utils.obtenerTotalGastoDH(year, mes, 4));
-        dataset.setValue("Vivienda", utils.obtenerTotalGastoDH(year, mes, 5));
-        dataset.setValue("Cuentas", utils.obtenerTotalGastoDH(year, mes, 6));
-        dataset.setValue("Deudas", utils.obtenerTotalGastoDH(year, mes, 7));
-        dataset.setValue("Otros", utils.obtenerTotalGastoDH(year, mes, 8));
+        dataset.setValue("Transporte", controlGasto.obtenerTotalGastoDH(year, mes, 1));
+        dataset.setValue("Salud",controlGasto.obtenerTotalGastoDH(year, mes, 2));
+        dataset.setValue("Educacion", controlGasto.obtenerTotalGastoDH(year, mes, 3));
+        dataset.setValue("Compras", controlGasto.obtenerTotalGastoDH(year, mes, 4));
+        dataset.setValue("Vivienda", controlGasto.obtenerTotalGastoDH(year, mes, 5));
+        dataset.setValue("Cuentas", controlGasto.obtenerTotalGastoDH(year, mes, 6));
+        dataset.setValue("Deudas", controlGasto.obtenerTotalGastoDH(year, mes, 7));
+        dataset.setValue("Otros", controlGasto.obtenerTotalGastoDH(year, mes, 8));
         //Crear grafico
         JFreeChart chart = ChartFactory.createPieChart(
         " ",  
@@ -88,14 +92,13 @@ public class Grafico {
     }
     
     public ChartPanel crearGraficoIngDetHis(int year,int mes)throws Exception{
-        Utils utils = new Utils();
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        if(utils.obtenerTotalIngresoMesDH(year, (mes-1))!=0){
-            dataset.addValue(utils.obtenerTotalIngresoMesDH(year, (mes-1)), "Ingresos", (mes-1)+"/"+year);
+        if(controlIngreso.obtenerTotalIngresoMesDH(year, (mes-1))!=0){
+            dataset.addValue(controlIngreso.obtenerTotalIngresoMesDH(year, (mes-1)), "Ingresos", (mes-1)+"/"+year);
         }
-        dataset.addValue(utils.obtenerTotalIngresoMesDH(year, mes), "Ingresos", mes+"/"+year);
-        if (utils.obtenerTotalIngresoMesDH(year, (mes+1))!=0) {
-            dataset.addValue(utils.obtenerTotalIngresoMesDH(year, (mes+1)), "Ingresos", (mes+1)+"/"+year);
+        dataset.addValue(controlIngreso.obtenerTotalIngresoMesDH(year, mes), "Ingresos", mes+"/"+year);
+        if (controlIngreso.obtenerTotalIngresoMesDH(year, (mes+1))!=0) {
+            dataset.addValue(controlIngreso.obtenerTotalIngresoMesDH(year, (mes+1)), "Ingresos", (mes+1)+"/"+year);
         }
         JFreeChart chart = ChartFactory.createBarChart(
                 " ",
@@ -114,14 +117,13 @@ public class Grafico {
     }
     
     public ChartPanel crearGraficoAhorroDetHis(int year,int mes)throws Exception{
-        Utils utils = new Utils();
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        if(utils.obtenerTotalAhorroMesDH(year, (mes-1))!=0){
-            dataset.addValue(utils.obtenerTotalAhorroMesDH(year, (mes-1)), "Ahorros", (mes-1)+"/"+year);
+        if(controlAhorro.obtenerTotalAhorroMesDH(year, (mes-1))!=0){
+            dataset.addValue(controlAhorro.obtenerTotalAhorroMesDH(year, (mes-1)), "Ahorros", (mes-1)+"/"+year);
         }
-        dataset.addValue(utils.obtenerTotalAhorroMesDH(year, mes), "Ahorros", mes+"/"+year);
-        if (utils.obtenerTotalAhorroMesDH(year, (mes+1))!=0) {
-            dataset.addValue(utils.obtenerTotalAhorroMesDH(year, (mes+1)), "Ahorros", (mes+1)+"/"+year);
+        dataset.addValue(controlAhorro.obtenerTotalAhorroMesDH(year, mes), "Ahorros", mes+"/"+year);
+        if (controlAhorro.obtenerTotalAhorroMesDH(year, (mes+1))!=0) {
+            dataset.addValue(controlAhorro.obtenerTotalAhorroMesDH(year, (mes+1)), "Ahorros", (mes+1)+"/"+year);
         }
         JFreeChart chart = ChartFactory.createBarChart(
                 " ",

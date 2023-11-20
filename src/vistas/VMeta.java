@@ -1,5 +1,7 @@
 package vistas;
 
+import controlador.ControlAhorro;
+import controlador.ControlMeta;
 import emergente.EliminarAhorro;
 import emergente.ActualizarAhorro;
 import emergente.ActulizarMeta;
@@ -47,10 +49,10 @@ public class VMeta extends javax.swing.JFrame {
         Utils utils = new Utils();
         this.jlbl_mesActual.setText(utils.obtenerNombreMesActual());
         
-        this.jlbl_totalAhorros.setText(utils.obtenerTotalAhorros());
+        this.jlbl_totalAhorros.setText(controlAhorro.obtenerTotalAhorros());
         this.jlbl_totalAhorros.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         
-        utils.RellenarComboMeta("meta", "nombre_meta", this.jcbo_Meta);
+        IMeta.RellenarComboMeta("meta", "nombre_meta", this.jcbo_Meta);
         
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("codigo");
@@ -464,6 +466,8 @@ public class VMeta extends javax.swing.JFrame {
     Ahorro ahorro = new Ahorro();
     IMeta IMeta = new DAOMeta();
     Utils utils = new Utils();
+    ControlMeta controlMeta = new ControlMeta();
+    ControlAhorro controlAhorro = new ControlAhorro();
  
     private void jcbo_MetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_MetaActionPerformed
         // TODO add your handling code here:
@@ -471,7 +475,7 @@ public class VMeta extends javax.swing.JFrame {
         String nombre_meta= jcbo_Meta.getSelectedItem().toString();
          
         try {
-            utils.refrescarMeta(jTableMostrarMeta, IMeta.obtenerCodigoMeta(nombre_meta));
+            controlMeta.refrescarMeta(jTableMostrarMeta, IMeta.obtenerCodigoMeta(nombre_meta));
         } catch (Exception ex) {
             Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -479,7 +483,7 @@ public class VMeta extends javax.swing.JFrame {
         if (!"- SELECCIONAR -".equals(nombre_meta) && nombre_meta != null) {
             this.jlbl_tituloAhorro.setText(nombre_meta.toUpperCase());
              try {
-                int totalAhorros=utils.obtenerTotalAhorroPorMeta(IMeta.obtenerCodigoMeta(nombre_meta));
+                int totalAhorros=controlAhorro.obtenerTotalAhorroPorMeta(IMeta.obtenerCodigoMeta(nombre_meta));
                 NumberFormat formato = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
                 this.jlbl_totalAhorros.setText(formato.format(totalAhorros));
              } catch (Exception ex) {
@@ -489,7 +493,7 @@ public class VMeta extends javax.swing.JFrame {
         else {
             this.jlbl_tituloAhorro.setText("AHORROS");
             try {
-                this.jlbl_totalAhorros.setText(utils.obtenerTotalAhorros());
+                this.jlbl_totalAhorros.setText(controlAhorro.obtenerTotalAhorros());
             } catch (Exception ex) {
                 Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -512,7 +516,7 @@ public class VMeta extends javax.swing.JFrame {
             // TODO add your handling code here:
         
          try {
-            utils.refrescarMeta(jTableMostrarMeta,ahorro.getCod_meta());
+            controlMeta.refrescarMeta(jTableMostrarMeta,ahorro.getCod_meta());
         } catch (Exception ex) {
             Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -536,7 +540,7 @@ public class VMeta extends javax.swing.JFrame {
         try {
             if(IAhorro.agregar(ahorro)){
                
-                utils.refrescarMeta(jTableMostrarMeta, ahorro.getCod_meta());
+                controlMeta.refrescarMeta(jTableMostrarMeta, ahorro.getCod_meta());
                 this.jtxt_montoAbonoMeta.setText("");
             }
         } catch (Exception ex) {

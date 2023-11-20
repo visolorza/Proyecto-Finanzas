@@ -1,9 +1,12 @@
 package vistas;
 
+import controlador.ControlIngreso;
+import dao.DAOGrupoFamiliar;
 import emergente.ActualizarIngresos;
 import emergente.EliminarIngresos;
 import utils.Utils;
 import dao.DAOIngreso;
+import interfaz.IGrupoFamiliar;
 import interfaz.IIngreso;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,13 +36,13 @@ public class VIngresos extends javax.swing.JFrame {
         Utils utils = new Utils();
         this.jlbl_mesActual.setText(utils.obtenerNombreMesActual());
         
-        this.jlbl_totalIngresos.setText(utils.obtenerTotalIngresosMes());
+        this.jlbl_totalIngresos.setText(controlIngreso.obtenerTotalIngresosMes());
         this.jlbl_totalIngresos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         
-        utils.RellenarComboInt("integrante", "desc_int", this.jcbo_integrante);
+        IGrupoFamiliar.RellenarComboInt("integrante", "desc_int", this.jcbo_integrante);
         
         try {
-            utils.refrescarTodoIngreso(jTableMostrar);
+            controlIngreso.refrescarTodoIngreso(jTableMostrar);
         } catch (Exception ex) {
             Logger.getLogger(VGrupoFamiliar.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -414,6 +417,8 @@ public class VIngresos extends javax.swing.JFrame {
     IIngreso IIngreso = new DAOIngreso();
     Ingreso ingreso = new Ingreso();
     Utils utils = new Utils();
+    IGrupoFamiliar IGrupoFamiliar = new DAOGrupoFamiliar();
+    ControlIngreso controlIngreso = new ControlIngreso();
     
     private void jbtn_grupoFamiliar2ActionPerformed(java.awt.event.ActionEvent evt) {                                                    
         // TODO add your handling code here:
@@ -503,8 +508,8 @@ public class VIngresos extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try {
-            utils.refrescarTodoIngreso(jTableMostrar);
-            this.jlbl_totalIngresos.setText(utils.obtenerTotalIngresosMes());
+            controlIngreso.refrescarTodoIngreso(jTableMostrar);
+            this.jlbl_totalIngresos.setText(controlIngreso.obtenerTotalIngresosMes());
         } catch (Exception ex) {
             Logger.getLogger(VGrupoFamiliar.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -555,13 +560,13 @@ public class VIngresos extends javax.swing.JFrame {
         try {
             if(IIngreso.agregar(ingreso)){
                 System.out.println("gasto agregado con exto "+ingreso.toString());
-                utils.refrescarTodoIngreso(jTableMostrar);
+                controlIngreso.refrescarTodoIngreso(jTableMostrar);
 
                 this.jtxt_montoIngreso.setText("");
                 this.jtxt_descIngreso.setText("");
 
                 //Mostrar total gasto en compras en el mes
-                this.jlbl_totalIngresos.setText(utils.obtenerTotalIngresosMes());
+                this.jlbl_totalIngresos.setText(controlIngreso.obtenerTotalIngresosMes());
                 jlbl_totalIngresos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
             }

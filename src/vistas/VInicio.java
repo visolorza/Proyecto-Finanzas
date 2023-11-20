@@ -1,5 +1,7 @@
 package vistas;
 
+import controlador.ControlGasto;
+import controlador.ControlIngreso;
 import utils.Grafico;
 import utils.Utils;
 import java.awt.BorderLayout;
@@ -29,14 +31,14 @@ public class VInicio extends javax.swing.JFrame {
     public VInicio() throws Exception {
         initComponents();
         
-        Utils utils = new Utils();
+        
         this.jlbl_mesActual.setText(utils.obtenerNombreMesActual());
         this.jlbl_mesActual1.setText(utils.obtenerNombreMesActual());
         
-        this.jlbl_totalIngresos.setText(utils.obtenerTotalIngresosMes());
+        this.jlbl_totalIngresos.setText(controlIngreso.obtenerTotalIngresosMes());
         this.jlbl_totalIngresos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         
-        this.jlbl_totalGastos.setText(utils.obtenerTotalGastosMes());
+        this.jlbl_totalGastos.setText(controlGasto.obtenerTotalGastosMesActual());
         this.jlbl_totalGastos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
                   
         Grafico grafico = new Grafico();
@@ -321,6 +323,10 @@ public class VInicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    Utils utils = new Utils();
+    ControlGasto controlGasto = new ControlGasto();
+    ControlIngreso controlIngreso = new ControlIngreso();
+    
     private void jbtn_detHistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_detHistActionPerformed
         
         this.obtenerPosicion();

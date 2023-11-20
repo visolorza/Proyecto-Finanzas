@@ -1,10 +1,12 @@
 
 package emergente;
 
+import controlador.ControlGrupoFamiliar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import utils.Utils;
 import dao.DAOGrupoFamiliar;
+import interfaz.IGrupoFamiliar;
 import modelo.Integrante;
 import vistas.VGrupoFamiliar;
 
@@ -21,9 +23,7 @@ public class ActualizarIntegrante extends javax.swing.JFrame {
         initComponents();
         
         Utils utils = new Utils();
-    
-        utils.RellenarComboInt("integrante", "desc_int", this.jcbo_integrante);
-        
+        IGrupoFamiliar.RellenarComboInt("integrante", "desc_int", this.jcbo_integrante);
         
     }
 
@@ -119,9 +119,10 @@ public class ActualizarIntegrante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     Integrante integrante = new Integrante();
-    DAOGrupoFamiliar cintegrante = new DAOGrupoFamiliar();
     Utils utils = new Utils();
     VGrupoFamiliar grupoFamiliar = new VGrupoFamiliar();
+    IGrupoFamiliar IGrupoFamiliar = new DAOGrupoFamiliar();
+    ControlGrupoFamiliar controlGrupoFamiliar = new ControlGrupoFamiliar();
     
     private void jbtn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_actualizarActionPerformed
 
@@ -129,10 +130,10 @@ public class ActualizarIntegrante extends javax.swing.JFrame {
         //integrante.setCod_int(Integer.parseInt(this.jtxt_cod_gast.getText()));
         
         try {
-            if(cintegrante.actualizar(integrante)){
+            if(IGrupoFamiliar.actualizar(integrante)){
                 System.out.println("integrante modificado con exto "+ integrante.toString());   
                 this.setVisible(false);
-                utils.refrescarGrupoFamiliar(grupoFamiliar.getjTableMostrar()); 
+                controlGrupoFamiliar.refrescarGrupoFamiliar(grupoFamiliar.getjTableMostrar()); 
                 // De esta forma debería refrescarse automáticamente la tabla al modificarla, no esta funcionando.
             }
                     } catch (Exception ex) {
@@ -146,7 +147,7 @@ public class ActualizarIntegrante extends javax.swing.JFrame {
 
         String desc_int = jcbo_integrante.getSelectedItem().toString().toUpperCase();
         try {
-            cintegrante.obtenerCodInt(integrante, desc_int);
+            IGrupoFamiliar.obtenerCodInt(integrante, desc_int);
             System.out.println("integrsnte guardado "+integrante.getCod_int());
         } catch (Exception ex) {
             Logger.getLogger(ActualizarIntegrante.class.getName()).log(Level.SEVERE, null, ex);

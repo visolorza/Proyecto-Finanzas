@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
 import modelo.ConexionBD;
 import modelo.Integrante;
 
@@ -143,6 +144,23 @@ public class DAOGrupoFamiliar implements IGrupoFamiliar{
     } 
 
         return integrante.getCod_int();
+    }
+    
+    public void RellenarComboInt(String tabla, String valor, JComboBox combo){
+        
+        try {
+        ConexionBD con = new ConexionBD();
+        Connection cnx = ConexionBD.obtenerConexion();
+        
+        String query = "SELECT * FROM "+tabla;
+        PreparedStatement stmt = cnx.prepareStatement(query);
+        ResultSet rs = stmt.executeQuery();
+        
+            while (rs.next()) {
+                combo.addItem(rs.getString(valor));
+            }
+        } catch (Exception e) {
+        }
     }
     
 }

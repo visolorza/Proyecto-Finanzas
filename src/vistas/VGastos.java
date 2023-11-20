@@ -1,7 +1,9 @@
 package vistas;
 
+import controlador.ControlGasto;
 import utils.Utils;
 import dao.DAOGasto;
+import dao.DAOGrupoFamiliar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -9,6 +11,8 @@ import modelo.Gasto;
 import emergente.ActulizarGastos;
 import emergente.EliminarGastos;
 import interfaz.IGasto;
+import interfaz.IGrupoFamiliar;
+import java.text.NumberFormat;
 import java.util.Locale;
 
 /*
@@ -41,11 +45,11 @@ public class VGastos extends javax.swing.JFrame {
         
         this.jlbl_mesActual.setText(utils.obtenerNombreMesActual());
         
-        this.jlbl_totalGastos.setText(utils.obtenerTotalGastosMes());
+        this.jlbl_totalGastos.setText(controlGasto.obtenerTotalGastosMesActual());
         this.jlbl_totalGastos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         
-        utils.RellenarCombocat("categoria", "desc_cat", this.jcbo_gastosMes);
-        utils.RellenarComboInt("integrante", "desc_int", this.jcbo_integrante);
+        IGasto.RellenarComboCatSubcat("categoria", "desc_cat", this.jcbo_gastosMes,0);
+        IGrupoFamiliar.RellenarComboInt("integrante", "desc_int", this.jcbo_integrante);
         
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("CODIGO");
@@ -484,7 +488,9 @@ public class VGastos extends javax.swing.JFrame {
     IGasto IGasto = new DAOGasto();
     Gasto gasto = new Gasto();
     Utils utils = new Utils();
- 
+    IGrupoFamiliar IGrupoFamiliar = new DAOGrupoFamiliar();
+    ControlGasto controlGasto = new ControlGasto();
+    
     private void jcbo_gastosMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_gastosMesActionPerformed
 
         
@@ -496,12 +502,15 @@ public class VGastos extends javax.swing.JFrame {
                 if (!"- SELECCIONAR -".equals(desc_cat) && !"".equals(desc_cat)) {
                     
                     int codcat = IGasto.obtenerCodCat(desc_cat);
-                    utils.RellenarComboSubcat("subcategoria", "desc_subcat", this.jcbo_subcategoria, codcat);
-
-                    this.jlbl_totalGastos.setText(utils.obtenerTotal(codcat));
+                    IGasto.RellenarComboCatSubcat("subcategoria", "desc_subcat", this.jcbo_subcategoria, codcat);
+                    
+                    int sumaMontosGas=controlGasto.obtenerTotalCat(codcat);
+                    NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+                    String sumaFormato=formatoMontoGas.format(sumaMontosGas);
+                    this.jlbl_totalGastos.setText(sumaFormato);
                     this.jlbl_tituloCat.setText(desc_cat);
                     
-                    utils.refrescar(jTableMostrar, codcat);
+                    controlGasto.refrescar(jTableMostrar, codcat);
 
                     gasto.setCodInt(0);
                     gasto.setCodSubcat(0);
@@ -546,7 +555,7 @@ public class VGastos extends javax.swing.JFrame {
                 if (!"- SELECCIONAR -".equals(desc_cat) && !"".equals(desc_cat)) {
                     
                     int codcat = IGasto.obtenerCodCat(desc_cat);
-                    utils.refrescarPorSubcat(jTableMostrar, codcat,gasto.getCodSubcat());
+                    controlGasto.refrescarPorSubcat(jTableMostrar, codcat,gasto.getCodSubcat());
              
                 }
             } catch (Exception ex) {
@@ -572,13 +581,16 @@ public class VGastos extends javax.swing.JFrame {
             int cod_cat = IGasto.obtenerCodCat(desc_cat);
             if(IGasto.agregar(gasto)){
 
-                utils.refrescarPorSubcat(jTableMostrar, cod_cat,gasto.getCodSubcat());
+                controlGasto.refrescarPorSubcat(jTableMostrar, cod_cat,gasto.getCodSubcat());
                 
                 this.jtxt_montoGasto.setText(""); 
                 this.jtxt_descGasto.setText("");
                 this.jcbo_integrante.setSelectedIndex(0);
+                int sumaMontosGas=controlGasto.obtenerTotalCat(cod_cat);
+                NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+                String sumaFormato=formatoMontoGas.format(sumaMontosGas);
+                this.jlbl_totalGastos.setText(sumaFormato);
                 
-                this.jlbl_totalGastos.setText(utils.obtenerTotal(cod_cat));
 
                 
             }
@@ -674,7 +686,7 @@ public class VGastos extends javax.swing.JFrame {
         try {
             String desc_cat = jcbo_gastosMes.getSelectedItem().toString().toUpperCase();
             int codcat=IGasto.obtenerCodCat(desc_cat);
-            utils.refrescar(jTableMostrar,codcat);
+            controlGasto.refrescar(jTableMostrar,codcat);
         } catch (Exception ex) {
             Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
         }
