@@ -4,13 +4,18 @@
  */
 package controlador;
 
+import dao.DAOAhorro;
 import dao.DAOGasto;
+import dao.DAOMeta;
+import interfaz.IAhorro;
 import interfaz.IGasto;
+import interfaz.IMeta;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import modelo.Ahorro;
 import modelo.Gasto;
 import utils.FormatoTabla;
 import utils.Utils;
@@ -23,6 +28,8 @@ import utils.Utils;
 public class ControlGasto {
     
     Utils utils = new Utils();
+    IMeta IMeta = new DAOMeta();
+    IAhorro IAhorro = new DAOAhorro();
     
     public int obtenerTotalCat (int codcat) throws Exception{
         ArrayList<Gasto> listaGastos;
@@ -277,4 +284,20 @@ public class ControlGasto {
         }
         return sumaMontosGas;
     }
+    
+    public String ahorroPorMeta (String nombre_meta) throws Exception{
+
+           ArrayList<Ahorro> listaAhorro = new ArrayList<>();
+           listaAhorro = IAhorro.mostrar(IMeta.obtenerCodigoMeta(nombre_meta),0,0);
+           NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(Locale.getDefault());
+           String monto = "";
+           int sumaMontoAhorro = 0;
+
+           for (Ahorro listaAhorros : listaAhorro) {
+
+               sumaMontoAhorro += listaAhorros.getMonto_ahorro();
+               monto=formatoMeta.format(sumaMontoAhorro);
+           }
+           return monto;
+       }
 }

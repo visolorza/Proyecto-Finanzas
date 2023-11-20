@@ -5,7 +5,9 @@
 package controlador;
 
 import dao.DAOAhorro;
+import dao.DAOMeta;
 import interfaz.IAhorro;
+import interfaz.IMeta;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -20,6 +22,9 @@ import utils.FormatoTabla;
  * @version 20/11/2023
  */
 public class ControlAhorro {
+    
+    IMeta IMeta = new DAOMeta();
+    IAhorro IAhorro = new DAOAhorro();
     
     public JTable refrescarAhorroAño(JTable tabla,int año) throws Exception{
         
@@ -130,6 +135,22 @@ public class ControlAhorro {
             sumaMontosAho+=ahorro.getMonto_ahorro();
         }
         return sumaMontosAho;
+    }
+    
+    public String ahorroPorMeta (String nombre_meta) throws Exception{
+
+        ArrayList<Ahorro> listaAhorro = new ArrayList<>();
+        listaAhorro = IAhorro.mostrar(IMeta.obtenerCodigoMeta(nombre_meta),0,0);
+        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        String monto = "";
+        int sumaMontoAhorro = 0;
+
+        for (Ahorro listaAhorros : listaAhorro) {
+
+            sumaMontoAhorro += listaAhorros.getMonto_ahorro();
+            monto=formatoMeta.format(sumaMontoAhorro);
+        }
+        return monto;
     }
     
     

@@ -46,11 +46,9 @@ public class VMeta extends javax.swing.JFrame {
     public VMeta() throws Exception {
         initComponents();
         
-        Utils utils = new Utils();
-        this.jlbl_mesActual.setText(utils.obtenerNombreMesActual());
         
-        this.jlbl_totalAhorros.setText(controlAhorro.obtenerTotalAhorros());
-        this.jlbl_totalAhorros.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.jlbl_totalMeta.setText(controlAhorro.obtenerTotalAhorros());
+        this.jlbl_totalMeta.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         
         IMeta.RellenarComboMeta("meta", "nombre_meta", this.jcbo_Meta);
         
@@ -81,8 +79,8 @@ public class VMeta extends javax.swing.JFrame {
         jbtn_refrescar = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jlbl_tituloAhorro = new javax.swing.JLabel();
-        jlbl_mesActual = new javax.swing.JLabel();
-        jlbl_totalAhorros = new javax.swing.JLabel();
+        jlbl_totalMeta = new javax.swing.JLabel();
+        jlbl_totalAhorro = new javax.swing.JLabel();
         jcbo_Meta = new javax.swing.JComboBox<>();
         jlbl_ingresosMes5 = new javax.swing.JLabel();
         jtxt_montoAbonoMeta = new javax.swing.JTextField();
@@ -184,9 +182,9 @@ public class VMeta extends javax.swing.JFrame {
         jlbl_tituloAhorro.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jlbl_tituloAhorro.setText("AHORROS");
 
-        jlbl_mesActual.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        jlbl_totalMeta.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
 
-        jlbl_totalAhorros.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        jlbl_totalAhorro.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -194,14 +192,14 @@ public class VMeta extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlbl_tituloAhorro)
-                    .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(131, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jlbl_totalAhorros, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jlbl_totalMeta, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jlbl_tituloAhorro)
+                        .addGroup(jPanel6Layout.createSequentialGroup()
+                            .addGap(111, 111, 111)
+                            .addComponent(jlbl_totalAhorro, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,10 +207,10 @@ public class VMeta extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jlbl_tituloAhorro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jlbl_totalAhorros, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addComponent(jlbl_totalAhorro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jlbl_totalMeta, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         jcbo_Meta.setBackground(new java.awt.Color(204, 204, 204));
@@ -472,31 +470,33 @@ public class VMeta extends javax.swing.JFrame {
     private void jcbo_MetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_MetaActionPerformed
         // TODO add your handling code here:
         
-        String nombre_meta= jcbo_Meta.getSelectedItem().toString();
+        String nombre_meta= jcbo_Meta.getSelectedItem().toString().toUpperCase();
          
         try {
-            controlMeta.refrescarMeta(jTableMostrarMeta, IMeta.obtenerCodigoMeta(nombre_meta));
+            IMeta.obtenerCodigoMeta(nombre_meta);
+            controlMeta.refrescarMeta(jTableMostrarMeta, ahorro.getCod_meta());
         } catch (Exception ex) {
             Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
+        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        
+        
         if (!"- SELECCIONAR -".equals(nombre_meta) && nombre_meta != null) {
-            this.jlbl_tituloAhorro.setText(nombre_meta.toUpperCase());
+            this.jlbl_tituloAhorro.setText(nombre_meta);
+            
              try {
-                int totalAhorros=controlAhorro.obtenerTotalAhorroPorMeta(IMeta.obtenerCodigoMeta(nombre_meta));
-                NumberFormat formato = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
-                this.jlbl_totalAhorros.setText(formato.format(totalAhorros));
+                 this.jlbl_totalAhorro.setText(controlAhorro.ahorroPorMeta(nombre_meta));
+                 this.jlbl_totalAhorro.setText(String.valueOf(formatoMeta.format(100000)));
+                 this.jlbl_totalAhorro.setVisible(true);
              } catch (Exception ex) {
                  Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
              }
         }
         else {
             this.jlbl_tituloAhorro.setText("AHORROS");
-            try {
-                this.jlbl_totalAhorros.setText(controlAhorro.obtenerTotalAhorros());
-            } catch (Exception ex) {
-                Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            this.jlbl_totalMeta.setText("");
+            this.jlbl_totalMeta.setVisible(false);
         }
         
     }//GEN-LAST:event_jcbo_MetaActionPerformed
@@ -724,10 +724,10 @@ public class VMeta extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcbo_Meta;
     private javax.swing.JLabel jlbl_ingresosMes4;
     private javax.swing.JLabel jlbl_ingresosMes5;
-    private javax.swing.JLabel jlbl_mesActual;
     private javax.swing.JLabel jlbl_tituloAhorro;
     private javax.swing.JLabel jlbl_tituloMetas;
-    private javax.swing.JLabel jlbl_totalAhorros;
+    private javax.swing.JLabel jlbl_totalAhorro;
+    private javax.swing.JLabel jlbl_totalMeta;
     private javax.swing.JTextField jtxt_montoAbonoMeta;
     // End of variables declaration//GEN-END:variables
 
