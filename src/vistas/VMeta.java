@@ -58,6 +58,7 @@ public class VMeta extends javax.swing.JFrame {
         modelo.addColumn("fecha");
         modelo.addColumn("monto");
         this.jTableMostrarMeta.setModel(modelo);
+        controlMeta.refrescarMeta(jTableMostrarMeta, ahorro.getCod_meta());
         
         this.jlbl_tituloAhorro1.setText("");
         this.jlbl_tituloMeta1.setText("");
@@ -562,7 +563,6 @@ public class VMeta extends javax.swing.JFrame {
 
                    this.jcbo_Meta.removeAllItems();
                    this.jcbo_Meta.addItem("- SELECCIONAR -");
-
                    IMeta.RellenarComboMeta("meta", "nombre_meta", this.jcbo_Meta); 
 
                    if (!"- SELECCIONAR -".equals(nombre_meta) && nombre_meta==null) {
@@ -588,7 +588,7 @@ public class VMeta extends javax.swing.JFrame {
                        this.jlbl_tituloAhorro1.setText("");
                        this.jlbl_tituloMeta1.setText((""));
                        this.jlbl_totalAhorro.setText("");
-                       this.jlbl_totalMeta.setText("");
+                       this.jlbl_totalMeta.setText("");                   
                    }
 
                    controlMeta.refrescarMeta(jTableMostrarMeta, ahorro.getCod_meta());
@@ -596,8 +596,10 @@ public class VMeta extends javax.swing.JFrame {
                    Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
                }
            } else {
-               // Manejar el caso cuando getSelectedItem() devuelve null
-               // Puedes mostrar un mensaje de error o realizar alguna otra acción apropiada.
+               
+                this.jcbo_Meta.removeAllItems();
+                this.jcbo_Meta.addItem("- SELECCIONAR -");
+                IMeta.RellenarComboMeta("meta", "nombre_meta", this.jcbo_Meta);
            }
        } catch (Exception ex) {
            Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
