@@ -22,8 +22,10 @@ public interface IMeta {
     
     int obtenerCodigoMeta(String nombreMeta) throws Exception;
     Meta obtenerMetaCodInt(Meta meta,String desc_int) throws Exception;
+    int obtenerTotalMeta(String nombre_meta) throws Exception;
     
     void RellenarComboMeta(String tabla, String valor, JComboBox combo);
+    
     
     
 }

@@ -182,6 +182,7 @@ public class DAOMeta implements IMeta{
         return meta;
     }
     
+    @Override
     public void RellenarComboMeta(String tabla, String valor, JComboBox combo){
         
             try {
@@ -200,6 +201,25 @@ public class DAOMeta implements IMeta{
             } catch (Exception e) {
             }
        
+    }
+    
+    @Override
+     public int obtenerTotalMeta(String nombre_meta) throws Exception {
+        
+        ConexionBD con = new ConexionBD();
+        Connection cnx = ConexionBD.obtenerConexion();
+
+        String query = "SELECT monto_meta FROM meta WHERE nombre_meta =?";
+        PreparedStatement stmt = cnx.prepareStatement(query);
+        stmt.setString(1, nombre_meta);
+        
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+          return rs.getInt("monto_meta");
+        } else {
+            throw new Exception("No se encontró ninguna categoría con la descripción proporcionada");
+        }
     }
         
 }

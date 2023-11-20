@@ -141,7 +141,7 @@ public class ControlAhorro {
 
         ArrayList<Ahorro> listaAhorro = new ArrayList<>();
         listaAhorro = IAhorro.mostrar(IMeta.obtenerCodigoMeta(nombre_meta),0,0);
-        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
         String monto = "";
         int sumaMontoAhorro = 0;
 
