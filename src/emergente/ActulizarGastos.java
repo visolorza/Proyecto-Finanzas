@@ -2,6 +2,7 @@
 package emergente;
 
 import dao.DAOGasto;
+import interfaz.IGasto;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Gasto;
@@ -140,7 +141,7 @@ public class ActulizarGastos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    DAOGasto cgasto = new DAOGasto();
+    IGasto IGasto = new DAOGasto();
     Gasto gasto = new Gasto();
     
     
@@ -159,7 +160,7 @@ public class ActulizarGastos extends javax.swing.JFrame {
         gasto.setCodGast(Integer.parseInt(this.jtxt_cod_gast.getText()));
         
         try {
-            if(cgasto.actualizar(gasto)){
+            if(IGasto.actualizar(gasto)){
                 System.out.println("gasto modificado con exto "+gasto.toString());   
                 this.setVisible(false);
             }

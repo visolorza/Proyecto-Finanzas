@@ -694,6 +694,13 @@ public class VGastos extends javax.swing.JFrame {
             String desc_cat = jcbo_gastosMes.getSelectedItem().toString().toUpperCase();
             int codcat=IGasto.obtenerCodCat(desc_cat);
             controlGasto.refrescar(jTableMostrar,codcat);
+            
+            int sumaMontosGas=controlGasto.obtenerTotalCat(codcat);
+            NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+            String sumaFormato=formatoMontoGas.format(sumaMontosGas);
+            this.jlbl_totalGastos.setText(sumaFormato);
+            this.jlbl_tituloCat.setText(desc_cat);
+            
         } catch (Exception ex) {
             Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -703,7 +710,7 @@ public class VGastos extends javax.swing.JFrame {
     private void jbtn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_modificarActionPerformed
         try {
             // TODO add your handling code here:
-
+            
             ActulizarGastos actualizar = new ActulizarGastos();
             actualizar.setVisible(true);
             actualizar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);

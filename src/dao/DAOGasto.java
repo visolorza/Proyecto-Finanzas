@@ -174,13 +174,12 @@ public class DAOGasto implements IGasto{
             ConexionBD con = new ConexionBD();
             Connection cnx = ConexionBD.obtenerConexion();
 
-            String query = "update gasto set desc_gast=?,monto_gast=?,cod_subcat=?,cod_int=? where cod_gast=?";
+            String query = "update gasto set desc_gast=?,monto_gast=?,cod_subcat=? where cod_gast=?";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setString(1,gasto.getDescGast());
             stmt.setInt(2,gasto.getMontoGast());
             stmt.setInt(3,gasto.getCodSubcat());
-            stmt.setInt(4, gasto.getCodInt());
-            stmt.setInt(5, gasto.getCodGast());
+            stmt.setInt(4, gasto.getCodGast());
 
             stmt.executeUpdate();
             stmt.close();

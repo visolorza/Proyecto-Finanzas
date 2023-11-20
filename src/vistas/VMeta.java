@@ -548,6 +548,40 @@ public class VMeta extends javax.swing.JFrame {
             // TODO add your handling code here:
         
          try {
+                String nombre_meta= jcbo_Meta.getSelectedItem().toString().toUpperCase();
+           try {
+               ahorro.setCod_meta(IMeta.obtenerCodigoMeta(nombre_meta)); 
+               controlMeta.refrescarMeta(jTableMostrarMeta, ahorro.getCod_meta());
+           } catch (Exception ex) {
+               Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
+           }
+           NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+
+           if (!"- SELECCIONAR -".equals(nombre_meta) && nombre_meta != null) {
+               this.jlbl_tituloAhorro.setText(nombre_meta);
+
+                try {
+                   this.jlbl_tituloAhorro1.setText("AHORRADO:");
+                   this.jlbl_tituloMeta1.setText(("OBJETIVO:"));
+                   this.jlbl_totalAhorro.setText(controlAhorro.ahorroPorMeta(nombre_meta));
+                   this.jlbl_totalMeta.setText(String.valueOf(formatoMeta.format(IMeta.obtenerTotalMeta(nombre_meta))));
+                   this.jlbl_totalAhorro.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+                   this.jlbl_totalMeta.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+                   this.jlbl_tituloAhorro1.setVisible(true);
+                   this.jlbl_tituloMeta1.setVisible(true);
+
+                } catch (Exception ex) {
+                    Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
+                }
+           }
+           else {
+               this.jlbl_tituloAhorro.setText("TOTAL AHORROS");
+               this.jlbl_tituloAhorro1.setText("");
+               this.jlbl_tituloMeta1.setText((""));
+               this.jlbl_totalAhorro.setText("");
+               this.jlbl_totalMeta.setText("");
+           }       
+             
             controlMeta.refrescarMeta(jTableMostrarMeta,ahorro.getCod_meta());
         } catch (Exception ex) {
             Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
