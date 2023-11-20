@@ -26,6 +26,7 @@ public class DAOAhorro implements IAhorro {
             ConexionBD con = new ConexionBD();
             Connection cnx = ConexionBD.obtenerConexion();
             String query="";
+            
             if (cod_meta!=0 && year==0 & mes==0) {
                 query = "SELECT * FROM ahorro WHERE cod_meta=?";
                 PreparedStatement stmt = cnx.prepareStatement(query);
@@ -54,10 +55,10 @@ public class DAOAhorro implements IAhorro {
 
                 while (rs.next()) {
                     Ahorro ahorro = new Ahorro();
-                    ahorro.setCod_ahorro(rs.getInt("COD_AHOR"));
-                    ahorro.setFecha_ahorro(rs.getDate("FECHA_AHOR"));
-                    ahorro.setMonto_ahorro(rs.getInt("MONTO_AHOR"));
-                    ahorro.setCod_meta(rs.getInt("COD_META"));
+                    ahorro.setCod_ahorro(rs.getInt("cod"));
+                    ahorro.setFecha_ahorro(rs.getDate("fecha"));
+                    ahorro.setDesc_meta(rs.getString("meta"));
+                    ahorro.setMonto_ahorro(rs.getInt("monto"));
                     lista.add(ahorro);
                 }
                 rs.close();
@@ -75,10 +76,10 @@ public class DAOAhorro implements IAhorro {
 
                 while (rs.next()) {
                     Ahorro ahorro = new Ahorro();
-                    ahorro.setCod_ahorro(rs.getInt("COD_AHOR"));
-                    ahorro.setFecha_ahorro(rs.getDate("FECHA_AHOR"));
-                    ahorro.setMonto_ahorro(rs.getInt("MONTO_AHOR"));
-                    ahorro.setCod_meta(rs.getInt("COD_META"));
+                    ahorro.setCod_ahorro(rs.getInt("cod"));
+                    ahorro.setFecha_ahorro(rs.getDate("fecha"));
+                    ahorro.setDesc_meta(rs.getString("meta"));
+                    ahorro.setMonto_ahorro(rs.getInt("monto"));
                     lista.add(ahorro);
                 }
                 rs.close();

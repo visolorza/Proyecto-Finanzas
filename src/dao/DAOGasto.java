@@ -202,10 +202,11 @@ public class DAOGasto implements IGasto{
             ConexionBD con = new ConexionBD();
             Connection cnx = ConexionBD.obtenerConexion();
             String query="";
-            if (year!=0) {
+            if (year!=0 && mes==0) {
                 query = "SELECT g.cod_gast cod, g.fecha_gast fecha, s.desc_subcat subcat, g.desc_gast descri, g.monto_gast monto " +
                            "FROM gasto g JOIN subcategoria s ON (g.cod_subcat = s.cod_subcat) " +
-                           " WHERE EXTRACT(YEAR FROM fecha_gast)=?";
+                           " WHERE EXTRACT(YEAR FROM fecha_gast)=? " +
+                           "ORDER BY g.fecha_gast DESC ";
                 PreparedStatement stmt = cnx.prepareStatement(query);
                 stmt.setInt(1, year);
                 ResultSet rs = stmt.executeQuery();
@@ -224,10 +225,10 @@ public class DAOGasto implements IGasto{
                 cnx.close();
             }
             if (mes!=0 && year!=0) {
-                query = "SELECT g.cod_gast cod, g.fecha_gast fecha, s.desc_subcat subcat, g.desc_gast descri, g.monto_gast monto "
-                    + "FROM gasto g JOIN subcategoria s ON (g.cod_subcat = s.cod_subcat) "
-                    + "WHERE EXTRACT(YEAR FROM fecha_gast)=? AND EXTRACT(MONTH FROM fecha_gast)=? "
-                    + "ORDER BY g.fecha_gast DESC";
+                query = "SELECT g.cod_gast cod, g.fecha_gast fecha, s.desc_subcat subcat, g.desc_gast descri, g.monto_gast monto " +
+                      "FROM gasto g JOIN subcategoria s ON (g.cod_subcat = s.cod_subcat) " +
+                      "WHERE EXTRACT(YEAR FROM fecha_gast)=? AND EXTRACT(MONTH FROM fecha_gast)=? " +
+                      "ORDER BY g.fecha_gast DESC";
                 PreparedStatement stmt = cnx.prepareStatement(query);
                 stmt.setInt(1, year);
                 stmt.setInt(2, mes);
@@ -247,7 +248,8 @@ public class DAOGasto implements IGasto{
                 cnx.close();
             }if(year==0 && mes==0){
                 query = "SELECT g.cod_gast cod, g.fecha_gast fecha, s.desc_subcat subcat, g.desc_gast descri, g.monto_gast monto " +
-                           "FROM gasto g JOIN subcategoria s ON (g.cod_subcat = s.cod_subcat) ";
+                           "FROM gasto g JOIN subcategoria s ON (g.cod_subcat = s.cod_subcat) " +
+                           "ORDER BY g.fecha_gast DESC";
                 PreparedStatement stmt = cnx.prepareStatement(query);
                 ResultSet rs = stmt.executeQuery();
 
