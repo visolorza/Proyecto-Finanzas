@@ -574,8 +574,6 @@ public class VGastos extends javax.swing.JFrame {
 
     private void jbtn_anadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_anadirActionPerformed
         
-        
-
         try {
             
             if (this.jtxt_montoGasto.getText().isBlank() || this.jtxt_descGasto.getText().isBlank() || this.jcbo_gastosMes.getSelectedItem().toString().equalsIgnoreCase("- SELECCIONAR -") 
@@ -693,7 +691,7 @@ public class VGastos extends javax.swing.JFrame {
         try {
             String desc_cat = jcbo_gastosMes.getSelectedItem().toString().toUpperCase();
             int codcat=IGasto.obtenerCodCat(desc_cat);
-            controlGasto.refrescar(jTableMostrar,codcat);
+            controlGasto.refrescarPorSubcat(jTableMostrar, codcat, this.gasto.getCodSubcat());
         } catch (Exception ex) {
             Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
         }
