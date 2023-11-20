@@ -64,6 +64,8 @@ public class ControlGasto {
                             "FROM gasto g JOIN subcategoria s ON (s.cod_subcat = g.cod_subcat) " +
                             "JOIN integrante i ON (i.cod_int = g.cod_int) " +
                             "WHERE s.cod_cat = ? " +
+                            "AND EXTRACT(YEAR FROM SYSDATE)=EXTRACT(YEAR FROM g.fecha_gast)" +
+                            "AND EXTRACT(MONTH FROM SYSDATE)=EXTRACT(MONTH FROM g.fecha_gast)" +
                             "ORDER BY g.fecha_gast DESC";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setInt(1, cod_cat);
@@ -178,7 +180,7 @@ public class ControlGasto {
 
         if (rs.next()) {
             gasto.setCodSubcat(rs.getInt("cod_subcat"));
-            System.out.println("cod_subcat agregado"+gasto.toString());
+            
             return  gasto;
         } else {
             // Manejar el caso en el que no se encontraron filas
@@ -210,7 +212,6 @@ public class ControlGasto {
 
         if (rs.next()) {
             gasto.setCodInt(rs.getInt("cod_int")); 
-            System.out.println("cod_int agregado"+gasto.toString());
             return gasto;
         } else {
             // Manejar el caso en el que no se encontraron filas
@@ -392,13 +393,13 @@ public class ControlGasto {
                             "FROM gasto g JOIN subcategoria s ON (s.cod_subcat = g.cod_subcat) " +
                             "JOIN integrante i ON (i.cod_int = g.cod_int) " +
                             "WHERE s.cod_cat = ? AND s.cod_subcat = ? " +
+                            "AND EXTRACT(YEAR FROM SYSDATE)=EXTRACT(YEAR FROM g.fecha_gast)" +
+                            "AND EXTRACT(MONTH FROM SYSDATE)=EXTRACT(MONTH FROM g.fecha_gast)" +
                             "ORDER BY g.fecha_gast DESC";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setInt(1, cod_cat);
             stmt.setInt(2, cod_subcat);
             ResultSet rs = stmt.executeQuery();
-            
-            System.out.println("Consulta SQL: " + query);
 
             while (rs.next()) {
                 Gasto gasto = new Gasto();

@@ -514,7 +514,6 @@ public class VGastos extends javax.swing.JFrame {
         String desc_int = jcbo_integrante.getSelectedItem().toString().toUpperCase();
         try {
             cgasto.obt_int(gasto, desc_int);
-            System.out.println("integrante guardado "+gasto.getCodInt());
         } catch (Exception ex) {
             Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -542,7 +541,6 @@ public class VGastos extends javax.swing.JFrame {
                     int codcat = cgasto.obtCat(desc_cat);
                     utils.refrescarPorSubcat(jTableMostrar, codcat,gasto.getCodSubcat());
              
-            System.out.println("subcat guardado "+gasto.getCodSubcat());
                 }
             } catch (Exception ex) {
                 Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
@@ -567,11 +565,11 @@ public class VGastos extends javax.swing.JFrame {
             int cod_cat = cgasto.obtCat(desc_cat);
             if(cgasto.agregar(gasto)){
 
-                System.out.println("gasto agregado con exito "+gasto.toString());
-                utils.refrescar(jTableMostrar,cod_cat);
+                utils.refrescarPorSubcat(jTableMostrar, cod_cat,gasto.getCodSubcat());
                 
                 this.jtxt_montoGasto.setText(""); 
                 this.jtxt_descGasto.setText("");
+                this.jcbo_integrante.setSelectedIndex(0);
                 
                 this.jlbl_totalGastos.setText(utils.obtenerTotal(cod_cat));
 
