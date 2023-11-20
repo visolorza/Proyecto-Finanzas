@@ -8,7 +8,9 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Gasto;
 import Emergente.ActulizarGastos;
 import Emergente.EliminarGastos;
+import static java.awt.image.ImageObserver.HEIGHT;
 import java.util.Locale;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -558,29 +560,40 @@ public class VGastos extends javax.swing.JFrame {
     }//GEN-LAST:event_jtxt_montoGastoActionPerformed
 
     private void jbtn_anadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_anadirActionPerformed
-        
-        gasto.setMontoGast(Integer.parseInt(this.jtxt_montoGasto.getText()));
-        gasto.setDescGast(this.jtxt_descGasto.getText().toUpperCase());
+       
+        //gasto.setMontoGast(Integer.parseInt(this.jtxt_montoGasto.getText()));
+        //gasto.setDescGast(this.jtxt_descGasto.getText().toUpperCase());
 
         try {
-            String desc_cat = jcbo_gastosMes.getSelectedItem() != null ? jcbo_gastosMes.getSelectedItem().toString() : "";
-            int cod_cat = cgasto.obtCat(desc_cat);
-            if(cgasto.agregar(gasto)){
-
-                System.out.println("gasto agregado con exito "+gasto.toString());
-                utils.refrescar(jTableMostrar,cod_cat);
-                
-                this.jtxt_montoGasto.setText(""); 
-                this.jtxt_descGasto.setText("");
-                
-                this.jlbl_totalGastos.setText(utils.obtenerTotal(cod_cat));
-
-                
+            
+            if (this.jtxt_montoGasto.getText().isBlank() || this.jtxt_descGasto.getText().isBlank() || this.jcbo_gastosMes.getSelectedItem().toString().equalsIgnoreCase("- SELECCIONAR -") 
+                || this.jcbo_integrante.getSelectedItem().toString().equalsIgnoreCase("- SELECCIONAR -") || this.jcbo_subcategoria.getSelectedItem().toString().equalsIgnoreCase("- SELECCIONAR -")) {
+                JOptionPane.showMessageDialog(null, "Asegurese de ingresar monto, descripcion y seleccionar todos los campos", "Error: falta llenar campos", HEIGHT);
             }
+                else {
+                
+                gasto.setMontoGast(Integer.parseInt(this.jtxt_montoGasto.getText()));
+                gasto.setDescGast(this.jtxt_descGasto.getText().toUpperCase());
+                
+                String desc_cat = jcbo_gastosMes.getSelectedItem() != null ? jcbo_gastosMes.getSelectedItem().toString() : "";
+                int cod_cat = cgasto.obtCat(desc_cat);
+                if(cgasto.agregar(gasto)){
+
+                    System.out.println("gasto agregado con exito "+gasto.toString());
+                    utils.refrescar(jTableMostrar,cod_cat);
+
+                    this.jtxt_montoGasto.setText(""); 
+                    this.jtxt_descGasto.setText("");
+
+                    this.jlbl_totalGastos.setText(utils.obtenerTotal(cod_cat));
+
+
+                }
+            }   
         } catch (Exception ex) {
             Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_jbtn_anadirActionPerformed
 
     private void jbtn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_modificarActionPerformed

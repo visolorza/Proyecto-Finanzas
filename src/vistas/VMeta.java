@@ -11,6 +11,9 @@ import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import controlador.ControlAhorro;
 import controlador.ControlMeta;
+import java.text.NumberFormat;
+import java.util.Locale;
+import javax.swing.JOptionPane;
 import modelo.Ahorro;
 
 /*
@@ -53,6 +56,8 @@ public class VMeta extends javax.swing.JFrame {
         modelo.addColumn("fecha");
         modelo.addColumn("monto");
         this.jTableMostrarMeta.setModel(modelo);
+        
+        this.jlbl_metaMostrar.setVisible(false);
     }
     
     /**
@@ -78,6 +83,8 @@ public class VMeta extends javax.swing.JFrame {
         jlbl_tituloAhorro = new javax.swing.JLabel();
         jlbl_mesActual = new javax.swing.JLabel();
         jlbl_totalAhorros = new javax.swing.JLabel();
+        jlbl_totalMeta = new javax.swing.JLabel();
+        jlbl_metaMostrar = new javax.swing.JLabel();
         jcbo_Meta = new javax.swing.JComboBox<>();
         jlbl_ingresosMes5 = new javax.swing.JLabel();
         jtxt_montoAbonoMeta = new javax.swing.JTextField();
@@ -185,20 +192,32 @@ public class VMeta extends javax.swing.JFrame {
 
         jlbl_totalAhorros.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
 
+        jlbl_totalMeta.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+
+        jlbl_metaMostrar.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        jlbl_metaMostrar.setText("Monto meta:");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlbl_tituloAhorro)
-                    .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(131, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jlbl_totalMeta, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jlbl_totalAhorros, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlbl_tituloAhorro)
+                            .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jlbl_metaMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,8 +226,12 @@ public class VMeta extends javax.swing.JFrame {
                 .addComponent(jlbl_tituloAhorro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlbl_mesActual, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jlbl_totalAhorros, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlbl_metaMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlbl_totalAhorros, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlbl_totalMeta, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -323,7 +346,7 @@ public class VMeta extends javax.swing.JFrame {
                             .addComponent(jbtn_modificarMeta, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtn_agregarMeta, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
@@ -461,18 +484,25 @@ public class VMeta extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
+        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        
+        
         if (!"- SELECCIONAR -".equals(nombre_meta) && nombre_meta != null) {
             this.jlbl_tituloAhorro.setText(nombre_meta);
             
              try {
                  this.jlbl_totalAhorros.setText(utils.ahorroPorMeta(nombre_meta));
+                 this.jlbl_totalMeta.setText(String.valueOf(formatoMeta.format(cMeta.obtenerTotalMeta(nombre_meta))));
+                 this.jlbl_metaMostrar.setVisible(true);
              } catch (Exception ex) {
                  Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
              }
         }
         else {
             this.jlbl_tituloAhorro.setText("AHORROS");
+            this.jlbl_totalMeta.setText("");
+            this.jlbl_metaMostrar.setVisible(false);
         }
         
     }//GEN-LAST:event_jcbo_MetaActionPerformed
@@ -512,17 +542,29 @@ public class VMeta extends javax.swing.JFrame {
     private void jbtn_abonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_abonarActionPerformed
         // TODO add your handling code here:
         
-        ahorro.setMonto_ahorro(Integer.parseInt(this.jtxt_montoAbonoMeta.getText()));
-        ahorro.toString();
         try {
-            if(cAhorro.agregar(ahorro)){
-                System.out.println("ahorro agregado con exto "+ahorro.toString());
+             if (this.jtxt_montoAbonoMeta.getText().isBlank() || this.jcbo_Meta.getSelectedItem().toString().equalsIgnoreCase("- SELECCIONAR -")) {
+                    JOptionPane.showMessageDialog(null, "Asegurese de ingresar monto y seleccionar meta", "Error: falta rellenar campos", HEIGHT);
+            } else {
+
+                ahorro.setMonto_ahorro(Integer.parseInt(this.jtxt_montoAbonoMeta.getText()));
+                ahorro.toString();
+        
+                if (cAhorro.agregar(ahorro)) {
+                System.out.println("ahorro agregado con éxito " + ahorro.toString());
                 utils.refrescarMeta(jTableMostrarMeta, ahorro.getCod_meta());
                 this.jtxt_montoAbonoMeta.setText("");
+                }
             }
-        } catch (Exception ex) {
-            Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
+        
+            catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Por favor ingrese un valor numérico válido", "Error: formato no válido", HEIGHT);
+            } 
+            
+            catch (Exception ex) {
+                Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
+            }   
         
     }//GEN-LAST:event_jbtn_abonarActionPerformed
 
@@ -702,8 +744,10 @@ public class VMeta extends javax.swing.JFrame {
     private javax.swing.JLabel jlbl_ingresosMes4;
     private javax.swing.JLabel jlbl_ingresosMes5;
     private javax.swing.JLabel jlbl_mesActual;
+    private javax.swing.JLabel jlbl_metaMostrar;
     private javax.swing.JLabel jlbl_tituloAhorro;
     private javax.swing.JLabel jlbl_totalAhorros;
+    private javax.swing.JLabel jlbl_totalMeta;
     private javax.swing.JTextField jtxt_montoAbonoMeta;
     // End of variables declaration//GEN-END:variables
 

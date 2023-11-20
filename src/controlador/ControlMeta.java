@@ -175,4 +175,55 @@ public class ControlMeta {
         return meta;
     }
     
+    public ArrayList<Meta> mostrarTotalMeta() throws Exception {
+        
+        ArrayList<Meta> lista = new ArrayList<>();
+        
+        try {
+            ConexionBD con = new ConexionBD();
+            //Connection cnx = con.obtenerConexion();
+            Connection cnx = ConexionBD.obtenerConexion();
+
+            String query = "select monto_meta from META";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Meta meta = new Meta();
+                meta.setCod_meta(rs.getInt("COD_META"));
+                meta.setNombre_meta(rs.getString("NOMBRE_META"));
+                meta.setMonto_meta(rs.getInt("MONTO_META"));
+                meta.setCod_int(rs.getInt("COD_INT"));
+                lista.add(meta);
+            }
+            rs.close();
+            stmt.close();
+            cnx.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error SQL al listar metas" + e.getMessage());
+        }
+        return lista;
+    }
+    
+    
+    public int obtenerTotalMeta(String nombre_meta) throws Exception {
+        
+        ConexionBD con = new ConexionBD();
+        Connection cnx = ConexionBD.obtenerConexion();
+
+        String query = "SELECT monto_meta FROM meta WHERE nombre_meta =?";
+        PreparedStatement stmt = cnx.prepareStatement(query);
+        stmt.setString(1, nombre_meta);
+        
+        ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+              return rs.getInt("monto_meta");
+            } else {
+                throw new Exception("No se encontró ninguna categoría con la descripción proporcionada");
+            }
+        }
+    
 }

@@ -732,25 +732,25 @@ public class Utils {
         return sumaMontosGas;
     }
     
- public String ahorroPorMeta (String nombre_meta) throws Exception{
-        
-        ArrayList<Ahorro> listaAhorro = new ArrayList<>();
-        
-        ControlAhorro cAhorro = new ControlAhorro();
-        ControlMeta cMeta = new ControlMeta();
-        
-        listaAhorro = cAhorro.mostrarAhorroPorMeta(cMeta.obtenerCodigoMeta(nombre_meta));
-        
-        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(Locale.getDefault());
-        
-        String monto = "";
-        int sumaMontoAhorro = 0;
-        
-        for (Ahorro listaAhorros : listaAhorro) {
-            
-            sumaMontoAhorro += listaAhorros.getMonto_ahorro();
-            monto=formatoMeta.format(sumaMontoAhorro);
-        }
-        return monto;
-    }
+    public String ahorroPorMeta (String nombre_meta) throws Exception{
+
+           ArrayList<Ahorro> listaAhorro = new ArrayList<>();
+
+           ControlAhorro cAhorro = new ControlAhorro();
+           ControlMeta cMeta = new ControlMeta();
+
+           listaAhorro = cAhorro.mostrarAhorroPorMeta(cMeta.obtenerCodigoMeta(nombre_meta));
+
+           NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(Locale.getDefault());
+
+           String monto = "";
+           int sumaMontoAhorro = 0;
+
+           for (Ahorro listaAhorros : listaAhorro) {
+
+               sumaMontoAhorro += listaAhorros.getMonto_ahorro();
+               monto=formatoMeta.format(sumaMontoAhorro);
+           }
+           return monto;
+       }
 }

@@ -4,11 +4,13 @@ import Emergente.ActualizarIngresos;
 import Emergente.EliminarIngresos;
 import Utils.Utils;
 import controlador.ControlIngresos;
+import static java.awt.image.ImageObserver.HEIGHT;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.Ingresos;
 
 /*
@@ -550,22 +552,30 @@ public class VIngresos extends javax.swing.JFrame {
 
     private void jbtn_anadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_anadirActionPerformed
 
-        ingreso.setMonto_ing(Integer.parseInt(this.jtxt_montoIngreso.getText()));
-        ingreso.setDesc_ing(this.jtxt_descIngreso.getText().toUpperCase());
+        
 
         try {
-            if(cingresos.agregar(ingreso)){
-                System.out.println("gasto agregado con exto "+ingreso.toString());
-                utils.refrescarTodoIngreso(jTableMostrar);
-
-                this.jtxt_montoIngreso.setText("");
-                this.jtxt_descIngreso.setText("");
-
-                //Mostrar total gasto en compras en el mes
-                this.jlbl_totalIngresos.setText(utils.obtenerTotalIngresosMes());
-                jlbl_totalIngresos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-
+            if (this.jtxt_descIngreso.getText().isBlank() || this.jtxt_montoIngreso.getText().isBlank() || this.jcbo_integrante.getSelectedItem().toString().equalsIgnoreCase("- SELECCIONAR -")) {
+                JOptionPane.showMessageDialog(null, "Falta integrante o llenar campos", "Error de ingresión", HEIGHT);
             }
+            else {
+            
+                ingreso.setMonto_ing(Integer.parseInt(this.jtxt_montoIngreso.getText()));
+                ingreso.setDesc_ing(this.jtxt_descIngreso.getText().toUpperCase());
+                
+                if(cingresos.agregar(ingreso)){
+                    System.out.println("gasto agregado con exto "+ingreso.toString());
+                    utils.refrescarTodoIngreso(jTableMostrar);
+
+                    this.jtxt_montoIngreso.setText("");
+                    this.jtxt_descIngreso.setText("");
+
+                    //Mostrar total gasto en compras en el mes
+                    this.jlbl_totalIngresos.setText(utils.obtenerTotalIngresosMes());
+                    jlbl_totalIngresos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+                }
+            }  
         } catch (Exception ex) {
             Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
         }
