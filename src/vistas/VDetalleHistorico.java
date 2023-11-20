@@ -6,6 +6,7 @@ import controlador.ControlGasto;
 import java.awt.BorderLayout;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartPanel;
 
 /*
@@ -28,6 +29,14 @@ public class VDetalleHistorico extends javax.swing.JFrame {
      */
     public VDetalleHistorico() {
         initComponents();
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("");
+        modelo.addColumn("");
+        modelo.addColumn("");
+        modelo.addColumn("");
+        this.jTableDHist.setModel(modelo);
+        
     }
 
     /**
