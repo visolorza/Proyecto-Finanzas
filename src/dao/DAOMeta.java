@@ -1,6 +1,7 @@
 
-package controlador;
+package dao;
 
+import interfaz.IMeta;
 import java.util.ArrayList;
 import modelo.ConexionBD;
 import modelo.Meta;
@@ -13,8 +14,9 @@ import java.sql.ResultSet;
  *
  * @author michimisimo
  */
-public class ControlMeta {
+public class DAOMeta implements IMeta{
     
+    @Override
     public ArrayList<Meta> mostrar() throws Exception {
         
         ArrayList<Meta> lista = new ArrayList<>();
@@ -47,6 +49,7 @@ public class ControlMeta {
         return lista;
     }
     
+    @Override
     public boolean agregar(Meta meta) throws Exception {
 
         try {
@@ -71,6 +74,7 @@ public class ControlMeta {
         }
     }
      
+    @Override
     public boolean eliminar(int cod_meta) throws Exception {
 
         //trycatch+tab
@@ -93,6 +97,7 @@ public class ControlMeta {
         }
     }
     
+    @Override
     public boolean actualizar(Meta meta) throws Exception {
         //trycatch+tab
         try {
@@ -117,7 +122,8 @@ public class ControlMeta {
         }
     }
     
-    public int obtenerCodigoMeta(String seleccionMeta) throws Exception {
+    @Override
+    public int obtenerCodigoMeta(String nombreMeta) throws Exception {
         
         int codigoObtenido=0;
         try {
@@ -127,7 +133,7 @@ public class ControlMeta {
 
             String query = "SELECT * FROM meta WHERE nombre_meta=?";
             PreparedStatement stmt = cnx.prepareStatement(query);
-            stmt.setString(1,seleccionMeta);
+            stmt.setString(1,nombreMeta);
             
             ResultSet rs = stmt.executeQuery();
             
@@ -144,7 +150,8 @@ public class ControlMeta {
         return codigoObtenido;
     }
     
-    public Meta obt_int(Meta meta,String desc_int) throws Exception {
+    @Override
+    public Meta obtenerMetaCodInt(Meta meta,String desc_int) throws Exception {
 
     try {
         ConexionBD con = new ConexionBD();
@@ -155,8 +162,6 @@ public class ControlMeta {
         stmt.setString(1, desc_int);
         
         ResultSet rs = stmt.executeQuery();
-
-        rs = stmt.executeQuery();
 
         if (rs.next()) {
             meta.setCod_int(rs.getInt("cod_int")); 

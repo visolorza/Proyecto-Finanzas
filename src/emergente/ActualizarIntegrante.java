@@ -1,10 +1,10 @@
 
-package Emergente;
+package emergente;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import Utils.Utils;
-import controlador.ControlGrupoFamiliar;
+import utils.Utils;
+import dao.DAOGrupoFamiliar;
 import modelo.Integrante;
 import vistas.VGrupoFamiliar;
 
@@ -119,7 +119,7 @@ public class ActualizarIntegrante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     Integrante integrante = new Integrante();
-    ControlGrupoFamiliar cintegrante = new ControlGrupoFamiliar();
+    DAOGrupoFamiliar cintegrante = new DAOGrupoFamiliar();
     Utils utils = new Utils();
     VGrupoFamiliar grupoFamiliar = new VGrupoFamiliar();
     
@@ -146,7 +146,7 @@ public class ActualizarIntegrante extends javax.swing.JFrame {
 
         String desc_int = jcbo_integrante.getSelectedItem().toString().toUpperCase();
         try {
-            cintegrante.obt_int(integrante, desc_int);
+            cintegrante.obtenerCodInt(integrante, desc_int);
             System.out.println("integrsnte guardado "+integrante.getCod_int());
         } catch (Exception ex) {
             Logger.getLogger(ActualizarIntegrante.class.getName()).log(Level.SEVERE, null, ex);

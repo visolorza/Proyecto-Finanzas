@@ -1,6 +1,7 @@
 
-package controlador;
+package dao;
 
+import interfaz.IGrupoFamiliar;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,8 +14,9 @@ import modelo.Integrante;
  *
  * @author michimisimo
  */
-public class ControlGrupoFamiliar {
+public class DAOGrupoFamiliar implements IGrupoFamiliar{
     
+    @Override
     public ArrayList<Integrante> mostrar() throws Exception {
         
         ArrayList<Integrante> lista = new ArrayList<>();
@@ -45,6 +47,7 @@ public class ControlGrupoFamiliar {
         return lista;
     }
     
+    @Override
     public boolean agregar(Integrante integrante) throws Exception {
 
         try {
@@ -111,7 +114,7 @@ public class ControlGrupoFamiliar {
         }
     }
     
-    public int obt_int(Integrante integrante, String desc_int) throws Exception {
+    public int obtenerCodInt(Integrante integrante, String desc_int) throws Exception {
 
     try {
         ConexionBD con = new ConexionBD();

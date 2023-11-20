@@ -1,16 +1,18 @@
 package vistas;
 
-import Emergente.EliminarAhorro;
-import Emergente.ActualizarAhorro;
-import Emergente.ActulizarMeta;
-import Utils.Utils;
-import Emergente.EliminarMeta;
-import Emergente.IngresarMeta;
+import emergente.EliminarAhorro;
+import emergente.ActualizarAhorro;
+import emergente.ActulizarMeta;
+import utils.Utils;
+import emergente.EliminarMeta;
+import emergente.IngresarMeta;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import controlador.ControlAhorro;
-import controlador.ControlMeta;
+import dao.DAOAhorro;
+import dao.DAOMeta;
+import interfaz.IAhorro;
+import interfaz.IMeta;
 import java.text.NumberFormat;
 import java.util.Locale;
 import modelo.Ahorro;
@@ -35,7 +37,7 @@ public class VMeta extends javax.swing.JFrame {
     }
 
     /**
-     * Creates new form Inicio
+     * Creates new form VInicio
      */      
     
     
@@ -43,7 +45,7 @@ public class VMeta extends javax.swing.JFrame {
         initComponents();
         
         Utils utils = new Utils();
-        this.jlbl_mesActual.setText(utils.obtenerMesActual());
+        this.jlbl_mesActual.setText(utils.obtenerNombreMesActual());
         
         this.jlbl_totalAhorros.setText(utils.obtenerTotalAhorros());
         this.jlbl_totalAhorros.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -458,9 +460,9 @@ public class VMeta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     DefaultTableModel modelo = new DefaultTableModel();
-    ControlAhorro cAhorro = new ControlAhorro();
+    IAhorro IAhorro = new DAOAhorro();
     Ahorro ahorro = new Ahorro();
-    ControlMeta cMeta = new ControlMeta();
+    IMeta IMeta = new DAOMeta();
     Utils utils = new Utils();
  
     private void jcbo_MetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_MetaActionPerformed
@@ -469,17 +471,15 @@ public class VMeta extends javax.swing.JFrame {
         String nombre_meta= jcbo_Meta.getSelectedItem().toString();
          
         try {
-            cAhorro.obt_meta(ahorro, nombre_meta);
-            utils.refrescarMeta(jTableMostrarMeta, ahorro.getCod_meta());
+            utils.refrescarMeta(jTableMostrarMeta, IMeta.obtenerCodigoMeta(nombre_meta));
         } catch (Exception ex) {
             Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         if (!"- SELECCIONAR -".equals(nombre_meta) && nombre_meta != null) {
             this.jlbl_tituloAhorro.setText(nombre_meta.toUpperCase());
-            
              try {
-                int totalAhorros=utils.obtenerTotalAhorroPorMeta(ahorro.getCod_meta());
+                int totalAhorros=utils.obtenerTotalAhorroPorMeta(IMeta.obtenerCodigoMeta(nombre_meta));
                 NumberFormat formato = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
                 this.jlbl_totalAhorros.setText(formato.format(totalAhorros));
              } catch (Exception ex) {
@@ -534,7 +534,7 @@ public class VMeta extends javax.swing.JFrame {
         
         ahorro.setMonto_ahorro(Integer.parseInt(this.jtxt_montoAbonoMeta.getText()));
         try {
-            if(cAhorro.agregar(ahorro)){
+            if(IAhorro.agregar(ahorro)){
                
                 utils.refrescarMeta(jTableMostrarMeta, ahorro.getCod_meta());
                 this.jtxt_montoAbonoMeta.setText("");
@@ -565,7 +565,7 @@ public class VMeta extends javax.swing.JFrame {
             detalleHistorico.setVisible(true);
             this.dispose();
         } catch (Exception ex) {
-            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
@@ -583,7 +583,7 @@ public class VMeta extends javax.swing.JFrame {
             this.dispose();
 
         } catch (Exception ex) {
-            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jbtn_GastosMesActionPerformed
 
@@ -596,7 +596,7 @@ public class VMeta extends javax.swing.JFrame {
             ingresos.establecerPosicion(posicionX,posicionY);
             ingresos.obtenerPosicion();
         } catch (Exception ex) {
-            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
         ingresos.setVisible(true);
         this.dispose();
@@ -615,9 +615,9 @@ public class VMeta extends javax.swing.JFrame {
     private void jbtn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_inicioActionPerformed
 
         this.obtenerPosicion();
-        Inicio inicio = null;
+        VInicio inicio = null;
         try {
-            inicio = new Inicio();
+            inicio = new VInicio();
             inicio.establecerPosicion(posicionX,posicionY);
             inicio.obtenerPosicion();
         } catch (Exception ex) {
@@ -677,20 +677,20 @@ public class VMeta extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.utijTableMostrarMetael.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(VInicio.class.getName()).log(java.utijTableMostrarMetael.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(VInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(VInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(VInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new Inicio().setVisible(true);
+//                new VInicio().setVisible(true);
 //            }
 //        });
 //    }

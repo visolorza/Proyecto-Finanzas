@@ -1,12 +1,12 @@
 
-package Emergente;
+package emergente;
 
-import controlador.ControlAhorro;
+import dao.DAOAhorro;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Ahorro;
-import Utils.Utils;
-import controlador.ControlMeta;
+import utils.Utils;
+import dao.DAOMeta;
 
 /**
  *
@@ -129,7 +129,6 @@ public class ActualizarAhorro extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtxt_cod_gast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlbl_ingresosMes6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
@@ -147,8 +146,8 @@ public class ActualizarAhorro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    ControlMeta cmeta = new ControlMeta();
-    ControlAhorro cgasto = new ControlAhorro();
+    DAOMeta cmeta = new DAOMeta();
+    DAOAhorro cgasto = new DAOAhorro();
     Ahorro gasto = new Ahorro();
     
     

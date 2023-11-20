@@ -1,15 +1,13 @@
 package vistas;
 
-import Emergente.ActualizarIngresos;
-import Emergente.EliminarIngresos;
-import Utils.Utils;
-import controlador.ControlIngresos;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Locale;
+import emergente.ActualizarIngresos;
+import emergente.EliminarIngresos;
+import utils.Utils;
+import dao.DAOIngreso;
+import interfaz.IIngreso;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modelo.Ingresos;
+import modelo.Ingreso;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -27,13 +25,13 @@ public class VIngresos extends javax.swing.JFrame {
     private int posicionY;
 
     /**
-     * Creates new form Inicio
+     * Creates new form VInicio
      */
     public VIngresos() throws Exception {
         initComponents();
         
         Utils utils = new Utils();
-        this.jlbl_mesActual.setText(utils.obtenerMesActual());
+        this.jlbl_mesActual.setText(utils.obtenerNombreMesActual());
         
         this.jlbl_totalIngresos.setText(utils.obtenerTotalIngresosMes());
         this.jlbl_totalIngresos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -413,8 +411,8 @@ public class VIngresos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    ControlIngresos cingresos = new ControlIngresos();
-    Ingresos ingreso = new Ingresos();
+    IIngreso IIngreso = new DAOIngreso();
+    Ingreso ingreso = new Ingreso();
     Utils utils = new Utils();
     
     private void jbtn_grupoFamiliar2ActionPerformed(java.awt.event.ActionEvent evt) {                                                    
@@ -441,7 +439,7 @@ public class VIngresos extends javax.swing.JFrame {
             detalleHistorico.setVisible(true);
             this.dispose();
         } catch (Exception ex) {
-            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jbtn_MetaActionPerformed
 
@@ -457,7 +455,7 @@ public class VIngresos extends javax.swing.JFrame {
             this.dispose();
 
         } catch (Exception ex) {
-            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jbtn_GastosMesActionPerformed
 
@@ -470,7 +468,7 @@ public class VIngresos extends javax.swing.JFrame {
             ingresos.establecerPosicion(posicionX,posicionY);
             ingresos.obtenerPosicion();
         } catch (Exception ex) {
-            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
         ingresos.setVisible(true);
         this.dispose();
@@ -489,9 +487,9 @@ public class VIngresos extends javax.swing.JFrame {
     private void jbtn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_inicioActionPerformed
 
         this.obtenerPosicion();
-        Inicio inicio = null;
+        VInicio inicio = null;
         try {
-            inicio = new Inicio();
+            inicio = new VInicio();
             inicio.establecerPosicion(posicionX,posicionY);
             inicio.obtenerPosicion();
         } catch (Exception ex) {
@@ -533,7 +531,7 @@ public class VIngresos extends javax.swing.JFrame {
 
         String desc_int = jcbo_integrante.getSelectedItem().toString().toUpperCase();
         try {
-            cingresos.obt_int(ingreso, desc_int);
+            IIngreso.obtenerIngresoCodInt(ingreso, desc_int);
             System.out.println("integrsnte guardado "+ingreso.getCod_int());
         } catch (Exception ex) {
             Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
@@ -555,7 +553,7 @@ public class VIngresos extends javax.swing.JFrame {
         ingreso.setDesc_ing(this.jtxt_descIngreso.getText().toUpperCase());
 
         try {
-            if(cingresos.agregar(ingreso)){
+            if(IIngreso.agregar(ingreso)){
                 System.out.println("gasto agregado con exto "+ingreso.toString());
                 utils.refrescarTodoIngreso(jTableMostrar);
 
@@ -590,20 +588,20 @@ public class VIngresos extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(VInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(VInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(VInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(VInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new Inicio().setVisible(true);
+//                new VInicio().setVisible(true);
 //            }
 //        });
 //    }

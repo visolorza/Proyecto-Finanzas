@@ -1,0 +1,25 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ */
+package interfaz;
+
+import java.util.ArrayList;
+import modelo.Meta;
+
+/**
+ *
+ * @author María José
+ */
+public interface IMeta {
+    
+    ArrayList<Meta> mostrar() throws Exception;
+    boolean agregar(Meta meta) throws Exception;
+    boolean eliminar(int cod_meta) throws Exception;
+    boolean actualizar(Meta meta) throws Exception;
+    
+    int obtenerCodigoMeta(String nombreMeta) throws Exception;
+    Meta obtenerMetaCodInt(Meta meta,String desc_int) throws Exception;
+    
+    
+}

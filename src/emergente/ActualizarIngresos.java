@@ -1,13 +1,13 @@
 
-package Emergente;
+package emergente;
 
-import controlador.ControlGasto;
+import dao.DAOGasto;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Gasto;
-import Utils.Utils;
-import controlador.ControlIngresos;
-import modelo.Ingresos;
+import utils.Utils;
+import dao.DAOIngreso;
+import modelo.Ingreso;
 
 /**
  *
@@ -167,8 +167,8 @@ public class ActualizarIngresos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    ControlIngresos cingresos = new ControlIngresos();
-    Ingresos ingreso = new Ingresos();
+    DAOIngreso cingresos = new DAOIngreso();
+    Ingreso ingreso = new Ingreso();
     
     
     private void jtxt_montoIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_montoIngresoActionPerformed
@@ -201,7 +201,7 @@ public class ActualizarIngresos extends javax.swing.JFrame {
 
         String desc_int = jcbo_integrante.getSelectedItem().toString().toUpperCase();
         try {
-            cingresos.obt_int(ingreso, desc_int);
+            cingresos.obtenerIngresoCodInt(ingreso, desc_int);
             System.out.println("integrsnte guardado "+ingreso.getCod_int());
         } catch (Exception ex) {
             Logger.getLogger(ActualizarIngresos.class.getName()).log(Level.SEVERE, null, ex);

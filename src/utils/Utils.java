@@ -2,19 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Utils;
+package utils;
 
-import controlador.ControlAhorro;
-import controlador.ControlGasto;
-import controlador.ControlGrupoFamiliar;
-import controlador.ControlIngresos;
-import controlador.ControlMeta;
+import dao.DAOAhorro;
+import dao.DAOGasto;
+import dao.DAOGrupoFamiliar;
+import dao.DAOIngreso;
+import interfaz.IAhorro;
+import interfaz.IGasto;
+import interfaz.IGrupoFamiliar;
+import interfaz.IIngreso;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.JComboBox;
@@ -23,24 +27,34 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Ahorro;
 import modelo.ConexionBD;
 import modelo.Gasto;
-import modelo.Ingresos;
+import modelo.Ingreso;
 import modelo.Integrante;
 
 
 /**
  *
- * @author Usuario
+ * @author Calderón, Solorza, Urbina
+ * @version 20/11/2023
  */
 public class Utils {
     
     //Escribir aquí lo que está en métodos.
     
-    public String obtenerMesActual(){
+    public String obtenerNombreMesActual(){
         Date fecha = new Date();
         SimpleDateFormat fechaFormatoMes = new SimpleDateFormat("MMMM");
         String nombreMes = fechaFormatoMes.format(fecha);
         return nombreMes.toUpperCase();
     }
+    
+    public int obtenerNumMesActual(){
+        Date fecha = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(fecha);
+        int numMes = calendar.get(Calendar.MONTH) + 1; 
+        return numMes;
+    }
+
 
     public void RellenarComboInt(String tabla, String valor, JComboBox combo){
         
@@ -102,17 +116,25 @@ public class Utils {
        
     }
 
-    public String obtenerAnno(Date fecha){
+    public String obtenerNombreYearActual(Date fecha){
         SimpleDateFormat fechaFormatoAnno = new SimpleDateFormat("yyyy");
-        String anno = fechaFormatoAnno.format(fecha);
-        return anno;
+        String year = fechaFormatoAnno.format(fecha);
+        return year;
+    }
+    
+    public int obtenerNumYearActual(){
+        Date fecha = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(fecha);
+        int numYear = calendar.get(Calendar.YEAR); 
+        return numYear;
     }
     
     public String obtenerTotal (int codcat) throws Exception{
         ArrayList<Gasto> listaGastos;
-        ControlGasto cgasto = new ControlGasto();
+        IGasto IGasto = new DAOGasto();
         
-        listaGastos=cgasto.mostrarGastosMesCat(codcat);
+        listaGastos=IGasto.mostrar(0,0,codcat);
         int sumaMontosGas=0;
         
         for (Gasto listaGasto : listaGastos) {
@@ -124,8 +146,8 @@ public class Utils {
     
     public int obtenerTotalCat (int codcat) throws Exception{
         ArrayList<Gasto> listaGastos;
-        ControlGasto cgasto = new ControlGasto();
-        listaGastos=cgasto.mostrarGastosMesCat(codcat);
+        IGasto IGasto = new DAOGasto();
+        listaGastos=IGasto.mostrar(0,0,codcat);
         int sumaMontosGas=0;
         for (Gasto gasto : listaGastos) {
             sumaMontosGas+=gasto.getMontoGast();
@@ -144,9 +166,9 @@ public class Utils {
         modelo.addColumn("DESCRIPCION");
         modelo.addColumn("INTEGRANTE");
         modelo.addColumn("MONTO");
-        ControlGasto cgasto = new ControlGasto();
+        IGasto IGasto = new DAOGasto();
         
-        listaGast = cgasto.mostrar(codcat);
+        listaGast = IGasto.mostrarGastJoinInt(codcat,0);
        
         while (modelo.getRowCount()>0) {
             modelo.removeRow(0);
@@ -186,9 +208,9 @@ public class Utils {
         modelo.addColumn("SUBCATEGORIA");
         modelo.addColumn("DETALLE");
         modelo.addColumn("MONTO");
-        ControlGasto cgasto = new ControlGasto();
+        DAOGasto cgasto = new DAOGasto();
         
-        listaGast = cgasto.mostrarTodo();
+        listaGast = cgasto.mostrarGastJoinSubcat(0,0);
        
         while (modelo.getRowCount()>0) {
             modelo.removeRow(0);
@@ -219,7 +241,7 @@ public class Utils {
     
     public JTable refrescarTodoIngreso(JTable tabla) throws Exception{
         
-        ArrayList<Ingresos> listaGast = new ArrayList<>();
+        ArrayList<Ingreso> listaIng = new ArrayList<>();
         
         DefaultTableModel modelo = new DefaultTableModel();
         
@@ -227,9 +249,9 @@ public class Utils {
         modelo.addColumn("FECHA");
         modelo.addColumn("DESCRIPCION");
         modelo.addColumn("MONTO");
-        ControlIngresos cingresos = new ControlIngresos();
+        IIngreso IIngreso = new DAOIngreso();
         
-        listaGast = cingresos.mostrar();
+        listaIng = IIngreso.mostrar(0,0);
        
         while (modelo.getRowCount()>0) {
             modelo.removeRow(0);
@@ -242,15 +264,15 @@ public class Utils {
         
         String monto;
         
-        for (Ingresos listag : listaGast) {
+        for (Ingreso ingreso : listaIng) {
             Object a[] = new Object[4];
-            int sumaMontosGas=listag.getMonto_ing();
+            int sumaMontosGas=ingreso.getMonto_ing();
             
             monto=formatoMontoGas.format(sumaMontosGas);
                     
-            a[0]=listag.getCod_ing();
-            a[1]=listag.getFecha_ing();
-            a[2]=listag.getDesc_ing();
+            a[0]=ingreso.getCod_ing();
+            a[1]=ingreso.getFecha_ing();
+            a[2]=ingreso.getDesc_ing();
             a[3]=monto;
             modelo.addRow(a);
         }
@@ -268,9 +290,10 @@ public class Utils {
         modelo.addColumn("FECHA");
         modelo.addColumn("META");
         modelo.addColumn("MONTO");
-        ControlAhorro cAhorro = new ControlAhorro();
         
-        listaAhorro = cAhorro.mostrarTodoAhorro();
+        IAhorro IAhorro = new DAOAhorro();
+        
+        listaAhorro = IAhorro.mostrarAhorroJoinMeta();
        
         while (modelo.getRowCount()>0) {
             modelo.removeRow(0);
@@ -305,9 +328,9 @@ public class Utils {
         modelo.addColumn("CODIGO");
         modelo.addColumn("FECHA");
         modelo.addColumn("MONTO");
-        ControlAhorro cAhorro = new ControlAhorro();
+        DAOAhorro cAhorro = new DAOAhorro();
         
-        listaAhorro = cAhorro.mostrarAhorroPorMeta(codmeta);
+        listaAhorro = cAhorro.mostrar(codmeta,0,0);
        
         while (modelo.getRowCount()>0) {
             modelo.removeRow(0);
@@ -398,8 +421,8 @@ public class Utils {
     
     public String obtenerTotalGastosMes () throws Exception{
         ArrayList<Gasto> listaGastos;
-        ControlGasto cgasto = new ControlGasto();
-        listaGastos=cgasto.mostrarGastosMes();
+        IGasto IGasto = new DAOGasto();
+        listaGastos=IGasto.mostrar(0,this.obtenerNumMesActual(),0);
         int sumaMontosGas=0;
         for (Gasto gasto : listaGastos) {
             sumaMontosGas+=gasto.getMontoGast();
@@ -409,11 +432,11 @@ public class Utils {
     }
     
     public String obtenerTotalIngresosMes () throws Exception{
-        ArrayList<Ingresos> listaIngresos;
-        ControlIngresos cingresos = new ControlIngresos();
-        listaIngresos=cingresos.mostrarIngresosMes();
+        ArrayList<Ingreso> listaIngresos;
+        IIngreso IIngreso = new DAOIngreso();
+        listaIngresos=IIngreso.mostrar(this.obtenerNumYearActual(),this.obtenerNumMesActual());
         int sumaMontosIng=0;
-        for (Ingresos ingreso : listaIngresos) {
+        for (Ingreso ingreso : listaIngresos) {
             sumaMontosIng+=ingreso.getMonto_ing();
         }
         NumberFormat formatoMontoIng = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
@@ -431,9 +454,9 @@ public class Utils {
         modelo.addColumn("FECHA");
         modelo.addColumn("META");
         modelo.addColumn("MONTO");
-        ControlAhorro cAhorro = new ControlAhorro();
+        IAhorro IAhorro = new DAOAhorro();
         
-        listaAhorro = cAhorro.mostrarAhorroPoraño(año);
+        listaAhorro = IAhorro.mostrar(0,año,0);
        
         while (modelo.getRowCount()>0) {
             modelo.removeRow(0);
@@ -445,15 +468,15 @@ public class Utils {
         
         String monto;
             
-        for (Ahorro listag : listaAhorro) {
+        for (Ahorro lista : listaAhorro) {
             
-            int sumaMontosGas=listag.getMonto_ahorro();
+            int sumaMontosGas=lista.getMonto_ahorro();
             monto=formatoMeta.format(sumaMontosGas);
             
             Object a[] = new Object[4];
-            a[0]=listag.getCod_ahorro();
-            a[1]=listag.getFecha_ahorro();
-            a[2]=listag.getDesc_meta();
+            a[0]=lista.getCod_ahorro();
+            a[1]=lista.getFecha_ahorro();
+            a[2]=lista.getDesc_meta();
             a[3]=monto;
             modelo.addRow(a);
         }
@@ -462,7 +485,7 @@ public class Utils {
     
     public JTable refrescarIngresoAño(JTable tabla,int año) throws Exception{
         
-        ArrayList<Ingresos> listaAhorro = new ArrayList<>();
+        ArrayList<Ingreso> listaIngreso = new ArrayList<>();
         
         DefaultTableModel modelo = new DefaultTableModel();
         
@@ -470,9 +493,9 @@ public class Utils {
         modelo.addColumn("FECHA");
         modelo.addColumn("DETALLE");
         modelo.addColumn("MONTO");
-        ControlIngresos cAhorro = new ControlIngresos();
+        IIngreso IIngreso = new DAOIngreso();
         
-        listaAhorro = cAhorro.mostraringresoPorAño(año);
+        listaIngreso = IIngreso.mostrar(año,0);
        
         while (modelo.getRowCount()>0) {
             modelo.removeRow(0);
@@ -484,7 +507,7 @@ public class Utils {
         
         String monto;
             
-        for (Ingresos listag : listaAhorro) {
+        for (Ingreso listag : listaIngreso) {
             
             int sumaMontosGas=listag.getMonto_ing();
             monto=formatoMeta.format(sumaMontosGas);
@@ -501,7 +524,7 @@ public class Utils {
     
     public JTable refrescarGastoAño(JTable tabla,int año) throws Exception{
         
-        ArrayList<Gasto> listaAhorro = new ArrayList<>();
+        ArrayList<Gasto> listaGasto = new ArrayList<>();
         
         DefaultTableModel modelo = new DefaultTableModel();
         
@@ -510,9 +533,10 @@ public class Utils {
         modelo.addColumn("SUBCATEGORIA");
         modelo.addColumn("DETALLE");
         modelo.addColumn("MONTO");
-        ControlGasto cAhorro = new ControlGasto();
         
-        listaAhorro = cAhorro.mostrarGastoPoraño(año);
+        IGasto IGasto = new DAOGasto();
+        
+        listaGasto = IGasto.mostrarGastJoinSubcat(año,0);
        
         while (modelo.getRowCount()>0) {
             modelo.removeRow(0);
@@ -524,7 +548,7 @@ public class Utils {
         
         String monto;
             
-        for (Gasto listag : listaAhorro) {
+        for (Gasto listag : listaGasto) {
             
             int sumaMontosGas=listag.getMontoGast();
             monto=formatoMeta.format(sumaMontosGas);
@@ -542,7 +566,7 @@ public class Utils {
     
     public JTable refrescarGastoMes(JTable tabla,int año,int mes) throws Exception{
         
-        ArrayList<Gasto> listaAhorro = new ArrayList<>();
+        ArrayList<Gasto> listaGasto = new ArrayList<>();
         
         DefaultTableModel modelo = new DefaultTableModel();
         
@@ -551,30 +575,30 @@ public class Utils {
         modelo.addColumn("SUBCATEGORIA");
         modelo.addColumn("DETALLE");
         modelo.addColumn("MONTO");
-        ControlGasto cAhorro = new ControlGasto();
+        IGasto IGasto = new DAOGasto();
         
-        listaAhorro = cAhorro.mostrarGastoPorMes(año,mes);
+        listaGasto = IGasto.mostrarGastJoinSubcat(año,mes);
        
         while (modelo.getRowCount()>0) {
             modelo.removeRow(0);
         }
         
         tabla.setModel(modelo);
-        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+        NumberFormat formato = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
         tabla.getColumnModel().getColumn(1).setCellRenderer(new FormatoTabla("dd-MM-yyyy"));
         
         String monto;
             
-        for (Gasto listag : listaAhorro) {
+        for (Gasto gasto : listaGasto) {
             
-            int sumaMontosGas=listag.getMontoGast();
-            monto=formatoMeta.format(sumaMontosGas);
+            int sumaMontosGas=gasto.getMontoGast();
+            monto=formato.format(sumaMontosGas);
             
             Object a[] = new Object[5];
-            a[0]=listag.getCodGast();
-            a[1]=listag.getFechaGast();
-            a[2]=listag.getDescSubcat();
-            a[3]=listag.getDescGast();
+            a[0]=gasto.getCodGast();
+            a[1]=gasto.getFechaGast();
+            a[2]=gasto.getDescSubcat();
+            a[3]=gasto.getDescGast();
             a[4]=monto;
             modelo.addRow(a);
         }
@@ -583,7 +607,7 @@ public class Utils {
     
     public JTable refrescarIngresoMes(JTable tabla,int año,int mes) throws Exception{
         
-        ArrayList<Ingresos> listaAhorro = new ArrayList<>();
+        ArrayList<Ingreso> listaIngreso = new ArrayList<>();
         
         DefaultTableModel modelo = new DefaultTableModel();
         
@@ -591,9 +615,9 @@ public class Utils {
         modelo.addColumn("FECHA");
         modelo.addColumn("DETALLE");
         modelo.addColumn("MONTO");
-        ControlIngresos cAhorro = new ControlIngresos();
+        IIngreso IIngreso = new DAOIngreso();
         
-        listaAhorro = cAhorro.mostraringresoPorMes(año,mes);
+        listaIngreso = IIngreso.mostrar(año,mes);
        
         while (modelo.getRowCount()>0) {
             modelo.removeRow(0);
@@ -605,7 +629,7 @@ public class Utils {
         
         String monto;
             
-        for (Ingresos listag : listaAhorro) {
+        for (Ingreso listag : listaIngreso) {
             
             int sumaMontosGas=listag.getMonto_ing();
             monto=formatoMeta.format(sumaMontosGas);
@@ -630,9 +654,9 @@ public class Utils {
         modelo.addColumn("META");
         modelo.addColumn("FECHA");
         modelo.addColumn("MONTO");
-        ControlAhorro cAhorro = new ControlAhorro();
+        IAhorro IAhorro = new DAOAhorro();
         
-        listaAhorro = cAhorro.mostrarAhorroPorMes(año,mes);
+        listaAhorro = IAhorro.mostrar(0,año,mes);
        
         while (modelo.getRowCount()>0) {
             modelo.removeRow(0);
@@ -666,9 +690,9 @@ public class Utils {
 
         modelo.addColumn("CODIGO");
         modelo.addColumn("INTEGRANTE");
-        ControlGrupoFamiliar cintegrante = new ControlGrupoFamiliar();
+        IGrupoFamiliar IGrupoFamiliar = new DAOGrupoFamiliar();
 
-        listaGrupo = cintegrante.mostrar();
+        listaGrupo = IGrupoFamiliar.mostrar();
 
         while (modelo.getRowCount()>0) {
             modelo.removeRow(0);
@@ -689,8 +713,8 @@ public class Utils {
     
     public String obtenerTotalAhorros () throws Exception{
         ArrayList<Ahorro> listaAhorros;
-        ControlAhorro cahorro = new ControlAhorro();
-        listaAhorros=cahorro.mostrar();
+        IAhorro IAhorro = new DAOAhorro();
+        listaAhorros=IAhorro.mostrar(0,0,0);
         int sumaMontosA=0;
         for (Ahorro ahorro : listaAhorros) {
             sumaMontosA+=ahorro.getMonto_ahorro();
@@ -710,9 +734,9 @@ public class Utils {
         modelo.addColumn("DESCRIPCION");
         modelo.addColumn("INTEGRANTE");
         modelo.addColumn("MONTO");
-        ControlGasto cgasto = new ControlGasto();
+        IGasto IGasto = new DAOGasto();
         
-        listaGast = cgasto.mostrarSubcat(codcat,subcat);
+        listaGast = IGasto.mostrarGastJoinInt(codcat,subcat);
        
         while (modelo.getRowCount()>0) {
             modelo.removeRow(0);
@@ -743,8 +767,8 @@ public class Utils {
     
     public int obtenerTotalGastoDH (int year,int mes, int codcat) throws Exception{
         ArrayList<Gasto> listaGastos;
-        ControlGasto cgasto = new ControlGasto();
-        listaGastos=cgasto.mostrarGastosDetHis(year,mes,codcat);
+        IGasto IGasto = new DAOGasto();
+        listaGastos=IGasto.mostrar(year,mes,codcat);
         int sumaMontosGas=0;
         for (Gasto gasto : listaGastos) {
             sumaMontosGas+=gasto.getMontoGast();
@@ -754,8 +778,8 @@ public class Utils {
  
     public int obtenerTotalGastoMesDH (int year,int mes) throws Exception{
         ArrayList<Gasto> listaGastos;
-        ControlGasto cgasto = new ControlGasto();
-        listaGastos=cgasto.mostrarGastoPorMes(year,mes);
+        IGasto IGasto = new DAOGasto();
+        listaGastos=IGasto.mostrarGastJoinSubcat(year,mes);
         int sumaMontosGas=0;
         for (Gasto gasto : listaGastos) {
             sumaMontosGas+=gasto.getMontoGast();
@@ -764,11 +788,11 @@ public class Utils {
     }
     
     public int obtenerTotalIngresoMesDH (int year,int mes) throws Exception{
-        ArrayList<Ingresos> listaIngresos;
-        ControlIngresos cingreso = new ControlIngresos();
-        listaIngresos=cingreso.mostraringresoPorMes(year,mes);
+        ArrayList<Ingreso> listaIngresos;
+        IIngreso IIngreso = new DAOIngreso();
+        listaIngresos=IIngreso.mostrar(year,mes);
         int sumaMontosIng=0;
-        for (Ingresos ingreso : listaIngresos) {
+        for (Ingreso ingreso : listaIngresos) {
             sumaMontosIng+=ingreso.getMonto_ing();
         }
         return sumaMontosIng;
@@ -776,8 +800,8 @@ public class Utils {
     
     public int obtenerTotalAhorroMesDH (int year,int mes) throws Exception{
         ArrayList<Ahorro> listaAhorros;
-        ControlAhorro cahorro = new ControlAhorro();
-        listaAhorros=cahorro.mostrarAhorroPorMes(year, mes);
+        IAhorro IAhorro = new DAOAhorro();
+        listaAhorros=IAhorro.mostrar(0,year, mes);
         int sumaMontosAho=0;
         for (Ahorro ahorro : listaAhorros) {
             sumaMontosAho+=ahorro.getMonto_ahorro();
@@ -787,8 +811,8 @@ public class Utils {
     
     public int obtenerTotalAhorroPorMeta(int codMeta) throws Exception{
         ArrayList<Ahorro> listaAhorros;
-        ControlAhorro cahorro = new ControlAhorro();
-        listaAhorros=cahorro.mostrarAhorroPorMeta(codMeta);
+        IAhorro IAhorro = new DAOAhorro();
+        listaAhorros=IAhorro.mostrar(codMeta,0,0);
         int sumaMontosAho=0;
         for (Ahorro ahorro : listaAhorros) {
             sumaMontosAho+=ahorro.getMonto_ahorro();

@@ -1,7 +1,7 @@
 package vistas;
 
-import Utils.Grafico;
-import Utils.Utils;
+import utils.Grafico;
+import utils.Utils;
 import java.awt.BorderLayout;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,7 +17,7 @@ import org.jfree.chart.ChartPanel;
  *
  * @author María José
  */
-public class Inicio extends javax.swing.JFrame {
+public class VInicio extends javax.swing.JFrame {
     
     //Almacenar la posición de la ventana
     private int posicionX;  
@@ -26,12 +26,12 @@ public class Inicio extends javax.swing.JFrame {
     /**
      * Creates new form Inicio
      */
-    public Inicio() throws Exception {
+    public VInicio() throws Exception {
         initComponents();
         
         Utils utils = new Utils();
-        this.jlbl_mesActual.setText(utils.obtenerMesActual());
-        this.jlbl_mesActual1.setText(utils.obtenerMesActual());
+        this.jlbl_mesActual.setText(utils.obtenerNombreMesActual());
+        this.jlbl_mesActual1.setText(utils.obtenerNombreMesActual());
         
         this.jlbl_totalIngresos.setText(utils.obtenerTotalIngresosMes());
         this.jlbl_totalIngresos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -342,7 +342,7 @@ public class Inicio extends javax.swing.JFrame {
             detalleHistorico.setVisible(true); 
             this.dispose();
         } catch (Exception ex) {
-            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jbtn_MetaActionPerformed
@@ -356,7 +356,7 @@ public class Inicio extends javax.swing.JFrame {
             ingresos.establecerPosicion(posicionX,posicionY);
             ingresos.obtenerPosicion();
         } catch (Exception ex) {
-            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
         ingresos.setVisible(true);
         this.dispose(); 
@@ -386,7 +386,7 @@ public class Inicio extends javax.swing.JFrame {
             this.dispose();
             
         } catch (Exception ex) {
-            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jbtn_GastosMesActionPerformed
@@ -408,14 +408,15 @@ public class Inicio extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
         
         //</editor-fold>
@@ -424,9 +425,9 @@ public class Inicio extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new Inicio().setVisible(true);
+                    new VInicio().setVisible(true);
                 } catch (Exception ex) {
-                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(VInicio.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

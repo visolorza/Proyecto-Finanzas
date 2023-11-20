@@ -1,8 +1,9 @@
 package vistas;
 
-import Utils.Grafico;
-import Utils.Utils;
-import controlador.ControlGasto;
+import utils.Grafico;
+import utils.Utils;
+import dao.DAOGasto;
+import interfaz.IGasto;
 import java.awt.BorderLayout;
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -27,7 +28,7 @@ public class VDetalleHistorico extends javax.swing.JFrame {
     private int posicionY;
 
     /**
-     * Creates new form Inicio
+     * Creates new form VInicio
      */
     public VDetalleHistorico() {
         initComponents();
@@ -332,14 +333,14 @@ public class VDetalleHistorico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     Utils utils = new Utils();
-    ControlGasto cgasto = new ControlGasto();
+    IGasto IGasto = new DAOGasto();
     
     private void jbtn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_inicioActionPerformed
 
         this.obtenerPosicion();
-        Inicio inicio = null;
+        VInicio inicio = null;
         try {
-            inicio = new Inicio();
+            inicio = new VInicio();
             inicio.establecerPosicion(posicionX,posicionY);
             inicio.obtenerPosicion();
         } catch (Exception ex) {
@@ -369,7 +370,7 @@ public class VDetalleHistorico extends javax.swing.JFrame {
             ingresos.establecerPosicion(posicionX,posicionY);
             ingresos.obtenerPosicion();
         } catch (Exception ex) {
-            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
         ingresos.setVisible(true);
         this.dispose();
@@ -387,7 +388,7 @@ public class VDetalleHistorico extends javax.swing.JFrame {
             this.dispose();
 
         } catch (Exception ex) {
-            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_jbtn_GastosMesActionPerformed
@@ -402,7 +403,7 @@ public class VDetalleHistorico extends javax.swing.JFrame {
             detalleHistorico.setVisible(true);
             this.dispose();
         } catch (Exception ex) {
-            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_jbtn_MetaActionPerformed

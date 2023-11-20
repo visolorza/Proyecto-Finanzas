@@ -1,13 +1,14 @@
 package vistas;
 
-import Emergente.ActualizarIntegrante;
-import Emergente.EliminarIntegrante;
-import controlador.ControlGrupoFamiliar;
+import emergente.ActualizarIntegrante;
+import emergente.EliminarIntegrante;
+import dao.DAOGrupoFamiliar;
+import interfaz.IGrupoFamiliar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import modelo.Integrante;
-import Utils.Utils;
+import utils.Utils;
 import javax.swing.JTable;
 
 /*
@@ -26,7 +27,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
     private int posicionY;
 
     /**
-     * Creates new form Inicio
+     * Creates new form VInicio
      */
     public VGrupoFamiliar() {
         initComponents();
@@ -356,7 +357,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     Integrante integrante = new Integrante();
-    ControlGrupoFamiliar cintegrante = new ControlGrupoFamiliar();
+    IGrupoFamiliar IGrupoFamiliar = new DAOGrupoFamiliar();
     Utils utils = new Utils();
 
     public JTable getjTableMostrar() {
@@ -373,7 +374,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
         integrante.setDesc_int(this.jtxt_nombreIntegrante.getText().toUpperCase());
         
         try {
-            cintegrante.agregar(integrante);
+            IGrupoFamiliar.agregar(integrante);
             
             utils.refrescarGrupoFamiliar(jTableMostrar);
         } catch (Exception ex) {
@@ -404,7 +405,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
             detalleHistorico.setVisible(true);
             this.dispose();
         } catch (Exception ex) {
-            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jbtn_MetaActionPerformed
 
@@ -420,7 +421,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
             this.dispose();
 
         } catch (Exception ex) {
-            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jbtn_GastosMesActionPerformed
 
@@ -433,7 +434,7 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
             ingresos.establecerPosicion(posicionX,posicionY);
             ingresos.obtenerPosicion();
         } catch (Exception ex) {
-            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
         ingresos.setVisible(true);
         this.dispose();
@@ -452,9 +453,9 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
     private void jbtn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_inicioActionPerformed
 
         this.obtenerPosicion();
-        Inicio inicio = null;
+        VInicio inicio = null;
         try {
-            inicio = new Inicio();
+            inicio = new VInicio();
             inicio.establecerPosicion(posicionX,posicionY);
             inicio.obtenerPosicion();
         } catch (Exception ex) {

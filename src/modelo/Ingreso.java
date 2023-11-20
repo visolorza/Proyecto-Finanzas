@@ -7,16 +7,16 @@ import java.util.Date;
  *
  * @author michimisimo
  */
-public class Ingresos {
+public class Ingreso {
     
     private int cod_ing, monto_ing,cod_int;
     private String desc_ing;
     private Date fecha_ing;
 
-    public Ingresos() {
+    public Ingreso() {
     }
 
-    public Ingresos(int cod_ing, int monto_ing, int cod_int, String desc_ing, Date fecha_ing) {
+    public Ingreso(int cod_ing, int monto_ing, int cod_int, String desc_ing, Date fecha_ing) {
         this.cod_ing = cod_ing;
         this.monto_ing = monto_ing;
         this.cod_int = cod_int;

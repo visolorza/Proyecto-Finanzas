@@ -1,11 +1,10 @@
-package Emergente;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+package emergente;
 
-import controlador.ControlAhorro;
+import dao.DAOGasto;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,7 +12,7 @@ import java.util.logging.Logger;
  *
  * @author felip
  */
-public class EliminarAhorro extends javax.swing.JFrame {
+public class EliminarGastos extends javax.swing.JFrame {
     
     private int posicionX;  
     private int posicionY;
@@ -26,7 +25,7 @@ public class EliminarAhorro extends javax.swing.JFrame {
     /**
      * Creates new form EliminarGastos
      */
-    public EliminarAhorro() {
+    public EliminarGastos() {
         initComponents();
     }
 
@@ -47,7 +46,7 @@ public class EliminarAhorro extends javax.swing.JFrame {
         setResizable(false);
 
         jlbl_ingresosMes6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jlbl_ingresosMes6.setText("codigo Ahorro:");
+        jlbl_ingresosMes6.setText("codigo gasto:");
 
         jtxt_cod_gast.setBackground(new java.awt.Color(204, 204, 204));
         jtxt_cod_gast.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -95,7 +94,7 @@ public class EliminarAhorro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    ControlAhorro cgasto = new ControlAhorro();
+    DAOGasto cgasto = new DAOGasto();
     
     private void jtxt_cod_gastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_cod_gastActionPerformed
         // TODO add your handling code here:
@@ -107,11 +106,11 @@ public class EliminarAhorro extends javax.swing.JFrame {
 
         try {
             if(cgasto.eliminar(cod_gast)){
-                System.out.println("ahorro eliminado con exto ");
+                System.out.println("gasto eliminado con exto ");
                 this.setVisible(false);
             }
         } catch (Exception ex) {
-            Logger.getLogger(EliminarAhorro.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EliminarGastos.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_jbtn_eliminarActionPerformed

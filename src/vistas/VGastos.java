@@ -1,13 +1,14 @@
 package vistas;
 
-import Utils.Utils;
-import controlador.ControlGasto;
+import utils.Utils;
+import dao.DAOGasto;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import modelo.Gasto;
-import Emergente.ActulizarGastos;
-import Emergente.EliminarGastos;
+import emergente.ActulizarGastos;
+import emergente.EliminarGastos;
+import interfaz.IGasto;
 import java.util.Locale;
 
 /*
@@ -30,7 +31,7 @@ public class VGastos extends javax.swing.JFrame {
     }
 
     /**
-     * Creates new form Inicio
+     * Creates new form VInicio
      */      
     
     DefaultTableModel modelo = new DefaultTableModel();
@@ -38,7 +39,7 @@ public class VGastos extends javax.swing.JFrame {
     public VGastos() throws Exception {
         initComponents();
         
-        this.jlbl_mesActual.setText(utils.obtenerMesActual());
+        this.jlbl_mesActual.setText(utils.obtenerNombreMesActual());
         
         this.jlbl_totalGastos.setText(utils.obtenerTotalGastosMes());
         this.jlbl_totalGastos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -480,7 +481,7 @@ public class VGastos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    ControlGasto cgasto = new ControlGasto();
+    IGasto IGasto = new DAOGasto();
     Gasto gasto = new Gasto();
     Utils utils = new Utils();
  
@@ -494,7 +495,7 @@ public class VGastos extends javax.swing.JFrame {
                 String desc_cat = jcbo_gastosMes.getSelectedItem() != null ? jcbo_gastosMes.getSelectedItem().toString() : "";
                 if (!"- SELECCIONAR -".equals(desc_cat) && !"".equals(desc_cat)) {
                     
-                    int codcat = cgasto.obtCat(desc_cat);
+                    int codcat = IGasto.obtenerCodCat(desc_cat);
                     utils.RellenarComboSubcat("subcategoria", "desc_subcat", this.jcbo_subcategoria, codcat);
 
                     this.jlbl_totalGastos.setText(utils.obtenerTotal(codcat));
@@ -519,7 +520,7 @@ public class VGastos extends javax.swing.JFrame {
 
         String desc_int = jcbo_integrante.getSelectedItem().toString().toUpperCase();
         try {
-            cgasto.obt_int(gasto, desc_int);
+            IGasto.obtenerGastoCodInt(gasto, desc_int);
         } catch (Exception ex) {
             Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -539,12 +540,12 @@ public class VGastos extends javax.swing.JFrame {
         if (!"".equals(desc_subcat) && !"- SELECCIONAR -".equals(desc_subcat)) {
            try {    
             
-                cgasto.obt_subcat(gasto, desc_subcat);
+                IGasto.obtenerCodSubcat(gasto, desc_subcat);
                 String desc_cat = this.jcbo_gastosMes.getSelectedItem() != null ? this.jcbo_gastosMes.getSelectedItem().toString() : "";
             
                 if (!"- SELECCIONAR -".equals(desc_cat) && !"".equals(desc_cat)) {
                     
-                    int codcat = cgasto.obtCat(desc_cat);
+                    int codcat = IGasto.obtenerCodCat(desc_cat);
                     utils.refrescarPorSubcat(jTableMostrar, codcat,gasto.getCodSubcat());
              
                 }
@@ -568,8 +569,8 @@ public class VGastos extends javax.swing.JFrame {
 
         try {
             String desc_cat = jcbo_gastosMes.getSelectedItem() != null ? jcbo_gastosMes.getSelectedItem().toString() : "";
-            int cod_cat = cgasto.obtCat(desc_cat);
-            if(cgasto.agregar(gasto)){
+            int cod_cat = IGasto.obtenerCodCat(desc_cat);
+            if(IGasto.agregar(gasto)){
 
                 utils.refrescarPorSubcat(jTableMostrar, cod_cat,gasto.getCodSubcat());
                 
@@ -590,9 +591,9 @@ public class VGastos extends javax.swing.JFrame {
     private void jbtn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_inicioActionPerformed
 
         this.obtenerPosicion();
-        Inicio inicio = null;
+        VInicio inicio = null;
         try {
-            inicio = new Inicio();
+            inicio = new VInicio();
             inicio.establecerPosicion(posicionX,posicionY);
             inicio.obtenerPosicion();
         } catch (Exception ex) {
@@ -621,7 +622,7 @@ public class VGastos extends javax.swing.JFrame {
             ingresos.establecerPosicion(posicionX,posicionY);
             ingresos.obtenerPosicion();
         } catch (Exception ex) {
-            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
         ingresos.setVisible(true);
         this.dispose();
@@ -639,7 +640,7 @@ public class VGastos extends javax.swing.JFrame {
             this.dispose();
 
         } catch (Exception ex) {
-            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jbtn_GastosMesActionPerformed
 
@@ -653,7 +654,7 @@ public class VGastos extends javax.swing.JFrame {
             detalleHistorico.setVisible(true);
             this.dispose();
         } catch (Exception ex) {
-            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jbtn_MetaActionPerformed
 
@@ -672,7 +673,7 @@ public class VGastos extends javax.swing.JFrame {
 
         try {
             String desc_cat = jcbo_gastosMes.getSelectedItem().toString().toUpperCase();
-            int codcat=cgasto.obtCat(desc_cat);
+            int codcat=IGasto.obtenerCodCat(desc_cat);
             utils.refrescar(jTableMostrar,codcat);
         } catch (Exception ex) {
             Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);

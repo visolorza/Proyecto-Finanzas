@@ -1,7 +1,7 @@
 
-package Emergente;
+package emergente;
 
-import controlador.ControlGasto;
+import dao.DAOGasto;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Gasto;
@@ -139,7 +139,7 @@ public class ActulizarGastos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    ControlGasto cgasto = new ControlGasto();
+    DAOGasto cgasto = new DAOGasto();
     Gasto gasto = new Gasto();
     
     
