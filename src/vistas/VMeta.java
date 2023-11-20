@@ -493,7 +493,10 @@ public class VMeta extends javax.swing.JFrame {
     private void jcbo_MetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_MetaActionPerformed
         // TODO add your handling code here:
         
-        String nombre_meta= jcbo_Meta.getSelectedItem().toString().toUpperCase();
+        Object selectedItem = jcbo_Meta.getSelectedItem();
+
+           if (selectedItem != null) {
+               String nombre_meta = selectedItem.toString().toUpperCase();
          
         try {
             ahorro.setCod_meta(IMeta.obtenerCodigoMeta(nombre_meta)); 
@@ -521,7 +524,7 @@ public class VMeta extends javax.swing.JFrame {
              } catch (Exception ex) {
                  Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
              }
-        }
+        }}
         else {
             this.jlbl_tituloAhorro.setText("TOTAL AHORROS");
             this.jlbl_tituloAhorro1.setText("");
@@ -547,12 +550,59 @@ public class VMeta extends javax.swing.JFrame {
     private void jbtn_refrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_refrescarActionPerformed
             // TODO add your handling code here:
         
-         try {
-            controlMeta.refrescarMeta(jTableMostrarMeta,ahorro.getCod_meta());
-        } catch (Exception ex) {
-            Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        try {  
+           Object selectedItem = jcbo_Meta.getSelectedItem();
+
+           if (selectedItem != null) {
+               String nombre_meta = selectedItem.toString().toUpperCase();
+
+               try {
+                   ahorro.setCod_meta(IMeta.obtenerCodigoMeta(nombre_meta)); 
+                   controlMeta.refrescarMeta(jTableMostrarMeta, ahorro.getCod_meta());
+
+                   this.jcbo_Meta.removeAllItems();
+                   this.jcbo_Meta.addItem("- SELECCIONAR -");
+
+                   IMeta.RellenarComboMeta("meta", "nombre_meta", this.jcbo_Meta); 
+
+                   if (!"- SELECCIONAR -".equals(nombre_meta)) {
+                       this.jlbl_tituloAhorro.setText(nombre_meta);
+
+                       try {
+                           NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+
+                           this.jlbl_tituloAhorro1.setText("AHORRADO:");
+                           this.jlbl_tituloMeta1.setText(("OBJETIVO:"));
+                           this.jlbl_totalAhorro.setText(controlAhorro.ahorroPorMeta(nombre_meta));
+                           this.jlbl_totalMeta.setText(String.valueOf(formatoMeta.format(IMeta.obtenerTotalMeta(nombre_meta))));
+                           this.jlbl_totalAhorro.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+                           this.jlbl_totalMeta.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+                           this.jlbl_tituloAhorro1.setVisible(true);
+                           this.jlbl_tituloMeta1.setVisible(true);
+
+                       } catch (Exception ex) {
+                           Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
+                       }
+                   } else {
+                       this.jlbl_tituloAhorro.setText("TOTAL AHORROS");
+                       this.jlbl_tituloAhorro1.setText("");
+                       this.jlbl_tituloMeta1.setText((""));
+                       this.jlbl_totalAhorro.setText("");
+                       this.jlbl_totalMeta.setText("");
+                   }
+
+                   controlMeta.refrescarMeta(jTableMostrarMeta, ahorro.getCod_meta());
+               } catch (Exception ex) {
+                   Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
+               }
+           } else {
+               // Manejar el caso cuando getSelectedItem() devuelve null
+               // Puedes mostrar un mensaje de error o realizar alguna otra acción apropiada.
+           }
+       } catch (Exception ex) {
+           Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
+       }
+
     }//GEN-LAST:event_jbtn_refrescarActionPerformed
 
     private void jbtn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_eliminarActionPerformed

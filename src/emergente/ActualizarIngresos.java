@@ -9,6 +9,7 @@ import modelo.Gasto;
 import utils.Utils;
 import dao.DAOIngreso;
 import interfaz.IGrupoFamiliar;
+import interfaz.IIngreso;
 import modelo.Ingreso;
 
 /**
@@ -170,7 +171,7 @@ public class ActualizarIngresos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    DAOIngreso cingresos = new DAOIngreso();
+    IIngreso IIngreso = new DAOIngreso();
     Ingreso ingreso = new Ingreso();
     IGrupoFamiliar IGrupoFamiliar = new DAOGrupoFamiliar();
     
@@ -189,7 +190,7 @@ public class ActualizarIngresos extends javax.swing.JFrame {
         ingreso.setCod_ing(Integer.parseInt(this.jtxt_cod_ing.getText()));
         
         try {
-            if(cingresos.actualizar(ingreso)){
+            if(IIngreso.actualizar(ingreso)){
                 System.out.println("ingreso modificado con exto "+ingreso.toString());   
                 this.setVisible(false);
             }
@@ -204,7 +205,7 @@ public class ActualizarIngresos extends javax.swing.JFrame {
 
         String desc_int = jcbo_integrante.getSelectedItem().toString().toUpperCase();
         try {
-            cingresos.obtenerIngresoCodInt(ingreso, desc_int);
+            IIngreso.obtenerIngresoCodInt(ingreso, desc_int);
             System.out.println("integrsnte guardado "+ingreso.getCod_int());
         } catch (Exception ex) {
             Logger.getLogger(ActualizarIngresos.class.getName()).log(Level.SEVERE, null, ex);

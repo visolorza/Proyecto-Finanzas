@@ -193,7 +193,7 @@ public class DAOMeta implements IMeta{
             String query = "SELECT * FROM "+tabla;
             PreparedStatement stmt = cnx.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
-
+            
                 while (rs.next()) {
                     combo.addItem(rs.getString(valor));
                 }
