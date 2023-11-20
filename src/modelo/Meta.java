@@ -3,7 +3,8 @@ package modelo;
 
 /**
  *
- * @author michimisimo
+ * @author Calderón, Solorza, Urbina
+ * @version 20/11/2023
  */
 public class Meta {
     

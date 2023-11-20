@@ -8,7 +8,8 @@ import javax.swing.JComboBox;
 
 /**
  *
- * @author María José
+ * @author Calderón, Solorza, Urbina
+ * @version 20/11/2023
  */
 public interface IDetalleHistorico {
     

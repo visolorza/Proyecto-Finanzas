@@ -13,7 +13,8 @@ import modelo.Ingreso;
 
 /**
  *
- * @author michimisimo
+ * @author Calderón, Solorza, Urbina
+ * @version 20/11/2023
  */
 public class ActualizarIngresos extends javax.swing.JFrame {
     

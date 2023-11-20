@@ -12,7 +12,8 @@ import vistas.VGrupoFamiliar;
 
 /**
  *
- * @author michimisimo
+ * @author Calderón, Solorza, Urbina
+ * @version 20/11/2023
  */
 public class ActualizarIntegrante extends javax.swing.JFrame {
 

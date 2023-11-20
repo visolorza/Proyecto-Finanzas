@@ -12,7 +12,8 @@ import modelo.Meta;
 
 /**
  *
- * @author michimisimo
+ * @author Calderón, Solorza, Urbina
+ * @version 20/11/2023
  */
 public class ActulizarMeta extends javax.swing.JFrame {
 

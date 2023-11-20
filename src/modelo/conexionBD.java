@@ -12,7 +12,8 @@ import java.util.Properties;
 
 /**
  *
- * @author María José/ michimisimo
+ * @author Calderón, Solorza, Urbina
+ * @version 20/11/2023
  */
 public class ConexionBD {
  

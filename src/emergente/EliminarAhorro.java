@@ -11,7 +11,8 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author felip
+ * @author Calderón, Solorza, Urbina
+ * @version 20/11/2023
  */
 public class EliminarAhorro extends javax.swing.JFrame {
     

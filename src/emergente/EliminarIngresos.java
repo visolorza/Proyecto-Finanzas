@@ -12,7 +12,8 @@ import modelo.Ingreso;
 
 /**
  *
- * @author felip
+ * @author Calderón, Solorza, Urbina
+ * @version 20/11/2023
  */
 public class EliminarIngresos extends javax.swing.JFrame {
     

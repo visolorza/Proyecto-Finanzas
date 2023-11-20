@@ -5,21 +5,19 @@
 package controlador;
 
 import dao.DAOAhorro;
-import dao.DAOGasto;
 import interfaz.IAhorro;
-import interfaz.IGasto;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Ahorro;
-import modelo.Gasto;
 import utils.FormatoTabla;
 
 /**
  *
- * @author María José
+ * @author Calderón, Solorza, Urbina
+ * @version 20/11/2023
  */
 public class ControlAhorro {
     

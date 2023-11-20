@@ -6,6 +6,12 @@ import java.util.Date;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
+/**
+ *
+ * @author Calderón, Solorza, Urbina
+ * @version 20/11/2023
+ */
+
 public class FormatoTabla extends DefaultTableCellRenderer {
 
     private final SimpleDateFormat sdf;

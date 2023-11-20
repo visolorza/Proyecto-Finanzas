@@ -8,7 +8,8 @@ import modelo.Gasto;
 
 /**
  *
- * @author michimisimo
+ * @author Calderón, Solorza, Urbina
+ * @version 20/11/2023
  */
 public class ActulizarGastos extends javax.swing.JFrame {
     

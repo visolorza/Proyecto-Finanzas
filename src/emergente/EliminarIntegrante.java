@@ -12,7 +12,8 @@ import modelo.Integrante;
 
 /**
  *
- * @author felip
+ * @author Calderón, Solorza, Urbina
+ * @version 20/11/2023
  */
 public class EliminarIntegrante extends javax.swing.JFrame {
 

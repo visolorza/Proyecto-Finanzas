@@ -537,9 +537,10 @@ public class VMeta extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         ahorro.setMonto_ahorro(Integer.parseInt(this.jtxt_montoAbonoMeta.getText()));
+        ahorro.toString();
         try {
             if(IAhorro.agregar(ahorro)){
-               
+                System.out.println("ahorro agregado con exto "+ahorro.toString());
                 controlMeta.refrescarMeta(jTableMostrarMeta, ahorro.getCod_meta());
                 this.jtxt_montoAbonoMeta.setText("");
             }
