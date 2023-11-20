@@ -11,6 +11,8 @@ import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import controlador.ControlAhorro;
 import controlador.ControlMeta;
+import java.text.NumberFormat;
+import java.util.Locale;
 import modelo.Ahorro;
 
 /*
@@ -70,7 +72,6 @@ public class VMeta extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jbtn_eliminar = new javax.swing.JButton();
         jbtn_modificar = new javax.swing.JButton();
-        jlbl_ListaCompras = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableMostrarMeta = new javax.swing.JTable();
         jbtn_refrescar = new javax.swing.JButton();
@@ -86,6 +87,7 @@ public class VMeta extends javax.swing.JFrame {
         jbtn_agregarMeta = new javax.swing.JButton();
         jbtn_modificarMeta = new javax.swing.JButton();
         jbtn_eliminarMeta = new javax.swing.JButton();
+        jlbl_tituloMetas = new javax.swing.JLabel();
         jbtn_detHist = new javax.swing.JButton();
         jbtn_Meta = new javax.swing.JButton();
         jbtn_GastosMes = new javax.swing.JButton();
@@ -102,7 +104,9 @@ public class VMeta extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(204, 204, 204));
 
         jbtn_eliminar.setBackground(new java.awt.Color(255, 153, 153));
-        jbtn_eliminar.setFont(new java.awt.Font("Century Gothic", 0, 8)); // NOI18N
+        jbtn_eliminar.setFont(new java.awt.Font("Century Gothic", 1, 10)); // NOI18N
+        jbtn_eliminar.setForeground(new java.awt.Color(102, 0, 0));
+        jbtn_eliminar.setText("ELIMINAR");
         jbtn_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtn_eliminarActionPerformed(evt);
@@ -110,14 +114,14 @@ public class VMeta extends javax.swing.JFrame {
         });
 
         jbtn_modificar.setBackground(new java.awt.Color(255, 255, 153));
-        jbtn_modificar.setFont(new java.awt.Font("Century Gothic", 0, 8)); // NOI18N
+        jbtn_modificar.setFont(new java.awt.Font("Century Gothic", 1, 10)); // NOI18N
+        jbtn_modificar.setForeground(new java.awt.Color(102, 102, 0));
+        jbtn_modificar.setText("MODIFICAR");
         jbtn_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtn_modificarActionPerformed(evt);
             }
         });
-
-        jlbl_ListaCompras.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
         jTableMostrarMeta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -133,7 +137,9 @@ public class VMeta extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTableMostrarMeta);
 
         jbtn_refrescar.setBackground(new java.awt.Color(153, 204, 255));
-        jbtn_refrescar.setFont(new java.awt.Font("Century Gothic", 0, 8)); // NOI18N
+        jbtn_refrescar.setFont(new java.awt.Font("Century Gothic", 1, 10)); // NOI18N
+        jbtn_refrescar.setForeground(new java.awt.Color(0, 102, 102));
+        jbtn_refrescar.setText("REFRESCAR");
         jbtn_refrescar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtn_refrescarActionPerformed(evt);
@@ -146,33 +152,26 @@ public class VMeta extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jbtn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jbtn_refrescar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jlbl_ListaCompras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(64, 64, 64))
+                        .addComponent(jbtn_refrescar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbtn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66)
+                        .addComponent(jbtn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbtn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlbl_ListaCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtn_refrescar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(53, Short.MAX_VALUE))
-            .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jbtn_modificar, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addComponent(jbtn_refrescar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbtn_eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -243,7 +242,9 @@ public class VMeta extends javax.swing.JFrame {
         });
 
         jbtn_agregarMeta.setBackground(new java.awt.Color(153, 255, 153));
-        jbtn_agregarMeta.setFont(new java.awt.Font("Century Gothic", 0, 8)); // NOI18N
+        jbtn_agregarMeta.setFont(new java.awt.Font("Century Gothic", 1, 10)); // NOI18N
+        jbtn_agregarMeta.setForeground(new java.awt.Color(0, 51, 0));
+        jbtn_agregarMeta.setText("CREAR");
         jbtn_agregarMeta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtn_agregarMetaActionPerformed(evt);
@@ -251,7 +252,9 @@ public class VMeta extends javax.swing.JFrame {
         });
 
         jbtn_modificarMeta.setBackground(new java.awt.Color(255, 255, 153));
-        jbtn_modificarMeta.setFont(new java.awt.Font("Century Gothic", 0, 8)); // NOI18N
+        jbtn_modificarMeta.setFont(new java.awt.Font("Century Gothic", 1, 10)); // NOI18N
+        jbtn_modificarMeta.setForeground(new java.awt.Color(102, 102, 0));
+        jbtn_modificarMeta.setText("MODIFICAR");
         jbtn_modificarMeta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtn_modificarMetaActionPerformed(evt);
@@ -259,12 +262,18 @@ public class VMeta extends javax.swing.JFrame {
         });
 
         jbtn_eliminarMeta.setBackground(new java.awt.Color(255, 153, 153));
-        jbtn_eliminarMeta.setFont(new java.awt.Font("Century Gothic", 0, 8)); // NOI18N
+        jbtn_eliminarMeta.setFont(new java.awt.Font("Century Gothic", 1, 10)); // NOI18N
+        jbtn_eliminarMeta.setForeground(new java.awt.Color(102, 0, 0));
+        jbtn_eliminarMeta.setText("ELIMINAR");
         jbtn_eliminarMeta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtn_eliminarMetaActionPerformed(evt);
             }
         });
+
+        jlbl_tituloMetas.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jlbl_tituloMetas.setForeground(new java.awt.Color(0, 0, 0));
+        jlbl_tituloMetas.setText("META:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -272,10 +281,8 @@ public class VMeta extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -291,23 +298,32 @@ public class VMeta extends javax.swing.JFrame {
                                     .addComponent(jcbo_Meta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jtxt_montoAbonoMeta)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jbtn_agregarMeta)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jbtn_modificarMeta, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jbtn_eliminarMeta, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jbtn_abonar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(37, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jbtn_abonar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jbtn_agregarMeta, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                                .addComponent(jbtn_modificarMeta, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jbtn_eliminarMeta, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jlbl_tituloMetas)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(37, 37, 37))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jlbl_tituloMetas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbtn_eliminarMeta)
+                            .addComponent(jbtn_modificarMeta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbtn_agregarMeta))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jcbo_Meta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jlbl_ingresosMes5))
@@ -315,15 +331,12 @@ public class VMeta extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jlbl_ingresosMes4)
                             .addComponent(jtxt_montoAbonoMeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jbtn_abonar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jbtn_eliminarMeta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jbtn_modificarMeta, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbtn_agregarMeta, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtn_abonar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
@@ -408,7 +421,7 @@ public class VMeta extends javax.swing.JFrame {
                     .addComponent(jbtn_Meta)
                     .addComponent(jbtn_detHist)
                     .addComponent(jbtn_GastosMes))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -466,13 +479,20 @@ public class VMeta extends javax.swing.JFrame {
             this.jlbl_tituloAhorro.setText(nombre_meta);
             
              try {
-                 this.jlbl_totalAhorros.setText(utils.ahorroPorMeta(nombre_meta));
+                int totalAhorros=utils.obtenerTotalAhorroPorMeta(ahorro.getCod_meta());
+                NumberFormat formato = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+                this.jlbl_totalAhorros.setText(formato.format(totalAhorros));
              } catch (Exception ex) {
                  Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
              }
         }
         else {
             this.jlbl_tituloAhorro.setText("AHORROS");
+            try {
+                this.jlbl_totalAhorros.setText(utils.obtenerTotalAhorros());
+            } catch (Exception ex) {
+                Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
     }//GEN-LAST:event_jcbo_MetaActionPerformed
@@ -698,11 +718,11 @@ public class VMeta extends javax.swing.JFrame {
     private javax.swing.JButton jbtn_modificarMeta;
     private javax.swing.JButton jbtn_refrescar;
     private javax.swing.JComboBox<String> jcbo_Meta;
-    private javax.swing.JLabel jlbl_ListaCompras;
     private javax.swing.JLabel jlbl_ingresosMes4;
     private javax.swing.JLabel jlbl_ingresosMes5;
     private javax.swing.JLabel jlbl_mesActual;
     private javax.swing.JLabel jlbl_tituloAhorro;
+    private javax.swing.JLabel jlbl_tituloMetas;
     private javax.swing.JLabel jlbl_totalAhorros;
     private javax.swing.JTextField jtxt_montoAbonoMeta;
     // End of variables declaration//GEN-END:variables
