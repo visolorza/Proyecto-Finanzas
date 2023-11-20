@@ -581,25 +581,34 @@ public class VGastos extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Asegurese de ingresar monto, descripcion y seleccionar todos los campos", "Error: falta llenar campos", HEIGHT);
             }
             else{
-                gasto.setMontoGast(Integer.parseInt(this.jtxt_montoGasto.getText()));
-                gasto.setDescGast(this.jtxt_descGasto.getText().toUpperCase());
+                boolean mayorACero=utils.numeroMayorACero(jtxt_montoGasto.getText());
+                if (mayorACero) {
+                    gasto.setMontoGast(Integer.parseInt(this.jtxt_montoGasto.getText()));
+                    gasto.setDescGast(this.jtxt_descGasto.getText().toUpperCase());
 
-                String desc_cat = jcbo_gastosMes.getSelectedItem() != null ? jcbo_gastosMes.getSelectedItem().toString() : "";
-                int cod_cat = IGasto.obtenerCodCat(desc_cat);
-                if(IGasto.agregar(gasto)){
+                    String desc_cat = jcbo_gastosMes.getSelectedItem() != null ? jcbo_gastosMes.getSelectedItem().toString() : "";
+                    int cod_cat = IGasto.obtenerCodCat(desc_cat);
+                    if(IGasto.agregar(gasto)){
 
-                    controlGasto.refrescarPorSubcat(jTableMostrar, cod_cat,gasto.getCodSubcat());
+                        controlGasto.refrescarPorSubcat(jTableMostrar, cod_cat,gasto.getCodSubcat());
 
-                    this.jtxt_montoGasto.setText(""); 
-                    this.jtxt_descGasto.setText("");
-                    this.jcbo_integrante.setSelectedIndex(0);
-                    int sumaMontosGas=controlGasto.obtenerTotalCat(cod_cat);
-                    NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
-                    String sumaFormato=formatoMontoGas.format(sumaMontosGas);
-                    this.jlbl_totalGastos.setText(sumaFormato);
-                    
-                    JOptionPane.showMessageDialog(null, "Gasto añadido con éxito", "Nuevo gasto", JOptionPane.INFORMATION_MESSAGE);
-                }    
+                        this.jtxt_montoGasto.setText(""); 
+                        this.jtxt_descGasto.setText("");
+                        this.jcbo_integrante.setSelectedIndex(0);
+                        int sumaMontosGas=controlGasto.obtenerTotalCat(cod_cat);
+                        NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+                        String sumaFormato=formatoMontoGas.format(sumaMontosGas);
+                        this.jlbl_totalGastos.setText(sumaFormato);
+
+                        JOptionPane.showMessageDialog(null, "Gasto añadido con éxito", "Nuevo gasto", JOptionPane.INFORMATION_MESSAGE);
+                    }    
+                }else{
+                    JOptionPane.showMessageDialog(null, "El monto debe ser numérico mayor a cero", "Monto inválido", HEIGHT);
+                }
+ 
+        
+            
+                
             }
         } catch (Exception ex) {
             Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);

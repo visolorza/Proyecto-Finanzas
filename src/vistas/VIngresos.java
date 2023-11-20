@@ -559,20 +559,25 @@ public class VIngresos extends javax.swing.JFrame {
             if (this.jtxt_descIngreso.getText().isBlank() || this.jtxt_montoIngreso.getText().isBlank() || this.jcbo_integrante.getSelectedItem().toString().equalsIgnoreCase("- SELECCIONAR -")) {
                 JOptionPane.showMessageDialog(null, "Falta integrante o llenar campos", "Error de ingresiÃ³n", HEIGHT);
             }else{
-                ingreso.setMonto_ing(Integer.parseInt(this.jtxt_montoIngreso.getText()));
-                ingreso.setDesc_ing(this.jtxt_descIngreso.getText().toUpperCase()); 
-                if(IIngreso.agregar(ingreso)){
-                    System.out.println("gasto agregado con exto "+ingreso.toString());
-                    controlIngreso.refrescarTodoIngreso(jTableMostrar);
+                boolean mayorACero=utils.numeroMayorACero(jtxt_montoIngreso.getText());
+                if (mayorACero) {
+                    ingreso.setMonto_ing(Integer.parseInt(this.jtxt_montoIngreso.getText()));
+                    ingreso.setDesc_ing(this.jtxt_descIngreso.getText().toUpperCase()); 
+                    if(IIngreso.agregar(ingreso)){
+                        System.out.println("gasto agregado con exto "+ingreso.toString());
+                        controlIngreso.refrescarTodoIngreso(jTableMostrar);
 
-                    this.jtxt_montoIngreso.setText("");
-                    this.jtxt_descIngreso.setText("");
+                        this.jtxt_montoIngreso.setText("");
+                        this.jtxt_descIngreso.setText("");
 
-                    //Mostrar total gasto en compras en el mes
-                    this.jlbl_totalIngresos.setText(controlIngreso.obtenerTotalIngresosMes());
-                    jlbl_totalIngresos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-                    
-                    JOptionPane.showMessageDialog(null, "Ingreso agregado con éxito", "Nuevo ingreso", JOptionPane.INFORMATION_MESSAGE);
+                        //Mostrar total gasto en compras en el mes
+                        this.jlbl_totalIngresos.setText(controlIngreso.obtenerTotalIngresosMes());
+                        jlbl_totalIngresos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+                        JOptionPane.showMessageDialog(null, "Ingreso agregado con éxito", "Nuevo ingreso", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "El monto debe ser numérico mayor a cero", "Monto inválido", HEIGHT);
                 }
             }        
         } catch (Exception ex) {

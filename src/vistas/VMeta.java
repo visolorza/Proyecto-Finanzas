@@ -625,15 +625,20 @@ public class VMeta extends javax.swing.JFrame {
             if (this.jtxt_montoAbonoMeta.getText().isBlank() || this.jcbo_Meta.getSelectedItem().toString().equalsIgnoreCase("- SELECCIONAR -")) {
                     JOptionPane.showMessageDialog(null, "Asegurese de ingresar monto y seleccionar meta", "Error: falta rellenar campos", HEIGHT);
             }else{
-                ahorro.setMonto_ahorro(Integer.parseInt(this.jtxt_montoAbonoMeta.getText()));
-                ahorro.toString();
-                if(IAhorro.agregar(ahorro)){
-                    System.out.println("ahorro agregado con exto "+ahorro.toString());
-                    controlMeta.refrescarMeta(jTableMostrarMeta, ahorro.getCod_meta());
-                    this.jtxt_montoAbonoMeta.setText("");
-                    JOptionPane.showMessageDialog(null, "Abono hecho con éxito", "Abono meta", JOptionPane.INFORMATION_MESSAGE);
+                boolean mayorACero=utils.numeroMayorACero(jtxt_montoAbonoMeta.getText());
+                if (mayorACero) {
+                    ahorro.setMonto_ahorro(Integer.parseInt(this.jtxt_montoAbonoMeta.getText()));
+                    ahorro.toString();
+                    if(IAhorro.agregar(ahorro)){
+                        System.out.println("ahorro agregado con exto "+ahorro.toString());
+                        controlMeta.refrescarMeta(jTableMostrarMeta, ahorro.getCod_meta());
+                        this.jtxt_montoAbonoMeta.setText("");
+                        JOptionPane.showMessageDialog(null, "Abono hecho con éxito", "Abono meta", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "El monto debe ser numérico mayor a cero", "Monto inválido", HEIGHT);
                 }
-            }        
+            }    
         } catch (Exception ex) {
             Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);
         }

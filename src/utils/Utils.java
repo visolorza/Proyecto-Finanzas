@@ -46,5 +46,15 @@ public class Utils {
         int numYear = calendar.get(Calendar.YEAR); 
         return numYear;
     }
-        
+    
+    public boolean numeroMayorACero(String numeroStr) {
+        try {
+            System.out.println(numeroStr);
+            int numero = Integer.parseInt(numeroStr);
+            System.out.println(numero);
+            return numero > 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }
