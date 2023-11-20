@@ -495,7 +495,7 @@ public class VMeta extends javax.swing.JFrame {
         String nombre_meta= jcbo_Meta.getSelectedItem().toString().toUpperCase();
          
         try {
-            IMeta.obtenerCodigoMeta(nombre_meta);
+            ahorro.setCod_meta(IMeta.obtenerCodigoMeta(nombre_meta)); 
             controlMeta.refrescarMeta(jTableMostrarMeta, ahorro.getCod_meta());
         } catch (Exception ex) {
             Logger.getLogger(VMeta.class.getName()).log(Level.SEVERE, null, ex);

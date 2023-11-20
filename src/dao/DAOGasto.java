@@ -31,7 +31,7 @@ public class DAOGasto implements IGasto{
             //Connection cnx = con.obtenerConexion();
             Connection cnx = ConexionBD.obtenerConexion();
             String query="";
-            if (mes!=0) {
+            if (mes!=0 && year==0 && codCat==0) {
                 query = "SELECT * FROM gasto WHERE EXTRACT(MONTH FROM fecha_gast) = ?";
                 PreparedStatement stmt = cnx.prepareStatement(query);
                 stmt.setInt(1, mes);
@@ -50,7 +50,7 @@ public class DAOGasto implements IGasto{
                 rs.close();
                 stmt.close();
             }
-            if (codCat!=0) {
+            if (codCat!=0 && year==0 && mes==0) {
                 query = "SELECT * FROM gasto g JOIN subcategoria s ON(s.cod_subcat = g.cod_subcat) "
                     + "AND EXTRACT(MONTH FROM fecha_gast) = EXTRACT(MONTH FROM SYSDATE) WHERE s.cod_cat = ?";
                 PreparedStatement stmt = cnx.prepareStatement(query);

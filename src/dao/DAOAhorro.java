@@ -26,7 +26,7 @@ public class DAOAhorro implements IAhorro {
             ConexionBD con = new ConexionBD();
             Connection cnx = ConexionBD.obtenerConexion();
             String query="";
-            if (cod_meta!=0) {
+            if (cod_meta!=0 && year==0 & mes==0) {
                 query = "SELECT * FROM ahorro WHERE cod_meta=?";
                 PreparedStatement stmt = cnx.prepareStatement(query);
                 stmt.setInt(1, cod_meta);
@@ -43,7 +43,7 @@ public class DAOAhorro implements IAhorro {
                 rs.close();
                 stmt.close();
             }
-            if (year!=0){
+            if (year!=0 && cod_meta==0 && mes==0){
                 query = "SELECT a.cod_ahor cod, a.fecha_ahor fecha, m.nombre_meta meta, a.monto_ahor monto " +
                         "FROM ahorro a JOIN meta m ON (a.cod_meta = m.cod_meta) " +
                         "WHERE EXTRACT(YEAR FROM fecha_ahor)=? " +
@@ -63,7 +63,7 @@ public class DAOAhorro implements IAhorro {
                 rs.close();
                 stmt.close();
             }
-            if (mes!=0) {
+            if (mes!=0 && year!=0 && cod_meta==0){
                 query = "SELECT a.cod_ahor cod, a.fecha_ahor fecha, m.nombre_meta meta, a.monto_ahor monto " +
                         "FROM ahorro a JOIN meta m ON (a.cod_meta = m.cod_meta) " +
                         "WHERE EXTRACT(YEAR FROM fecha_ahor)=? AND EXTRACT(MONTH FROM fecha_ahor)=? " +

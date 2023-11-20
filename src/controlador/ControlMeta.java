@@ -6,16 +6,12 @@ package controlador;
 
 import dao.DAOAhorro;
 import interfaz.IAhorro;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Ahorro;
-import modelo.ConexionBD;
 import utils.FormatoTabla;
 
 /**
