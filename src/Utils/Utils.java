@@ -751,28 +751,6 @@ public class Utils {
         }
         return sumaMontosGas;
     }
-    
-    public String ahorroPorMeta (String nombre_meta) throws Exception{
-        
-        ArrayList<Ahorro> listaAhorro = new ArrayList<>();
-        
-        ControlAhorro cAhorro = new ControlAhorro();
-        ControlMeta cMeta = new ControlMeta();
-        
-        listaAhorro = cAhorro.mostrarAhorroPorMeta(cMeta.obtenerCodigoMeta(nombre_meta));
-        
-        NumberFormat formatoMeta = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
-        
-        String monto = "";
-        int sumaMontoAhorro = 0;
-        
-        for (Ahorro listaAhorros : listaAhorro) {
-            
-            sumaMontoAhorro += listaAhorros.getMonto_ahorro();
-            monto=formatoMeta.format(sumaMontoAhorro);
-        }
-        return monto;
-    }
  
     public int obtenerTotalGastoMesDH (int year,int mes) throws Exception{
         ArrayList<Gasto> listaGastos;
@@ -800,6 +778,17 @@ public class Utils {
         ArrayList<Ahorro> listaAhorros;
         ControlAhorro cahorro = new ControlAhorro();
         listaAhorros=cahorro.mostrarAhorroPorMes(year, mes);
+        int sumaMontosAho=0;
+        for (Ahorro ahorro : listaAhorros) {
+            sumaMontosAho+=ahorro.getMonto_ahorro();
+        }
+        return sumaMontosAho;
+    }
+    
+    public int obtenerTotalAhorroPorMeta(int codMeta) throws Exception{
+        ArrayList<Ahorro> listaAhorros;
+        ControlAhorro cahorro = new ControlAhorro();
+        listaAhorros=cahorro.mostrarAhorroPorMeta(codMeta);
         int sumaMontosAho=0;
         for (Ahorro ahorro : listaAhorros) {
             sumaMontosAho+=ahorro.getMonto_ahorro();
