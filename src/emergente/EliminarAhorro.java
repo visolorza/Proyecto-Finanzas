@@ -6,8 +6,10 @@ package emergente;
  */
 
 import dao.DAOAhorro;
+import static java.awt.image.ImageObserver.HEIGHT;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -104,12 +106,18 @@ public class EliminarAhorro extends javax.swing.JFrame {
 
     private void jbtn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_eliminarActionPerformed
 
-        int cod_gast=Integer.parseInt(this.jtxt_cod_gast.getText());
-
         try {
-            if(cgasto.eliminar(cod_gast)){
-                System.out.println("ahorro eliminado con exto ");
-                this.setVisible(false);
+            if (this.jtxt_cod_gast.getText().isBlank()) {
+                JOptionPane.showMessageDialog(null, "Escriba un codigo de ahorro", "Error: falta rellenar campos", HEIGHT);
+            }
+            else {
+                int cod_gast=Integer.parseInt(this.jtxt_cod_gast.getText());
+                
+                if(cgasto.eliminar(cod_gast)){
+                    System.out.println("ahorro eliminado con exto ");
+                    this.setVisible(false);
+                    JOptionPane.showMessageDialog(null, "Eliminación hecha con éxito", "Eliminar ahorro", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
         } catch (Exception ex) {
             Logger.getLogger(EliminarAhorro.class.getName()).log(Level.SEVERE, null, ex);

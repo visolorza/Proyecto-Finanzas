@@ -33,7 +33,11 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jlbl_ingresosMes6" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
                       <EmptySpace pref="44" max="32767" attributes="0"/>
+=======
+                      <EmptySpace max="32767" attributes="0"/>
+>>>>>>> 47c7fddcd1ec03727da11e236727568515a6d73b
                       <Component id="jtxt_cod_gast" min="-2" pref="165" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">

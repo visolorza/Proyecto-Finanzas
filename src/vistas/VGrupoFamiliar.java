@@ -378,9 +378,12 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
             if (this.jtxt_nombreIntegrante.getText().isBlank()) {
                 JOptionPane.showMessageDialog(null, "Por favor ingrese un integrante", "Error: falta llenar campos", HEIGHT);
             }
-            integrante.setDesc_int(this.jtxt_nombreIntegrante.getText().toUpperCase());
-            IGrupoFamiliar.agregar(integrante);
-            controlGrupoFamiliar.refrescarGrupoFamiliar(jTableMostrar);
+            else {
+                integrante.setDesc_int(this.jtxt_nombreIntegrante.getText().toUpperCase());
+                IGrupoFamiliar.agregar(integrante);
+                controlGrupoFamiliar.refrescarGrupoFamiliar(jTableMostrar);
+                JOptionPane.showMessageDialog(null, "Integrante añadido con éxito", "Modifcación Grupo Familiar", JOptionPane.INFORMATION_MESSAGE);
+            }    
         } catch (Exception ex) {
             Logger.getLogger(VGrupoFamiliar.class.getName()).log(Level.SEVERE, null, ex);
         }

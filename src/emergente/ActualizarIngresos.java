@@ -1,15 +1,17 @@
 
 package emergente;
 
-import dao.DAOGasto;
+import controlador.ControlIngreso;
 import dao.DAOGrupoFamiliar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modelo.Gasto;
 import utils.Utils;
 import dao.DAOIngreso;
 import interfaz.IGrupoFamiliar;
 import interfaz.IIngreso;
+import static java.awt.image.ImageObserver.HEIGHT;
+import javax.swing.JOptionPane;
+
 import modelo.Ingreso;
 
 /**
@@ -173,6 +175,7 @@ public class ActualizarIngresos extends javax.swing.JFrame {
 
     IIngreso IIngreso = new DAOIngreso();
     Ingreso ingreso = new Ingreso();
+    ControlIngreso cingresos = new ControlIngreso();
     IGrupoFamiliar IGrupoFamiliar = new DAOGrupoFamiliar();
     
     private void jtxt_montoIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_montoIngresoActionPerformed
@@ -185,19 +188,37 @@ public class ActualizarIngresos extends javax.swing.JFrame {
 
     private void jbtn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_actualizarActionPerformed
 
-        ingreso.setMonto_ing(Integer.parseInt(this.jtxt_montoIngreso.getText()));
-        ingreso.setDesc_ing(this.jtxt_descIngreso.getText().toUpperCase());
-        ingreso.setCod_ing(Integer.parseInt(this.jtxt_cod_ing.getText()));
-        
-        try {
-            if(IIngreso.actualizar(ingreso)){
-                System.out.println("ingreso modificado con exto "+ingreso.toString());   
-                this.setVisible(false);
+
+            try {
+                if(IIngreso.actualizar(ingreso)){
+                    System.out.println("ingreso modificado con exto "+ingreso.toString());
+                    this.setVisible(false);
+                    
+                    if (this.jtxt_cod_ing.getText().isBlank() || this.jtxt_descIngreso.getText().isBlank() || this.jtxt_montoIngreso.getText().isBlank() || this.jcbo_integrante.getSelectedItem().toString().equalsIgnoreCase("- SELECCIONAR -")) {
+                        JOptionPane.showMessageDialog(null, "Asegurese de ingresar el código del ingreso, su monto y seleccionar un integrante", "Error: falta rellenar campos", HEIGHT);
+                        
+                    }
+                    else {
+                        ingreso.setMonto_ing(Integer.parseInt(this.jtxt_montoIngreso.getText()));
+                        ingreso.setDesc_ing(this.jtxt_descIngreso.getText().toUpperCase());
+                        ingreso.setCod_ing(Integer.parseInt(this.jtxt_cod_ing.getText()));
+                        
+                        if(IIngreso.actualizar(ingreso)){
+                            System.out.println("ingreso modificado con exto "+ingreso.toString());
+                            this.setVisible(false);
+                            
+                            JOptionPane.showMessageDialog(null, "Modificación hecha con éxito", "Moficación ingreso", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        
+                    }
+                    
+                    
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(ActualizarIngresos.class.getName()).log(Level.SEVERE, null, ex);
             }
-                    } catch (Exception ex) {
-            Logger.getLogger(ActualizarIngresos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-      
+            
+              
     }//GEN-LAST:event_jbtn_actualizarActionPerformed
 
     private void jcbo_integranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbo_integranteActionPerformed

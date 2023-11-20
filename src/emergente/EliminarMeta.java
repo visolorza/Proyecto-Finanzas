@@ -28,6 +28,8 @@ public class EliminarMeta extends javax.swing.JFrame {
      */
     public EliminarMeta() {
         initComponents();
+        
+        cmeta.RellenarComboMeta("meta", "nombre_meta", jcbo_Meta);
     }
 
     /**

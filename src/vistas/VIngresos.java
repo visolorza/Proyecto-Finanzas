@@ -571,7 +571,8 @@ public class VIngresos extends javax.swing.JFrame {
                     //Mostrar total gasto en compras en el mes
                     this.jlbl_totalIngresos.setText(controlIngreso.obtenerTotalIngresosMes());
                     jlbl_totalIngresos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-
+                    
+                    JOptionPane.showMessageDialog(null, "Ingreso agregado con éxito", "Nuevo ingreso", JOptionPane.INFORMATION_MESSAGE);
                 }
             }        
         } catch (Exception ex) {

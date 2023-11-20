@@ -553,7 +553,7 @@ public class VMeta extends javax.swing.JFrame {
         try {  
            Object selectedItem = jcbo_Meta.getSelectedItem();
 
-           if (selectedItem != null) {
+           if (selectedItem != null && !"- SELECCIONAR -".equals(selectedItem) ) {
                String nombre_meta = selectedItem.toString().toUpperCase();
 
                try {
@@ -565,7 +565,7 @@ public class VMeta extends javax.swing.JFrame {
 
                    IMeta.RellenarComboMeta("meta", "nombre_meta", this.jcbo_Meta); 
 
-                   if (!"- SELECCIONAR -".equals(nombre_meta)) {
+                   if (!"- SELECCIONAR -".equals(nombre_meta) && nombre_meta==null) {
                        this.jlbl_tituloAhorro.setText(nombre_meta);
 
                        try {
@@ -629,6 +629,7 @@ public class VMeta extends javax.swing.JFrame {
                     System.out.println("ahorro agregado con exto "+ahorro.toString());
                     controlMeta.refrescarMeta(jTableMostrarMeta, ahorro.getCod_meta());
                     this.jtxt_montoAbonoMeta.setText("");
+                    JOptionPane.showMessageDialog(null, "Abono hecho con éxito", "Abono meta", JOptionPane.INFORMATION_MESSAGE);
                 }
             }        
         } catch (Exception ex) {
@@ -755,37 +756,6 @@ public class VMeta extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(VInicio.class.getName()).log(java.utijTableMostrarMetael.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(VInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(VInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(VInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new VInicio().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
