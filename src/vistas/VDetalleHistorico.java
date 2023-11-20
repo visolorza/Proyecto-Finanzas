@@ -34,7 +34,7 @@ public class VDetalleHistorico extends javax.swing.JFrame {
     private int posicionY;
 
     /**
-     * Creates new form VInicio
+     * Creates new form VInicio0
      */
     public VDetalleHistorico() {
         initComponents();
