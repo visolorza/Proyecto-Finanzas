@@ -4,13 +4,18 @@
  */
 package Utils;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
 import org.jfree.chart.labels.PieSectionLabelGenerator;
 import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -72,7 +77,7 @@ public class Grafico {
         //Ver porcentajes
         PiePlot plot = (PiePlot) chart.getPlot();
         PieSectionLabelGenerator labelGenerator = new StandardPieSectionLabelGenerator(
-        "{0} ({2})",  // "{0}" categorÃ­a, "{2}" porcentaje
+        "{2}",  // "{0}" categorÃ­a, "{2}" porcentaje
         new java.text.DecimalFormat("0.00"),  // Formato porcentajes num
         new java.text.DecimalFormat("0.00%")); // Formato porcentajes "%" 
         plot.setLabelGenerator(labelGenerator);
@@ -81,5 +86,59 @@ public class Grafico {
         chartPanel.setPreferredSize(new java.awt.Dimension(280, 235));
         return chartPanel;
     }
+    
+    public ChartPanel crearGraficoIngDetHis(int year,int mes)throws Exception{
+        Utils utils = new Utils();
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        if(utils.obtenerTotalIngresoMesDH(year, (mes-1))!=0){
+            dataset.addValue(utils.obtenerTotalIngresoMesDH(year, (mes-1)), "Ingresos", (mes-1)+"/"+year);
+        }
+        dataset.addValue(utils.obtenerTotalIngresoMesDH(year, mes), "Ingresos", mes+"/"+year);
+        if (utils.obtenerTotalIngresoMesDH(year, (mes+1))!=0) {
+            dataset.addValue(utils.obtenerTotalIngresoMesDH(year, (mes+1)), "Ingresos", (mes+1)+"/"+year);
+        }
+        JFreeChart chart = ChartFactory.createBarChart(
+                " ",
+                "Mes",
+                "Ingresos",
+                dataset,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false
+        );
+        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new java.awt.Dimension(280, 235));
+
+        return chartPanel;
+    }
+    
+    public ChartPanel crearGraficoAhorroDetHis(int year,int mes)throws Exception{
+        Utils utils = new Utils();
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        if(utils.obtenerTotalAhorroMesDH(year, (mes-1))!=0){
+            dataset.addValue(utils.obtenerTotalAhorroMesDH(year, (mes-1)), "Ahorros", (mes-1)+"/"+year);
+        }
+        dataset.addValue(utils.obtenerTotalAhorroMesDH(year, mes), "Ahorros", mes+"/"+year);
+        if (utils.obtenerTotalAhorroMesDH(year, (mes+1))!=0) {
+            dataset.addValue(utils.obtenerTotalAhorroMesDH(year, (mes+1)), "Ahorros", (mes+1)+"/"+year);
+        }
+        JFreeChart chart = ChartFactory.createBarChart(
+                " ",
+                "Mes",
+                "Ahorros",
+                dataset,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false
+        );
+        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new java.awt.Dimension(280, 235));
+
+        return chartPanel;
+    }
+
+
     
 }

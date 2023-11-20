@@ -4,6 +4,8 @@ import Utils.Grafico;
 import Utils.Utils;
 import controlador.ControlGasto;
 import java.awt.BorderLayout;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jfree.chart.ChartPanel;
@@ -53,6 +55,9 @@ public class VDetalleHistorico extends javax.swing.JFrame {
         jcbo_año = new javax.swing.JComboBox<>();
         jcbo_cat = new javax.swing.JComboBox<>();
         jlbl_ingresosMes = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jlbl_total = new javax.swing.JLabel();
+        jlbl_montoTotal = new javax.swing.JLabel();
         jbtn_inicio = new javax.swing.JButton();
         jbtn_grupoFamiliar = new javax.swing.JButton();
         jbtn_ingresosMes = new javax.swing.JButton();
@@ -92,7 +97,7 @@ public class VDetalleHistorico extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
         );
 
-        jpan_grafico.setBackground(new java.awt.Color(204, 204, 204));
+        jpan_grafico.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jpan_graficoLayout = new javax.swing.GroupLayout(jpan_grafico);
         jpan_grafico.setLayout(jpan_graficoLayout);
@@ -105,10 +110,10 @@ public class VDetalleHistorico extends javax.swing.JFrame {
             .addGap(0, 235, Short.MAX_VALUE)
         );
 
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel1.setText("Año:");
 
-        jLabel2.setText("Mes:");
-
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel3.setText("Categoria:");
 
         jcbo_mes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- SELECCIONAR -" }));
@@ -135,6 +140,13 @@ public class VDetalleHistorico extends javax.swing.JFrame {
         jlbl_ingresosMes.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jlbl_ingresosMes.setText("DETALLE HISTÓRICO");
 
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel4.setText("Mes:");
+
+        jlbl_total.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
+        jlbl_montoTotal.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -144,17 +156,20 @@ public class VDetalleHistorico extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlbl_ingresosMes)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3))
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jlbl_total, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jcbo_cat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jcbo_mes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jcbo_año, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(jlbl_ingresosMes))
+                                    .addComponent(jcbo_mes, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jcbo_año, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jlbl_montoTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jpan_grafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -163,26 +178,30 @@ public class VDetalleHistorico extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jpan_grafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addComponent(jpan_grafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jlbl_ingresosMes)
                         .addGap(35, 35, 35)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jcbo_cat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jcbo_año, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jcbo_mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(66, 66, 66)))
+                            .addComponent(jLabel4))
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jlbl_total, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                            .addComponent(jlbl_montoTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2)))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
         );
@@ -432,17 +451,37 @@ public class VDetalleHistorico extends javax.swing.JFrame {
 
             switch (cat) {
                 case "INGRESO":
-                    
+                    this.jlbl_total.setText("");
+                    this.jlbl_montoTotal.setText("");
                     this.jpan_grafico.removeAll();
                     
                      try {
                         utils.refrescarIngresoMes(jTableDHist, year, mes);
+                        if (year!=0 && mes!=0) {
+                        
+                            Grafico grafico = new Grafico();
+                            ChartPanel chartPanel;       
+                            try {
+                                chartPanel = grafico.crearGraficoIngDetHis(year,mes);
+                                this.jpan_grafico.setLayout(new java.awt.BorderLayout());
+                                this.jpan_grafico.add(chartPanel, BorderLayout.CENTER);
+                                this.jpan_grafico.revalidate();
+                                this.jpan_grafico.repaint();
+                            } catch (Exception ex) {
+                                Logger.getLogger(VDetalleHistorico.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            this.jlbl_total.setText("TOTAL:");
+                            NumberFormat formato = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+                            this.jlbl_montoTotal.setText(formato.format(utils.obtenerTotalIngresoMesDH(year,mes)));
+                        }
+                        
                     } catch (Exception ex) {
                         Logger.getLogger(VDetalleHistorico.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     break;
                 case "GASTO":
-                    
+                    this.jlbl_total.setText("");
+                    this.jlbl_montoTotal.setText("");
                     this.jpan_grafico.removeAll();
                     
                     try {
@@ -460,18 +499,40 @@ public class VDetalleHistorico extends javax.swing.JFrame {
                             } catch (Exception ex) {
                                 Logger.getLogger(VDetalleHistorico.class.getName()).log(Level.SEVERE, null, ex);
                             }
+                            this.jlbl_total.setText("TOTAL:");
+                            NumberFormat formato = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+                            this.jlbl_montoTotal.setText(formato.format(utils.obtenerTotalGastoMesDH(year,mes)));
                         }
+                        
                     } catch (Exception ex) {
                         Logger.getLogger(VDetalleHistorico.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     break;
                     
                 case "AHORRO":
-                    
+                    this.jlbl_total.setText("");
+                    this.jlbl_montoTotal.setText("");
                     this.jpan_grafico.removeAll();
                     
                     try {
                         utils.refrescarAhorroMes(jTableDHist, year, mes);
+                        
+                        if (year!=0 && mes!=0) {
+                            Grafico grafico = new Grafico();
+                            ChartPanel chartPanel;       
+                            try {
+                                chartPanel = grafico.crearGraficoAhorroDetHis(year,mes);
+                                this.jpan_grafico.setLayout(new java.awt.BorderLayout());
+                                this.jpan_grafico.add(chartPanel, BorderLayout.CENTER);
+                                this.jpan_grafico.revalidate();
+                                this.jpan_grafico.repaint();
+                            } catch (Exception ex) {
+                                Logger.getLogger(VDetalleHistorico.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            this.jlbl_total.setText("TOTAL:");
+                            NumberFormat formato = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+                            this.jlbl_montoTotal.setText(formato.format(utils.obtenerTotalAhorroMesDH(year,mes)));
+                        }
                     } catch (Exception ex) {
                         Logger.getLogger(VDetalleHistorico.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -617,6 +678,7 @@ public class VDetalleHistorico extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
@@ -633,6 +695,8 @@ public class VDetalleHistorico extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcbo_cat;
     private javax.swing.JComboBox<String> jcbo_mes;
     private javax.swing.JLabel jlbl_ingresosMes;
+    private javax.swing.JLabel jlbl_montoTotal;
+    private javax.swing.JLabel jlbl_total;
     private javax.swing.JPanel jpan_grafico;
     // End of variables declaration//GEN-END:variables
 
