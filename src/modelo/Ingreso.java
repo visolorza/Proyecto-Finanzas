@@ -11,17 +11,18 @@ import java.util.Date;
 public class Ingreso {
     
     private int cod_ing, monto_ing,cod_int;
-    private String desc_ing;
+    private String desc_ing, desc_int;
     private Date fecha_ing;
 
     public Ingreso() {
     }
 
-    public Ingreso(int cod_ing, int monto_ing, int cod_int, String desc_ing, Date fecha_ing) {
+    public Ingreso(int cod_ing, int monto_ing, int cod_int, String desc_ing, String desc_int, Date fecha_ing) {
         this.cod_ing = cod_ing;
         this.monto_ing = monto_ing;
         this.cod_int = cod_int;
         this.desc_ing = desc_ing;
+        this.desc_int = desc_int;
         this.fecha_ing = fecha_ing;
     }
 
@@ -57,6 +58,14 @@ public class Ingreso {
         this.desc_ing = desc_ing;
     }
 
+    public String getDesc_int() {
+        return desc_int;
+    }
+
+    public void setDesc_int(String desc_int) {
+        this.desc_int = desc_int;
+    }
+
     public Date getFecha_ing() {
         return fecha_ing;
     }
@@ -67,7 +76,7 @@ public class Ingreso {
 
     @Override
     public String toString() {
-        return "Ingresos{" + "cod_ing=" + cod_ing + ", monto_ing=" + monto_ing + ", cod_int=" + cod_int + ", desc_ing=" + desc_ing + ", fecha_ing=" + fecha_ing + '}';
+        return "Ingreso{" + "cod_ing=" + cod_ing + ", monto_ing=" + monto_ing + ", cod_int=" + cod_int + ", desc_ing=" + desc_ing + ", desc_int=" + desc_int + ", fecha_ing=" + fecha_ing + '}';
     }
-    
-}
+
+}   

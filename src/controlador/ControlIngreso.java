@@ -32,6 +32,7 @@ public class ControlIngreso {
         
         modelo.addColumn("CODIGO");
         modelo.addColumn("FECHA");
+        modelo.addColumn("INTEGRANTE");
         modelo.addColumn("DESCRIPCION");
         modelo.addColumn("MONTO");
         IIngreso IIngreso = new DAOIngreso();
@@ -50,15 +51,16 @@ public class ControlIngreso {
         String monto;
         
         for (Ingreso ingreso : listaIng) {
-            Object a[] = new Object[4];
-            int sumaMontosGas=ingreso.getMonto_ing();
             
+            int sumaMontosGas=ingreso.getMonto_ing();
             monto=formatoMontoGas.format(sumaMontosGas);
-                    
+            
+            Object a[] = new Object[5];        
             a[0]=ingreso.getCod_ing();
             a[1]=ingreso.getFecha_ing();
-            a[2]=ingreso.getDesc_ing();
-            a[3]=monto;
+            a[2]=ingreso.getDesc_int();
+            a[3]=ingreso.getDesc_ing();
+            a[4]=monto;
             modelo.addRow(a);
         }
         return tabla;
@@ -84,6 +86,7 @@ public class ControlIngreso {
         
         modelo.addColumn("CODIGO");
         modelo.addColumn("FECHA");
+        modelo.addColumn("INTEGRANTE");
         modelo.addColumn("DETALLE");
         modelo.addColumn("MONTO");
         IIngreso IIngreso = new DAOIngreso();
@@ -100,16 +103,17 @@ public class ControlIngreso {
         
         String monto;
             
-        for (Ingreso listag : listaIngreso) {
+        for (Ingreso ingreso : listaIngreso) {
             
-            int sumaMontosGas=listag.getMonto_ing();
+            int sumaMontosGas=ingreso.getMonto_ing();
             monto=formatoMeta.format(sumaMontosGas);
             
-            Object a[] = new Object[4];
-            a[0]=listag.getCod_ing();
-            a[1]=listag.getFecha_ing();
-            a[2]=listag.getDesc_ing();
-            a[3]=monto;
+            Object a[] = new Object[5];
+            a[0]=ingreso.getCod_ing();
+            a[1]=ingreso.getFecha_ing();
+            a[2]=ingreso.getDesc_int();
+            a[3]=ingreso.getDesc_ing();
+            a[4]=monto;
             modelo.addRow(a);
         }
         return tabla;
@@ -123,6 +127,7 @@ public class ControlIngreso {
         
         modelo.addColumn("CODIGO");
         modelo.addColumn("FECHA");
+        modelo.addColumn("INTEGRANTE");
         modelo.addColumn("DETALLE");
         modelo.addColumn("MONTO");
         IIngreso IIngreso = new DAOIngreso();
@@ -139,16 +144,17 @@ public class ControlIngreso {
         
         String monto;
             
-        for (Ingreso listag : listaIngreso) {
+        for (Ingreso ingreso : listaIngreso) {
             
-            int sumaMontosGas=listag.getMonto_ing();
+            int sumaMontosGas=ingreso.getMonto_ing();
             monto=formatoMeta.format(sumaMontosGas);
             
-            Object a[] = new Object[4];
-            a[0]=listag.getCod_ing();
-            a[1]=listag.getFecha_ing();
-            a[2]=listag.getDesc_ing();
-            a[3]=monto;
+            Object a[] = new Object[5];
+            a[0]=ingreso.getCod_ing();
+            a[1]=ingreso.getFecha_ing();
+            a[2]=ingreso.getDesc_int();
+            a[3]=ingreso.getDesc_ing();
+            a[4]=monto;
             modelo.addRow(a);
         }
         return tabla;

@@ -26,27 +26,33 @@ public class DAOIngreso implements IIngreso {
             ConexionBD con = new ConexionBD();
             Connection cnx = ConexionBD.obtenerConexion();
             String query="";
+            
             if (year!=0 && mes==0) {
-                query = "SELECT * FROM ingreso WHERE EXTRACT(YEAR FROM fecha_ing)=?";
+                query = "SELECT ing.cod_ing cod, ing.fecha_ing fecha, inte.desc_int integ, ing.desc_ing descri, ing.monto_ing monto " +
+                        "FROM ingreso ing JOIN integrante inte ON (ing.cod_int = inte.cod_int) " +
+                        "WHERE EXTRACT(YEAR FROM ing.fecha_ing)=? " +
+                        "ORDER BY ing.fecha_ing DESC";
                 PreparedStatement stmt = cnx.prepareStatement(query);
                 stmt.setInt(1, year);
                 ResultSet rs = stmt.executeQuery();
 
                 while (rs.next()) {
                     Ingreso ingresos = new Ingreso();
-                    ingresos.setCod_ing(rs.getInt("COD_ING"));
-                    ingresos.setFecha_ing(rs.getDate("FECHA_ING"));
-                    ingresos.setDesc_ing(rs.getString("DESC_ING"));
-                    ingresos.setMonto_ing(rs.getInt("MONTO_ING"));
-                    ingresos.setCod_int(rs.getInt("COD_INT"));
+                    ingresos.setCod_ing(rs.getInt("cod"));
+                    ingresos.setFecha_ing(rs.getDate("fecha"));
+                    ingresos.setDesc_int(rs.getString("integ"));
+                    ingresos.setDesc_ing(rs.getString("descri"));
+                    ingresos.setMonto_ing(rs.getInt("monto"));
                     lista.add(ingresos);
                 }
                 rs.close();
                 stmt.close();
             }
             if (mes!=0 && year!=0) {
-                query = "SELECT * FROM ingreso WHERE EXTRACT(MONTH FROM fecha_ing)= ? AND "
-                        + "EXTRACT(YEAR FROM fecha_ing)= ?";
+                query = "SELECT ing.cod_ing cod, ing.fecha_ing fecha, inte.desc_int integ, ing.desc_ing descri, ing.monto_ing monto " +
+                        "FROM ingreso ing JOIN integrante inte ON (ing.cod_int = inte.cod_int) " +
+                        "WHERE EXTRACT(MONTH FROM fecha_ing)= ? AND EXTRACT(YEAR FROM fecha_ing)= ?" +
+                        "ORDER BY ing.fecha_ing DESC";
                 PreparedStatement stmt = cnx.prepareStatement(query);
                 stmt.setInt(1, mes);
                 stmt.setInt(2, year);
@@ -54,11 +60,11 @@ public class DAOIngreso implements IIngreso {
 
                 while (rs.next()) {
                     Ingreso ingresos = new Ingreso();
-                    ingresos.setCod_ing(rs.getInt("COD_ING"));
-                    ingresos.setFecha_ing(rs.getDate("FECHA_ING"));
-                    ingresos.setDesc_ing(rs.getString("DESC_ING"));
-                    ingresos.setMonto_ing(rs.getInt("MONTO_ING"));
-                    ingresos.setCod_int(rs.getInt("COD_INT"));
+                    ingresos.setCod_ing(rs.getInt("cod"));
+                    ingresos.setFecha_ing(rs.getDate("fecha"));
+                    ingresos.setDesc_int(rs.getString("integ"));
+                    ingresos.setDesc_ing(rs.getString("descri"));
+                    ingresos.setMonto_ing(rs.getInt("monto"));
                     lista.add(ingresos);
                 }
                 rs.close();
@@ -66,17 +72,19 @@ public class DAOIngreso implements IIngreso {
                
             }
             if(year==0 && mes==0){
-                query = "select * from Ingreso order by fecha_ing desc";
+                query = "SELECT ing.cod_ing cod, ing.fecha_ing fecha, inte.desc_int integ, ing.desc_ing descri, ing.monto_ing monto " +
+                        "FROM ingreso ing JOIN integrante inte ON (ing.cod_int = inte.cod_int) " +
+                        "ORDER BY ing.fecha_ing DESC";
                 PreparedStatement stmt = cnx.prepareStatement(query);
                 ResultSet rs = stmt.executeQuery();
 
                 while (rs.next()) {
                     Ingreso ingresos = new Ingreso();
-                    ingresos.setCod_ing(rs.getInt("COD_ING"));
-                    ingresos.setFecha_ing(rs.getDate("FECHA_ING"));
-                    ingresos.setDesc_ing(rs.getString("DESC_ING"));
-                    ingresos.setMonto_ing(rs.getInt("MONTO_ING"));
-                    ingresos.setCod_int(rs.getInt("COD_INT"));
+                    ingresos.setCod_ing(rs.getInt("cod"));
+                    ingresos.setFecha_ing(rs.getDate("fecha"));
+                    ingresos.setDesc_int(rs.getString("integ"));
+                    ingresos.setDesc_ing(rs.getString("descri"));
+                    ingresos.setMonto_ing(rs.getInt("monto"));
                     lista.add(ingresos);
                 }
                 rs.close();
