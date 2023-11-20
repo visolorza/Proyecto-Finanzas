@@ -53,7 +53,7 @@ public class EliminarIntegrante extends javax.swing.JFrame {
 
         jbtn_eliminar.setBackground(new java.awt.Color(204, 204, 204));
         jbtn_eliminar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jbtn_eliminar.setText("eliminar");
+        jbtn_eliminar.setText("Eliminar");
         jbtn_eliminar.setBorder(null);
         jbtn_eliminar.setBorderPainted(false);
         jbtn_eliminar.addActionListener(new java.awt.event.ActionListener() {

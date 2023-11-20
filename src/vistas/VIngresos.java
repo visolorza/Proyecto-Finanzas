@@ -10,6 +10,7 @@ import interfaz.IGrupoFamiliar;
 import interfaz.IIngreso;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.Ingreso;
 
 /*
@@ -554,22 +555,25 @@ public class VIngresos extends javax.swing.JFrame {
 
     private void jbtn_anadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_anadirActionPerformed
 
-        ingreso.setMonto_ing(Integer.parseInt(this.jtxt_montoIngreso.getText()));
-        ingreso.setDesc_ing(this.jtxt_descIngreso.getText().toUpperCase());
-
         try {
-            if(IIngreso.agregar(ingreso)){
-                System.out.println("gasto agregado con exto "+ingreso.toString());
-                controlIngreso.refrescarTodoIngreso(jTableMostrar);
+            if (this.jtxt_descIngreso.getText().isBlank() || this.jtxt_montoIngreso.getText().isBlank() || this.jcbo_integrante.getSelectedItem().toString().equalsIgnoreCase("- SELECCIONAR -")) {
+                JOptionPane.showMessageDialog(null, "Falta integrante o llenar campos", "Error de ingresiÃ³n", HEIGHT);
+            }else{
+                ingreso.setMonto_ing(Integer.parseInt(this.jtxt_montoIngreso.getText()));
+                ingreso.setDesc_ing(this.jtxt_descIngreso.getText().toUpperCase()); 
+                if(IIngreso.agregar(ingreso)){
+                    System.out.println("gasto agregado con exto "+ingreso.toString());
+                    controlIngreso.refrescarTodoIngreso(jTableMostrar);
 
-                this.jtxt_montoIngreso.setText("");
-                this.jtxt_descIngreso.setText("");
+                    this.jtxt_montoIngreso.setText("");
+                    this.jtxt_descIngreso.setText("");
 
-                //Mostrar total gasto en compras en el mes
-                this.jlbl_totalIngresos.setText(controlIngreso.obtenerTotalIngresosMes());
-                jlbl_totalIngresos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+                    //Mostrar total gasto en compras en el mes
+                    this.jlbl_totalIngresos.setText(controlIngreso.obtenerTotalIngresosMes());
+                    jlbl_totalIngresos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
-            }
+                }
+            }        
         } catch (Exception ex) {
             Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -14,6 +14,7 @@ import interfaz.IGasto;
 import interfaz.IGrupoFamiliar;
 import java.text.NumberFormat;
 import java.util.Locale;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -573,26 +574,32 @@ public class VGastos extends javax.swing.JFrame {
 
     private void jbtn_anadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_anadirActionPerformed
         
-        gasto.setMontoGast(Integer.parseInt(this.jtxt_montoGasto.getText()));
-        gasto.setDescGast(this.jtxt_descGasto.getText().toUpperCase());
+        
 
         try {
-            String desc_cat = jcbo_gastosMes.getSelectedItem() != null ? jcbo_gastosMes.getSelectedItem().toString() : "";
-            int cod_cat = IGasto.obtenerCodCat(desc_cat);
-            if(IGasto.agregar(gasto)){
+            
+            if (this.jtxt_montoGasto.getText().isBlank() || this.jtxt_descGasto.getText().isBlank() || this.jcbo_gastosMes.getSelectedItem().toString().equalsIgnoreCase("- SELECCIONAR -") 
+                || this.jcbo_integrante.getSelectedItem().toString().equalsIgnoreCase("- SELECCIONAR -") || this.jcbo_subcategoria.getSelectedItem().toString().equalsIgnoreCase("- SELECCIONAR -")) {
+                JOptionPane.showMessageDialog(null, "Asegurese de ingresar monto, descripcion y seleccionar todos los campos", "Error: falta llenar campos", HEIGHT);
+            }
+            else{
+                gasto.setMontoGast(Integer.parseInt(this.jtxt_montoGasto.getText()));
+                gasto.setDescGast(this.jtxt_descGasto.getText().toUpperCase());
 
-                controlGasto.refrescarPorSubcat(jTableMostrar, cod_cat,gasto.getCodSubcat());
-                
-                this.jtxt_montoGasto.setText(""); 
-                this.jtxt_descGasto.setText("");
-                this.jcbo_integrante.setSelectedIndex(0);
-                int sumaMontosGas=controlGasto.obtenerTotalCat(cod_cat);
-                NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
-                String sumaFormato=formatoMontoGas.format(sumaMontosGas);
-                this.jlbl_totalGastos.setText(sumaFormato);
-                
+                String desc_cat = jcbo_gastosMes.getSelectedItem() != null ? jcbo_gastosMes.getSelectedItem().toString() : "";
+                int cod_cat = IGasto.obtenerCodCat(desc_cat);
+                if(IGasto.agregar(gasto)){
 
-                
+                    controlGasto.refrescarPorSubcat(jTableMostrar, cod_cat,gasto.getCodSubcat());
+
+                    this.jtxt_montoGasto.setText(""); 
+                    this.jtxt_descGasto.setText("");
+                    this.jcbo_integrante.setSelectedIndex(0);
+                    int sumaMontosGas=controlGasto.obtenerTotalCat(cod_cat);
+                    NumberFormat formatoMontoGas = NumberFormat.getCurrencyInstance(new Locale("es", "CL"));
+                    String sumaFormato=formatoMontoGas.format(sumaMontosGas);
+                    this.jlbl_totalGastos.setText(sumaFormato);
+                }    
             }
         } catch (Exception ex) {
             Logger.getLogger(VGastos.class.getName()).log(Level.SEVERE, null, ex);

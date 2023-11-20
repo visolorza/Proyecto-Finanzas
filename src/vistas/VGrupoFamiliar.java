@@ -7,6 +7,7 @@ import dao.DAOGrupoFamiliar;
 import interfaz.IGrupoFamiliar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Integrante;
 import utils.Utils;
@@ -373,11 +374,12 @@ public class VGrupoFamiliar extends javax.swing.JFrame {
 
     private void jbtn_anadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_anadirActionPerformed
 
-        integrante.setDesc_int(this.jtxt_nombreIntegrante.getText().toUpperCase());
-        
         try {
+            if (this.jtxt_nombreIntegrante.getText().isBlank()) {
+                JOptionPane.showMessageDialog(null, "Por favor ingrese un integrante", "Error: falta llenar campos", HEIGHT);
+            }
+            integrante.setDesc_int(this.jtxt_nombreIntegrante.getText().toUpperCase());
             IGrupoFamiliar.agregar(integrante);
-            
             controlGrupoFamiliar.refrescarGrupoFamiliar(jTableMostrar);
         } catch (Exception ex) {
             Logger.getLogger(VGrupoFamiliar.class.getName()).log(Level.SEVERE, null, ex);
